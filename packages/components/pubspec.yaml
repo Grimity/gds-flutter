@@ -1,0 +1,17 @@
+name: gds_components
+version: 0.0.1
+publish_to: none
+description: Grimity Design System components package
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  gds_foundation:
+    path: ../foundation
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+
