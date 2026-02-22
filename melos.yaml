@@ -1,4 +1,5 @@
 name: gds_flutter
+sdkPath: .fvm/flutter_sdk
 packages:
   - packages/**
 
@@ -17,3 +18,4 @@ scripts:
   format:
     description: "Format all the files"
     run: fvm exec melos exec -c 2 -- "dart fix --apply && dart format ."
+
