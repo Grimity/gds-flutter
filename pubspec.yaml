@@ -13,6 +13,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  gds_components:
+    path: packages/components
+  gds_foundation:
+    path: packages/foundation
 
 dev_dependencies:
   flutter_test:
