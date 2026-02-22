@@ -5,6 +5,7 @@ description: Grimity Design System tokens package
 
 environment:
   sdk: ^3.9.2
+resolution: workspace
 
 dependencies:
   flutter:
