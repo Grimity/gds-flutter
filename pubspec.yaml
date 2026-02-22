@@ -1,0 +1,21 @@
+name: gds
+version: 0.0.1
+publish_to: none
+description: Grimity Design System
+workspace:
+  - packages/components
+  - packages/foundation
+  - packages/tokens
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  melos: ^7.4.0
