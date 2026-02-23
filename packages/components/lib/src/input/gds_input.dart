@@ -4,10 +4,6 @@ import 'package:gds_components/gds_components.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
-import 'gds_helper_text.dart';
-import 'gds_text_field.dart';
-import 'gds_title.dart';
-
 enum _GdsInputType { defaultField, button, community, communityAnswer }
 
 class GdsInput extends StatelessWidget {

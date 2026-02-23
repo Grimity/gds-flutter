@@ -331,8 +331,9 @@ class _GdsTextFieldState extends State<GdsTextField> {
     if (!widget.enabled) return GdsTextFieldState.disabled;
     if (widget.error) return GdsTextFieldState.error;
     if (widget.success) return GdsTextFieldState.success;
-    if (_isFocused || widget.mentionUser != null)
+    if (_isFocused || widget.mentionUser != null) {
       return GdsTextFieldState.focused;
+    }
     if (_controller.text.isNotEmpty) return GdsTextFieldState.filled;
     return GdsTextFieldState.enabled;
   }
