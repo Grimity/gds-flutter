@@ -33,8 +33,7 @@ class _GdsSemanticColorBgLight extends GdsSemanticColorBg {
   Color get black => GdsAtomicColorBase.black;
 
   @override
-  Color get overlayBlack =>
-      GdsAtomicColorBase.black.withValues(alpha: GdsAtomicOpacity.a40);
+  Color get overlayBlack => GdsAtomicColorBase.black.withValues(alpha: GdsAtomicOpacity.a40);
 }
 
 class _GdsSemanticColorBgDark extends GdsSemanticColorBg {
@@ -53,6 +52,5 @@ class _GdsSemanticColorBgDark extends GdsSemanticColorBg {
   Color get black => GdsAtomicColorBase.black;
 
   @override
-  Color get overlayBlack =>
-      GdsAtomicColorBase.black.withValues(alpha: GdsAtomicOpacity.a80);
+  Color get overlayBlack => GdsAtomicColorBase.black.withValues(alpha: GdsAtomicOpacity.a80);
 }

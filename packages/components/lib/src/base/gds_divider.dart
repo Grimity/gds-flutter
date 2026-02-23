@@ -44,15 +44,11 @@ class GdsDivider extends StatelessWidget {
          'brand 타입은 noraml 사이즈만 지원합니다.',
        );
 
-  const GdsDivider.brand({super.key})
-    : type = GdsDividerType.brand,
-      size = GdsDividerSize.normal;
+  const GdsDivider.brand({super.key}) : type = GdsDividerType.brand, size = GdsDividerSize.normal;
 
-  const GdsDivider.primary({super.key, this.size = GdsDividerSize.normal})
-    : type = GdsDividerType.primary;
+  const GdsDivider.primary({super.key, this.size = GdsDividerSize.normal}) : type = GdsDividerType.primary;
 
-  const GdsDivider.secondary({super.key, this.size = GdsDividerSize.normal})
-    : type = GdsDividerType.secondary;
+  const GdsDivider.secondary({super.key, this.size = GdsDividerSize.normal}) : type = GdsDividerType.secondary;
 
   @override
   Widget build(BuildContext context) {

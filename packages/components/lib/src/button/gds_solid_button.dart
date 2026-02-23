@@ -63,23 +63,21 @@ class GdsSolidButtonStyle {
     };
   }
 
-  static Color textColor(GdsSemanticColor colors, GdsButtonState state) =>
-      switch (state) {
-        GdsButtonState.enabled => colors.text.inverse,
-        GdsButtonState.focused => colors.text.inverse,
-        GdsButtonState.hovered => colors.text.inverse,
-        GdsButtonState.pressed => colors.text.inverse,
-        GdsButtonState.disabled => colors.text.graySubtler,
-      };
+  static Color textColor(GdsSemanticColor colors, GdsButtonState state) => switch (state) {
+    GdsButtonState.enabled => colors.text.inverse,
+    GdsButtonState.focused => colors.text.inverse,
+    GdsButtonState.hovered => colors.text.inverse,
+    GdsButtonState.pressed => colors.text.inverse,
+    GdsButtonState.disabled => colors.text.graySubtler,
+  };
 
-  static Color iconColor(GdsSemanticColor colors, GdsButtonState state) =>
-      switch (state) {
-        GdsButtonState.enabled => colors.icon.inverse,
-        GdsButtonState.focused => colors.icon.inverse,
-        GdsButtonState.hovered => colors.icon.inverse,
-        GdsButtonState.pressed => colors.icon.inverse,
-        GdsButtonState.disabled => colors.icon.graySubtler,
-      };
+  static Color iconColor(GdsSemanticColor colors, GdsButtonState state) => switch (state) {
+    GdsButtonState.enabled => colors.icon.inverse,
+    GdsButtonState.focused => colors.icon.inverse,
+    GdsButtonState.hovered => colors.icon.inverse,
+    GdsButtonState.pressed => colors.icon.inverse,
+    GdsButtonState.disabled => colors.icon.graySubtler,
+  };
 
   static BoxBorder? border(
     GdsSemanticColor colors,
@@ -191,21 +189,13 @@ class _GdsSolidButtonState extends State<GdsSolidButton> {
     return Focus(
       onFocusChange: (focused) => setState(() => _isFocused = focused),
       child: MouseRegion(
-        cursor: _isInteractive
-            ? SystemMouseCursors.click
-            : SystemMouseCursors.basic,
+        cursor: _isInteractive ? SystemMouseCursors.click : SystemMouseCursors.basic,
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
         child: GestureDetector(
-          onTapDown: _isInteractive
-              ? (_) => setState(() => _isPressed = true)
-              : null,
-          onTapUp: _isInteractive
-              ? (_) => setState(() => _isPressed = false)
-              : null,
-          onTapCancel: _isInteractive
-              ? () => setState(() => _isPressed = false)
-              : null,
+          onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
+          onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
+          onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,
           onTap: _isInteractive ? widget.onPressed : null,
           child: Container(
             decoration: BoxDecoration(
@@ -229,9 +219,7 @@ class _GdsSolidButtonState extends State<GdsSolidButton> {
               hasTrailingIcon: widget.trailingIcon != null,
             ),
             child: Row(
-              mainAxisSize: widget.expanded
-                  ? MainAxisSize.max
-                  : MainAxisSize.min,
+              mainAxisSize: widget.expanded ? MainAxisSize.max : MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: _buildChildren(colors, state, size),
             ),

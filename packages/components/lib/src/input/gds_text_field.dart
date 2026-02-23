@@ -24,25 +24,16 @@ enum GdsTextFieldSize {
     GdsTextFieldType.search => const EdgeInsets.symmetric(
       horizontal: GdsSpacing.spacing16,
     ),
-    GdsTextFieldType.defaultField ||
-    GdsTextFieldType.count => EdgeInsets.symmetric(
-      horizontal: this == GdsTextFieldSize.medium
-          ? GdsSpacing.spacing16
-          : GdsSpacing.spacing12,
+    GdsTextFieldType.defaultField || GdsTextFieldType.count => EdgeInsets.symmetric(
+      horizontal: this == GdsTextFieldSize.medium ? GdsSpacing.spacing16 : GdsSpacing.spacing12,
     ),
   };
 
   TextStyle textStyle(GdsTextFieldType type) => switch (type) {
-    GdsTextFieldType.title =>
-      this == GdsTextFieldSize.medium
-          ? GdsTypography.title2
-          : GdsTypography.label2,
+    GdsTextFieldType.title => this == GdsTextFieldSize.medium ? GdsTypography.title2 : GdsTypography.label2,
     GdsTextFieldType.defaultField ||
     GdsTextFieldType.count ||
-    GdsTextFieldType.search =>
-      this == GdsTextFieldSize.medium
-          ? GdsTypography.label2
-          : GdsTypography.label4,
+    GdsTextFieldType.search => this == GdsTextFieldSize.medium ? GdsTypography.label2 : GdsTypography.label4,
   };
 }
 
@@ -96,46 +87,39 @@ enum GdsTextFieldType {
     };
   }
 
-  Color inputTextColor(GdsSemanticColor colors, GdsTextFieldState state) =>
-      switch (state) {
-        GdsTextFieldState.disabled => colors.text.graySubtler,
-        GdsTextFieldState.enabled => colors.text.grayBold,
-        GdsTextFieldState.filled => colors.text.grayBold,
-        GdsTextFieldState.focused => colors.text.grayBold,
-        GdsTextFieldState.error => colors.text.grayBold,
-        GdsTextFieldState.success => colors.text.grayBold,
-      };
+  Color inputTextColor(GdsSemanticColor colors, GdsTextFieldState state) => switch (state) {
+    GdsTextFieldState.disabled => colors.text.graySubtler,
+    GdsTextFieldState.enabled => colors.text.grayBold,
+    GdsTextFieldState.filled => colors.text.grayBold,
+    GdsTextFieldState.focused => colors.text.grayBold,
+    GdsTextFieldState.error => colors.text.grayBold,
+    GdsTextFieldState.success => colors.text.grayBold,
+  };
 
-  Color placeholderColor(GdsSemanticColor colors, GdsTextFieldState state) =>
-      switch (state) {
-        GdsTextFieldState.disabled => colors.text.graySubtler,
-        GdsTextFieldState.enabled => colors.text.graySubtle,
-        GdsTextFieldState.filled => colors.text.graySubtle,
-        GdsTextFieldState.focused => colors.text.graySubtle,
-        GdsTextFieldState.error => colors.text.graySubtle,
-        GdsTextFieldState.success => colors.text.graySubtle,
-      };
+  Color placeholderColor(GdsSemanticColor colors, GdsTextFieldState state) => switch (state) {
+    GdsTextFieldState.disabled => colors.text.graySubtler,
+    GdsTextFieldState.enabled => colors.text.graySubtle,
+    GdsTextFieldState.filled => colors.text.graySubtle,
+    GdsTextFieldState.focused => colors.text.graySubtle,
+    GdsTextFieldState.error => colors.text.graySubtle,
+    GdsTextFieldState.success => colors.text.graySubtle,
+  };
 
-  Color cursorColor(GdsSemanticColor colors, GdsTextFieldState state) =>
-      switch (state) {
-        GdsTextFieldState.error => colors.status.negative,
-        GdsTextFieldState.success => colors.status.positive,
-        GdsTextFieldState.enabled => colors.status.info,
-        GdsTextFieldState.filled => colors.status.info,
-        GdsTextFieldState.focused => colors.status.info,
-        GdsTextFieldState.disabled => colors.status.info,
-      };
+  Color cursorColor(GdsSemanticColor colors, GdsTextFieldState state) => switch (state) {
+    GdsTextFieldState.error => colors.status.negative,
+    GdsTextFieldState.success => colors.status.positive,
+    GdsTextFieldState.enabled => colors.status.info,
+    GdsTextFieldState.filled => colors.status.info,
+    GdsTextFieldState.focused => colors.status.info,
+    GdsTextFieldState.disabled => colors.status.info,
+  };
 
   // count / title 타입 전용
   Color countCurrentColor(GdsSemanticColor colors, GdsTextFieldState state) =>
-      state == GdsTextFieldState.disabled
-      ? colors.text.graySubtler
-      : colors.text.grayNormal;
+      state == GdsTextFieldState.disabled ? colors.text.graySubtler : colors.text.grayNormal;
 
   Color countRestColor(GdsSemanticColor colors, GdsTextFieldState state) =>
-      state == GdsTextFieldState.disabled
-      ? colors.text.graySubtler
-      : colors.text.graySubtle;
+      state == GdsTextFieldState.disabled ? colors.text.graySubtler : colors.text.graySubtle;
 
   BorderRadius? get borderRadius => switch (this) {
     GdsTextFieldType.title => null,
@@ -339,8 +323,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
   }
 
   bool get _hasCount =>
-      widget.type == GdsTextFieldType.count ||
-      (widget.type == GdsTextFieldType.title && widget.maxLength != null);
+      widget.type == GdsTextFieldType.count || (widget.type == GdsTextFieldType.title && widget.maxLength != null);
 
   @override
   Widget build(BuildContext context) {
@@ -408,17 +391,13 @@ class _GdsTextFieldState extends State<GdsTextField> {
                   widget.placeholder!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: size
-                      .textStyle(type)
-                      .copyWith(color: type.placeholderColor(colors, state)),
+                  style: size.textStyle(type).copyWith(color: type.placeholderColor(colors, state)),
                 ),
               ),
             EditableText(
               controller: _controller,
               focusNode: _focusNode,
-              style: size
-                  .textStyle(type)
-                  .copyWith(color: type.inputTextColor(colors, state)),
+              style: size.textStyle(type).copyWith(color: type.inputTextColor(colors, state)),
               cursorColor: type.cursorColor(colors, state),
               backgroundCursorColor: GdsColors.transparent,
               obscureText: widget.obscureText,
@@ -427,9 +406,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
               onEditingComplete: widget.onEditingComplete,
               textInputAction: widget.textInputAction,
               maxLines: 1,
-              inputFormatters: widget.maxLength != null
-                  ? [LengthLimitingTextInputFormatter(widget.maxLength)]
-                  : null,
+              inputFormatters: widget.maxLength != null ? [LengthLimitingTextInputFormatter(widget.maxLength)] : null,
             ),
           ],
         ),

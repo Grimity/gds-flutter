@@ -42,8 +42,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.bold,
     fontSize: GdsAtomicFontSize.md,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle subtitle3 = TextStyle(
@@ -51,8 +50,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.bold,
     fontSize: GdsAtomicFontSize.sm,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle body1R = TextStyle(
@@ -60,8 +58,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.regular,
     fontSize: GdsAtomicFontSize.md,
     height: GdsAtomicFontLineHeight.lg,
-    letterSpacing:
-        GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle body1SB = TextStyle(
@@ -69,8 +66,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.semiBold,
     fontSize: GdsAtomicFontSize.md,
     height: GdsAtomicFontLineHeight.lg,
-    letterSpacing:
-        GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle body2R = TextStyle(
@@ -78,8 +74,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.regular,
     fontSize: GdsAtomicFontSize.sm,
     height: GdsAtomicFontLineHeight.lg,
-    letterSpacing:
-        GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle body2SB = TextStyle(
@@ -87,8 +82,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.semiBold,
     fontSize: GdsAtomicFontSize.sm,
     height: GdsAtomicFontLineHeight.lg,
-    letterSpacing:
-        GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle caption1 = TextStyle(
@@ -96,8 +90,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.regular,
     fontSize: GdsAtomicFontSize.xs,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.xs * (GdsAtomicFontLetterSpacing.tighter / 100),
+    letterSpacing: GdsAtomicFontSize.xs * (GdsAtomicFontLetterSpacing.tighter / 100),
   );
 
   static final TextStyle label1 = TextStyle(
@@ -105,8 +98,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.semiBold,
     fontSize: GdsAtomicFontSize.md,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle label2 = TextStyle(
@@ -114,8 +106,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.medium,
     fontSize: GdsAtomicFontSize.md,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.md * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle label3 = TextStyle(
@@ -123,8 +114,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.semiBold,
     fontSize: GdsAtomicFontSize.sm,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle label4 = TextStyle(
@@ -132,8 +122,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.medium,
     fontSize: GdsAtomicFontSize.sm,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
+    letterSpacing: GdsAtomicFontSize.sm * (GdsAtomicFontLetterSpacing.tight / 100),
   );
 
   static final TextStyle label5 = TextStyle(
@@ -141,8 +130,7 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.semiBold,
     fontSize: GdsAtomicFontSize.xs,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.xs * (GdsAtomicFontLetterSpacing.tighter / 100),
+    letterSpacing: GdsAtomicFontSize.xs * (GdsAtomicFontLetterSpacing.tighter / 100),
   );
 
   static final TextStyle label6 = TextStyle(
@@ -150,7 +138,6 @@ class GdsSemanticTypography {
     fontWeight: GdsAtomicFontWeight.medium,
     fontSize: GdsAtomicFontSize.xs,
     height: GdsAtomicFontLineHeight.md,
-    letterSpacing:
-        GdsAtomicFontSize.xs * (GdsAtomicFontLetterSpacing.tighter / 100),
+    letterSpacing: GdsAtomicFontSize.xs * (GdsAtomicFontLetterSpacing.tighter / 100),
   );
 }

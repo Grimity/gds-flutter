@@ -33,14 +33,11 @@ class GdsNumberPushBadge extends StatelessWidget {
     this.type = GdsNumberPushBadgeType.outline,
   });
 
-  const GdsNumberPushBadge.solid({super.key, required this.count})
-    : type = GdsNumberPushBadgeType.solid;
+  const GdsNumberPushBadge.solid({super.key, required this.count}) : type = GdsNumberPushBadgeType.solid;
 
-  const GdsNumberPushBadge.outline({super.key, required this.count})
-    : type = GdsNumberPushBadgeType.outline;
+  const GdsNumberPushBadge.outline({super.key, required this.count}) : type = GdsNumberPushBadgeType.outline;
 
-  const GdsNumberPushBadge.text({super.key, required this.count})
-    : type = GdsNumberPushBadgeType.text;
+  const GdsNumberPushBadge.text({super.key, required this.count}) : type = GdsNumberPushBadgeType.text;
 
   @override
   Widget build(BuildContext context) {

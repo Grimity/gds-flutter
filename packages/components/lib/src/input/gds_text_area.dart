@@ -11,69 +11,57 @@ enum GdsTextAreaType {
   text,
   small;
 
-  Color backgroundColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      switch (state) {
-        GdsTextAreaState.error => colors.status.negative.withValues(
-          alpha: GdsOpacity.opacity10,
-        ),
-        GdsTextAreaState.disabled => colors.surface.graySubtlest,
-        _ => GdsColors.transparent,
-      };
+  Color backgroundColor(GdsSemanticColor colors, GdsTextAreaState state) => switch (state) {
+    GdsTextAreaState.error => colors.status.negative.withValues(
+      alpha: GdsOpacity.opacity10,
+    ),
+    GdsTextAreaState.disabled => colors.surface.graySubtlest,
+    _ => GdsColors.transparent,
+  };
 
   Border? border(GdsSemanticColor colors, GdsTextAreaState state) {
     final color = _borderColor(colors, state);
     return switch (this) {
-      GdsTextAreaType.defaultField ||
-      GdsTextAreaType.small => Border.all(color: color),
+      GdsTextAreaType.defaultField || GdsTextAreaType.small => Border.all(color: color),
       GdsTextAreaType.underline => Border(bottom: BorderSide(color: color)),
       GdsTextAreaType.text => null,
     };
   }
 
-  Color _borderColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      switch (state) {
-        GdsTextAreaState.error => colors.status.negative,
-        GdsTextAreaState.disabled => colors.border.graySubtler,
-        _ => colors.border.graySubtle,
-      };
+  Color _borderColor(GdsSemanticColor colors, GdsTextAreaState state) => switch (state) {
+    GdsTextAreaState.error => colors.status.negative,
+    GdsTextAreaState.disabled => colors.border.graySubtler,
+    _ => colors.border.graySubtle,
+  };
 
-  Color inputTextColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      switch (state) {
-        GdsTextAreaState.disabled => colors.text.graySubtler,
-        _ => colors.text.grayBold,
-      };
+  Color inputTextColor(GdsSemanticColor colors, GdsTextAreaState state) => switch (state) {
+    GdsTextAreaState.disabled => colors.text.graySubtler,
+    _ => colors.text.grayBold,
+  };
 
-  Color placeholderColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      switch (state) {
-        GdsTextAreaState.disabled => colors.text.graySubtler,
-        _ => colors.text.graySubtle,
-      };
+  Color placeholderColor(GdsSemanticColor colors, GdsTextAreaState state) => switch (state) {
+    GdsTextAreaState.disabled => colors.text.graySubtler,
+    _ => colors.text.graySubtle,
+  };
 
-  Color cursorColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      switch (state) {
-        GdsTextAreaState.error => colors.status.negative,
-        _ => colors.status.info,
-      };
+  Color cursorColor(GdsSemanticColor colors, GdsTextAreaState state) => switch (state) {
+    GdsTextAreaState.error => colors.status.negative,
+    _ => colors.status.info,
+  };
 
   Color countCurrentColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      state == GdsTextAreaState.disabled
-      ? colors.text.graySubtler
-      : colors.text.grayNormal;
+      state == GdsTextAreaState.disabled ? colors.text.graySubtler : colors.text.grayNormal;
 
   Color countRestColor(GdsSemanticColor colors, GdsTextAreaState state) =>
-      state == GdsTextAreaState.disabled
-      ? colors.text.graySubtler
-      : colors.text.graySubtle;
+      state == GdsTextAreaState.disabled ? colors.text.graySubtler : colors.text.graySubtle;
 
   BorderRadius? get borderRadius => switch (this) {
-    GdsTextAreaType.defaultField ||
-    GdsTextAreaType.small => BorderRadius.circular(GdsRadius.sm),
+    GdsTextAreaType.defaultField || GdsTextAreaType.small => BorderRadius.circular(GdsRadius.sm),
     _ => null,
   };
 
   EdgeInsets get padding => switch (this) {
-    GdsTextAreaType.defaultField ||
-    GdsTextAreaType.underline => const EdgeInsets.fromLTRB(
+    GdsTextAreaType.defaultField || GdsTextAreaType.underline => const EdgeInsets.fromLTRB(
       GdsSpacing.spacing16,
       GdsSpacing.spacing16,
       GdsSpacing.spacing16,
@@ -351,9 +339,7 @@ class _GdsTextAreaState extends State<GdsTextArea> {
       onChanged: widget.onChanged,
       onEditingComplete: widget.onEditingComplete,
       maxLines: null,
-      inputFormatters: widget.maxLength != null
-          ? [LengthLimitingTextInputFormatter(widget.maxLength)]
-          : null,
+      inputFormatters: widget.maxLength != null ? [LengthLimitingTextInputFormatter(widget.maxLength)] : null,
     );
   }
 

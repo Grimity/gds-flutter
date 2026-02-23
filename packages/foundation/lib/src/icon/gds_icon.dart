@@ -205,9 +205,7 @@ enum GdsIcon implements IconBuilder {
     return SvgPicture.asset(
       path,
       package: 'gds_foundation',
-      colorFilter: color != null
-          ? ColorFilter.mode(color, BlendMode.srcIn)
-          : null,
+      colorFilter: color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
       width: iconWidth,
       height: iconHeight,
     );

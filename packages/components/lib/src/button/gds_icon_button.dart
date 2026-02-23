@@ -32,33 +32,25 @@ enum GdsIconButtonType {
     (GdsIconButtonType.small, GdsButtonState.focused) => colors.icon.grayBold,
     (GdsIconButtonType.small, GdsButtonState.hovered) => colors.icon.grayBold,
     (GdsIconButtonType.small, GdsButtonState.pressed) => colors.icon.grayBold,
-    (GdsIconButtonType.small, GdsButtonState.disabled) =>
-      colors.icon.graySubtler,
+    (GdsIconButtonType.small, GdsButtonState.disabled) => colors.icon.graySubtler,
 
     (GdsIconButtonType.normal, GdsButtonState.enabled) => colors.icon.grayBold,
     (GdsIconButtonType.normal, GdsButtonState.focused) => colors.icon.grayBold,
     (GdsIconButtonType.normal, GdsButtonState.hovered) => colors.icon.grayBold,
     (GdsIconButtonType.normal, GdsButtonState.pressed) => colors.icon.grayBold,
-    (GdsIconButtonType.normal, GdsButtonState.disabled) =>
-      colors.icon.graySubtler,
+    (GdsIconButtonType.normal, GdsButtonState.disabled) => colors.icon.graySubtler,
 
-    (GdsIconButtonType.outlined, GdsButtonState.enabled) =>
-      colors.icon.grayBold,
-    (GdsIconButtonType.outlined, GdsButtonState.focused) =>
-      colors.icon.grayBold,
-    (GdsIconButtonType.outlined, GdsButtonState.hovered) =>
-      colors.icon.grayBold,
-    (GdsIconButtonType.outlined, GdsButtonState.pressed) =>
-      colors.icon.grayBold,
-    (GdsIconButtonType.outlined, GdsButtonState.disabled) =>
-      colors.icon.graySubtler,
+    (GdsIconButtonType.outlined, GdsButtonState.enabled) => colors.icon.grayBold,
+    (GdsIconButtonType.outlined, GdsButtonState.focused) => colors.icon.grayBold,
+    (GdsIconButtonType.outlined, GdsButtonState.hovered) => colors.icon.grayBold,
+    (GdsIconButtonType.outlined, GdsButtonState.pressed) => colors.icon.grayBold,
+    (GdsIconButtonType.outlined, GdsButtonState.disabled) => colors.icon.graySubtler,
 
     (GdsIconButtonType.solid, GdsButtonState.enabled) => colors.icon.white,
     (GdsIconButtonType.solid, GdsButtonState.focused) => colors.icon.white,
     (GdsIconButtonType.solid, GdsButtonState.hovered) => colors.icon.white,
     (GdsIconButtonType.solid, GdsButtonState.pressed) => colors.icon.white,
-    (GdsIconButtonType.solid, GdsButtonState.disabled) =>
-      colors.icon.graySubtler,
+    (GdsIconButtonType.solid, GdsButtonState.disabled) => colors.icon.graySubtler,
   };
 
   Color? backgroundColor(
@@ -67,87 +59,78 @@ enum GdsIconButtonType {
   ) => switch ((this, state)) {
     (GdsIconButtonType.small, GdsButtonState.enabled) => null,
     (GdsIconButtonType.small, GdsButtonState.focused) => null,
-    (GdsIconButtonType.small, GdsButtonState.hovered) =>
-      colors.surface.graySubtlest,
-    (GdsIconButtonType.small, GdsButtonState.pressed) =>
-      colors.surface.graySubtler,
+    (GdsIconButtonType.small, GdsButtonState.hovered) => colors.surface.graySubtlest,
+    (GdsIconButtonType.small, GdsButtonState.pressed) => colors.surface.graySubtler,
     (GdsIconButtonType.small, GdsButtonState.disabled) => null,
 
     (GdsIconButtonType.normal, GdsButtonState.enabled) => null,
     (GdsIconButtonType.normal, GdsButtonState.focused) => null,
-    (GdsIconButtonType.normal, GdsButtonState.hovered) =>
-      colors.surface.graySubtlest,
-    (GdsIconButtonType.normal, GdsButtonState.pressed) =>
-      colors.surface.graySubtler,
+    (GdsIconButtonType.normal, GdsButtonState.hovered) => colors.surface.graySubtlest,
+    (GdsIconButtonType.normal, GdsButtonState.pressed) => colors.surface.graySubtler,
     (GdsIconButtonType.normal, GdsButtonState.disabled) => null,
 
     (GdsIconButtonType.outlined, GdsButtonState.enabled) => colors.surface.base,
     (GdsIconButtonType.outlined, GdsButtonState.focused) => colors.surface.base,
-    (GdsIconButtonType.outlined, GdsButtonState.hovered) =>
-      colors.surface.graySubtlest,
-    (GdsIconButtonType.outlined, GdsButtonState.pressed) =>
-      colors.surface.graySubtler,
-    (GdsIconButtonType.outlined, GdsButtonState.disabled) =>
-      colors.surface.graySubtlest,
+    (GdsIconButtonType.outlined, GdsButtonState.hovered) => colors.surface.graySubtlest,
+    (GdsIconButtonType.outlined, GdsButtonState.pressed) => colors.surface.graySubtler,
+    (GdsIconButtonType.outlined, GdsButtonState.disabled) => colors.surface.graySubtlest,
 
     (GdsIconButtonType.solid, GdsButtonState.enabled) => colors.bg.overlayBlack,
     (GdsIconButtonType.solid, GdsButtonState.focused) => colors.bg.overlayBlack,
     (GdsIconButtonType.solid, GdsButtonState.hovered) => colors.bg.overlayBlack,
     (GdsIconButtonType.solid, GdsButtonState.pressed) => colors.bg.overlayBlack,
-    (GdsIconButtonType.solid, GdsButtonState.disabled) =>
-      colors.bg.overlayBlack,
+    (GdsIconButtonType.solid, GdsButtonState.disabled) => colors.bg.overlayBlack,
   };
 
-  BoxBorder? border(GdsSemanticColor colors, GdsButtonState state) =>
-      switch ((this, state)) {
-        (GdsIconButtonType.small, GdsButtonState.enabled) => null,
-        (GdsIconButtonType.small, GdsButtonState.focused) => Border.all(
-          color: colors.border.grayNormal,
-          width: 2,
-        ),
-        (GdsIconButtonType.small, GdsButtonState.hovered) => null,
-        (GdsIconButtonType.small, GdsButtonState.pressed) => null,
-        (GdsIconButtonType.small, GdsButtonState.disabled) => null,
+  BoxBorder? border(GdsSemanticColor colors, GdsButtonState state) => switch ((this, state)) {
+    (GdsIconButtonType.small, GdsButtonState.enabled) => null,
+    (GdsIconButtonType.small, GdsButtonState.focused) => Border.all(
+      color: colors.border.grayNormal,
+      width: 2,
+    ),
+    (GdsIconButtonType.small, GdsButtonState.hovered) => null,
+    (GdsIconButtonType.small, GdsButtonState.pressed) => null,
+    (GdsIconButtonType.small, GdsButtonState.disabled) => null,
 
-        (GdsIconButtonType.normal, GdsButtonState.enabled) => null,
-        (GdsIconButtonType.normal, GdsButtonState.focused) => Border.all(
-          color: colors.border.grayNormal,
-          width: 2,
-        ),
-        (GdsIconButtonType.normal, GdsButtonState.hovered) => null,
-        (GdsIconButtonType.normal, GdsButtonState.pressed) => null,
-        (GdsIconButtonType.normal, GdsButtonState.disabled) => null,
+    (GdsIconButtonType.normal, GdsButtonState.enabled) => null,
+    (GdsIconButtonType.normal, GdsButtonState.focused) => Border.all(
+      color: colors.border.grayNormal,
+      width: 2,
+    ),
+    (GdsIconButtonType.normal, GdsButtonState.hovered) => null,
+    (GdsIconButtonType.normal, GdsButtonState.pressed) => null,
+    (GdsIconButtonType.normal, GdsButtonState.disabled) => null,
 
-        (GdsIconButtonType.outlined, GdsButtonState.enabled) => Border.all(
-          color: colors.border.graySubtle,
-          width: 1,
-        ),
-        (GdsIconButtonType.outlined, GdsButtonState.focused) => Border.all(
-          color: colors.border.grayNormal,
-          width: 2,
-        ),
-        (GdsIconButtonType.outlined, GdsButtonState.hovered) => Border.all(
-          color: colors.border.grayNormal,
-          width: 1,
-        ),
-        (GdsIconButtonType.outlined, GdsButtonState.pressed) => Border.all(
-          color: colors.border.grayNormal,
-          width: 1,
-        ),
-        (GdsIconButtonType.outlined, GdsButtonState.disabled) => Border.all(
-          color: colors.border.graySubtle,
-          width: 1,
-        ),
+    (GdsIconButtonType.outlined, GdsButtonState.enabled) => Border.all(
+      color: colors.border.graySubtle,
+      width: 1,
+    ),
+    (GdsIconButtonType.outlined, GdsButtonState.focused) => Border.all(
+      color: colors.border.grayNormal,
+      width: 2,
+    ),
+    (GdsIconButtonType.outlined, GdsButtonState.hovered) => Border.all(
+      color: colors.border.grayNormal,
+      width: 1,
+    ),
+    (GdsIconButtonType.outlined, GdsButtonState.pressed) => Border.all(
+      color: colors.border.grayNormal,
+      width: 1,
+    ),
+    (GdsIconButtonType.outlined, GdsButtonState.disabled) => Border.all(
+      color: colors.border.graySubtle,
+      width: 1,
+    ),
 
-        (GdsIconButtonType.solid, GdsButtonState.enabled) => null,
-        (GdsIconButtonType.solid, GdsButtonState.focused) => Border.all(
-          color: colors.border.grayNormal,
-          width: 1,
-        ),
-        (GdsIconButtonType.solid, GdsButtonState.hovered) => null,
-        (GdsIconButtonType.solid, GdsButtonState.pressed) => null,
-        (GdsIconButtonType.solid, GdsButtonState.disabled) => null,
-      };
+    (GdsIconButtonType.solid, GdsButtonState.enabled) => null,
+    (GdsIconButtonType.solid, GdsButtonState.focused) => Border.all(
+      color: colors.border.grayNormal,
+      width: 1,
+    ),
+    (GdsIconButtonType.solid, GdsButtonState.hovered) => null,
+    (GdsIconButtonType.solid, GdsButtonState.pressed) => null,
+    (GdsIconButtonType.solid, GdsButtonState.disabled) => null,
+  };
 }
 
 class GdsIconButton extends StatefulWidget {
@@ -218,21 +201,13 @@ class _GdsIconButtonState extends State<GdsIconButton> {
     return Focus(
       onFocusChange: (focused) => setState(() => _isFocused = focused),
       child: MouseRegion(
-        cursor: widget.enabled
-            ? SystemMouseCursors.click
-            : SystemMouseCursors.basic,
+        cursor: widget.enabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
         child: GestureDetector(
-          onTapDown: widget.enabled
-              ? (_) => setState(() => _isPressed = true)
-              : null,
-          onTapUp: widget.enabled
-              ? (_) => setState(() => _isPressed = false)
-              : null,
-          onTapCancel: widget.enabled
-              ? () => setState(() => _isPressed = false)
-              : null,
+          onTapDown: widget.enabled ? (_) => setState(() => _isPressed = true) : null,
+          onTapUp: widget.enabled ? (_) => setState(() => _isPressed = false) : null,
+          onTapCancel: widget.enabled ? () => setState(() => _isPressed = false) : null,
           onTap: widget.enabled ? widget.onPressed : null,
           child: Container(
             decoration: BoxDecoration(
