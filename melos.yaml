@@ -1,5 +1,4 @@
 name: gds_flutter
-sdkPath: .fvm/flutter_sdk
 packages:
   - packages/**
 
@@ -7,7 +6,7 @@ scripts:
   # Install: flutter pub get
   install:
     description: "Install all the dependencies"
-    run: flutter pub get && melos exec -c 1 -- "flutter pub get"
+    run: flutter pub get && dart run melos exec -c 1 -- "flutter pub get"
 
   # Build: Widgetbook
   build-widgetbook:
@@ -17,5 +16,5 @@ scripts:
   # Format: All
   format:
     description: "Format all the files"
-    run: fvm exec melos exec -c 2 -- "dart fix --apply && dart format ."
+    run: fvm exec dart run melos exec -c 2 -- "dart fix --apply && dart format ."
 
