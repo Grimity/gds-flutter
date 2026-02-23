@@ -18,8 +18,7 @@ class WidgetbookTitle extends StatelessWidget {
       children: [
         Text(title, style: GdsTypography.title1),
         if (description != null && description!.isNotEmpty) Text(description!, style: GdsTypography.body1R),
-        // TODO GdsDivider로 변경
-        // const GdsDivider(type: GdsDividerType.primary),
+        const GdsDivider(type: GdsDividerType.primary),
       ],
     );
   }

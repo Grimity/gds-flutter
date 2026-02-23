@@ -62,8 +62,7 @@ Widget _buildStylesSection(BuildContext context) {
             ],
           ),
         ),
-        // TODO GdsDivider로 변경
-        // const GdsDivider(type: GdsDividerType.secondary),
+        const GdsDivider(type: GdsDividerType.secondary),
       ],
     ],
   );
