@@ -38,6 +38,7 @@ enum GdsLottie implements LottieBuilder {
       package: 'gds_foundation',
       width: lottieWidth,
       height: lottieHeight,
+      fit: BoxFit.contain,
     );
   }
 }
