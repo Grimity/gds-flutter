@@ -3,7 +3,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'DotPushBadge', type: GdsDotPushBadge)
+@widgetbook.UseCase(
+  name: 'DotPushBadge',
+  type: GdsDotPushBadge,
+  path: '[component]/[base]/',
+)
 Widget buildGdsDotPushBadgeUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'DotPushBadge',
@@ -75,7 +79,9 @@ class _DotBadgeMatrix extends StatelessWidget {
             for (final position in GdsDotPushBadgePosition.values)
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
-                child: Center(child: Text(position.name, style: GdsTypography.label5.copyWith(color: subtleColor))),
+                child: Center(
+                  child: Text(position.name, style: GdsTypography.label5.copyWith(color: subtleColor)),
+                ),
               ),
           ],
         ),
@@ -111,7 +117,11 @@ class _DotBadgeMatrix extends StatelessWidget {
   }
 }
 
-@widgetbook.UseCase(name: 'NumberPushBadge', type: GdsNumberPushBadge)
+@widgetbook.UseCase(
+  name: 'NumberPushBadge',
+  type: GdsNumberPushBadge,
+  path: '[component]/[base]',
+)
 Widget buildGdsNumberPushBadgeUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'NumberPushBadge',

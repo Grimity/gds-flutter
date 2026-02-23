@@ -3,7 +3,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'default', type: GdsCircularLoading)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsCircularLoading,
+  path: '[component]/[base]/',
+)
 Widget buildGdsCircularLoadingUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'CircularLoading',
@@ -23,7 +27,11 @@ Widget _buildCircularPlaygroundSection(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'default', type: GdsRefreshLoading)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsRefreshLoading,
+  path: '[component]/[base]/',
+)
 Widget buildGdsRefreshLoadingUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'RefreshLoading',
@@ -43,7 +51,11 @@ Widget _buildRefreshLoadingPlaygroundSection(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'default', type: GdsRefreshDragging)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsRefreshDragging,
+  path: '[component]/[base]/',
+)
 Widget buildGdsRefreshDraggingUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'RefreshDragging',

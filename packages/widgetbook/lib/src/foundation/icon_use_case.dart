@@ -3,7 +3,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'default', type: GdsIcon)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsIcon,
+  path: '[foundation]/',
+)
 Widget buildGdsIconUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Icon',

@@ -2,7 +2,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'default', type: GdsRadius)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsRadius,
+  path: '[foundation]/',
+)
 Widget buildGdsRadiusUseCase(BuildContext context) {
   final borderColor = context.gdsColors.border.primaryNormal;
   final fillColor = context.gdsColors.surface.primarySubtlest;

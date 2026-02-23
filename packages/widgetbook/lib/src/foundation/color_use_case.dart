@@ -2,7 +2,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'Atomic', type: GdsColors)
+@widgetbook.UseCase(
+  name: 'Atomic',
+  type: GdsColors,
+  path: '[foundation]/',
+)
 Widget buildGdsAtomicColorsUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Atomic Colors',
@@ -91,7 +95,11 @@ Widget buildGdsAtomicColorsUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Semantic', type: GdsColors)
+@widgetbook.UseCase(
+  name: 'Semantic',
+  type: GdsColors,
+  path: '[foundation]/',
+)
 Widget buildGdsSemanticColorsUseCase(BuildContext context) {
   final colors = context.gdsColors;
 
@@ -174,6 +182,7 @@ List<_ColorItem> _shadesFrom(String prefix, List<Color> colors) {
 
 class _SwatchRow extends StatelessWidget {
   const _SwatchRow({required this.items});
+
   final List<_ColorItem> items;
 
   @override
@@ -196,6 +205,7 @@ class _SwatchRow extends StatelessWidget {
 
 class _ColorSwatch extends StatelessWidget {
   const _ColorSwatch({required this.item});
+
   final _ColorItem item;
 
   @override
@@ -224,6 +234,7 @@ class _ColorSwatch extends StatelessWidget {
 
 class _ColorItem {
   const _ColorItem(this.label, this.color);
+
   final String label;
   final Color color;
 }

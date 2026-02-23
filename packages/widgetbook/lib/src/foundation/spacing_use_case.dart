@@ -2,7 +2,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'default', type: GdsSpacing)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsSpacing,
+  path: '[foundation]/',
+)
 Widget buildGdsSpacingUseCase(BuildContext context) {
   final primaryColor = context.gdsColors.surface.primaryNormal;
 

@@ -3,7 +3,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'default', type: GdsTypography)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsTypography,
+  path: '[foundation]/',
+)
 Widget buildGdsTypographyUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Typography',
@@ -78,6 +82,7 @@ String _weightName(FontWeight? w) => switch (w) {
 
 class _TypoEntry {
   const _TypoEntry(this.name, this.style);
+
   final String name;
   final TextStyle style;
 }

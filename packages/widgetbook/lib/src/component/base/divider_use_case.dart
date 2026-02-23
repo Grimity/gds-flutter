@@ -3,7 +3,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(name: 'default', type: GdsDivider)
+@widgetbook.UseCase(
+  name: 'default',
+  type: GdsDivider,
+  path: '[component]/[base]/',
+)
 Widget buildGdsDividerUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Divider',
