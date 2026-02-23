@@ -24,3 +24,4 @@ export 'src/tab/tab.dart';
 export 'src/tag/tag.dart';
 export 'src/thumbnail/thumbnail.dart';
 export 'src/toast/toast.dart';
+export 'src/micro_interaction/micro_interaction.dart';
