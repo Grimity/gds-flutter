@@ -15,3 +15,28 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^6.0.0
+
+flutter:
+  assets:
+    - assets/images/
+    - assets/images/image/
+    - assets/vector/
+    - assets/vector/normal/
+    - assets/vector/brand/
+    - assets/vector/logo/
+    - assets/vector/navigation/
+    - assets/vector/graphic/
+    - assets/vector/illust_icon/
+    - assets/lottie/
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Pretendard-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Pretendard-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Pretendard-Bold.otf
+          weight: 700
