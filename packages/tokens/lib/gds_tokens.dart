@@ -1,4 +1,4 @@
 library;
 
-export 'atomic/atomic.dart';
-export 'semantic/semantic.dart';
+export 'src/atomic/atomic.dart';
+export 'src/semantic/semantic.dart';
