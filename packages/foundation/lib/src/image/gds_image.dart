@@ -10,10 +10,10 @@ part of '../gds_image.dart';
 /// ```
 ///
 enum GdsImage implements ImageBuilder {
-  avatarPlaceholderDark(path: 'assets/image/avatar_placeholder_dark.png'),
-  avatarPlaceholderLight(path: 'assets/image/avatar_placeholder_light.png'),
-  thumbnailPlaceholderDark(path: 'assets/image/thumbnail_placeholder_dark.png'),
-  thumbnailPlaceholderLight(path: 'assets/image/thumbnail_placeholder_light.png');
+  avatarPlaceholderDark(path: 'assets/images/image/avatar_placeholder_dark.png'),
+  avatarPlaceholderLight(path: 'assets/images/image/avatar_placeholder_light.png'),
+  thumbnailPlaceholderDark(path: 'assets/images/image/thumbnail_placeholder_dark.png'),
+  thumbnailPlaceholderLight(path: 'assets/images/image/thumbnail_placeholder_light.png');
 
   const GdsImage({required this.path});
 
