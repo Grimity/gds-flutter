@@ -1,39 +1,91 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# gds_flutter
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+Flutter 기반 Grimity Design System 모노레포입니다.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## Packages
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+| Package | 역할 | 비고 |
+|---|---|---|
+| `gds_tokens` | Atomic/Semantic 토큰 정의 | 수동 관리 |
+| `gds_foundation` | 아이콘/이미지/로띠/타이포 등 공통 기반 | 토큰 의존 |
+| `gds_components` | 실제 UI 컴포넌트 | foundation + tokens 의존 |
+| `gds_widgetbook` | 컴포넌트 문서/프리뷰 | widgetbook 기반 |
 
-## Features
+## Project Structure
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```text
+/gds
+├── lib/
+│   └── gds.dart                          # Root export
+├── packages/
+│   ├── tokens/                           # [Package] tokens
+│   │   ├── lib/
+│   │   │   ├── gds_tokens.dart           # Main export
+│   │   │   └── src/
+│   │   │       ├── atomic/               # Primitive tokens
+│   │   │       │   ├── atomic.dart
+│   │   │       │   ├── gds_atomic_color.dart
+│   │   │       │   ├── gds_atomic_spacing.dart
+│   │   │       │   └── ...
+│   │   │       └── semantic/             # Semantic tokens
+│   │   │           ├── semantic.dart
+│   │   │           ├── gds_semantic_color.dart
+│   │   │           ├── gds_semantic_typography.dart
+│   │   │           └── ...
+│   │   └── pubspec.yaml
+│   ├── foundation/                       # [Package] foundation
+│   │   ├── lib/
+│   │   │   ├── gds_foundation.dart       # Main export
+│   │   │   └── src/
+│   │   │       ├── gds_colors.dart
+│   │   │       ├── gds_typography.dart
+│   │   │       ├── gds_icon.dart
+│   │   │       ├── gds_lottie.dart
+│   │   │       ├── gds_image.dart
+│   │   │       └── ...
+│   │   ├── assets/
+│   │   │   ├── fonts/
+│   │   │   ├── images/
+│   │   │   ├── vector/
+│   │   │   └── lottie/
+│   │   └── pubspec.yaml
+│   ├── components/                       # [Package] components
+│   │   ├── lib/
+│   │   │   ├── gds_components.dart       # Main export
+│   │   │   └── src/
+│   │   │       ├── button/
+│   │   │       ├── input/
+│   │   │       ├── control/
+│   │   │       ├── micro_interaction/
+│   │   │       └── ...
+│   │   └── pubspec.yaml
+│   └── widgetbook/                       # [Package] widgetbook
+│       ├── lib/main.dart
+│       ├── build.yaml
+│       └── pubspec.yaml
+├── pubspec.yaml                          # Workspace + melos config
 ```
 
-## Additional information
+## Quick Start
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```bash
+# 1) Flutter version
+fvm install 3.35.7 && fvm use 3.35.7
+
+# 2) Install dependencies (workspace)
+dart run melos run install
+
+# 3) Generate widgetbook files
+dart run melos run build-widgetbook
+
+# 4) Run widgetbook
+cd packages/widgetbook && fvm flutter run -d chrome
+```
+
+## Import Rules
+
+```dart
+import 'package:gds_tokens/gds_tokens.dart';
+```
+
+`src/...` 직접 import는 지양합니다.
