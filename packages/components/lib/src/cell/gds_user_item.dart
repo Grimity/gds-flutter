@@ -8,6 +8,7 @@ part 'user_item/profile/gds_id_user_item.dart';
 part 'user_item/profile/gds_icon_id_user_item.dart';
 part 'user_item/profile/gds_radio_user_item.dart';
 part 'user_item/profile/gds_follow_user_item.dart';
+part 'user_item/notification/gds_notification_user_item.dart';
 
 abstract class GdsUserItem extends StatelessWidget {
   const GdsUserItem({super.key});
@@ -54,4 +55,13 @@ abstract class GdsUserItem extends StatelessWidget {
     GdsOutlinedButton? primaryActionButton,
     GdsOutlinedButton? secondaryActionButton,
   }) = GdsFollowUserItem;
+
+  const factory GdsUserItem.notification({
+    Key? key,
+    required String titleText,
+    required String messageText,
+    required String timeText,
+    VoidCallback? onTap,
+    required GdsIconButton iconButton,
+  }) = GdsNotificationUserItem;
 }
