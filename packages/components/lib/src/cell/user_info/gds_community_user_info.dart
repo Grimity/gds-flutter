@@ -20,7 +20,11 @@ class GdsCommunityUserInfo extends GdsUserInfo {
     this.viewCount,
     required this.showTime,
     this.timeText,
-  });
+  }) : assert(!showChat || chatCount != null, 'chatCount must not be null when showChat is true'),
+       assert(!showHeart || heartCount != null, 'heartCount must not be null when showHeart is true'),
+       assert(!showView || viewCount != null, 'viewCount must not be null when showView is true'),
+       assert(!showTime || timeText != null, 'timeText must not be null when showTime is true'),
+       assert(showTime || timeText == null, 'timeText must be null when showTime is false');
 
   @override
   Widget build(BuildContext context) {

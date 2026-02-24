@@ -14,7 +14,8 @@ class GdsCommentUserInfo extends GdsUserInfo {
     required this.showTag,
     required this.showTime,
     this.timeText,
-  });
+  }) : assert(!showTime || timeText != null, 'timeText must not be null when showTime is true'),
+       assert(showTime || timeText == null, 'timeText must be null when showTime is false');
 
   @override
   Widget build(BuildContext context) {

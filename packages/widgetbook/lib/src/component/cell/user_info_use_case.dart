@@ -38,7 +38,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
       final showView = context.knobs.boolean(label: 'showView', initialValue: true);
       final viewCount = showView ? context.knobs.int.input(label: 'viewCount', initialValue: 123) : null;
       final showTime = context.knobs.boolean(label: 'showTime', initialValue: true);
-      final timeText = showTime ? context.knobs.stringOrNull(label: 'timeText', initialValue: '32분 전') : null;
+      final timeText = showTime ? context.knobs.string(label: 'timeText', initialValue: '32분 전') : null;
 
       userInfo = GdsUserInfo.defaultType(
         nickName: nickName,
@@ -66,7 +66,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
       final showView = context.knobs.boolean(label: 'showView', initialValue: true);
       final viewCount = showView ? context.knobs.int.input(label: 'viewCount', initialValue: 123) : null;
       final showTime = context.knobs.boolean(label: 'showTime', initialValue: true);
-      final timeText = showTime ? context.knobs.stringOrNull(label: 'timeText', initialValue: '32분 전') : null;
+      final timeText = showTime ? context.knobs.string(label: 'timeText', initialValue: '32분 전') : null;
 
       userInfo = GdsUserInfo.community(
         showChat: showChat,
@@ -91,7 +91,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
       final nickName = context.knobs.string(label: 'nickName', initialValue: 'Nickname');
       final showTag = context.knobs.boolean(label: 'showTag', initialValue: true);
       final showTime = context.knobs.boolean(label: 'showTime', initialValue: true);
-      final timeText = showTime ? context.knobs.stringOrNull(label: 'timeText', initialValue: '32분 전') : null;
+      final timeText = showTime ? context.knobs.string(label: 'timeText', initialValue: '32분 전') : null;
 
       userInfo = GdsUserInfo.comment(
         nickName: nickName,

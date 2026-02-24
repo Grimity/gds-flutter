@@ -14,7 +14,10 @@ class GdsFollowUserInfo extends GdsUserInfo {
     required this.showFollowing,
     this.followingCount,
     this.onFollowingTap,
-  });
+  }) : assert(
+         !showFollowing || followingCount != null,
+         'followingCount must not be null when showFollowing is true',
+       );
 
   @override
   Widget build(BuildContext context) {
