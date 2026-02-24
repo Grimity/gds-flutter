@@ -3,14 +3,30 @@ import 'package:gds_components/gds_components.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
 part 'user_item/profile/gds_profile_frame.dart';
+
 part 'user_item/profile/gds_default_user_item.dart';
+
 part 'user_item/profile/gds_id_user_item.dart';
+
 part 'user_item/profile/gds_icon_id_user_item.dart';
+
 part 'user_item/profile/gds_radio_user_item.dart';
+
 part 'user_item/profile/gds_follow_user_item.dart';
+
 part 'user_item/notification/gds_notification_user_item.dart';
+
 part 'user_item/link/gds_link_user_item.dart';
+
 part 'user_item/link/gds_link_main_user_item.dart';
+
+part 'user_item/post/gds_bookmark_user_item.dart';
+
+part 'user_item/post/gds_community_title_user_item.dart';
+
+part 'user_item/post/gds_title_user_item.dart';
+
+part 'user_item/post/gds_image_user_item.dart';
 
 abstract class GdsUserItem extends StatelessWidget {
   const GdsUserItem({super.key});
@@ -79,4 +95,42 @@ abstract class GdsUserItem extends StatelessWidget {
     required GdsIcon icon,
     required String siteText,
   }) = GdsLinkMainUserItem;
+
+  const factory GdsUserItem.bookmark({
+    Key? key,
+    required String titleText,
+    required bool showImageIcon,
+    required bool showTag,
+    GdsChip? chip,
+    required int commentCount,
+    required String contentText,
+    required GdsUserInfo userInfo,
+    required bool showBookmark,
+    GdsBookmark? bookmark,
+  }) = GdsBookmarkUserItem;
+
+  const factory GdsUserItem.communityTitle({
+    Key? key,
+    required String titleText,
+    required bool showTag,
+    GdsChip? chip,
+    required int commentCount,
+    required String contentText,
+    required GdsUserInfo userInfo,
+  }) = GdsCommunityTitleUserItem;
+
+  const factory GdsUserItem.title({
+    Key? key,
+    required String titleText,
+    required bool showTag,
+    GdsChip? chip,
+    required GdsUserInfo userInfo,
+  }) = GdsTitleUserItem;
+
+  const factory GdsUserItem.image({
+    Key? key,
+    required String titleText,
+    required GdsThumbnail thumbnail,
+    required GdsUserInfo userInfo,
+  }) = GdsImageUserItem;
 }
