@@ -1,6 +1,6 @@
 part of '../gds_user_info.dart';
 
-class GdsFollowUserInfo extends StatelessWidget {
+class GdsFollowUserInfo extends GdsUserInfo {
   final int followerCount;
   final VoidCallback? onFollowerTap;
   final bool showFollowing;

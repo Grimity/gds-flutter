@@ -10,152 +10,50 @@ part 'user_info/gds_comment_user_info.dart';
 
 part 'user_info/gds_follow_user_info.dart';
 
-enum GdsUserInfoType {
-  defaultType,
-  community,
-  comment,
-  follow,
-}
+abstract class GdsUserInfo extends StatelessWidget {
+  const GdsUserInfo({super.key});
 
-class GdsUserInfo extends StatelessWidget {
-  final GdsUserInfoType type;
+  const factory GdsUserInfo.defaultType({
+    Key? key,
+    required String nickName,
+    VoidCallback? onNameTap,
+    required bool showHeart,
+    int? heartCount,
+    required bool showView,
+    int? viewCount,
+    required bool showTime,
+    String? timeText,
+  }) = GdsDefaultUserInfo;
 
-  final String nickName;
-  final VoidCallback? onNameTap;
-  final bool showChat;
-  final int? chatCount;
-  final bool showHeart;
-  final int? heartCount;
-  final bool showView;
-  final int? viewCount;
-  final bool showTime;
-  final String? timeText;
-  final bool showTag;
-  final int followerCount;
-  final VoidCallback? onFollowerTap;
-  final bool showFollowing;
-  final int? followingCount;
-  final VoidCallback? onFollowingTap;
+  const factory GdsUserInfo.community({
+    Key? key,
+    required bool showChat,
+    int? chatCount,
+    required bool showHeart,
+    int? heartCount,
+    required bool showView,
+    int? viewCount,
+    required bool showTime,
+    String? timeText,
+  }) = GdsCommunityUserInfo;
 
-  const GdsUserInfo.defaultType({
-    super.key,
-    required this.nickName,
-    this.onNameTap,
-    this.showHeart = true,
-    this.heartCount,
-    this.showView = true,
-    this.viewCount,
-    this.showTime = true,
-    this.timeText,
-  }) : type = GdsUserInfoType.defaultType,
-       showChat = false,
-       chatCount = null,
-       showTag = false,
-       followerCount = 0,
-       onFollowerTap = null,
-       showFollowing = false,
-       followingCount = null,
-       onFollowingTap = null;
+  const factory GdsUserInfo.comment({
+    Key? key,
+    required String nickName,
+    VoidCallback? onNameTap,
+    required bool showTag,
+    required bool showTime,
+    String? timeText,
+  }) = GdsCommentUserInfo;
 
-  const GdsUserInfo.community({
-    super.key,
-    this.showChat = true,
-    this.chatCount,
-    this.showHeart = true,
-    this.heartCount,
-    this.showView = true,
-    this.viewCount,
-    this.showTime = true,
-    this.timeText,
-  }) : type = GdsUserInfoType.community,
-       nickName = '',
-       onNameTap = null,
-       showTag = false,
-       followerCount = 0,
-       onFollowerTap = null,
-       showFollowing = false,
-       followingCount = null,
-       onFollowingTap = null;
-
-  const GdsUserInfo.comment({
-    super.key,
-    required this.nickName,
-    this.onNameTap,
-    this.showTag = true,
-    this.showTime = true,
-    this.timeText,
-  }) : type = GdsUserInfoType.comment,
-       showChat = false,
-       chatCount = null,
-       showHeart = false,
-       heartCount = null,
-       showView = false,
-       viewCount = null,
-       followerCount = 0,
-       onFollowerTap = null,
-       showFollowing = false,
-       followingCount = null,
-       onFollowingTap = null;
-
-  const GdsUserInfo.follow({
-    super.key,
-    required this.followerCount,
-    this.onFollowerTap,
-    this.showFollowing = true,
-    this.followingCount,
-    this.onFollowingTap,
-  }) : type = GdsUserInfoType.follow,
-       nickName = '',
-       onNameTap = null,
-       showChat = false,
-       chatCount = null,
-       showHeart = false,
-       heartCount = null,
-       showView = false,
-       viewCount = null,
-       showTime = false,
-       timeText = null,
-       showTag = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return switch (type) {
-      GdsUserInfoType.defaultType => GdsDefaultUserInfo(
-        nickName: nickName,
-        onNameTap: onNameTap,
-        showHeart: showHeart,
-        heartCount: heartCount,
-        showView: showView,
-        viewCount: viewCount,
-        showTime: showTime,
-        timeText: timeText,
-      ),
-      GdsUserInfoType.community => GdsCommunityUserInfo(
-        showChat: showChat,
-        chatCount: chatCount,
-        showHeart: showHeart,
-        heartCount: heartCount,
-        showView: showView,
-        viewCount: viewCount,
-        showTime: showTime,
-        timeText: timeText,
-      ),
-      GdsUserInfoType.comment => GdsCommentUserInfo(
-        nickName: nickName,
-        onNameTap: onNameTap,
-        showTag: showTag,
-        showTime: showTime,
-        timeText: timeText,
-      ),
-      GdsUserInfoType.follow => GdsFollowUserInfo(
-        followerCount: followerCount,
-        onFollowerTap: onFollowerTap,
-        showFollowing: showFollowing,
-        followingCount: followingCount,
-        onFollowingTap: onFollowingTap,
-      ),
-    };
-  }
+  const factory GdsUserInfo.follow({
+    Key? key,
+    required int followerCount,
+    VoidCallback? onFollowerTap,
+    required bool showFollowing,
+    int? followingCount,
+    VoidCallback? onFollowingTap,
+  }) = GdsFollowUserInfo;
 }
 
 class DotSeparator extends StatelessWidget {

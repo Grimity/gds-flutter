@@ -1,6 +1,6 @@
 part of '../gds_user_info.dart';
 
-class GdsCommunityUserInfo extends StatelessWidget {
+class GdsCommunityUserInfo extends GdsUserInfo {
   final bool showChat;
   final int? chatCount;
   final bool showHeart;

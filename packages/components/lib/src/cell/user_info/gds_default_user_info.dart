@@ -1,6 +1,6 @@
 part of '../gds_user_info.dart';
 
-class GdsDefaultUserInfo extends StatelessWidget {
+class GdsDefaultUserInfo extends GdsUserInfo {
   final String nickName;
   final VoidCallback? onNameTap;
   final bool showHeart;
