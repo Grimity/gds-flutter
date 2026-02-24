@@ -9,6 +9,8 @@ part 'user_item/profile/gds_icon_id_user_item.dart';
 part 'user_item/profile/gds_radio_user_item.dart';
 part 'user_item/profile/gds_follow_user_item.dart';
 part 'user_item/notification/gds_notification_user_item.dart';
+part 'user_item/link/gds_link_user_item.dart';
+part 'user_item/link/gds_link_main_user_item.dart';
 
 abstract class GdsUserItem extends StatelessWidget {
   const GdsUserItem({super.key});
@@ -64,4 +66,17 @@ abstract class GdsUserItem extends StatelessWidget {
     VoidCallback? onTap,
     required GdsIconButton iconButton,
   }) = GdsNotificationUserItem;
+
+  const factory GdsUserItem.link({
+    Key? key,
+    required GdsIcon icon,
+    required String siteText,
+    required String linkText,
+  }) = GdsLinkUserItem;
+
+  const factory GdsUserItem.linkMain({
+    Key? key,
+    required GdsIcon icon,
+    required String siteText,
+  }) = GdsLinkMainUserItem;
 }
