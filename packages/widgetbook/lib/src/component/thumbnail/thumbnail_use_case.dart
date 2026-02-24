@@ -44,6 +44,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
       child: GdsThumbnail(
         imageUrl: imageUrl,
         ratio: ratio,
+        width: 300,
       ),
     ),
   );
@@ -85,6 +86,7 @@ class _ThumbnailRatioList extends StatelessWidget {
                 child: GdsThumbnail(
                   imageUrl: '',
                   ratio: ratio,
+                  width: 240,
                 ),
               ),
             ],

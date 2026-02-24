@@ -54,7 +54,9 @@ class GdsThumbnail extends StatelessWidget {
     this.fit = BoxFit.cover,
     this.placeholder,
     this.errorWidget,
-  });
+  }) : assert(width != null || height != null, 'Either width or height must be provided.'),
+       assert(width == null || width > 0, 'width must be > 0 when provided.'),
+       assert(height == null || height > 0, 'height must be > 0 when provided.');
 
   final String imageUrl;
   final GdsThumbnailRatio ratio;
@@ -69,24 +71,28 @@ class GdsThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: ratio.value,
-      child: ClipRRect(
-        borderRadius: borderRadius ?? BorderRadius.zero,
-        child: CachedNetworkImage(
-          imageUrl: imageUrl,
-          width: width,
-          height: height,
-          memCacheWidth: memCacheWidth,
-          memCacheHeight: memCacheHeight,
-          fit: fit,
-          placeholder: placeholder ?? defaultPlaceholder,
-          errorWidget: errorWidget ?? defaultErrorWidget,
-          fadeInDuration: Duration(milliseconds: 300),
-          fadeInCurve: Curves.easeInOut,
-          fadeOutDuration: Duration(milliseconds: 300),
-          fadeOutCurve: Curves.easeInOut,
-          placeholderFadeInDuration: Duration(milliseconds: 300),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: AspectRatio(
+        aspectRatio: ratio.value,
+        child: ClipRRect(
+          borderRadius: borderRadius ?? BorderRadius.zero,
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            width: width,
+            height: height,
+            memCacheWidth: memCacheWidth,
+            memCacheHeight: memCacheHeight,
+            fit: fit,
+            placeholder: placeholder ?? defaultPlaceholder,
+            errorWidget: errorWidget ?? defaultErrorWidget,
+            fadeInDuration: Duration(milliseconds: 300),
+            fadeInCurve: Curves.easeInOut,
+            fadeOutDuration: Duration(milliseconds: 300),
+            fadeOutCurve: Curves.easeInOut,
+            placeholderFadeInDuration: Duration(milliseconds: 300),
+          ),
         ),
       ),
     );
