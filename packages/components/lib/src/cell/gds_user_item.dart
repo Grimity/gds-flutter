@@ -28,6 +28,16 @@ part 'user_item/post/gds_title_user_item.dart';
 
 part 'user_item/post/gds_image_user_item.dart';
 
+part 'user_item/comment/gds_comment_user_item_type.dart';
+
+part 'user_item/comment/gds_comment_user_item_frame.dart';
+
+part 'user_item/comment/gds_comment_user_item.dart';
+
+part 'user_item/comment/gds_comment_plus_user_item.dart';
+
+part 'user_item/comment/gds_comment_deleted_user_item.dart';
+
 abstract class GdsUserItem extends StatelessWidget {
   const GdsUserItem({super.key});
 
@@ -133,4 +143,58 @@ abstract class GdsUserItem extends StatelessWidget {
     required GdsThumbnail thumbnail,
     required GdsUserInfo userInfo,
   }) = GdsImageUserItem;
+
+  const factory GdsUserItem.comment({
+    Key? key,
+    required GdsPersonAvatar personAvatar,
+    required GdsCommentUserInfo commentUserInfo,
+    required String commentText,
+    required bool isLiked,
+    required VoidCallback onLikeTap,
+    required int likeCount,
+    required VoidCallback onReplyTap,
+    required VoidCallback onMoreHorizontalTap,
+  }) = GdsCommentUserItem;
+
+  const factory GdsUserItem.commentPlus({
+    Key? key,
+    required GdsPersonAvatar personAvatar,
+    required GdsCommentUserInfo commentUserInfo,
+    required String mentionText,
+    required String commentText,
+    required bool isLiked,
+    required VoidCallback onLikeTap,
+    required int likeCount,
+    required VoidCallback onReplyTap,
+    required VoidCallback onMoreHorizontalTap,
+  }) = GdsCommentPlusUserItem;
+
+  const factory GdsUserItem.commentXs({
+    Key? key,
+    required GdsPersonAvatar personAvatar,
+    required GdsCommentUserInfo commentUserInfo,
+    required String commentText,
+    required bool isLiked,
+    required VoidCallback onLikeTap,
+    required int likeCount,
+    required VoidCallback onReplyTap,
+    required VoidCallback onMoreHorizontalTap,
+  }) = GdsCommentUserItem.xs;
+
+  const factory GdsUserItem.commentPlusXs({
+    Key? key,
+    required GdsPersonAvatar personAvatar,
+    required GdsCommentUserInfo commentUserInfo,
+    required String mentionText,
+    required String commentText,
+    required bool isLiked,
+    required VoidCallback onLikeTap,
+    required int likeCount,
+    required VoidCallback onReplyTap,
+    required VoidCallback onMoreHorizontalTap,
+  }) = GdsCommentPlusUserItem.xs;
+
+  const factory GdsUserItem.commentDeleted({
+    Key? key,
+  }) = GdsCommentDeletedUserItem;
 }
