@@ -142,6 +142,7 @@ enum GdsIcon implements IconBuilder {
   undo(path: 'assets/vector/normal/undo.svg'),
   xMarkThick(path: 'assets/vector/normal/x_mark_thick.svg'),
   xMark(path: 'assets/vector/normal/x_mark.svg'),
+  replyComment(path: 'assets/vector/normal/reply_comment.svg'),
 
   /// brand
   apple(path: 'assets/vector/brand/apple.svg'),

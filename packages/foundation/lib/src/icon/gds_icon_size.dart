@@ -19,6 +19,7 @@ part of '../gds_icon.dart';
 class GdsIconSize {
   const GdsIconSize._();
 
+  static const double v10 = GdsAtomicIconSize.v10;
   static const double v12 = GdsAtomicIconSize.v12;
   static const double v16 = GdsAtomicIconSize.v16;
   static const double v20 = GdsAtomicIconSize.v20;
