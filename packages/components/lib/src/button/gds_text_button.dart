@@ -28,33 +28,41 @@ enum GdsTextButtonVariant {
     };
   }
 
-  Color textColor(GdsSemanticColor colors, GdsButtonState state) => switch ((this, state)) {
-    (GdsTextButtonVariant.primary, GdsButtonState.enabled) => colors.text.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.focused) => colors.text.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.hovered) => colors.text.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.pressed) => colors.text.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.disabled) => colors.text.graySubtler,
+  Color textColor(GdsSemanticColor colors, GdsButtonState state, GdsTextButtonSize size) =>
+      switch ((this, state, size)) {
+        (GdsTextButtonVariant.primary, GdsButtonState.enabled, _) => colors.text.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.focused, _) => colors.text.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.hovered, _) => colors.text.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.pressed, _) => colors.text.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.disabled, _) => colors.text.graySubtler,
 
-    (GdsTextButtonVariant.assistive, GdsButtonState.enabled) => colors.text.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.focused) => colors.text.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.hovered) => colors.text.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.pressed) => colors.text.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.disabled) => colors.text.graySubtler,
-  };
+        (GdsTextButtonVariant.assistive, GdsButtonState.enabled, GdsTextButtonSize.small) => colors.text.graySubtle,
+        (GdsTextButtonVariant.assistive, GdsButtonState.focused, GdsTextButtonSize.small) => colors.text.graySubtle,
 
-  Color iconColor(GdsSemanticColor colors, GdsButtonState state) => switch ((this, state)) {
-    (GdsTextButtonVariant.primary, GdsButtonState.enabled) => colors.icon.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.focused) => colors.icon.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.hovered) => colors.icon.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.pressed) => colors.icon.primaryNormal,
-    (GdsTextButtonVariant.primary, GdsButtonState.disabled) => colors.icon.graySubtler,
+        (GdsTextButtonVariant.assistive, GdsButtonState.enabled, _) => colors.text.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.focused, _) => colors.text.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.hovered, _) => colors.text.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.pressed, _) => colors.text.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.disabled, _) => colors.text.graySubtler,
+      };
 
-    (GdsTextButtonVariant.assistive, GdsButtonState.enabled) => colors.icon.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.focused) => colors.icon.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.hovered) => colors.icon.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.pressed) => colors.icon.grayBold,
-    (GdsTextButtonVariant.assistive, GdsButtonState.disabled) => colors.icon.graySubtler,
-  };
+  Color iconColor(GdsSemanticColor colors, GdsButtonState state, GdsTextButtonSize size) =>
+      switch ((this, state, size)) {
+        (GdsTextButtonVariant.primary, GdsButtonState.enabled, _) => colors.icon.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.focused, _) => colors.icon.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.hovered, _) => colors.icon.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.pressed, _) => colors.icon.primaryNormal,
+        (GdsTextButtonVariant.primary, GdsButtonState.disabled, _) => colors.icon.graySubtler,
+
+        (GdsTextButtonVariant.assistive, GdsButtonState.enabled, GdsTextButtonSize.small) => colors.icon.graySubtle,
+        (GdsTextButtonVariant.assistive, GdsButtonState.focused, GdsTextButtonSize.small) => colors.icon.graySubtle,
+
+        (GdsTextButtonVariant.assistive, GdsButtonState.enabled, _) => colors.icon.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.focused, _) => colors.icon.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.hovered, _) => colors.icon.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.pressed, _) => colors.icon.grayBold,
+        (GdsTextButtonVariant.assistive, GdsButtonState.disabled, _) => colors.icon.graySubtler,
+      };
 
   BoxBorder? border(
     GdsSemanticColor colors,
@@ -197,7 +205,7 @@ class _GdsTextButtonState extends State<GdsTextButton> {
     if (widget.leadingIcon != null) {
       children.add(
         widget.leadingIcon!.build(
-          color: variant.iconColor(colors, state),
+          color: variant.iconColor(colors, state, size),
           width: size.iconSize,
           height: size.iconSize,
         ),
@@ -208,7 +216,7 @@ class _GdsTextButtonState extends State<GdsTextButton> {
     children.add(
       Text(
         widget.text,
-        style: size.textStyle.copyWith(color: variant.textColor(colors, state)),
+        style: size.textStyle.copyWith(color: variant.textColor(colors, state, size)),
       ),
     );
 
@@ -216,7 +224,7 @@ class _GdsTextButtonState extends State<GdsTextButton> {
       children.add(SizedBox(width: size.gap));
       children.add(
         widget.trailingIcon!.build(
-          color: variant.iconColor(colors, state),
+          color: variant.iconColor(colors, state, size),
           width: size.iconSize,
           height: size.iconSize,
         ),

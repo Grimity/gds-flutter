@@ -236,7 +236,7 @@ class _TextButtonMatrix extends StatelessWidget {
       if (form == _FormType.iconLeft) {
         children.add(
           GdsIcon.blank.build(
-            color: variant.iconColor(colors, buttonState),
+            color: variant.iconColor(colors, buttonState, size),
             width: size.iconSize,
             height: size.iconSize,
           ),
@@ -247,7 +247,7 @@ class _TextButtonMatrix extends StatelessWidget {
       children.add(
         Text(
           'Label',
-          style: size.textStyle.copyWith(color: variant.textColor(colors, buttonState)),
+          style: size.textStyle.copyWith(color: variant.textColor(colors, buttonState, size)),
         ),
       );
 
@@ -255,7 +255,7 @@ class _TextButtonMatrix extends StatelessWidget {
         children.add(SizedBox(width: size.gap));
         children.add(
           GdsIcon.blank.build(
-            color: variant.iconColor(colors, buttonState),
+            color: variant.iconColor(colors, buttonState, size),
             width: size.iconSize,
             height: size.iconSize,
           ),
