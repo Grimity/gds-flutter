@@ -20,17 +20,20 @@ class GdsBookmark extends StatelessWidget {
   final GdsBookmarkType type;
   final bool isBookmarked;
   final VoidCallback onTap;
+  final double size;
 
   const GdsBookmark({
     super.key,
     required this.isBookmarked,
     required this.onTap,
+    this.size = GdsIconSize.defaultSize,
   }) : type = GdsBookmarkType.defaultType;
 
   const GdsBookmark.black({
     super.key,
     required this.isBookmarked,
     required this.onTap,
+    this.size = GdsIconSize.defaultSize,
   }) : type = GdsBookmarkType.black;
 
   @override
@@ -42,8 +45,8 @@ class GdsBookmark extends StatelessWidget {
       onTap: onTap,
       child: icon.build(
         color: type.iconColor(colors, isBookmarked),
-        width: GdsIconSize.v24,
-        height: GdsIconSize.v24,
+        width: size,
+        height: size,
       ),
     );
   }
