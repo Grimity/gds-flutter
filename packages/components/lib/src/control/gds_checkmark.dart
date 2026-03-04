@@ -24,13 +24,15 @@ class GdsCheckmark extends StatelessWidget {
     return colors.icon.graySubtle;
   }
 
+  static GdsIcon icon() => GdsIcon.check;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
     return GdsIconAnimationButton(
       onTap: onTap,
-      child: GdsIcon.check.build(
+      child: icon().build(
         color: _iconColor(colors),
         width: size,
         height: size,

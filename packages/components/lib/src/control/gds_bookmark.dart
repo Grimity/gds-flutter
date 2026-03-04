@@ -36,14 +36,15 @@ class GdsBookmark extends StatelessWidget {
     this.size = GdsIconSize.defaultSize,
   }) : type = GdsBookmarkType.black;
 
+  static GdsIcon icon(bool isBookmarked) => isBookmarked ? GdsIcon.bookmarkFill : GdsIcon.bookmarkOutline;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
-    final icon = isBookmarked ? GdsIcon.bookmarkFill : GdsIcon.bookmarkOutline;
 
     return GdsIconAnimationButton(
       onTap: onTap,
-      child: icon.build(
+      child: icon(isBookmarked).build(
         color: type.iconColor(colors, isBookmarked),
         width: size,
         height: size,

@@ -113,15 +113,13 @@ class _GdsCommentUserItemFrame extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(width: type.contentLeftPadding),
-        Row(
-          spacing: GdsSpacing.spacing4,
-          children: [
-            GdsHeart(isLiked: isLiked, onTap: onLikeTap, size: GdsIconSize.v16),
-            Text(
-              '$likeCount',
-              style: GdsTypography.label6.copyWith(color: colors.text.graySubtle),
-            ),
-          ],
+        GdsTextButton(
+          text: '$likeCount',
+          leadingIcon: GdsHeart.icon(isLiked),
+          iconColor: GdsHeartType.defaultType.iconColor(colors, isLiked),
+          onPressed: onLikeTap,
+          variant: GdsTextButtonVariant.assistive,
+          size: GdsTextButtonSize.small,
         ),
         const SizedBox(width: GdsSpacing.spacing10),
         GdsTextButton(

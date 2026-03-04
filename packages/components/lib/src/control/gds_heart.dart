@@ -36,14 +36,15 @@ class GdsHeart extends StatelessWidget {
     this.size = GdsIconSize.defaultSize,
   }) : type = GdsHeartType.black;
 
+  static GdsIcon icon(bool isLiked) => isLiked ? GdsIcon.heartFill : GdsIcon.heartOutline;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
-    final icon = isLiked ? GdsIcon.heartFill : GdsIcon.heartOutline;
 
     return GdsIconAnimationButton(
       onTap: onTap,
-      child: icon.build(
+      child: icon(isLiked).build(
         color: type.iconColor(colors, isLiked),
         width: size,
         height: size,
