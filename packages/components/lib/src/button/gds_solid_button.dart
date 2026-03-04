@@ -126,6 +126,9 @@ class GdsSolidButton extends StatefulWidget {
   final String? text;
   final GdsIcon? leadingIcon;
   final GdsIcon? trailingIcon;
+
+  /// null이면 버튼 상태 색상을 따르고, 값이 있으면 해당 색상을 아이콘에 우선 적용합니다.
+  final Color? iconColor;
   final GdsSolidButtonSize size;
   final VoidCallback? onPressed;
   final bool enabled;
@@ -142,6 +145,7 @@ class GdsSolidButton extends StatefulWidget {
     this.expanded = false,
     this.leadingIcon,
     this.trailingIcon,
+    this.iconColor,
   }) : assert(
          leadingIcon == null || trailingIcon == null,
          'leadingIcon과 trailingIcon을 동시에 사용할 수 없습니다.',
@@ -155,6 +159,7 @@ class GdsSolidButton extends StatefulWidget {
     this.enabled = true,
     this.loading = false,
     this.expanded = false,
+    this.iconColor,
   }) : text = null,
        leadingIcon = icon,
        trailingIcon = null;
@@ -165,12 +170,31 @@ class GdsSolidButton extends StatefulWidget {
   State<GdsSolidButton> createState() => _GdsSolidButtonState();
 }
 
-class _GdsSolidButtonState extends State<GdsSolidButton> {
+class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProviderStateMixin {
+  static const _iconAnimationDuration = Duration(milliseconds: 160);
+
+  late final AnimationController _iconAnimationController;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
 
   bool get _isInteractive => widget.enabled && !widget.loading;
+  bool get _hasIcon => widget.leadingIcon != null || widget.trailingIcon != null;
+
+  @override
+  void initState() {
+    super.initState();
+    _iconAnimationController = AnimationController(
+      vsync: this,
+      duration: _iconAnimationDuration,
+    );
+  }
+
+  @override
+  void dispose() {
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
 
   GdsButtonState get _buttonState {
     if (!widget.enabled) return GdsButtonState.disabled;
@@ -196,7 +220,14 @@ class _GdsSolidButtonState extends State<GdsSolidButton> {
           onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
           onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
           onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,
-          onTap: _isInteractive ? widget.onPressed : null,
+          onTap: _isInteractive && widget.onPressed != null
+              ? () {
+                  widget.onPressed?.call();
+                  if (_hasIcon) {
+                    _iconAnimationController.forward(from: 0);
+                  }
+                }
+              : null,
           child: Container(
             decoration: BoxDecoration(
               color: GdsSolidButtonStyle.backgroundColor(
@@ -239,11 +270,16 @@ class _GdsSolidButtonState extends State<GdsSolidButton> {
     }
 
     if (widget._isIconOnly) {
+      final icon = widget.leadingIcon!.build(
+        color: widget.iconColor ?? GdsSolidButtonStyle.iconColor(colors, state),
+        width: size.iconSize,
+        height: size.iconSize,
+      );
+
       return [
-        widget.leadingIcon!.build(
-          color: GdsSolidButtonStyle.iconColor(colors, state),
-          width: size.iconSize,
-          height: size.iconSize,
+        GdsIconTapScaleAnimation(
+          controller: _iconAnimationController,
+          child: icon,
         ),
       ];
     }
@@ -251,11 +287,16 @@ class _GdsSolidButtonState extends State<GdsSolidButton> {
     final children = <Widget>[];
 
     if (widget.leadingIcon != null) {
+      final leadingIcon = widget.leadingIcon!.build(
+        color: widget.iconColor ?? GdsSolidButtonStyle.iconColor(colors, state),
+        width: size.iconSize,
+        height: size.iconSize,
+      );
+
       children.add(
-        widget.leadingIcon!.build(
-          color: GdsSolidButtonStyle.iconColor(colors, state),
-          width: size.iconSize,
-          height: size.iconSize,
+        GdsIconTapScaleAnimation(
+          controller: _iconAnimationController,
+          child: leadingIcon,
         ),
       );
       children.add(SizedBox(width: size.gap));
@@ -271,12 +312,17 @@ class _GdsSolidButtonState extends State<GdsSolidButton> {
     );
 
     if (widget.trailingIcon != null) {
+      final trailingIcon = widget.trailingIcon!.build(
+        color: widget.iconColor ?? GdsSolidButtonStyle.iconColor(colors, state),
+        width: size.iconSize,
+        height: size.iconSize,
+      );
+
       children.add(SizedBox(width: size.gap));
       children.add(
-        widget.trailingIcon!.build(
-          color: GdsSolidButtonStyle.iconColor(colors, state),
-          width: size.iconSize,
-          height: size.iconSize,
+        GdsIconTapScaleAnimation(
+          controller: _iconAnimationController,
+          child: trailingIcon,
         ),
       );
     }

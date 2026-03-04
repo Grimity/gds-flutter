@@ -138,6 +138,9 @@ class GdsOutlinedButton extends StatefulWidget {
   final String? text;
   final GdsIcon? leadingIcon;
   final GdsIcon? trailingIcon;
+
+  /// null이면 버튼 상태 색상을 따르고, 값이 있으면 해당 색상을 아이콘에 우선 적용합니다.
+  final Color? iconColor;
   final GdsOutlinedButtonSize size;
   final VoidCallback? onPressed;
   final bool enabled;
@@ -154,6 +157,7 @@ class GdsOutlinedButton extends StatefulWidget {
     this.expanded = false,
     this.leadingIcon,
     this.trailingIcon,
+    this.iconColor,
   }) : assert(
          leadingIcon == null || trailingIcon == null,
          'leadingIcon과 trailingIcon을 동시에 사용할 수 없습니다.',
@@ -167,6 +171,7 @@ class GdsOutlinedButton extends StatefulWidget {
     this.enabled = true,
     this.loading = false,
     this.expanded = false,
+    this.iconColor,
   }) : text = null,
        leadingIcon = icon,
        trailingIcon = null;
@@ -177,12 +182,31 @@ class GdsOutlinedButton extends StatefulWidget {
   State<GdsOutlinedButton> createState() => _GdsOutlinedButtonState();
 }
 
-class _GdsOutlinedButtonState extends State<GdsOutlinedButton> {
+class _GdsOutlinedButtonState extends State<GdsOutlinedButton> with SingleTickerProviderStateMixin {
+  static const _iconAnimationDuration = Duration(milliseconds: 160);
+
+  late final AnimationController _iconAnimationController;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
 
   bool get _isInteractive => widget.enabled && !widget.loading;
+  bool get _hasIcon => widget.leadingIcon != null || widget.trailingIcon != null;
+
+  @override
+  void initState() {
+    super.initState();
+    _iconAnimationController = AnimationController(
+      vsync: this,
+      duration: _iconAnimationDuration,
+    );
+  }
+
+  @override
+  void dispose() {
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
 
   GdsButtonState get _buttonState {
     if (!widget.enabled) return GdsButtonState.disabled;
@@ -208,7 +232,14 @@ class _GdsOutlinedButtonState extends State<GdsOutlinedButton> {
           onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
           onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
           onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,
-          onTap: _isInteractive ? widget.onPressed : null,
+          onTap: _isInteractive && widget.onPressed != null
+              ? () {
+                  widget.onPressed?.call();
+                  if (_hasIcon) {
+                    _iconAnimationController.forward(from: 0);
+                  }
+                }
+              : null,
           child: Container(
             decoration: BoxDecoration(
               color: GdsOutlinedButtonStyle.backgroundColor(
@@ -251,11 +282,16 @@ class _GdsOutlinedButtonState extends State<GdsOutlinedButton> {
     }
 
     if (widget._isIconOnly) {
+      final icon = widget.leadingIcon!.build(
+        color: widget.iconColor ?? GdsOutlinedButtonStyle.iconColor(colors, state),
+        width: size.iconSize,
+        height: size.iconSize,
+      );
+
       return [
-        widget.leadingIcon!.build(
-          color: GdsOutlinedButtonStyle.iconColor(colors, state),
-          width: size.iconSize,
-          height: size.iconSize,
+        GdsIconTapScaleAnimation(
+          controller: _iconAnimationController,
+          child: icon,
         ),
       ];
     }
@@ -263,11 +299,16 @@ class _GdsOutlinedButtonState extends State<GdsOutlinedButton> {
     final children = <Widget>[];
 
     if (widget.leadingIcon != null) {
+      final leadingIcon = widget.leadingIcon!.build(
+        color: widget.iconColor ?? GdsOutlinedButtonStyle.iconColor(colors, state),
+        width: size.iconSize,
+        height: size.iconSize,
+      );
+
       children.add(
-        widget.leadingIcon!.build(
-          color: GdsOutlinedButtonStyle.iconColor(colors, state),
-          width: size.iconSize,
-          height: size.iconSize,
+        GdsIconTapScaleAnimation(
+          controller: _iconAnimationController,
+          child: leadingIcon,
         ),
       );
       children.add(SizedBox(width: size.gap));
@@ -283,12 +324,17 @@ class _GdsOutlinedButtonState extends State<GdsOutlinedButton> {
     );
 
     if (widget.trailingIcon != null) {
+      final trailingIcon = widget.trailingIcon!.build(
+        color: widget.iconColor ?? GdsOutlinedButtonStyle.iconColor(colors, state),
+        width: size.iconSize,
+        height: size.iconSize,
+      );
+
       children.add(SizedBox(width: size.gap));
       children.add(
-        widget.trailingIcon!.build(
-          color: GdsOutlinedButtonStyle.iconColor(colors, state),
-          width: size.iconSize,
-          height: size.iconSize,
+        GdsIconTapScaleAnimation(
+          controller: _iconAnimationController,
+          child: trailingIcon,
         ),
       );
     }
