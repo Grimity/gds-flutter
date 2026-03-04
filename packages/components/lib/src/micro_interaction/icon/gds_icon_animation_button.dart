@@ -2,6 +2,40 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+class GdsIconTapScaleAnimation extends StatelessWidget {
+  const GdsIconTapScaleAnimation({
+    super.key,
+    required this.controller,
+    required this.child,
+  });
+
+  static const Duration _scaleDuration = Duration(milliseconds: 80);
+  static const Offset _beginScale = Offset(1.0, 1.0);
+  static const Offset _endScale = Offset(1.12, 1.12);
+
+  final AnimationController controller;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return child
+        .animate(controller: controller)
+        .scale(
+          duration: _scaleDuration,
+          curve: Curves.easeOut,
+          begin: _beginScale,
+          end: _endScale,
+        )
+        .then()
+        .scale(
+          duration: _scaleDuration,
+          curve: Curves.easeIn,
+          begin: _endScale,
+          end: _beginScale,
+        );
+  }
+}
+
 class GdsIconAnimationButton extends HookWidget {
   const GdsIconAnimationButton({
     super.key,
@@ -13,11 +47,12 @@ class GdsIconAnimationButton extends HookWidget {
   final VoidCallback onTap;
 
   static const hitTestBehavior = HitTestBehavior.opaque;
+  static const _animationDuration = Duration(milliseconds: 160);
 
   @override
   Widget build(BuildContext context) {
     final animationController = useAnimationController(
-      duration: const Duration(milliseconds: 160),
+      duration: _animationDuration,
     );
 
     return GestureDetector(
@@ -26,21 +61,10 @@ class GdsIconAnimationButton extends HookWidget {
         onTap();
         animationController.forward(from: 0);
       },
-      child: child
-          .animate(controller: animationController)
-          .scale(
-            duration: 80.ms,
-            curve: Curves.easeOut,
-            begin: const Offset(1.0, 1.0),
-            end: const Offset(1.12, 1.12),
-          )
-          .then()
-          .scale(
-            duration: 80.ms,
-            curve: Curves.easeIn,
-            begin: const Offset(1.12, 1.12),
-            end: const Offset(1.0, 1.0),
-          ),
+      child: GdsIconTapScaleAnimation(
+        controller: animationController,
+        child: child,
+      ),
     );
   }
 }
