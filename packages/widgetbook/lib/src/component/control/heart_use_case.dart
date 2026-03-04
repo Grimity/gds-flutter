@@ -31,10 +31,15 @@ Widget _buildPlaygroundSection(BuildContext context) {
       'isLiked: $isLiked',
       'size: 24×24px @fixed',
     ],
-    child: GdsHeart(
-      isLiked: isLiked,
-      onTap: () => debugPrint('GdsHeart tapped'),
-    ),
+    child: type == GdsHeartType.defaultType
+        ? GdsHeart(
+            isLiked: isLiked,
+            onTap: () => debugPrint('GdsHeart tapped'),
+          )
+        : GdsHeart.black(
+            isLiked: isLiked,
+            onTap: () => debugPrint('GdsHeart tapped'),
+          ),
   );
 }
 
