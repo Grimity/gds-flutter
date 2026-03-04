@@ -3,6 +3,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
+enum _IconColorMode {
+  buttonDefault,
+  custom,
+}
+
+String _toHex(Color color) => '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}';
+
 @widgetbook.UseCase(
   name: 'default',
   type: GdsOutlinedButton,
@@ -48,10 +55,25 @@ Widget _buildPlaygroundSection(BuildContext context) {
     initialOption: GdsIcon.heartFill,
     labelBuilder: (i) => i.name,
   );
+  final iconColorMode = context.knobs.list<_IconColorMode>(
+    label: 'iconColorMode',
+    options: _IconColorMode.values,
+    initialOption: _IconColorMode.buttonDefault,
+    labelBuilder: (mode) => mode.name,
+  );
+  Color? customIconColor;
+  final iconColor = switch (iconColorMode) {
+    _IconColorMode.buttonDefault => null,
+    _IconColorMode.custom => customIconColor = context.knobs.color(
+      label: 'customIconColor',
+      initialValue: const Color(0xFFE53935),
+    ),
+  };
 
   final Widget button = switch (form) {
     'IconOnly' => GdsOutlinedButton.icon(
       icon: icon,
+      iconColor: iconColor,
       size: size,
       enabled: enabled,
       loading: loading,
@@ -61,6 +83,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     'IconLeft' => GdsOutlinedButton(
       text: 'Label',
       leadingIcon: icon,
+      iconColor: iconColor,
       size: size,
       enabled: enabled,
       loading: loading,
@@ -70,6 +93,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     'IconRight' => GdsOutlinedButton(
       text: 'Label',
       trailingIcon: icon,
+      iconColor: iconColor,
       size: size,
       enabled: enabled,
       loading: loading,
@@ -78,6 +102,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     ),
     _ => GdsOutlinedButton(
       text: 'Label',
+      iconColor: iconColor,
       size: size,
       enabled: enabled,
       loading: loading,
@@ -93,6 +118,8 @@ Widget _buildPlaygroundSection(BuildContext context) {
       'enabled: $enabled',
       'loading: $loading',
       'expanded: $expanded',
+      'iconColorMode: ${iconColorMode.name}',
+      if (customIconColor != null) 'customIconColor: ${_toHex(customIconColor)}',
       'verticalPadding: ${size.verticalPadding.toInt()}px @fixed',
       'iconSize: ${size.iconSize.toInt()}px @fixed',
       'gap: ${size.gap.toInt()}px @fixed',
