@@ -16,8 +16,11 @@ enum GdsTagSelectSize {
   };
 
   EdgeInsets get padding => switch (this) {
-    GdsTagSelectSize.medium => const EdgeInsets.all(8),
-    GdsTagSelectSize.small => const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+    GdsTagSelectSize.medium => const EdgeInsets.all(GdsSpacing.spacing8),
+    GdsTagSelectSize.small => const EdgeInsets.symmetric(
+      vertical: GdsSpacing.spacing6,
+      horizontal: GdsSpacing.spacing8,
+    ),
   };
 
   GdsTagSize get tagSize => switch (this) {
@@ -61,8 +64,8 @@ class GdsTagSelect extends StatefulWidget {
 
 class _GdsTagSelectState extends State<GdsTagSelect> {
   static const double _focusedInputWidth = 80;
-  static const double _spacing = 6;
-  static const double _runSpacing = 6;
+  static const double _spacing = GdsSpacing.spacing6;
+  static const double _runSpacing = GdsSpacing.spacing6;
   static const int _maxTagCount = 10;
   static const String _placeholder = '#태그 추가';
 
