@@ -22,11 +22,11 @@ Widget _buildPlaygroundSection(BuildContext context) {
   final type = context.knobs.list<GdsTopNavigationType>(
     label: 'type',
     options: GdsTopNavigationType.values,
-    labelBuilder: (type) => type.name,
+    labelBuilder: (type) => type.displayName,
   );
 
   return WidgetbookPlayground(
-    info: ['type: ${type.name}'],
+    info: ['type: ${type.displayName}'],
     child: GdsTopNavigation.of(type),
   );
 }

@@ -4,13 +4,16 @@ import 'package:gds_foundation/gds_foundation.dart';
 
 /// Top Navigation 컴포넌트의 고유 타입을 정의하는 열거형입니다.
 enum GdsTopNavigationType {
-  main,
-  title,
-  iconButton,
-  search,
-  dm,
-  editor,
-  imageViewer,
+  main("Main"),
+  title("Title"),
+  iconButton("IconButton"),
+  search("Search"),
+  dm("DM"),
+  editor("Editor"),
+  imageViewer("ImageViewer");
+
+  final String displayName;
+  const GdsTopNavigationType(this.displayName);
 }
 
 /// 디자인 시스템에 따라 구현된 Top Navigation 컴포넌트입니다.
