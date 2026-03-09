@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gds_components/src/common/common.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
@@ -419,7 +420,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
     } else if (trailing != null) {
       children.add(const SizedBox(width: GdsSpacing.spacing8));
       children.add(
-        GestureDetector(
+        GdsGesture(
           onTap: _onClear,
           child: trailing.build(
             color: type.placeholderColor(colors, state),

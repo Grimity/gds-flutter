@@ -42,8 +42,7 @@ class GdsProfileEditAvatar extends StatelessWidget {
           Positioned(
             right: 0,
             bottom: 0,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
+            child: GdsGesture(
               onTap: onTap,
               child: Container(
                 width: GdsAtomicSpacing.v28,

@@ -186,12 +186,12 @@ class GdsTopNavigation {
       mainAxisSize: MainAxisSize.min,
       spacing: GdsSpacing.spacing16,
       children: [
-        GestureDetector(
+        GdsGesture(
           onTap: onSearch,
           child: GdsIcon.magnifierOutline.build(color: colors.icon.grayBold),
         ),
         GdsDotPushBadge(
-          child: GestureDetector(
+          child: GdsGesture(
             onTap: onNotification,
             child: GdsIcon.bellOutline.build(color: colors.icon.grayBold),
           ),
@@ -223,7 +223,7 @@ class GdsTopNavigation {
       child: Row(
         spacing: GdsSpacing.spacing8,
         children: [
-          GestureDetector(
+          GdsGesture(
             onTap: onBack,
             child: GdsIcon.chevronLeft.build(color: colors.icon.grayBold),
           ),
@@ -357,7 +357,7 @@ class _IconButton extends StatelessWidget {
 
     // 아이콘 리스트를 GdsIcon 위젯으로 변환합니다.
     final iconRows = icons.map((icon) {
-      return GestureDetector(
+      return GdsGesture(
         onTap: onIconTap[icons.indexOf(icon)],
         child: icon.build(color: context.gdsColors.icon.grayBold),
       );
@@ -456,11 +456,11 @@ class _Dm extends StatelessWidget {
           Row(
             spacing: GdsSpacing.spacing8,
             children: [
-              GestureDetector(
+              GdsGesture(
                 onTap: onReport,
                 child: GdsIcon.sirenOutline.build(color: colors.icon.grayBold),
               ),
-              GestureDetector(
+              GdsGesture(
                 onTap: onSignOut,
                 child: GdsIcon.signOut.build(color: colors.icon.grayBold),
               ),
@@ -504,7 +504,7 @@ class _Editor extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: GestureDetector(
+            child: GdsGesture(
               onTap: onTitle,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -547,11 +547,11 @@ class _ImageViewer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
+          GdsGesture(
             onTap: onClose,
             child: GdsIcon.xMark.build(color: context.gdsColors.icon.grayBold),
           ),
-          GestureDetector(
+          GdsGesture(
             onTap: onDownload,
             child: GdsIcon.download.build(color: context.gdsColors.icon.grayBold),
           ),

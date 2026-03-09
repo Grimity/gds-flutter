@@ -27,7 +27,7 @@ class GdsNotificationUserItem extends GdsUserItem {
         spacing: GdsSpacing.spacing12,
         children: [
           Expanded(
-            child: GestureDetector(
+            child: GdsGesture(
               onTap: onTap,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -25,7 +25,7 @@ class GdsFollowUserInfo extends GdsUserInfo {
 
     return Row(
       children: [
-        GestureDetector(
+        GdsGesture(
           onTap: onFollowerTap,
           child: Row(
             children: [
@@ -43,7 +43,7 @@ class GdsFollowUserInfo extends GdsUserInfo {
         ),
         if (showFollowing && followingCount != null) ...[
           const SizedBox(width: GdsSpacing.spacing8),
-          GestureDetector(
+          GdsGesture(
             onTap: onFollowingTap,
             child: Row(
               children: [

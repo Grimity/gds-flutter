@@ -18,7 +18,7 @@ class GdsPickerCardListItem extends GdsListItem {
     final style = _GdsPickerCardListItemStyle.from(colors, state);
     final textStyle = GdsTypography.label4.copyWith(color: style.textColor);
 
-    return GestureDetector(
+    return GdsGesture(
       onTap: state.isDisabled ? null : onTap,
       child: DecoratedBox(
         decoration: BoxDecoration(

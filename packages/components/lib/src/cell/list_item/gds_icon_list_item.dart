@@ -21,9 +21,8 @@ class GdsIconListItem extends GdsListItem {
     final colors = context.gdsColors;
     final style = _GdsIconListItemStyle.from(colors, state: state);
 
-    return GestureDetector(
+    return GdsGesture(
       onTap: state.isDisabled ? null : onTap,
-      behavior: HitTestBehavior.opaque,
       child: SizedBox(
         height: _height,
         child: DecoratedBox(

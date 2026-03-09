@@ -215,7 +215,7 @@ class _GdsTagSelectState extends State<GdsTagSelect> {
     final colors = context.gdsColors;
     final state = _state;
 
-    return GestureDetector(
+    return GdsGesture(
       onTap: _requestFocus,
       child: DecoratedBox(
         decoration: BoxDecoration(

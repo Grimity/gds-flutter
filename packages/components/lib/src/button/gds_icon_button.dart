@@ -236,7 +236,7 @@ class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProvider
         cursor: _isInteractive ? SystemMouseCursors.click : SystemMouseCursors.basic,
         onEnter: _isInteractive ? (_) => setState(() => _isHovered = true) : null,
         onExit: _isInteractive ? (_) => setState(() => _isHovered = false) : null,
-        child: GestureDetector(
+        child: GdsGesture(
           onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
           onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
           onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,

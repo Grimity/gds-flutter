@@ -33,7 +33,7 @@ class GdsDefaultUserInfo extends GdsUserInfo {
     return Row(
       children: [
         Flexible(
-          child: GestureDetector(
+          child: GdsGesture(
             onTap: onNameTap,
             child: Text(
               nickName,

@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gds_components/src/common/common.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
@@ -152,8 +153,7 @@ class _GdsFilterState extends State<GdsFilter> {
         cursor: _isInteractive ? SystemMouseCursors.click : SystemMouseCursors.basic,
         onEnter: _isInteractive ? (_) => setState(() => _isHovered = true) : null,
         onExit: _isInteractive ? (_) => setState(() => _isHovered = false) : null,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
+        child: GdsGesture(
           onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
           onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
           onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,

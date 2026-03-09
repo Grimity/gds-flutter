@@ -52,7 +52,7 @@ class GdsTextListItem extends GdsListItem {
     );
     final textStyle = GdsTypography.label1.copyWith(color: style.textColor);
 
-    return GestureDetector(
+    return GdsGesture(
       onTap: state.isDisabled ? null : onTap,
       child: DecoratedBox(
         decoration: BoxDecoration(

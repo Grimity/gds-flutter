@@ -216,7 +216,7 @@ class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProvid
         cursor: _isInteractive ? SystemMouseCursors.click : SystemMouseCursors.basic,
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
-        child: GestureDetector(
+        child: GdsGesture(
           onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
           onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
           onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,

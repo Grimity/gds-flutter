@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gds_components/src/common/common.dart';
 
 class GdsIconTapScaleAnimation extends StatelessWidget {
   const GdsIconTapScaleAnimation({
@@ -46,7 +47,6 @@ class GdsIconAnimationButton extends HookWidget {
   final Widget child;
   final VoidCallback onTap;
 
-  static const hitTestBehavior = HitTestBehavior.opaque;
   static const _animationDuration = Duration(milliseconds: 160);
 
   @override
@@ -55,8 +55,7 @@ class GdsIconAnimationButton extends HookWidget {
       duration: _animationDuration,
     );
 
-    return GestureDetector(
-      behavior: hitTestBehavior,
+    return GdsGesture(
       onTap: () {
         onTap();
         animationController.forward(from: 0);
