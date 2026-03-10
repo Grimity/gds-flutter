@@ -36,6 +36,13 @@ enum GdsTextFieldSize {
     GdsTextFieldType.count ||
     GdsTextFieldType.search => this == GdsTextFieldSize.medium ? GdsTypography.label2 : GdsTypography.label4,
   };
+
+  EdgeInsets get multilinePadding => EdgeInsets.symmetric(
+    horizontal: this == GdsTextFieldSize.medium ? GdsSpacing.spacing16 : GdsSpacing.spacing12,
+    vertical: this == GdsTextFieldSize.medium ? GdsSpacing.spacing16 : GdsSpacing.spacing10,
+  );
+
+  double get multilineFooterGap => this == GdsTextFieldSize.medium ? GdsSpacing.spacing4 : GdsSpacing.spacing2;
 }
 
 enum GdsTextFieldType {
@@ -143,6 +150,10 @@ class GdsTextField extends StatefulWidget {
   final GdsTextFieldSize size;
   final String? placeholder;
   final int? maxLength;
+
+  /// [isMultipleLine] `default`, `count` 타입에서만 여러 줄 입력을 지원.
+  /// `true`면 내부 `maxLines`는 4로 고정되고, `false`면 1줄 입력으로 동작.
+  final bool isMultipleLine;
   final String? mentionUser;
   final bool enabled;
   final bool error;
@@ -158,6 +169,7 @@ class GdsTextField extends StatefulWidget {
   const GdsTextField({
     super.key,
     this.placeholder,
+    this.isMultipleLine = false,
     this.mentionUser,
     this.onMentionClear,
     this.size = GdsTextFieldSize.medium,
@@ -177,6 +189,7 @@ class GdsTextField extends StatefulWidget {
     super.key,
     required int this.maxLength,
     this.placeholder,
+    this.isMultipleLine = false,
     this.size = GdsTextFieldSize.medium,
     this.enabled = true,
     this.error = false,
@@ -203,6 +216,7 @@ class GdsTextField extends StatefulWidget {
     this.onEditingComplete,
     this.textInputAction = TextInputAction.search,
   }) : type = GdsTextFieldType.search,
+       isMultipleLine = false,
        maxLength = null,
        mentionUser = null,
        onMentionClear = null,
@@ -222,6 +236,7 @@ class GdsTextField extends StatefulWidget {
     this.onEditingComplete,
     this.textInputAction,
   }) : type = GdsTextFieldType.title,
+       isMultipleLine = false,
        mentionUser = null,
        onMentionClear = null,
        error = false,
@@ -326,25 +341,60 @@ class _GdsTextFieldState extends State<GdsTextField> {
   bool get _hasCount =>
       widget.type == GdsTextFieldType.count || (widget.type == GdsTextFieldType.title && widget.maxLength != null);
 
+  bool get _isMultiline => widget.isMultipleLine;
+
+  int get _maxLines => _isMultiline ? 4 : 1;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
     final type = widget.type;
     final size = widget.size;
     final state = _fieldState;
+    final isCountFooter = _hasCount && _isMultiline;
+    final padding = _isMultiline && (type == GdsTextFieldType.defaultField || type == GdsTextFieldType.count)
+        ? size.multilinePadding
+        : size.padding(type);
 
-    return Container(
-      height: size.height(type),
-      padding: size.padding(type),
+    final field = Container(
+      padding: padding,
       decoration: BoxDecoration(
         color: type.backgroundColor(colors, state),
         border: type.border(colors, state),
         borderRadius: type.borderRadius,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: _buildChildren(colors, type, size, state),
-      ),
+      child: isCountFooter
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: _buildChildren(colors, type, size, state, includeInlineCount: false),
+                ),
+                SizedBox(height: size.multilineFooterGap),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: _buildCountBadge(colors, state),
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: _isMultiline ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+              children: _buildChildren(colors, type, size, state, includeInlineCount: true),
+            ),
+    );
+
+    if (_isMultiline) {
+      return ConstrainedBox(
+        constraints: BoxConstraints(minHeight: size.height(type)),
+        child: field,
+      );
+    }
+
+    return SizedBox(
+      height: size.height(type),
+      child: field,
     );
   }
 
@@ -352,8 +402,9 @@ class _GdsTextFieldState extends State<GdsTextField> {
     GdsSemanticColor colors,
     GdsTextFieldType type,
     GdsTextFieldSize size,
-    GdsTextFieldState state,
-  ) {
+    GdsTextFieldState state, {
+    required bool includeInlineCount,
+  }) {
     final children = <Widget>[];
     final leading = type.leadingIcon;
     final trailing = type.trailingIcon(hasText: _controller.text.isNotEmpty);
@@ -384,14 +435,14 @@ class _GdsTextFieldState extends State<GdsTextField> {
     children.add(
       Expanded(
         child: Stack(
-          alignment: AlignmentDirectional.centerStart,
+          alignment: _isMultiline ? AlignmentDirectional.topStart : AlignmentDirectional.centerStart,
           children: [
             if (widget.placeholder != null && _controller.text.isEmpty)
               IgnorePointer(
                 child: Text(
                   widget.placeholder!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  maxLines: _maxLines,
+                  overflow: _isMultiline ? TextOverflow.visible : TextOverflow.ellipsis,
                   style: size.textStyle(type).copyWith(color: type.placeholderColor(colors, state)),
                 ),
               ),
@@ -406,7 +457,8 @@ class _GdsTextFieldState extends State<GdsTextField> {
               onChanged: widget.onChanged,
               onEditingComplete: widget.onEditingComplete,
               textInputAction: widget.textInputAction,
-              maxLines: 1,
+              minLines: 1,
+              maxLines: _maxLines,
               inputFormatters: widget.maxLength != null ? [LengthLimitingTextInputFormatter(widget.maxLength)] : null,
             ),
           ],
@@ -414,7 +466,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
       ),
     );
 
-    if (_hasCount) {
+    if (_hasCount && includeInlineCount) {
       children.add(const SizedBox(width: GdsSpacing.spacing8));
       children.add(_buildCountBadge(colors, state));
     } else if (trailing != null) {

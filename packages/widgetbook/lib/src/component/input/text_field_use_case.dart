@@ -38,10 +38,15 @@ Widget _buildPlaygroundSection(BuildContext context) {
 
   final bool isDefault = type == GdsTextFieldType.defaultField;
   final bool hasErrorSuccess = isDefault || type == GdsTextFieldType.count;
+  final bool supportsMultiline = isDefault || type == GdsTextFieldType.count;
+  final isMultipleLine = supportsMultiline
+      ? context.knobs.boolean(label: 'isMultipleLine', initialValue: false)
+      : false;
 
   final Widget field = switch (type) {
     GdsTextFieldType.count => GdsTextField.count(
       maxLength: 100,
+      isMultipleLine: isMultipleLine,
       placeholder: 'placeholder',
       size: size,
       enabled: enabled,
@@ -60,6 +65,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
       enabled: enabled,
     ),
     GdsTextFieldType.defaultField => GdsTextField(
+      isMultipleLine: isMultipleLine,
       placeholder: 'placeholder',
       mentionUser: mentionUser,
       size: size,
@@ -77,6 +83,8 @@ Widget _buildPlaygroundSection(BuildContext context) {
       if (hasErrorSuccess) 'error: $error',
       if (hasErrorSuccess) 'success: $success',
       if (isDefault) 'mentionUser: $mentionUser',
+      if (supportsMultiline) 'isMultipleLine: $isMultipleLine',
+      if (supportsMultiline) 'maxLines: ${isMultipleLine ? 4 : 1} @derived',
       'height: ${size.height(type).toInt()}px @fixed',
       'radius: ${type.borderRadius}',
     ],
@@ -92,6 +100,11 @@ Widget _buildDemonstrationSection(BuildContext context) {
         title: '(size × type) × state',
         labels: ['2 sizes', '4 types', '7 states'],
         content: const _TextFieldMatrix(),
+      ),
+      WidgetbookSubsection(
+        title: 'multiline examples',
+        labels: ['2 supported types', 'isMultipleLine false/true'],
+        content: const _TextFieldMultilineExamples(),
       ),
     ],
   );
@@ -309,5 +322,131 @@ class _TextFieldMatrix extends StatelessWidget {
         children: children,
       ),
     );
+  }
+}
+
+class _MultilineRowEntry {
+  const _MultilineRowEntry(this.size, this.type);
+
+  final GdsTextFieldSize size;
+  final GdsTextFieldType type;
+
+  String get label => '${size.name} / ${type.name}';
+}
+
+const _multilineRows = [
+  _MultilineRowEntry(GdsTextFieldSize.medium, GdsTextFieldType.defaultField),
+  _MultilineRowEntry(GdsTextFieldSize.medium, GdsTextFieldType.count),
+  _MultilineRowEntry(GdsTextFieldSize.small, GdsTextFieldType.defaultField),
+  _MultilineRowEntry(GdsTextFieldSize.small, GdsTextFieldType.count),
+];
+
+class _TextFieldMultilineExamples extends StatelessWidget {
+  const _TextFieldMultilineExamples();
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.gdsColors;
+    final labelStyle = GdsTypography.caption1.copyWith(color: colors.text.graySubtle);
+
+    return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.top,
+      columnWidths: const {
+        0: IntrinsicColumnWidth(),
+        1: IntrinsicColumnWidth(),
+        2: IntrinsicColumnWidth(),
+      },
+      children: [
+        TableRow(
+          children: [
+            const SizedBox.shrink(),
+            for (final isMultipleLine in [false, true])
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Center(
+                  child: Text(
+                    'isMultipleLine $isMultipleLine',
+                    style: labelStyle,
+                  ),
+                ),
+              ),
+          ],
+        ),
+        for (final row in _multilineRows)
+          TableRow(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 16, top: 8),
+                child: Text(row.label, style: labelStyle),
+              ),
+              for (final isMultipleLine in [false, true])
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: SizedBox(
+                    width: 180,
+                    child: _MultilinePreview(
+                      size: row.size,
+                      type: row.type,
+                      isMultipleLine: isMultipleLine,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+      ],
+    );
+  }
+}
+
+class _MultilinePreview extends StatefulWidget {
+  const _MultilinePreview({
+    required this.size,
+    required this.type,
+    required this.isMultipleLine,
+  });
+
+  final GdsTextFieldSize size;
+  final GdsTextFieldType type;
+  final bool isMultipleLine;
+
+  @override
+  State<_MultilinePreview> createState() => _MultilinePreviewState();
+}
+
+class _MultilinePreviewState extends State<_MultilinePreview> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(
+      text: List.filled(widget.isMultipleLine ? 4 : 1, 'Input filled').join('\n'),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return switch (widget.type) {
+      GdsTextFieldType.defaultField => GdsTextField(
+        placeholder: 'placeholder',
+        size: widget.size,
+        controller: _controller,
+        isMultipleLine: widget.isMultipleLine,
+      ),
+      GdsTextFieldType.count => GdsTextField.count(
+        maxLength: 100,
+        placeholder: 'placeholder',
+        size: widget.size,
+        controller: _controller,
+        isMultipleLine: widget.isMultipleLine,
+      ),
+      _ => const SizedBox.shrink(),
+    };
   }
 }
