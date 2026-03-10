@@ -59,10 +59,10 @@ enum GdsTextFieldType {
         alpha: GdsOpacity.opacity10,
       ),
       GdsTextFieldState.disabled => colors.surface.graySubtlest,
-      GdsTextFieldState.enabled => GdsColors.transparent,
-      GdsTextFieldState.filled => GdsColors.transparent,
-      GdsTextFieldState.focused => GdsColors.transparent,
-      GdsTextFieldState.success => GdsColors.transparent,
+      GdsTextFieldState.enabled => colors.surface.base,
+      GdsTextFieldState.filled => colors.surface.base,
+      GdsTextFieldState.focused => colors.surface.base,
+      GdsTextFieldState.success => colors.surface.base,
     };
   }
 
