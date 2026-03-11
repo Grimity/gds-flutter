@@ -1,6 +1,5 @@
 library;
 
-export 'src/accordion/accordion.dart';
 export 'src/avatar/avatar.dart';
 export 'src/base/base.dart';
 export 'src/bottom_sheet/bottom_sheet.dart';
