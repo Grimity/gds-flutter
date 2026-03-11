@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_components/gds_components.dart';
+import 'package:gds_components/src/common/widget/gds_ellipse.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
 part 'user_info/gds_default_user_info.dart';
@@ -61,19 +62,10 @@ class DotSeparator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dotColor = context.gdsColors.surface.graySubtle;
-
     return Row(
       children: [
         const SizedBox(width: GdsSpacing.spacing4),
-        Container(
-          width: GdsSpacing.spacing2,
-          height: GdsSpacing.spacing2,
-          decoration: BoxDecoration(
-            color: dotColor,
-            shape: BoxShape.circle,
-          ),
-        ),
+        const GdsEllipse(),
         const SizedBox(width: GdsSpacing.spacing4),
       ],
     );

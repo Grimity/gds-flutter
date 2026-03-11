@@ -13,11 +13,11 @@ class GdsEllipse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 2,
-      height: 2,
+      width: GdsSpacing.spacing2,
+      height: GdsSpacing.spacing2,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
         color: color ?? context.gdsColors.surface.graySubtle,
+        shape: BoxShape.circle,
       ),
     );
   }
