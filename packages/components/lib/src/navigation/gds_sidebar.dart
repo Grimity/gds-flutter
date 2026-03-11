@@ -141,7 +141,7 @@ class GdsSidebar extends StatelessWidget {
                 ],
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -150,7 +150,6 @@ class GdsSidebar extends StatelessWidget {
 
 class _UserInfo extends StatelessWidget {
   const _UserInfo({
-    super.key,
     required this.label,
     required this.value,
   });
@@ -176,7 +175,6 @@ class _UserInfo extends StatelessWidget {
 
 class _TabMenu extends StatelessWidget {
   const _TabMenu({
-    super.key,
     required this.item,
   });
 
@@ -195,10 +193,8 @@ class _TabMenu extends StatelessWidget {
         child: Row(
           spacing: GdsSpacing.spacing8,
           children: [
-            item.dotPushBadge
-              ? GdsDotPushBadge(position: item.dotPushBadgePosition, child: iconChild)
-              : iconChild,
-            Text(item.label, style: GdsTypography.label1.copyWith(color: colors.text.grayNormal))
+            item.dotPushBadge ? GdsDotPushBadge(position: item.dotPushBadgePosition, child: iconChild) : iconChild,
+            Text(item.label, style: GdsTypography.label1.copyWith(color: colors.text.grayNormal)),
           ],
         ),
       ),
