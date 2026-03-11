@@ -205,6 +205,7 @@ const _normalIcons = [
   GdsIcon.undo,
   GdsIcon.xMarkThick,
   GdsIcon.xMark,
+  GdsIcon.pallete,
 ];
 
 const _brandIcons = [
