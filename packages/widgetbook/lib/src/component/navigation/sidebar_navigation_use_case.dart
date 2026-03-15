@@ -5,10 +5,10 @@ import '../../widgetbook_components/widgetbook_components.dart';
 
 @widgetbook.UseCase(
   name: 'default',
-  type: GdsSidebar,
+  type: GdsSidebarNavigation,
   path: '[component]/[navigation]',
 )
-Widget buildGdsBottomNavigationUseCase(BuildContext context) {
+Widget buildGdsSidebarNavigationUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Bottom Navigation',
     children: [
@@ -18,9 +18,9 @@ Widget buildGdsBottomNavigationUseCase(BuildContext context) {
 }
 
 Widget _buildPlaygroundSection(BuildContext context) {
-  final size = context.knobs.list<GdsSidebarSize>(
+  final size = context.knobs.list<GdsSidebarNavigationSize>(
     label: 'size',
-    options: GdsSidebarSize.values,
+    options: GdsSidebarNavigationSize.values,
     labelBuilder: (type) => type.displayName,
   );
 
@@ -44,7 +44,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     ],
     child: ConstrainedBox(
       constraints: BoxConstraints(maxHeight: height.toDouble()),
-      child: GdsSidebar(
+      child: GdsSidebarNavigation(
         size: size,
         userImageUrl: null,
         userName: '체리마루',
@@ -52,8 +52,8 @@ Widget _buildPlaygroundSection(BuildContext context) {
         followerCount: 123,
         followingCount: 32,
         menuItems: [
-          GdsSidebarItem(icon: GdsIcon.heartOutline, label: '좋아요한 그림', onTap: () {}, dotPushBadge: dotBadge),
-          GdsSidebarItem(icon: GdsIcon.bookmarkOutline, label: '저장한 글', onTap: () {}),
+          GdsSidebarNavigationItem(icon: GdsIcon.heartOutline, label: '좋아요한 그림', onTap: () {}, dotPushBadge: dotBadge),
+          GdsSidebarNavigationItem(icon: GdsIcon.bookmarkOutline, label: '저장한 글', onTap: () {}),
         ],
       ),
     ),

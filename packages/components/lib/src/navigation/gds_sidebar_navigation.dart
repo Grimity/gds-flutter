@@ -3,17 +3,17 @@ import 'package:gds_components/gds_components.dart';
 import 'package:gds_components/src/common/widget/gds_ellipse.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
-enum GdsSidebarSize {
+enum GdsSidebarNavigationSize {
   lg('Large', 300),
   md('Medium', 220);
 
   final String displayName;
   final double width;
-  const GdsSidebarSize(this.displayName, this.width);
+  const GdsSidebarNavigationSize(this.displayName, this.width);
 }
 
-class GdsSidebarItem {
-  const GdsSidebarItem({
+class GdsSidebarNavigationItem {
+  const GdsSidebarNavigationItem({
     required this.icon,
     required this.label,
     this.dotPushBadge = false,
@@ -29,8 +29,8 @@ class GdsSidebarItem {
 }
 
 /// 디자인 시스템에 따라 구현된 Sidebar 컴포넌트입니다.
-class GdsSidebar extends StatelessWidget {
-  const GdsSidebar({
+class GdsSidebarNavigation extends StatelessWidget {
+  const GdsSidebarNavigation({
     super.key,
     required this.size,
     required this.userImageUrl,
@@ -41,13 +41,13 @@ class GdsSidebar extends StatelessWidget {
     required this.menuItems,
   });
 
-  final GdsSidebarSize size;
+  final GdsSidebarNavigationSize size;
   final String? userImageUrl;
   final String userName;
   final String userId;
   final int followerCount;
   final int followingCount;
-  final List<GdsSidebarItem> menuItems;
+  final List<GdsSidebarNavigationItem> menuItems;
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +178,7 @@ class _TabMenu extends StatelessWidget {
     required this.item,
   });
 
-  final GdsSidebarItem item;
+  final GdsSidebarNavigationItem item;
 
   @override
   Widget build(BuildContext context) {
