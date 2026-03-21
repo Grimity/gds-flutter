@@ -200,7 +200,12 @@ enum GdsIcon implements IconBuilder {
   final String path;
 
   @override
-  Widget build({Color? color, double? width, double? height}) {
+  Widget build({
+    Color? color,
+    double? width,
+    double? height,
+    Map<String, Color>? colorMap,
+  }) {
     final iconWidth = width ?? GdsIconSize.defaultSize;
     final iconHeight = height ?? GdsIconSize.defaultSize;
 
@@ -208,8 +213,23 @@ enum GdsIcon implements IconBuilder {
       path,
       package: 'gds_foundation',
       colorFilter: color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
+      colorMapper: colorMap != null ? _ColorMapper(colorMap) : null,
       width: iconWidth,
       height: iconHeight,
     );
   }
+}
+
+class _ColorMapper extends ColorMapper {
+  const _ColorMapper(this.object);
+
+  final Map<String, Color> object;
+
+  @override
+  Color substitute(
+    String? id,
+    String elementName,
+    String attributeName,
+    Color color,
+  ) => object[id] ?? color;
 }
