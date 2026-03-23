@@ -64,9 +64,9 @@ class GdsEditorDecoration extends StatelessWidget {
     super.key,
     required GdsIcon icon,
     this.onTap,
-  })  : type = null,
-        customIcon = icon,
-        state = GdsEditorDecorationState.enabled;
+  }) : type = null,
+       customIcon = icon,
+       state = GdsEditorDecorationState.enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +99,7 @@ class GdsEditorDecoration extends StatelessWidget {
             'foreground': colors.icon.grayBold,
             'border': colors.border.graySubtle,
           },
-          color: isFontBg
-              ? null
-              : (isPressed ? type!.getForegroundColor(context) : colors.icon.grayBold),
+          color: isFontBg ? null : (isPressed ? type!.getForegroundColor(context) : colors.icon.grayBold),
         ),
       ),
     );
@@ -223,9 +221,7 @@ class GdsEditorButton {
           decoration: BoxDecoration(
             color: color,
             shape: BoxShape.circle,
-            border: state == GdsEditorButtonState.pressed
-                ? Border.all(color: colors.border.grayNormal)
-                : null,
+            border: state == GdsEditorButtonState.pressed ? Border.all(color: colors.border.grayNormal) : null,
           ),
         ),
       ),
@@ -304,7 +300,7 @@ class _PanelBaseButton extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           spacing: GdsSpacing.spacing8,
-          children:[
+          children: [
             childBuilder(context),
             Text(
               label,
@@ -359,8 +355,7 @@ enum GdsEditorColor {
   final Color color;
   const GdsEditorColor(this.color);
 
-  Color get foregroundColor =>
-      this == GdsEditorColor.white ? const Color(0xFF000000) : const Color(0xFFFFFFFF);
+  Color get foregroundColor => this == GdsEditorColor.white ? const Color(0xFF000000) : const Color(0xFFFFFFFF);
 }
 
 class GdsEditor extends StatelessWidget {
@@ -434,7 +429,7 @@ class GdsEditor extends StatelessWidget {
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children:[
+        children: [
           _buildToolbar(context),
           if (panelContent != null)
             Container(
@@ -458,7 +453,7 @@ class GdsEditor extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 120 * 3),
       child: Row(
         spacing: GdsSpacing.spacing8,
-        children:[
+        children: [
           Expanded(
             child: GdsEditorButton.title1(
               context: context,
@@ -488,7 +483,7 @@ class GdsEditor extends StatelessWidget {
   Widget _buildPlusPanel(BuildContext context) {
     return Row(
       spacing: GdsSpacing.spacing8,
-      children:[
+      children: [
         Expanded(
           child: GdsEditorButton.icon(
             context: context,
@@ -563,7 +558,8 @@ class GdsEditor extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: _buildToolbarGroups(
           context: context,
-          groups: [[
+          groups: [
+            [
               GdsEditorDecoration(
                 type: GdsEditorDecorationType.plus,
                 state: GdsEditorDecorationState.fromPressed(type == GdsEditorType.plus),
@@ -571,7 +567,8 @@ class GdsEditor extends StatelessWidget {
               ),
               GdsEditorDecoration.byIcon(icon: GdsIcon.undo, onTap: onUndo),
               GdsEditorDecoration.byIcon(icon: GdsIcon.redo, onTap: onRedo),
-            ],[
+            ],
+            [
               GdsEditorDecoration(
                 type: GdsEditorDecorationType.fontSize,
                 state: GdsEditorDecorationState.fromPressed(type == GdsEditorType.fontStyle),
@@ -624,7 +621,7 @@ class GdsEditor extends StatelessWidget {
       extent: 22,
     );
 
-    final List<Widget> children =[];
+    final List<Widget> children = [];
     for (int i = 0; i < groups.length; i++) {
       children.add(
         Row(

@@ -50,7 +50,8 @@ class GdsDivider extends StatelessWidget {
 
   const GdsDivider.primary({super.key, this.extent, this.size = GdsDividerSize.normal}) : type = GdsDividerType.primary;
 
-  const GdsDivider.secondary({super.key, this.extent, this.size = GdsDividerSize.normal}) : type = GdsDividerType.secondary;
+  const GdsDivider.secondary({super.key, this.extent, this.size = GdsDividerSize.normal})
+    : type = GdsDividerType.secondary;
 
   @override
   Widget build(BuildContext context) {
