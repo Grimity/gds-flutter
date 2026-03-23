@@ -13,6 +13,7 @@ enum GdsTopNavigationType {
   imageViewer("ImageViewer");
 
   final String displayName;
+
   const GdsTopNavigationType(this.displayName);
 }
 
@@ -209,17 +210,12 @@ class GdsTopNavigation {
     required BuildContext context,
     required VoidCallback onBack,
     required Widget body,
-    bool showBorder = true,
     EdgeInsets padding = const EdgeInsets.all(GdsSpacing.spacing16),
   }) {
     final colors = context.gdsColors;
 
-    return Container(
+    return Padding(
       padding: padding,
-      decoration: BoxDecoration(
-        // 하단 경계선 표시 여부에 따라 Border를 설정합니다.
-        border: showBorder ? Border(bottom: BorderSide(color: colors.border.graySubtler)) : null,
-      ),
       child: Row(
         spacing: GdsSpacing.spacing8,
         children: [
@@ -261,11 +257,8 @@ class _Main extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
-    return Container(
+    return Padding(
       padding: EdgeInsets.all(GdsSpacing.spacing16),
-      decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: colors.border.graySubtler)),
-      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -364,7 +357,6 @@ class _IconButton extends StatelessWidget {
     }).toList();
 
     return GdsTopNavigation._buildWithBackButton(
-      showBorder: false,
       context: context,
       onBack: () => debugPrint('Back button tapped'),
       body: Row(
@@ -394,7 +386,6 @@ class _Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GdsTopNavigation._buildWithBackButton(
-      showBorder: false,
       padding: EdgeInsets.symmetric(horizontal: GdsSpacing.spacing16),
       context: context,
       onBack: () => debugPrint('Back button tapped'),
@@ -434,7 +425,6 @@ class _Dm extends StatelessWidget {
     final colors = context.gdsColors;
 
     return GdsTopNavigation._buildWithBackButton(
-      showBorder: false,
       context: context,
       onBack: () => debugPrint('Back button tapped'),
       body: Row(
@@ -497,7 +487,6 @@ class _Editor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GdsTopNavigation._buildWithBackButton(
-      showBorder: false,
       context: context,
       onBack: () => debugPrint('Back button tapped'),
       body: Row(
