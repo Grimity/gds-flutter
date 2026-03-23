@@ -32,7 +32,7 @@ class _GdsCommentUserItemFrame extends StatelessWidget {
         _buildHeader(context),
         const SizedBox(height: GdsSpacing.spacing4),
         _buildBody(context),
-        const SizedBox(height: GdsSpacing.spacing12),
+        SizedBox(height: type.contentBottomSpacing),
         _buildActions(context),
       ],
     );

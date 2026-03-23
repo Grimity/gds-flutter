@@ -33,4 +33,11 @@ enum _GdsCommentUserItemType {
     _GdsCommentUserItemType.commentPlus => true,
     _GdsCommentUserItemType.commentPlusXs => true,
   };
+
+  double get contentBottomSpacing => switch (this) {
+    _GdsCommentUserItemType.comment => GdsSpacing.spacing12,
+    _GdsCommentUserItemType.commentXs => GdsSpacing.spacing6,
+    _GdsCommentUserItemType.commentPlus => GdsSpacing.spacing12,
+    _GdsCommentUserItemType.commentPlusXs => GdsSpacing.spacing6,
+  };
 }
