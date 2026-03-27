@@ -51,7 +51,7 @@ class GdsChatBubble extends StatefulWidget {
 }
 
 class _GdsChatBubbleState extends State<GdsChatBubble> {
-  bool isPressed = false;
+  bool isLongPressed = false;
 
   bool get _hasContent => widget.content?.trim().isNotEmpty == true;
 
@@ -62,7 +62,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
     final children = [
       if (_hasContent)
         GdsGesture(
-          onTap: onChatTextTap,
+          onLongPress: onChatLongPressed,
           onDoubleTap: widget.onHeartTap,
           child: GdsChatTextBubble(
             content: widget.content!,
@@ -71,7 +71,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
           ),
         ),
       if (widget.isSending) const GdsChatSendingIcon(),
-      if (isPressed)
+      if (isLongPressed)
         Row(
           spacing: GdsSpacing.spacing4,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -120,9 +120,9 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
     );
   }
 
-  void onChatTextTap() {
+  void onChatLongPressed() {
     setState(() {
-      isPressed = !isPressed;
+      isLongPressed = !isLongPressed;
     });
   }
 }
