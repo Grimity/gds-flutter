@@ -8,7 +8,7 @@ import '../../widgetbook_components/widgetbook_components.dart';
   type: GdsEditor,
   path: '[component]/[bottom_sheet]',
 )
-Widget buildGdsBottomNavigationUseCase(BuildContext context) {
+Widget buildGdsEditorUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Editor',
     children: [
