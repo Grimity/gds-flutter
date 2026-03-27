@@ -51,7 +51,15 @@ class GdsChatBubble extends StatefulWidget {
 }
 
 class _GdsChatBubbleState extends State<GdsChatBubble> {
+  static const double _replySlideThreshold = 40;
+  static const double _replySlideOpenOffset = 40;
+  static const Duration _replySlideAnimationDuration = Duration(milliseconds: 180);
+
   bool isLongPressed = false;
+  bool _isReplySlideOpen = false;
+  bool _wasReplySlideOpenAtDragStart = false;
+  bool _isDraggingReplySlide = false;
+  double _replySlideOffset = 0;
 
   bool get _hasContent => widget.content?.trim().isNotEmpty == true;
 
@@ -61,13 +69,15 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
   Widget build(BuildContext context) {
     final children = [
       if (_hasContent)
-        GdsGesture(
-          onLongPress: onChatLongPressed,
-          onDoubleTap: widget.onHeartTap,
-          child: GdsChatTextBubble(
-            content: widget.content!,
-            type: widget.type,
-            isLiked: widget.isLiked,
+        Flexible(
+          child: GdsGesture(
+            onLongPress: onChatLongPressed,
+            onDoubleTap: widget.onHeartTap,
+            child: GdsChatTextBubble(
+              content: widget.content!,
+              type: widget.type,
+              isLiked: widget.isLiked,
+            ),
           ),
         ),
       if (widget.isSending) const GdsChatSendingIcon(),
@@ -81,6 +91,50 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
           ],
         ),
     ];
+
+    final messageRow = children.isNotEmpty
+        ? Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: widget.type == GdsChatMessageType.me ? MainAxisAlignment.end : MainAxisAlignment.start,
+            spacing: GdsSpacing.spacing6,
+            children: widget.type == GdsChatMessageType.me ? children.reversed.toList() : children,
+          )
+        : null;
+
+    final slideMessageRow = messageRow == null
+        ? const SizedBox.shrink()
+        : GdsGesture(
+            onHorizontalDragStart: widget.onReplyTap != null ? _handleReplySlideStart : null,
+            onHorizontalDragUpdate: widget.onReplyTap != null ? _handleReplySlideUpdate : null,
+            onHorizontalDragEnd: widget.onReplyTap != null ? _handleReplySlideEnd : null,
+            onHorizontalDragCancel: widget.onReplyTap != null ? _handleReplySlideCancel : null,
+            child: SizedBox(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: widget.type == GdsChatMessageType.me
+                    ? MainAxisAlignment.end
+                    : MainAxisAlignment.start,
+                spacing: GdsSpacing.spacing6,
+                children: [
+                  Flexible(
+                    child: AnimatedContainer(
+                      duration: _isDraggingReplySlide ? Duration.zero : _replySlideAnimationDuration,
+                      curve: Curves.easeOutCubic,
+                      transform: Matrix4.translationValues(_replySlideOffset, 0, 0),
+                      child: messageRow,
+                    ),
+                  ),
+                  AnimatedSize(
+                    duration: _replySlideAnimationDuration,
+                    curve: Curves.easeOutCubic,
+                    child: _isReplySlideOpen && widget.onReplyTap != null
+                        ? GdsChatReplyButton(onPressed: _handleReplyButtonTap)
+                        : const SizedBox.shrink(),
+                  ),
+                ],
+              ),
+            ),
+          );
 
     return Padding(
       padding: widget.type.margin(context),
@@ -97,14 +151,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
                 replyLabel: widget.replyPreviewData!.replyLabel,
                 content: widget.replyPreviewData!.content,
               ),
-            if (children.isNotEmpty)
-              Row(
-                mainAxisAlignment: widget.type == GdsChatMessageType.me
-                    ? MainAxisAlignment.end
-                    : MainAxisAlignment.start,
-                spacing: GdsSpacing.spacing6,
-                children: widget.type == GdsChatMessageType.me ? children.reversed.toList() : children,
-              ),
+            slideMessageRow,
             if (_hasImage)
               GdsGesture(
                 onTap: widget.onImageTap,
@@ -122,7 +169,73 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
 
   void onChatLongPressed() {
     setState(() {
+      _resetReplySlide();
       isLongPressed = !isLongPressed;
     });
+  }
+
+  void _handleReplySlideStart(DragStartDetails details) {
+    setState(() {
+      _wasReplySlideOpenAtDragStart = _isReplySlideOpen;
+      _isDraggingReplySlide = true;
+      isLongPressed = false;
+    });
+  }
+
+  void _handleReplySlideUpdate(DragUpdateDetails details) {
+    final nextOffset = (_replySlideOffset + details.delta.dx).clamp(
+      -_replySlideOpenOffset,
+      0.0,
+    );
+
+    if (nextOffset == _replySlideOffset) return;
+
+    setState(() {
+      _replySlideOffset = nextOffset;
+    });
+  }
+
+  void _handleReplySlideEnd(DragEndDetails details) {
+    final shouldOpen = _replySlideOffset <= -_replySlideThreshold;
+
+    setState(() {
+      _isDraggingReplySlide = false;
+
+      if (_wasReplySlideOpenAtDragStart) {
+        _resetReplySlide();
+        return;
+      }
+
+      _isReplySlideOpen = shouldOpen;
+      _replySlideOffset = 0;
+    });
+  }
+
+  void _handleReplySlideCancel() {
+    final shouldOpen = _replySlideOffset <= -_replySlideThreshold;
+
+    setState(() {
+      _isDraggingReplySlide = false;
+
+      if (_wasReplySlideOpenAtDragStart) {
+        _resetReplySlide();
+        return;
+      }
+
+      _isReplySlideOpen = shouldOpen;
+      _replySlideOffset = 0;
+    });
+  }
+
+  void _handleReplyButtonTap() {
+    setState(_resetReplySlide);
+    widget.onReplyTap?.call();
+  }
+
+  void _resetReplySlide() {
+    _isReplySlideOpen = false;
+    _isDraggingReplySlide = false;
+    _wasReplySlideOpenAtDragStart = false;
+    _replySlideOffset = 0;
   }
 }

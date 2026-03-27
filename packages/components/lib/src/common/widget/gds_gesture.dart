@@ -11,6 +11,10 @@ class GdsGesture extends StatelessWidget {
     this.onTap,
     this.onDoubleTap,
     this.onLongPress,
+    this.onHorizontalDragStart,
+    this.onHorizontalDragUpdate,
+    this.onHorizontalDragEnd,
+    this.onHorizontalDragCancel,
     this.onTapDown,
     this.onTapUp,
     this.onTapCancel,
@@ -20,6 +24,10 @@ class GdsGesture extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onDoubleTap;
   final VoidCallback? onLongPress;
+  final GestureDragStartCallback? onHorizontalDragStart;
+  final GestureDragUpdateCallback? onHorizontalDragUpdate;
+  final GestureDragEndCallback? onHorizontalDragEnd;
+  final GestureDragCancelCallback? onHorizontalDragCancel;
   final GestureTapDownCallback? onTapDown;
   final GestureTapUpCallback? onTapUp;
   final GestureTapCancelCallback? onTapCancel;
@@ -35,6 +43,10 @@ class GdsGesture extends StatelessWidget {
       onTap: onTap,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
+      onHorizontalDragStart: onHorizontalDragStart,
+      onHorizontalDragUpdate: onHorizontalDragUpdate,
+      onHorizontalDragEnd: onHorizontalDragEnd,
+      onHorizontalDragCancel: onHorizontalDragCancel,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
       onTapCancel: onTapCancel,
