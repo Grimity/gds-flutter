@@ -23,7 +23,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
   return StatefulBuilder(
     builder: (context, setState) {
       final size = context.knobs.list<GdsTabSize>(
-        label: 'type',
+        label: 'size',
         options: GdsTabSize.values,
         labelBuilder: (v) => v.name,
       );
