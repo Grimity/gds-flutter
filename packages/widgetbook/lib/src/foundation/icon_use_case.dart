@@ -28,7 +28,14 @@ Widget _buildPlaygroundSection(BuildContext context) {
 
   final size = context.knobs.object.dropdown<double>(
     label: 'size',
-    options: [GdsIconSize.v12, GdsIconSize.v16, GdsIconSize.v20, GdsIconSize.v24, GdsIconSize.v32],
+    options: [
+      GdsIconSize.v10,
+      GdsIconSize.v12,
+      GdsIconSize.v16,
+      GdsIconSize.v20,
+      GdsIconSize.v24,
+      GdsIconSize.v32,
+    ],
     initialOption: GdsIconSize.v24,
     labelBuilder: (s) => '${s.toInt()}px',
   );
@@ -186,6 +193,7 @@ const _normalIcons = [
   GdsIcon.redo,
   GdsIcon.reply2,
   GdsIcon.reply,
+  GdsIcon.replyComment,
   GdsIcon.settings,
   GdsIcon.share,
   GdsIcon.sirenFill,
@@ -197,6 +205,7 @@ const _normalIcons = [
   GdsIcon.undo,
   GdsIcon.xMarkThick,
   GdsIcon.xMark,
+  GdsIcon.pallete,
 ];
 
 const _brandIcons = [

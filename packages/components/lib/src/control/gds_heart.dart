@@ -20,30 +20,34 @@ class GdsHeart extends StatelessWidget {
   final GdsHeartType type;
   final bool isLiked;
   final VoidCallback onTap;
+  final double size;
 
   const GdsHeart({
     super.key,
     required this.isLiked,
     required this.onTap,
+    this.size = GdsIconSize.defaultSize,
   }) : type = GdsHeartType.defaultType;
 
   const GdsHeart.black({
     super.key,
     required this.isLiked,
     required this.onTap,
+    this.size = GdsIconSize.defaultSize,
   }) : type = GdsHeartType.black;
+
+  static GdsIcon icon(bool isLiked) => isLiked ? GdsIcon.heartFill : GdsIcon.heartOutline;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
-    final icon = isLiked ? GdsIcon.heartFill : GdsIcon.heartOutline;
 
     return GdsIconAnimationButton(
       onTap: onTap,
-      child: icon.build(
+      child: icon(isLiked).build(
         color: type.iconColor(colors, isLiked),
-        width: GdsIconSize.v24,
-        height: GdsIconSize.v24,
+        width: size,
+        height: size,
       ),
     );
   }

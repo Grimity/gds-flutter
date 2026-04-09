@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:gds_components/gds_components.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
-
-import 'gds_button_state.dart';
 
 enum GdsIconButtonType {
   small,
@@ -139,12 +138,16 @@ class GdsIconButton extends StatefulWidget {
   final GdsIconButtonType type;
   final bool enabled;
 
+  /// null이면 버튼 상태 색상을 따르고, 값이 있으면 해당 색상을 아이콘에 우선 적용합니다.
+  final Color? iconColor;
+
   const GdsIconButton({
     super.key,
     required this.icon,
     required this.onPressed,
     this.type = GdsIconButtonType.normal,
     this.enabled = true,
+    this.iconColor,
   });
 
   const GdsIconButton.small({
@@ -152,6 +155,7 @@ class GdsIconButton extends StatefulWidget {
     required this.icon,
     required this.onPressed,
     this.enabled = true,
+    this.iconColor,
   }) : type = GdsIconButtonType.small;
 
   const GdsIconButton.normal({
@@ -159,6 +163,7 @@ class GdsIconButton extends StatefulWidget {
     required this.icon,
     required this.onPressed,
     this.enabled = true,
+    this.iconColor,
   }) : type = GdsIconButtonType.normal;
 
   const GdsIconButton.outlined({
@@ -166,6 +171,7 @@ class GdsIconButton extends StatefulWidget {
     required this.icon,
     required this.onPressed,
     this.enabled = true,
+    this.iconColor,
   }) : type = GdsIconButtonType.outlined;
 
   const GdsIconButton.solid({
@@ -173,16 +179,37 @@ class GdsIconButton extends StatefulWidget {
     required this.icon,
     required this.onPressed,
     this.enabled = true,
+    this.iconColor,
   }) : type = GdsIconButtonType.solid;
 
   @override
   State<GdsIconButton> createState() => _GdsIconButtonState();
 }
 
-class _GdsIconButtonState extends State<GdsIconButton> {
+class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProviderStateMixin {
+  static const _iconAnimationDuration = Duration(milliseconds: 160);
+
+  late final AnimationController _iconAnimationController;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
+
+  bool get _isInteractive => widget.enabled;
+
+  @override
+  void initState() {
+    super.initState();
+    _iconAnimationController = AnimationController(
+      vsync: this,
+      duration: _iconAnimationDuration,
+    );
+  }
+
+  @override
+  void dispose() {
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
 
   GdsButtonState get _buttonState {
     if (!widget.enabled) return GdsButtonState.disabled;
@@ -197,18 +224,28 @@ class _GdsIconButtonState extends State<GdsIconButton> {
     final colors = context.gdsColors;
     final type = widget.type;
     final state = _buttonState;
+    final icon = widget.icon.build(
+      color: widget.iconColor ?? type.iconColor(colors, state),
+      width: type.iconSize,
+      height: type.iconSize,
+    );
 
     return Focus(
       onFocusChange: (focused) => setState(() => _isFocused = focused),
       child: MouseRegion(
-        cursor: widget.enabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: GestureDetector(
-          onTapDown: widget.enabled ? (_) => setState(() => _isPressed = true) : null,
-          onTapUp: widget.enabled ? (_) => setState(() => _isPressed = false) : null,
-          onTapCancel: widget.enabled ? () => setState(() => _isPressed = false) : null,
-          onTap: widget.enabled ? widget.onPressed : null,
+        cursor: _isInteractive ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        onEnter: _isInteractive ? (_) => setState(() => _isHovered = true) : null,
+        onExit: _isInteractive ? (_) => setState(() => _isHovered = false) : null,
+        child: GdsGesture(
+          onTapDown: _isInteractive ? (_) => setState(() => _isPressed = true) : null,
+          onTapUp: _isInteractive ? (_) => setState(() => _isPressed = false) : null,
+          onTapCancel: _isInteractive ? () => setState(() => _isPressed = false) : null,
+          onTap: _isInteractive && widget.onPressed != null
+              ? () {
+                  widget.onPressed?.call();
+                  _iconAnimationController.forward(from: 0);
+                }
+              : null,
           child: Container(
             decoration: BoxDecoration(
               color: type.backgroundColor(colors, state),
@@ -216,10 +253,9 @@ class _GdsIconButtonState extends State<GdsIconButton> {
               borderRadius: BorderRadius.circular(GdsRadius.full),
             ),
             padding: EdgeInsets.all(type.padding),
-            child: widget.icon.build(
-              color: type.iconColor(colors, state),
-              width: type.iconSize,
-              height: type.iconSize,
+            child: GdsIconTapScaleAnimation(
+              controller: _iconAnimationController,
+              child: icon,
             ),
           ),
         ),

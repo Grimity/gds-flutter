@@ -12,4 +12,6 @@ class GdsScreen {
 
   static const artboard = GdsAtomicScreenArtboard;
   static const breakpoint = GdsAtomicScreenBreakpoint;
+
+  static const double tableMinWidth = GdsAtomicScreenBreakpoint.sm;
 }

@@ -3,6 +3,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
+enum _IconColorMode {
+  buttonDefault,
+  custom,
+}
+
+String _toHex(Color color) => '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}';
+
 @widgetbook.UseCase(
   name: 'default',
   type: GdsIconButton,
@@ -45,17 +52,34 @@ Widget _buildPlaygroundSection(BuildContext context) {
     initialOption: GdsIcon.heartFill,
     labelBuilder: (i) => i.name,
   );
+  final iconColorMode = context.knobs.list<_IconColorMode>(
+    label: 'iconColorMode',
+    options: _IconColorMode.values,
+    initialOption: _IconColorMode.buttonDefault,
+    labelBuilder: (mode) => mode.name,
+  );
+  Color? customIconColor;
+  final iconColor = switch (iconColorMode) {
+    _IconColorMode.buttonDefault => null,
+    _IconColorMode.custom => customIconColor = context.knobs.color(
+      label: 'customIconColor',
+      initialValue: const Color(0xFFE53935),
+    ),
+  };
 
   return WidgetbookPlayground(
     info: [
       'type: ${type.name}',
       'enabled: $enabled',
       'icon: ${icon.name}',
+      'iconColorMode: ${iconColorMode.name}',
+      if (customIconColor != null) 'customIconColor: ${_toHex(customIconColor)}',
       'iconSize: ${type.iconSize.toInt()}px @fixed',
       'padding: ${type.padding.toInt()}px @fixed',
     ],
     child: GdsIconButton(
       icon: icon,
+      iconColor: iconColor,
       type: type,
       enabled: enabled,
       onPressed: () => debugPrint('GdsIconButton tapped'),

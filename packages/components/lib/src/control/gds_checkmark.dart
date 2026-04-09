@@ -7,12 +7,14 @@ class GdsCheckmark extends StatelessWidget {
   final bool isChecked;
   final bool enabled;
   final VoidCallback onTap;
+  final double size;
 
   const GdsCheckmark({
     super.key,
     required this.isChecked,
     required this.onTap,
     this.enabled = true,
+    this.size = GdsIconSize.defaultSize,
   });
 
   Color _iconColor(GdsSemanticColor colors) {
@@ -22,16 +24,18 @@ class GdsCheckmark extends StatelessWidget {
     return colors.icon.graySubtle;
   }
 
+  static GdsIcon icon() => GdsIcon.check;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
     return GdsIconAnimationButton(
       onTap: onTap,
-      child: GdsIcon.check.build(
+      child: icon().build(
         color: _iconColor(colors),
-        width: GdsIconSize.v24,
-        height: GdsIconSize.v24,
+        width: size,
+        height: size,
       ),
     );
   }

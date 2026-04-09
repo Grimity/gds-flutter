@@ -31,10 +31,15 @@ Widget _buildPlaygroundSection(BuildContext context) {
       'isBookmarked: $isBookmarked',
       'size: 24×24px @fixed',
     ],
-    child: GdsBookmark(
-      isBookmarked: isBookmarked,
-      onTap: () => debugPrint('GdsBookmark tapped'),
-    ),
+    child: type == GdsBookmarkType.defaultType
+        ? GdsBookmark(
+            isBookmarked: isBookmarked,
+            onTap: () => debugPrint('GdsBookmark tapped'),
+          )
+        : GdsBookmark.black(
+            isBookmarked: isBookmarked,
+            onTap: () => debugPrint('GdsBookmark tapped'),
+          ),
   );
 }
 

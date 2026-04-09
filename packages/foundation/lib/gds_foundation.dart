@@ -9,6 +9,6 @@ export 'src/gds_typography.dart';
 export 'src/gds_colors.dart';
 export 'src/gds_layout.dart';
 export 'src/gds_screen.dart';
-export 'src/helper/gds_theme.dart';
+export 'src/gds_helper.dart';
 export 'src/gds_lottie.dart';
 export 'src/gds_image.dart';

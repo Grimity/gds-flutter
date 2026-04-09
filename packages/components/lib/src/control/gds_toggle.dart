@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gds_components/src/common/common.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
@@ -25,7 +26,7 @@ class GdsToggle extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
-    return GestureDetector(
+    return GdsGesture(
       onTap: enabled ? onTap : null,
       child: Opacity(
         opacity: enabled ? 1.0 : 0.4,

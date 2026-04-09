@@ -20,30 +20,34 @@ class GdsBookmark extends StatelessWidget {
   final GdsBookmarkType type;
   final bool isBookmarked;
   final VoidCallback onTap;
+  final double size;
 
   const GdsBookmark({
     super.key,
     required this.isBookmarked,
     required this.onTap,
+    this.size = GdsIconSize.defaultSize,
   }) : type = GdsBookmarkType.defaultType;
 
   const GdsBookmark.black({
     super.key,
     required this.isBookmarked,
     required this.onTap,
+    this.size = GdsIconSize.defaultSize,
   }) : type = GdsBookmarkType.black;
+
+  static GdsIcon icon(bool isBookmarked) => isBookmarked ? GdsIcon.bookmarkFill : GdsIcon.bookmarkOutline;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
-    final icon = isBookmarked ? GdsIcon.bookmarkFill : GdsIcon.bookmarkOutline;
 
     return GdsIconAnimationButton(
       onTap: onTap,
-      child: icon.build(
+      child: icon(isBookmarked).build(
         color: type.iconColor(colors, isBookmarked),
-        width: GdsIconSize.v24,
-        height: GdsIconSize.v24,
+        width: size,
+        height: size,
       ),
     );
   }

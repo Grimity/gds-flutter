@@ -32,11 +32,17 @@ Widget _buildPlaygroundSection(BuildContext context) {
       'enabled: $enabled',
       'iconSize: ${size.iconSize.toInt()}px @fixed',
     ],
-    child: GdsCheckbox(
-      isChecked: isChecked,
-      enabled: enabled,
-      onTap: () => debugPrint('GdsCheckbox tapped'),
-    ),
+    child: size == GdsCheckboxSize.medium
+        ? GdsCheckbox(
+            isChecked: isChecked,
+            enabled: enabled,
+            onTap: () => debugPrint('GdsCheckbox tapped'),
+          )
+        : GdsCheckbox.small(
+            isChecked: isChecked,
+            enabled: enabled,
+            onTap: () => debugPrint('GdsCheckbox tapped'),
+          ),
   );
 }
 

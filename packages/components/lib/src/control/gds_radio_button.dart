@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gds_components/src/common/common.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
@@ -31,7 +32,7 @@ class GdsRadioButton extends StatelessWidget {
     final colors = context.gdsColors;
     final color = _color(colors);
 
-    return GestureDetector(
+    return GdsGesture(
       onTap: enabled ? onTap : null,
       child: SizedBox(
         width: _size,

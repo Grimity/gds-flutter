@@ -1,6 +1,7 @@
 class GdsAtomicIconSize {
   const GdsAtomicIconSize._();
 
+  static const double v10 = 10;
   static const double v12 = 12;
   static const double v16 = 16;
   static const double v20 = 20;

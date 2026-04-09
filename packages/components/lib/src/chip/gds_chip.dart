@@ -35,6 +35,11 @@ enum GdsChipSize {
     GdsChipSize.xLarge => GdsSpacing.spacing10,
     GdsChipSize.medium => GdsSpacing.spacing8,
   };
+
+  double get verticalPadding => switch (this) {
+    GdsChipSize.xLarge => 3.5,
+    GdsChipSize.medium => 2.5,
+  };
 }
 
 class GdsChip extends StatelessWidget {
@@ -66,7 +71,10 @@ class GdsChip extends StatelessWidget {
     final colors = context.gdsColors;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: size.horizontalPadding),
+      padding: EdgeInsets.symmetric(
+        horizontal: size.horizontalPadding,
+        vertical: size.verticalPadding,
+      ),
       decoration: BoxDecoration(
         color: variant.backgroundColor(colors),
         borderRadius: BorderRadius.circular(GdsRadius.full),

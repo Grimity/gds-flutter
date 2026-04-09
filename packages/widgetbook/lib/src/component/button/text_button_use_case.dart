@@ -3,6 +3,13 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
+enum _IconColorMode {
+  buttonDefault,
+  custom,
+}
+
+String _toHex(Color color) => '#${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}';
+
 @widgetbook.UseCase(
   name: 'default',
   type: GdsTextButton,
@@ -53,11 +60,26 @@ Widget _buildPlaygroundSection(BuildContext context) {
     initialOption: GdsIcon.heartFill,
     labelBuilder: (i) => i.name,
   );
+  final iconColorMode = context.knobs.list<_IconColorMode>(
+    label: 'iconColorMode',
+    options: _IconColorMode.values,
+    initialOption: _IconColorMode.buttonDefault,
+    labelBuilder: (mode) => mode.name,
+  );
+  Color? customIconColor;
+  final iconColor = switch (iconColorMode) {
+    _IconColorMode.buttonDefault => null,
+    _IconColorMode.custom => customIconColor = context.knobs.color(
+      label: 'customIconColor',
+      initialValue: const Color(0xFFE53935),
+    ),
+  };
 
   final Widget button = switch (form) {
     'IconLeft' => GdsTextButton(
       text: 'Label',
       leadingIcon: icon,
+      iconColor: iconColor,
       size: size,
       variant: variant,
       enabled: enabled,
@@ -67,6 +89,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     'IconRight' => GdsTextButton(
       text: 'Label',
       trailingIcon: icon,
+      iconColor: iconColor,
       size: size,
       variant: variant,
       enabled: enabled,
@@ -75,6 +98,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     ),
     _ => GdsTextButton(
       text: 'Label',
+      iconColor: iconColor,
       size: size,
       variant: variant,
       enabled: enabled,
@@ -90,6 +114,8 @@ Widget _buildPlaygroundSection(BuildContext context) {
       'form: $form',
       'enabled: $enabled',
       'loading: $loading',
+      'iconColorMode: ${iconColorMode.name}',
+      if (customIconColor != null) 'customIconColor: ${_toHex(customIconColor)}',
       'iconSize: ${size.iconSize.toInt()}px @fixed',
       'gap: ${size.gap.toInt()}px @fixed',
       'radius: xs (4px) @fixed',
@@ -236,7 +262,7 @@ class _TextButtonMatrix extends StatelessWidget {
       if (form == _FormType.iconLeft) {
         children.add(
           GdsIcon.blank.build(
-            color: variant.iconColor(colors, buttonState),
+            color: variant.iconColor(colors, buttonState, size),
             width: size.iconSize,
             height: size.iconSize,
           ),
@@ -247,7 +273,7 @@ class _TextButtonMatrix extends StatelessWidget {
       children.add(
         Text(
           'Label',
-          style: size.textStyle.copyWith(color: variant.textColor(colors, buttonState)),
+          style: size.textStyle.copyWith(color: variant.textColor(colors, buttonState, size)),
         ),
       );
 
@@ -255,7 +281,7 @@ class _TextButtonMatrix extends StatelessWidget {
         children.add(SizedBox(width: size.gap));
         children.add(
           GdsIcon.blank.build(
-            color: variant.iconColor(colors, buttonState),
+            color: variant.iconColor(colors, buttonState, size),
             width: size.iconSize,
             height: size.iconSize,
           ),
