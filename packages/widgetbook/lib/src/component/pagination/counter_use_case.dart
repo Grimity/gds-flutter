@@ -6,7 +6,7 @@ import '../../widgetbook_components/widgetbook_components.dart';
 @widgetbook.UseCase(
   name: 'default',
   type: GdsCounter,
-  path: '[component]/[progination]'
+  path: '[component]/[pagination]'
 )
 Widget buildGdsCounterUseCase(BuildContext context) {
   return WidgetbookPageLayout(
