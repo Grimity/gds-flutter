@@ -57,6 +57,13 @@ class _GdsToastOverlayState extends State<GdsToastOverlay> with SingleTickerProv
   }
 
   @override
+  void dispose() {
+    _animation.dispose();
+    _curvedAnimation.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _animation,
