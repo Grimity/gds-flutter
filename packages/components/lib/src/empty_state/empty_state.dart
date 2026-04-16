@@ -60,9 +60,13 @@ class GdsEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
+    const maxWidth = 375.0;
+    final screenWidth = MediaQuery.maybeOf(context)?.size.width;
+    final containerWidth =
+        screenWidth == null || screenWidth > maxWidth ? maxWidth : screenWidth;
 
     return Container(
-      width: 375,
+      width: containerWidth,
       padding: const EdgeInsets.symmetric(vertical: 72),
       decoration: BoxDecoration(
         color: colors.bg.tertiary,
