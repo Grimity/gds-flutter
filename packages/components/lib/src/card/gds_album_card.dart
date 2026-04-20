@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:gds_components/src/cell/gds_user_info.dart';
 import 'package:gds_components/src/common/common.dart';
-import 'package:gds_components/src/card/gds_user_hover_card.dart';
 import 'package:gds_components/src/micro_interaction/icon/gds_icon_animation_button.dart';
 import 'package:gds_components/src/thumbnail/gds_thumbnail.dart';
 import 'package:gds_foundation/gds_foundation.dart';
@@ -115,151 +111,6 @@ class GdsAlbumCard extends StatefulWidget {
 }
 
 class _GdsAlbumCardState extends State<GdsAlbumCard> {
-  static const double _hoverGap = 10;
-  static const double _hoverPlacementThreshold = 350;
-  static const double _overlaySafeMargin = 8;
-  static const Duration _hoverHideDelay = Duration(milliseconds: 120);
-
-  OverlayEntry? _hoverOverlayEntry;
-  BuildContext? _nicknameAnchorContext;
-  Timer? _hideTimer;
-  bool _isNicknameHovered = false;
-  bool _isHoverCardHovered = false;
-
-  bool get _canShowHoverCard =>
-      widget.hasUserInfo &&
-      widget.showsInfoRow &&
-      switch (widget.type) {
-        GdsAlbumCardType.mainTitle || GdsAlbumCardType.check || GdsAlbumCardType.rank => true,
-        _ => false,
-      };
-
-  @override
-  void didUpdateWidget(covariant GdsAlbumCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (!_canShowHoverCard) {
-      _removeHoverCard();
-      return;
-    }
-
-    if (_hoverOverlayEntry != null) {
-      _hoverOverlayEntry?.markNeedsBuild();
-    }
-  }
-
-  @override
-  void dispose() {
-    _hideTimer?.cancel();
-    _removeHoverCard();
-    super.dispose();
-  }
-
-  void _onNicknameHoverChanged(bool isHovering, BuildContext anchorContext) {
-    if (!_canShowHoverCard) return;
-
-    _nicknameAnchorContext = anchorContext;
-    _isNicknameHovered = isHovering;
-
-    if (isHovering) {
-      _cancelHideTimer();
-      _showHoverCard();
-      return;
-    }
-
-    _scheduleHideHoverCard();
-  }
-
-  void _onHoverCardHoverChanged(bool isHovering) {
-    _isHoverCardHovered = isHovering;
-
-    if (isHovering) {
-      _cancelHideTimer();
-      return;
-    }
-
-    _scheduleHideHoverCard();
-  }
-
-  void _showHoverCard() {
-    final overlay = Overlay.maybeOf(context);
-    if (overlay == null || _nicknameAnchorContext == null) return;
-
-    _hoverOverlayEntry ??= OverlayEntry(builder: _buildHoverCardOverlay);
-
-    if (!(_hoverOverlayEntry?.mounted ?? false)) {
-      overlay.insert(_hoverOverlayEntry!);
-    }
-
-    _hoverOverlayEntry?.markNeedsBuild();
-  }
-
-  void _removeHoverCard() {
-    _hoverOverlayEntry?.remove();
-    _hoverOverlayEntry = null;
-    _isHoverCardHovered = false;
-  }
-
-  void _cancelHideTimer() {
-    _hideTimer?.cancel();
-    _hideTimer = null;
-  }
-
-  void _scheduleHideHoverCard() {
-    _cancelHideTimer();
-
-    _hideTimer = Timer(_hoverHideDelay, () {
-      if (!_isNicknameHovered && !_isHoverCardHovered) {
-        _removeHoverCard();
-      }
-    });
-  }
-
-  Widget _buildHoverCardOverlay(BuildContext context) {
-    final anchorBox = _nicknameAnchorContext?.findRenderObject();
-    final overlayBox = Overlay.maybeOf(context)?.context.findRenderObject();
-
-    if (anchorBox is! RenderBox || overlayBox is! RenderBox) {
-      return const SizedBox.shrink();
-    }
-    if (!anchorBox.attached || !overlayBox.attached) {
-      return const SizedBox.shrink();
-    }
-
-    final anchorOffset = anchorBox.localToGlobal(Offset.zero, ancestor: overlayBox);
-    final placeBelow = anchorOffset.dy < _hoverPlacementThreshold;
-    final cardWidth = GdsUserHoverCard.frameWidth;
-    final cardHeight = GdsUserHoverCard.minFrameHeight;
-
-    var left = anchorOffset.dx;
-    var top = placeBelow
-        ? anchorOffset.dy + anchorBox.size.height + _hoverGap
-        : anchorOffset.dy - cardHeight - _hoverGap;
-
-    final maxLeft = overlayBox.size.width - cardWidth - _overlaySafeMargin;
-    final maxTop = overlayBox.size.height - cardHeight - _overlaySafeMargin;
-
-    left = left.clamp(_overlaySafeMargin, math.max(_overlaySafeMargin, maxLeft));
-    top = top.clamp(_overlaySafeMargin, math.max(_overlaySafeMargin, maxTop));
-
-    return Positioned(
-      left: left,
-      top: top,
-      child: MouseRegion(
-        onEnter: (_) => _onHoverCardHoverChanged(true),
-        onExit: (_) => _onHoverCardHoverChanged(false),
-        child: Material(
-          type: MaterialType.transparency,
-          child: GdsUserHoverCard(
-            nickname: widget.nickname!,
-            showContent: false,
-            state: GdsUserHoverCardState.defaultType,
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final content = Column(
@@ -294,7 +145,6 @@ class _GdsAlbumCardState extends State<GdsAlbumCard> {
           GdsUserInfo.defaultType(
             nickName: widget.nickname!,
             onNameTap: widget.onNicknameTap,
-            onNameHoverChanged: _onNicknameHoverChanged,
             showHeart: widget.heartCount != null,
             heartCount: widget.heartCount,
             showView: widget.viewCount != null,
