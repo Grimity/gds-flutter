@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart' hide BottomSheet;
+import 'package:flutter_scroll_bottom_sheet/flutter_bottom_sheet.dart';
 import 'package:gds_components/gds_components.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
@@ -12,6 +13,10 @@ enum GdsBottomSheetType {
   const GdsBottomSheetType(this.displayName);
 }
 
+/// ```dart
+/// final bottomSheet = GdsBottomSheet(...);
+/// bottomSheet.open(context);
+/// ```
 class GdsBottomSheet extends StatelessWidget {
   const GdsBottomSheet({
     super.key,
@@ -84,6 +89,40 @@ class GdsBottomSheet extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  /// 오버레이에 바텀 시트를 화면에 표시합니다.
+  Future<T?> open<T>(BuildContext context) {
+    final colors = context.gdsColors;
+    final shape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(GdsRadius.xl)),
+    );
+
+    final barrierAlpha = (255 * GdsOpacity.opacity40).toInt();
+    final barrierColor = colors.bg.overlayBlack.withAlpha(barrierAlpha);
+
+    // 바텀 시트의 모양과 배경색을 지정합니다.
+    BottomSheet.config = BottomSheetConfig(
+      barrierColor: barrierColor,
+      sheetBuilder: (context, child) {
+        return Material(
+          color: colors.surface.base,
+          shape: shape,
+          child: child,
+        );
+      },
+    );
+
+    // 바텀 시트를 드레그하여 닫을 수 있도록 설정합니다.
+    final body = CustomScrollView(
+      scrollBehavior: ScrollBehavior().copyWith(overscroll: false),
+      shrinkWrap: true,
+      slivers: [
+        SliverToBoxAdapter(child: this),
+      ],
+    );
+
+    return BottomSheet.open<T>(context, body);
   }
 }
 
