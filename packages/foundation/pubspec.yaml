@@ -22,6 +22,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/image/
+    - assets/images/app_login/
     - assets/vector/
     - assets/vector/normal/
     - assets/vector/brand/
