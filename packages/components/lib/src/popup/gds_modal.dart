@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:gds_components/gds_components.dart';
-import 'package:gds_components/src/popup/overlay/gds_popup_route.dart';
+import 'package:gds_components/src/button/button.dart';
+import 'package:gds_components/src/micro_interaction/modal/gds_modal_interaction.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
 class GdsModalAction {
@@ -56,7 +56,11 @@ class GdsModal extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _Header(title: title, onClose: onClose ?? () => Navigator.pop(context), action: action),
+          _Header(
+            title: title,
+            onClose: onClose ?? () => Navigator.pop(context),
+            action: action,
+          ),
           Padding(
             padding: EdgeInsets.only(
               top: GdsSpacing.spacing8,
@@ -94,7 +98,7 @@ class GdsModal extends StatelessWidget {
                       expanded: true,
                     ),
                   ),
-                ]
+                ],
               ],
             ),
           ),
@@ -104,14 +108,20 @@ class GdsModal extends StatelessWidget {
   }
 
   /// 오버레이에 팝업을 화면에 표시합니다.
-  Future<T?> open<T>(BuildContext context) {
-    return Navigator.of(context).push(GdsPopupRoute<T>(child: this));
+  Future<T?> open<T>(
+    BuildContext context, {
+    bool isBarrierDismissible = false,
+  }) {
+    return GdsModalInteraction.open<T>(
+      context,
+      child: this,
+      isBarrierDismissible: isBarrierDismissible,
+    );
   }
 }
 
 class _Header extends StatelessWidget {
   const _Header({
-    super.key,
     required this.title,
     required this.onClose,
     this.action,
@@ -136,8 +146,13 @@ class _Header extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: GdsSpacing.spacing12,
             children: [
-              GdsIcon.chevronLeft.build(color: colors.icon.grayBold,),
-              Text(title, style: GdsTypography.title3.copyWith(color: colors.text.grayBold)),
+              GdsIcon.chevronLeft.build(
+                color: colors.icon.grayBold,
+              ),
+              Text(
+                title,
+                style: GdsTypography.title3.copyWith(color: colors.text.grayBold),
+              ),
             ],
           ),
           Row(
