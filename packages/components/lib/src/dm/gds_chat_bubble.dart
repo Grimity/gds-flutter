@@ -65,13 +65,15 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
 
   bool get _hasImage => widget.imageUrl?.trim().isNotEmpty == true;
 
+  bool get _shouldShowActions => isLongPressed && (widget.onHeartTap != null || widget.onReplyTap != null);
+
   @override
   Widget build(BuildContext context) {
     final children = [
       if (_hasContent)
         Flexible(
           child: GdsGesture(
-            onLongPress: onChatLongPressed,
+            onTap: _handleBubbleTap,
             onDoubleTap: widget.onHeartTap,
             child: GdsChatTextBubble(
               content: widget.content!,
@@ -81,20 +83,20 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
           ),
         ),
       if (widget.isSending) const GdsChatSendingIcon(),
-      if (isLongPressed)
+      if (_shouldShowActions)
         Row(
           spacing: GdsSpacing.spacing4,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            GdsChatHeartButton(isLiked: widget.isLiked, onPressed: widget.onHeartTap),
-            GdsChatReplyButton(onPressed: widget.onReplyTap),
+            if (widget.onHeartTap != null) GdsChatHeartButton(isLiked: widget.isLiked, onPressed: widget.onHeartTap),
+            if (widget.onReplyTap != null) GdsChatReplyButton(onPressed: widget.onReplyTap),
           ],
         ),
     ];
 
     final messageRow = children.isNotEmpty
         ? Row(
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: widget.type == GdsChatMessageType.me ? MainAxisAlignment.end : MainAxisAlignment.start,
             spacing: GdsSpacing.spacing6,
             children: widget.type == GdsChatMessageType.me ? children.reversed.toList() : children,
@@ -167,7 +169,9 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
     );
   }
 
-  void onChatLongPressed() {
+  void _handleBubbleTap() {
+    if (widget.onHeartTap == null && widget.onReplyTap == null) return;
+
     setState(() {
       _resetReplySlide();
       isLongPressed = !isLongPressed;
@@ -183,10 +187,8 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
   }
 
   void _handleReplySlideUpdate(DragUpdateDetails details) {
-    final nextOffset = (_replySlideOffset + details.delta.dx).clamp(
-      -_replySlideOpenOffset,
-      0.0,
-    );
+    final rawOffset = _replySlideOffset + details.delta.dx;
+    final nextOffset = rawOffset.clamp(0.0, _replySlideOpenOffset);
 
     if (nextOffset == _replySlideOffset) return;
 
@@ -196,7 +198,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
   }
 
   void _handleReplySlideEnd(DragEndDetails details) {
-    final shouldOpen = _replySlideOffset <= -_replySlideThreshold;
+    final shouldOpen = _shouldOpenReplySlide;
 
     setState(() {
       _isDraggingReplySlide = false;
@@ -212,7 +214,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
   }
 
   void _handleReplySlideCancel() {
-    final shouldOpen = _replySlideOffset <= -_replySlideThreshold;
+    final shouldOpen = _shouldOpenReplySlide;
 
     setState(() {
       _isDraggingReplySlide = false;
@@ -226,6 +228,8 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
       _replySlideOffset = 0;
     });
   }
+
+  bool get _shouldOpenReplySlide => _replySlideOffset >= _replySlideThreshold;
 
   void _handleReplyButtonTap() {
     setState(_resetReplySlide);
