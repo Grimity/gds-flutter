@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:gds_components/gds_components.dart';
-import 'package:gds_foundation/gds_foundation.dart';
+import 'package:gds_components/src/micro_interaction/toast/gds_toast_interaction.dart';
+import 'package:gds_components/src/toast/gds_toast.dart';
 
 class GdsToastOverlay extends StatefulWidget {
   const GdsToastOverlay({
@@ -9,7 +9,7 @@ class GdsToastOverlay extends StatefulWidget {
     this.duration = const Duration(seconds: 20),
     this.fadeDuration = const Duration(milliseconds: 200),
     this.fadeCurve = Curves.easeOut,
-    this.fadeExtent = GdsSpacing.spacing12,
+    this.fadeExtent = -GdsToastInteraction.defaultInitialOffsetY,
     this.onDismissed,
   });
 
@@ -35,49 +35,18 @@ class GdsToastOverlay extends StatefulWidget {
   State<GdsToastOverlay> createState() => _GdsToastOverlayState();
 }
 
-class _GdsToastOverlayState extends State<GdsToastOverlay> with SingleTickerProviderStateMixin {
-  late final AnimationController _animation = AnimationController(vsync: this, duration: widget.fadeDuration);
-  late final CurvedAnimation _curvedAnimation = CurvedAnimation(parent: _animation, curve: widget.fadeCurve);
-
-  @override
-  void initState() {
-    super.initState();
-
-    // 토스트가 나타나는 애니메이션을 시작합니다.
-    _animation.forward();
-
-    // 지정된 시간 이후에 토스트가 사라지는 애니메이션을 시작합니다.
-    Future.delayed(widget.duration, () {
-      _animation.reverse().then((value) {
-        if (mounted) {
-          widget.onDismissed?.call();
-        }
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _animation.dispose();
-    _curvedAnimation.dispose();
-    super.dispose();
-  }
-
+class _GdsToastOverlayState extends State<GdsToastOverlay> {
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        final animValue = _curvedAnimation.value;
-
-        return Transform.translate(
-          offset: Offset(0, (widget.fadeExtent * animValue) - widget.fadeExtent),
-          child: Opacity(
-            opacity: animValue,
-            child: widget.toast,
-          ),
-        );
-      },
+    return GdsToastInteraction(
+      visibleDuration: widget.duration,
+      enterDuration: widget.fadeDuration,
+      exitDuration: widget.fadeDuration,
+      enterCurve: widget.fadeCurve,
+      exitCurve: widget.fadeCurve,
+      initialOffsetY: -widget.fadeExtent.abs(),
+      onDismissed: widget.onDismissed,
+      child: widget.toast,
     );
   }
 }
