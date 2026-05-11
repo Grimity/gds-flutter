@@ -246,6 +246,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.2"
+  flutter_appbar:
+    dependency: transitive
+    description:
+      name: flutter_appbar
+      sha256: "7baf0d0acef84f698bc1a9a5fb460f20b7677427b20abe8fd546a62b76d5efc5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.9.0"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -270,6 +278,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  flutter_refresh_indicator:
+    dependency: transitive
+    description:
+      name: flutter_refresh_indicator
+      sha256: cfdd971c56ef11e8dd04346cec07db9f44bca28e749013d60c567bf8b357a76d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.3"
+  flutter_scroll_bottom_sheet:
+    dependency: transitive
+    description:
+      name: flutter_scroll_bottom_sheet
+      sha256: "29b003ac49b0d0853f85404648d724c7b1db151469f13064138bcffc25480a4c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   flutter_shaders:
     dependency: transitive
     description:

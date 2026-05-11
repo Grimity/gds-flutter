@@ -28,12 +28,14 @@ class GdsTopNavigation {
         onSearch: () => debugPrint('Search button tapped'),
         onAvatar: () => debugPrint('Avatar button tapped'),
         onNotification: () => debugPrint('Notification button tapped'),
+        hasNotification: true,
       ),
       GdsTopNavigationType.title => title(
         title: 'Title',
         onSearch: () => debugPrint('Search button tapped'),
         onAvatar: () => debugPrint('Avatar button tapped'),
         onNotification: () => debugPrint('Notification button tapped'),
+        hasNotification: true,
       ),
       GdsTopNavigationType.iconButton => iconButton(
         title: 'Title',
@@ -73,6 +75,7 @@ class GdsTopNavigation {
     required VoidCallback onAvatar,
     required VoidCallback onNotification,
     String? avatarImageUrl,
+    required bool hasNotification,
   }) {
     return _Main(
       key: key,
@@ -80,6 +83,7 @@ class GdsTopNavigation {
       onAvatar: onAvatar,
       onNotification: onNotification,
       avatarImageUrl: avatarImageUrl,
+      hasNotification: hasNotification,
     );
   }
 
@@ -91,6 +95,7 @@ class GdsTopNavigation {
     required VoidCallback onAvatar,
     required VoidCallback onNotification,
     String? avatarImageUrl,
+    required bool hasNotification,
   }) {
     return _Title(
       key: key,
@@ -99,6 +104,7 @@ class GdsTopNavigation {
       onAvatar: onAvatar,
       onNotification: onNotification,
       avatarImageUrl: avatarImageUrl,
+      hasNotification: hasNotification,
     );
   }
 
@@ -178,10 +184,16 @@ class GdsTopNavigation {
   static Widget _buildNavigationIcons({
     required BuildContext context,
     required VoidCallback onSearch,
+    required VoidCallback onAvatar,
     required VoidCallback onNotification,
     String? avatarImageUrl,
+    required bool hasNotification,
   }) {
     final colors = context.gdsColors;
+    final notification = GdsGesture(
+      onTap: onNotification,
+      child: GdsIcon.bellOutline.build(color: colors.icon.grayBold),
+    );
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -191,15 +203,18 @@ class GdsTopNavigation {
           onTap: onSearch,
           child: GdsIcon.magnifierOutline.build(color: colors.icon.grayBold),
         ),
-        GdsDotPushBadge(
-          child: GdsGesture(
-            onTap: onNotification,
-            child: GdsIcon.bellOutline.build(color: colors.icon.grayBold),
+        // 알림 아이콘에 푸시 배지.
+        if (hasNotification) ...[
+          GdsDotPushBadge(child: notification),
+        ] else ...[
+          notification
+        ],
+        GdsGesture(
+          onTap: onAvatar,
+          child: GdsPersonAvatar(
+            size: GdsAvatarSize.xs,
+            imageUrl: avatarImageUrl,
           ),
-        ),
-        GdsPersonAvatar(
-          size: GdsAvatarSize.xs,
-          imageUrl: avatarImageUrl,
         ),
       ],
     );
@@ -239,6 +254,7 @@ class _Main extends StatelessWidget {
     required this.onAvatar,
     required this.onNotification,
     this.avatarImageUrl,
+    required this.hasNotification,
   });
 
   /// 검색 버튼이 탭될 때 호출되는 콜백 함수입니다.
@@ -252,6 +268,9 @@ class _Main extends StatelessWidget {
 
   /// 프로필 아바타 이미지의 URL입니다.
   final String? avatarImageUrl;
+
+  /// 알림이 있는지에 대한 여부입니다.
+  final bool hasNotification;
 
   @override
   Widget build(BuildContext context) {
@@ -267,8 +286,10 @@ class _Main extends StatelessWidget {
           GdsTopNavigation._buildNavigationIcons(
             context: context,
             onSearch: onSearch,
+            onAvatar: onAvatar,
             onNotification: onNotification,
             avatarImageUrl: avatarImageUrl,
+            hasNotification: hasNotification,
           ),
         ],
       ),
@@ -285,6 +306,7 @@ class _Title extends StatelessWidget {
     required this.onAvatar,
     required this.onNotification,
     this.avatarImageUrl,
+    required this.hasNotification,
   });
 
   /// 제목 텍스트입니다.
@@ -302,6 +324,9 @@ class _Title extends StatelessWidget {
   /// 프로필 아바타 이미지의 URL입니다.
   final String? avatarImageUrl;
 
+  /// 알림이 있는지에 대한 여부입니다.
+  final bool hasNotification;
+
   @override
   Widget build(BuildContext context) {
     return GdsTopNavigation._buildWithBackButton(
@@ -314,8 +339,10 @@ class _Title extends StatelessWidget {
           GdsTopNavigation._buildNavigationIcons(
             context: context,
             onSearch: onSearch,
+            onAvatar: onAvatar,
             onNotification: onNotification,
             avatarImageUrl: avatarImageUrl,
+            hasNotification: hasNotification,
           ),
         ],
       ),
