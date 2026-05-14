@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gds_components/src/common/widget/gds_toast_host.dart';
 import 'package:gds_components/src/toast/overlay/gds_toast_overlay.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
@@ -84,7 +85,8 @@ class GdsToast extends StatelessWidget {
     required GdsToastType type,
     required String message,
   }) {
-    final overlay = Overlay.maybeOf(context);
+    final overlayContext = GdsToastHost.context ?? context;
+    final overlay = Overlay.maybeOf(overlayContext);
     assert(overlay != null);
 
     late final OverlayEntry entry;
