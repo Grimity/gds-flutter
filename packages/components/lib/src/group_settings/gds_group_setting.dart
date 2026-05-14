@@ -44,6 +44,7 @@ class GdsGroupSetting extends StatefulWidget {
     this.state = GdsGroupSettingState.enabled,
     this.controller,
     this.focusNode,
+    this.reorderIndex = 0,
     this.onTap,
     this.onEditTap,
     this.onChanged,
@@ -56,6 +57,7 @@ class GdsGroupSetting extends StatefulWidget {
   final GdsGroupSettingState state;
   final TextEditingController? controller;
   final FocusNode? focusNode;
+  final int reorderIndex;
   final VoidCallback? onTap;
   final VoidCallback? onEditTap;
   final ValueChanged<String>? onChanged;
@@ -133,6 +135,11 @@ class _GdsGroupSettingState extends State<GdsGroupSetting> {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
     final style = _GdsGroupSettingStyle.from(colors, state: widget.state);
+    final trailingIcon = widget.state.trailingIcon.build(
+      color: style.trailingIconColor,
+      width: GdsIconSize.v24,
+      height: GdsIconSize.v24,
+    );
 
     return SizedBox(
       width: double.infinity,
@@ -144,18 +151,22 @@ class _GdsGroupSettingState extends State<GdsGroupSetting> {
               focusNode: _focusNode,
               state: widget.state,
               style: style,
-              onTap: widget.onTap,
               onEditTap: widget.onEditTap,
               onChanged: widget.onChanged,
               onEditingComplete: widget.onEditingComplete,
             ),
           ),
           const SizedBox(width: GdsSpacing.spacing8),
-          widget.state.trailingIcon.build(
-            color: style.trailingIconColor,
-            width: GdsIconSize.v24,
-            height: GdsIconSize.v24,
-          ),
+          if (widget.state == GdsGroupSettingState.enabled)
+            ReorderableDragStartListener(
+              index: widget.reorderIndex,
+              child: trailingIcon,
+            )
+          else
+            GdsGesture(
+              onTap: widget.state.isDisabled ? null : widget.onTap,
+              child: trailingIcon,
+            ),
         ],
       ),
     );
@@ -168,7 +179,6 @@ class _GdsGroupSettingTextField extends StatelessWidget {
     required this.focusNode,
     required this.state,
     required this.style,
-    this.onTap,
     this.onEditTap,
     this.onChanged,
     this.onEditingComplete,
@@ -178,7 +188,6 @@ class _GdsGroupSettingTextField extends StatelessWidget {
   final FocusNode focusNode;
   final GdsGroupSettingState state;
   final _GdsGroupSettingStyle style;
-  final VoidCallback? onTap;
   final VoidCallback? onEditTap;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
