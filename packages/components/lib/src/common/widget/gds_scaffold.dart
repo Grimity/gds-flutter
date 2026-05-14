@@ -22,14 +22,14 @@ class GdsScaffold extends StatelessWidget {
 
     // appBar가 제공된 경우 NestedScrollView로 감싸고, 그렇지 않으면 body를 그대로 사용합니다.
     if (appBar != null) {
-      child = NestedScrollView(headerSliverBuilder: (_, _) => [appBar!], body: body);
+      child = Column(children: [appBar!, Expanded(child: body)]);
     } else {
       child = body;
     }
 
     return Scaffold(
       backgroundColor: colors.bg.primary,
-      body: child,
+      body: SafeArea(child: child),
     );
   }
 }
