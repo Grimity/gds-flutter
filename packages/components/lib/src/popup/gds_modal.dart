@@ -37,7 +37,7 @@ class GdsModal extends StatelessWidget {
   final VoidCallback? onPrimary;
   final VoidCallback? onSecondary;
   final GdsModalAction? action;
-  final Container body;
+  final Widget body;
 
   @override
   Widget build(BuildContext context) {
