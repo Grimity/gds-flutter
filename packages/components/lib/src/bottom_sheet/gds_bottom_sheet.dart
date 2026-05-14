@@ -61,17 +61,6 @@ class GdsBottomSheet extends StatelessWidget {
                 Row(
                   spacing: GdsSpacing.spacing8,
                   children: [
-                    if (type == GdsBottomSheetType.primary
-                     || type == GdsBottomSheetType.twoButton) 
-                      Expanded(
-                        child: GdsSolidButton(
-                          size: GdsSolidButtonSize.large,
-                          text: primaryLabel!,
-                          expanded: true,
-                          onPressed: onPrimaryTap,
-                        ),
-                      ),
-
                     if (type == GdsBottomSheetType.secondary
                      || type == GdsBottomSheetType.twoButton)
                       Expanded(
@@ -80,6 +69,17 @@ class GdsBottomSheet extends StatelessWidget {
                           text: secondaryLabel!,
                           expanded: true,
                           onPressed: onSecondaryTap,
+                        ),
+                      ),
+
+                    if (type == GdsBottomSheetType.primary
+                     || type == GdsBottomSheetType.twoButton) 
+                      Expanded(
+                        child: GdsSolidButton(
+                          size: GdsSolidButtonSize.large,
+                          text: primaryLabel!,
+                          expanded: true,
+                          onPressed: onPrimaryTap,
                         ),
                       ),
                   ],
