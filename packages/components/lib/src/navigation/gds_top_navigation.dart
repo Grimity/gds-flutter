@@ -193,9 +193,10 @@ class GdsTopNavigation {
     required bool hasNotification,
   }) {
     final colors = context.gdsColors;
+    final bellIcon = hasNotification ? GdsIcon.bellFill : GdsIcon.bellOutline;
     final notification = GdsGesture(
       onTap: onNotification,
-      child: GdsIcon.bellOutline.build(color: colors.icon.grayBold),
+      child: bellIcon.build(color: colors.icon.grayBold),
     );
 
     return Row(
