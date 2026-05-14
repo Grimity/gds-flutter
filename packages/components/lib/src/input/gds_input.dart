@@ -27,6 +27,7 @@ class GdsInput extends StatelessWidget {
 
   // Button 전용
   final String? buttonLabel;
+  final bool? buttonEnabled;
   final VoidCallback? onButtonPressed;
 
   // Default 전용
@@ -55,6 +56,7 @@ class GdsInput extends StatelessWidget {
     this.onMentionClear,
   }) : _type = _GdsInputType.defaultField,
        buttonLabel = null,
+       buttonEnabled = null,
        onButtonPressed = null,
        replyUser = null;
 
@@ -62,6 +64,7 @@ class GdsInput extends StatelessWidget {
   const GdsInput.button({
     super.key,
     required String this.buttonLabel,
+    this.buttonEnabled = true,
     this.onButtonPressed,
     this.placeholder,
     this.titleText,
@@ -85,6 +88,7 @@ class GdsInput extends StatelessWidget {
     super.key,
     this.placeholder,
     String this.buttonLabel = '등록',
+    this.buttonEnabled = true,
     this.onButtonPressed,
     this.controller,
     this.focusNode,
@@ -108,6 +112,7 @@ class GdsInput extends StatelessWidget {
     required String this.replyUser,
     this.placeholder,
     String this.buttonLabel = '등록',
+    this.buttonEnabled = true,
     this.onButtonPressed,
     this.mentionUser,
     this.onMentionClear,
@@ -205,7 +210,7 @@ class GdsInput extends StatelessWidget {
               text: buttonLabel!,
               onPressed: onButtonPressed,
               size: GdsSolidButtonSize.large,
-              enabled: enabled,
+              enabled: buttonEnabled ?? enabled,
             ),
           ],
         ),
@@ -246,6 +251,7 @@ class GdsInput extends StatelessWidget {
                 text: buttonLabel!,
                 onPressed: onButtonPressed,
                 size: GdsSolidButtonSize.regular,
+                enabled: buttonEnabled ?? enabled,
               ),
             ],
           ),
@@ -310,6 +316,7 @@ class GdsInput extends StatelessWidget {
                 text: buttonLabel!,
                 onPressed: onButtonPressed,
                 size: GdsSolidButtonSize.regular,
+                enabled: buttonEnabled ?? enabled,
               ),
             ],
           ),
