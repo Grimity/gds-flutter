@@ -60,6 +60,7 @@ class GdsTopNavigation {
         label: 'Label',
         onTitle: () => debugPrint('Title tapped'),
         onSave: () => debugPrint('Save button tapped'),
+        saveEnabled: true,
       ),
       GdsTopNavigationType.imageViewer => imageViewer(
         onClose: () => debugPrint('Close button tapped'),
@@ -157,6 +158,7 @@ class GdsTopNavigation {
     required String label,
     required VoidCallback onTitle,
     required VoidCallback onSave,
+    required bool saveEnabled,
   }) {
     return _Editor(
       key: key,
@@ -164,6 +166,7 @@ class GdsTopNavigation {
       label: label,
       onTitle: onTitle,
       onSave: onSave,
+      saveEnabled: saveEnabled,
     );
   }
 
@@ -497,6 +500,7 @@ class _Editor extends StatelessWidget {
     required this.label,
     required this.onTitle,
     required this.onSave,
+    required this.saveEnabled,
   });
 
   /// 제목 텍스트입니다.
@@ -511,8 +515,13 @@ class _Editor extends StatelessWidget {
   /// 저장 버튼이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onSave;
 
+  /// 저장 버튼이 활성화되어야 하는지 여부입니다.
+  final bool saveEnabled;
+
   @override
   Widget build(BuildContext context) {
+    final colors = context.gdsColors;
+
     return GdsTopNavigation._buildWithBackButton(
       context: context,
       onBack: () => debugPrint('Back button tapped'),
@@ -526,13 +535,17 @@ class _Editor extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 spacing: GdsSpacing.spacing4,
                 children: [
-                  Text(title, style: GdsTypography.subtitle2),
+                  Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
                   GdsIcon.chevronDown.build(color: context.gdsColors.icon.grayBold, width: GdsIconSize.v20),
                 ],
               ),
             ),
           ),
-          GdsTextButton(text: label, onPressed: onSave),
+          GdsTextButton(
+            text: label,
+            onPressed: onSave,
+            enabled: saveEnabled,
+          ),
         ],
       ),
     );
