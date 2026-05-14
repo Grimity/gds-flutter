@@ -79,22 +79,23 @@ class GdsModal extends StatelessWidget {
             child: Row(
               spacing: GdsSpacing.spacing8,
               children: [
-                if (onPrimary != null) ...[
-                  Expanded(
-                    child: GdsSolidButton(
-                      size: GdsSolidButtonSize.large,
-                      text: primaryLabel,
-                      onPressed: onPrimary,
-                      expanded: true,
-                    ),
-                  ),
-                ],
                 if (onSecondary != null) ...[
                   Expanded(
                     child: GdsOutlinedButton(
                       size: GdsOutlinedButtonSize.large,
                       text: secondaryLabel,
                       onPressed: onSecondary,
+                      expanded: true,
+                    ),
+                  ),
+                ],
+
+                if (onPrimary != null) ...[
+                  Expanded(
+                    child: GdsSolidButton(
+                      size: GdsSolidButtonSize.large,
+                      text: primaryLabel,
+                      onPressed: onPrimary,
                       expanded: true,
                     ),
                   ),

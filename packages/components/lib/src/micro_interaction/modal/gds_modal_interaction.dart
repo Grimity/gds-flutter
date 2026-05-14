@@ -118,12 +118,15 @@ class _GdsModalInteractionRoute<T> extends ModalRoute<T> {
             animation: curvedAnimation,
             child: child,
             builder: (context, child) {
-              return Transform.translate(
-                offset: Offset(
-                  0,
-                  (1 - curvedAnimation.value) * GdsModalInteraction.transitionStartOffsetY,
+              return Opacity(
+                opacity: curvedAnimation.value,
+                child: Transform.translate(
+                  offset: Offset(
+                    0,
+                    (1 - curvedAnimation.value) * GdsModalInteraction.transitionStartOffsetY,
+                  ),
+                  child: child,
                 ),
-                child: child,
               );
             },
           ),
