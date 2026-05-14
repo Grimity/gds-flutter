@@ -105,10 +105,15 @@ class GdsBottomSheet extends StatelessWidget {
     BottomSheet.config = BottomSheetConfig(
       barrierColor: barrierColor,
       sheetBuilder: (context, child) {
-        return Material(
-          color: colors.surface.base,
-          shape: shape,
-          child: child,
+        final keyboardHeight = MediaQuery.viewInsetsOf(context).bottom;
+
+        return Transform.translate(
+          offset: Offset(0, -keyboardHeight),
+          child: Material(
+            color: colors.surface.base,
+            shape: shape,
+            child: child,
+          ),
         );
       },
     );
