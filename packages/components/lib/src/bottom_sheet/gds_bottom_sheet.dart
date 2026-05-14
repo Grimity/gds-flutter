@@ -109,6 +109,7 @@ class GdsBottomSheet extends StatelessWidget {
 
         return Transform.translate(
           offset: Offset(0, -keyboardHeight),
+          transformHitTests: true,
           child: Material(
             color: colors.surface.base,
             shape: shape,
