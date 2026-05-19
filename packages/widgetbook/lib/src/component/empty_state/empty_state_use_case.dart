@@ -50,6 +50,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     ],
     child: GdsEmptyState(
       size: size,
+      icon: GdsIcon.uploadSuccess,
       title: 'Title',
       description: showDescription ? _description : null,
       action: _buildAction(actionType, size: size),
@@ -173,6 +174,7 @@ class _EmptyStateMatrix extends StatelessWidget {
 
     return GdsEmptyState(
       size: size,
+      icon: GdsIcon.uploadSuccess,
       title: 'Title',
       description: description,
       action: action,

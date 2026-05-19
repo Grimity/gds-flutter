@@ -35,21 +35,17 @@ class GdsEmptyState extends StatelessWidget {
   const GdsEmptyState({
     super.key,
     required this.title,
+    required this.icon,
     this.size = GdsEmptyStateSize.xl,
     this.description,
-    this.illustration,
     this.action,
     this.maxDescriptionLines = 2,
   });
 
   final GdsEmptyStateSize size;
   final String title;
+  final GdsIcon icon;
   final String? description;
-
-  /// 상단 비주얼 영역입니다.
-  ///
-  /// null이면 기본 illust 아이콘을 사용합니다.
-  final Widget? illustration;
 
   /// 버튼/링크 등 하단 액션 영역입니다.
   final Widget? action;
@@ -60,33 +56,23 @@ class GdsEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
-    const maxWidth = 375.0;
-    final screenWidth = MediaQuery.maybeOf(context)?.size.width;
-    final containerWidth =
-        screenWidth == null || screenWidth > maxWidth ? maxWidth : screenWidth;
 
     return Container(
-      width: containerWidth,
-      padding: const EdgeInsets.symmetric(vertical: 72),
-      decoration: BoxDecoration(
-        color: colors.bg.tertiary,
-        borderRadius: BorderRadius.circular(8),
-      ),
+      padding: const EdgeInsets.symmetric(vertical: GdsSpacing.spacing72),
+      constraints: BoxConstraints(maxWidth: 375),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          illustration ?? _DefaultEmptyStateIllustration(),
+          icon.build(width: 60, height: 60),
           SizedBox(height: size.titleTopSpacing),
           Text(
             title,
             textAlign: TextAlign.center,
-            style: size.titleStyle.copyWith(
-              color: colors.text.grayBold,
-            ),
+            style: size.titleStyle.copyWith(color: colors.text.grayBold),
           ),
           if (_hasDescription) ...[
-            SizedBox(height: GdsSpacing.spacing12,),
+            SizedBox(height: GdsSpacing.spacing12),
             Text(
               description!,
               maxLines: maxDescriptionLines,
@@ -98,28 +84,10 @@ class GdsEmptyState extends StatelessWidget {
             ),
           ],
           if (action != null) ...[
-            SizedBox(
-              height: GdsSpacing.spacing24,
-            ),
+            SizedBox(height: GdsSpacing.spacing24),
             action!,
           ],
         ],
-      ),
-    );
-  }
-}
-
-class _DefaultEmptyStateIllustration extends StatelessWidget {
-  const _DefaultEmptyStateIllustration();
-
-  @override
-  Widget build(BuildContext context) {
-
-    return SizedBox(
-      width: 60,
-      height: 60,
-      child: Center(
-        child: GdsIcon.uploadSuccess.build(),
       ),
     );
   }
