@@ -32,6 +32,7 @@ class GdsTopNavigation {
       ),
       GdsTopNavigationType.title => title(
         title: 'Title',
+        onBack: () => debugPrint('Back button tapped'),
         onSearch: () => debugPrint('Search button tapped'),
         onAvatar: () => debugPrint('Avatar button tapped'),
         onNotification: () => debugPrint('Notification button tapped'),
@@ -39,6 +40,7 @@ class GdsTopNavigation {
       ),
       GdsTopNavigationType.iconButton => iconButton(
         title: 'Title',
+        onBack: () => debugPrint('Back button tapped'),
         icons: const [GdsIcon.blank, GdsIcon.blank, GdsIcon.blank],
         onIconTap: [
           () => debugPrint('first button tapped'),
@@ -47,17 +49,20 @@ class GdsTopNavigation {
         ],
       ),
       GdsTopNavigationType.search => search(
+        onBack: () => debugPrint('Back button tapped'),
         field: GdsTextField.search(placeholder: 'Input filled'),
       ),
       GdsTopNavigationType.dm => dm(
         displayName: '호두마루',
         userId: '@hodumaru',
+        onBack: () => debugPrint('Back button tapped'),
         onReport: () => debugPrint('Report button tapped'),
         onSignOut: () => debugPrint('Sign out button tapped'),
       ),
       GdsTopNavigationType.editor => editor(
         title: 'Title',
         label: 'Label',
+        onBack: () => debugPrint('Back button tapped'),
         onTitle: () => debugPrint('Title tapped'),
         onSave: () => debugPrint('Save button tapped'),
         saveEnabled: true,
@@ -92,6 +97,7 @@ class GdsTopNavigation {
   static Widget title({
     Key? key,
     required String title,
+    required VoidCallback onBack,
     required VoidCallback onSearch,
     required VoidCallback onAvatar,
     required VoidCallback onNotification,
@@ -101,6 +107,7 @@ class GdsTopNavigation {
     return _Title(
       key: key,
       title: title,
+      onBack: onBack,
       onSearch: onSearch,
       onAvatar: onAvatar,
       onNotification: onNotification,
@@ -113,12 +120,14 @@ class GdsTopNavigation {
   static Widget iconButton({
     Key? key,
     required String title,
+    required VoidCallback onBack,
     required List<GdsIcon> icons,
     required List<VoidCallback> onIconTap,
   }) {
     return _IconButton(
       key: key,
       title: title,
+      onBack: onBack,
       icons: icons,
       onIconTap: onIconTap,
     );
@@ -127,9 +136,10 @@ class GdsTopNavigation {
   /// Top Navigation의 `Search` 타입을 빌드합니다.
   static Widget search({
     Key? key,
+    required VoidCallback onBack,
     required GdsTextField field,
   }) {
-    return _Search(key: key, field: field);
+    return _Search(key: key, onBack: onBack, field: field);
   }
 
   /// Top Navigation의 `DM` 타입을 빌드합니다.
@@ -137,6 +147,7 @@ class GdsTopNavigation {
     Key? key,
     required String displayName,
     required String userId,
+    required VoidCallback onBack,
     required VoidCallback onReport,
     required VoidCallback onSignOut,
     String? avatarImageUrl,
@@ -145,6 +156,7 @@ class GdsTopNavigation {
       key: key,
       displayName: displayName,
       userId: userId,
+      onBack: onBack,
       onReport: onReport,
       onSignOut: onSignOut,
       avatarImageUrl: avatarImageUrl,
@@ -156,6 +168,7 @@ class GdsTopNavigation {
     Key? key,
     required String title,
     required String label,
+    required VoidCallback onBack,
     required VoidCallback onTitle,
     required VoidCallback onSave,
     required bool saveEnabled,
@@ -164,6 +177,7 @@ class GdsTopNavigation {
       key: key,
       title: title,
       label: label,
+      onBack: onBack,
       onTitle: onTitle,
       onSave: onSave,
       saveEnabled: saveEnabled,
@@ -211,7 +225,7 @@ class GdsTopNavigation {
         if (hasNotification) ...[
           GdsDotPushBadge(child: notification),
         ] else ...[
-          notification
+          notification,
         ],
         GdsGesture(
           onTap: onAvatar,
@@ -306,6 +320,7 @@ class _Title extends StatelessWidget {
   const _Title({
     super.key,
     required this.title,
+    required this.onBack,
     required this.onSearch,
     required this.onAvatar,
     required this.onNotification,
@@ -315,6 +330,9 @@ class _Title extends StatelessWidget {
 
   /// 제목 텍스트입니다.
   final String title;
+
+  /// 뒤로가기 버튼이 탭될 때 호출되는 콜백 함수입니다.
+  final VoidCallback onBack;
 
   /// 검색 버튼이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onSearch;
@@ -335,7 +353,7 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return GdsTopNavigation._buildWithBackButton(
       context: context,
-      onBack: () => debugPrint('Back button tapped'),
+      onBack: onBack,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -359,12 +377,16 @@ class _IconButton extends StatelessWidget {
   const _IconButton({
     super.key,
     required this.title,
+    required this.onBack,
     required this.icons,
     required this.onIconTap,
   });
 
   /// 제목 텍스트입니다.
   final String title;
+
+  /// 뒤로가기 버튼이 탭될 때 호출되는 콜백 함수입니다.
+  final VoidCallback onBack;
 
   /// 아이콘 버튼 목록입니다. 최대 3개까지 허용됩니다.
   final List<GdsIcon> icons;
@@ -389,7 +411,7 @@ class _IconButton extends StatelessWidget {
 
     return GdsTopNavigation._buildWithBackButton(
       context: context,
-      onBack: () => debugPrint('Back button tapped'),
+      onBack: onBack,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -405,11 +427,15 @@ class _IconButton extends StatelessWidget {
 class _Search extends StatelessWidget {
   _Search({
     super.key,
+    required this.onBack,
     required this.field,
   }) {
     // GdsTextField의 타입이 search인지 디버그 시점에서 검증합니다.
     assert(field.type == GdsTextFieldType.search);
   }
+
+  /// 뒤로가기 버튼이 탭될 때 호출되는 콜백 함수입니다.
+  final VoidCallback onBack;
 
   /// 검색 입력 필드입니다. [GdsTextFieldType.search] 타입이어야 합니다.
   final GdsTextField field;
@@ -419,7 +445,7 @@ class _Search extends StatelessWidget {
     return GdsTopNavigation._buildWithBackButton(
       padding: EdgeInsets.symmetric(horizontal: GdsSpacing.spacing16),
       context: context,
-      onBack: () => debugPrint('Back button tapped'),
+      onBack: onBack,
       body: field,
     );
   }
@@ -431,6 +457,7 @@ class _Dm extends StatelessWidget {
     super.key,
     required this.displayName,
     required this.userId,
+    required this.onBack,
     required this.onReport,
     required this.onSignOut,
     this.avatarImageUrl,
@@ -445,6 +472,9 @@ class _Dm extends StatelessWidget {
   /// 사용자 아바타 이미지의 URL입니다.
   final String? avatarImageUrl;
 
+  /// 뒤로가기 버튼이 탭될 때 호출되는 콜백 함수입니다.
+  final VoidCallback onBack;
+
   /// 신고 버튼이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onReport;
 
@@ -457,7 +487,7 @@ class _Dm extends StatelessWidget {
 
     return GdsTopNavigation._buildWithBackButton(
       context: context,
-      onBack: () => debugPrint('Back button tapped'),
+      onBack: onBack,
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: GdsSpacing.spacing8,
@@ -499,6 +529,7 @@ class _Editor extends StatelessWidget {
     super.key,
     required this.title,
     required this.label,
+    required this.onBack,
     required this.onTitle,
     required this.onSave,
     required this.saveEnabled,
@@ -509,6 +540,9 @@ class _Editor extends StatelessWidget {
 
   /// 저장 버튼의 레이블 텍스트입니다.
   final String label;
+
+  /// 뒤로가기 버튼이 탭될 때 호출되는 콜백 함수입니다.
+  final VoidCallback onBack;
 
   /// 제목이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onTitle;
@@ -525,7 +559,7 @@ class _Editor extends StatelessWidget {
 
     return GdsTopNavigation._buildWithBackButton(
       context: context,
-      onBack: () => debugPrint('Back button tapped'),
+      onBack: onBack,
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
