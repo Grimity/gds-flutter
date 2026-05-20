@@ -133,6 +133,7 @@ class GdsSolidButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final bool enabled;
   final bool loading;
+  final bool rounded;
   final bool expanded;
 
   const GdsSolidButton({
@@ -142,6 +143,7 @@ class GdsSolidButton extends StatefulWidget {
     this.size = GdsSolidButtonSize.regular,
     this.enabled = true,
     this.loading = false,
+    this.rounded = false,
     this.expanded = false,
     this.leadingIcon,
     this.trailingIcon,
@@ -158,6 +160,7 @@ class GdsSolidButton extends StatefulWidget {
     this.size = GdsSolidButtonSize.regular,
     this.enabled = true,
     this.loading = false,
+    this.rounded = false,
     this.expanded = false,
     this.iconColor,
   }) : text = null,
@@ -240,7 +243,9 @@ class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProvid
                 state,
                 loading: widget.loading,
               ),
-              borderRadius: BorderRadius.circular(GdsRadius.sm),
+              borderRadius: widget.rounded
+                  ? BorderRadius.circular(GdsRadius.full)
+                  : BorderRadius.circular(GdsRadius.sm),
             ),
             padding: GdsSolidButtonStyle.padding(
               size,
