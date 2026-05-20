@@ -351,13 +351,15 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.gdsColors;
+
     return GdsTopNavigation._buildWithBackButton(
       context: context,
       onBack: onBack,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: GdsTypography.subtitle2),
+          Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
           GdsTopNavigation._buildNavigationIcons(
             context: context,
             onSearch: onSearch,
@@ -401,6 +403,8 @@ class _IconButton extends StatelessWidget {
     assert(icons.length <= 3, '주어진 `icons` 리스트는 최대 3개까지 허용됩니다.');
     assert(onIconTap.length == icons.length, '아이콘과 콜백 리스트의 길이는 동일해야 합니다.');
 
+    final colors = context.gdsColors;
+
     // 아이콘 리스트를 GdsIcon 위젯으로 변환합니다.
     final iconRows = icons.map((icon) {
       return GdsGesture(
@@ -415,7 +419,7 @@ class _IconButton extends StatelessWidget {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: GdsTypography.subtitle2),
+          Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
           Row(spacing: GdsSpacing.spacing16, children: iconRows),
         ],
       ),
