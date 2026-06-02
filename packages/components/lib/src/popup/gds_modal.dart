@@ -49,6 +49,7 @@ class GdsModal extends StatelessWidget {
         maxHeight: 760,
       ),
       decoration: BoxDecoration(
+        border: Border.all(color: colors.border.graySubtler),
         borderRadius: BorderRadius.circular(GdsRadius.xl),
         boxShadow: GdsShadows.level2,
         color: colors.surface.base,
