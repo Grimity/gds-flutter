@@ -187,6 +187,7 @@ enum GdsIcon implements IconBuilder {
 
   /// illust_icon
   alarm(path: 'assets/vector/illust_icon/alarm.svg'),
+  alarmDark(path: 'assets/vector/illust_icon/alarm_dark.svg'),
   illust(path: 'assets/vector/illust_icon/illust.svg'),
   illustReply(path: 'assets/vector/illust_icon/reply.svg'),
   resultNull(path: 'assets/vector/illust_icon/result_null.svg'),
