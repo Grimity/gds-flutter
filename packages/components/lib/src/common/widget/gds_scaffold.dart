@@ -23,7 +23,7 @@ class GdsScaffold extends StatelessWidget {
 
     final Widget child;
 
-    // appBar가 제공된 경우 NestedScrollView로 감싸고, 그렇지 않으면 body를 그대로 사용합니다.
+    // appBar가 제공된 경우 Column으로 감쌉니다.
     if (appBar != null) {
       child = Column(
         children: [
