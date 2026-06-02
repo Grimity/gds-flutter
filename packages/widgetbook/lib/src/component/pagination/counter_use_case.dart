@@ -3,11 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(
-  name: 'default',
-  type: GdsCounter,
-  path: '[component]/[pagination]'
-)
+@widgetbook.UseCase(name: 'default', type: GdsCounter, path: '[component]/[pagination]')
 Widget buildGdsCounterUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Counter',
@@ -36,7 +32,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
     label: 'maxCount',
     min: count,
     max: 25,
-    initialValue: 10, 
+    initialValue: 10,
   );
 
   return WidgetbookPlayground(

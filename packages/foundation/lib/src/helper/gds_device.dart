@@ -14,6 +14,5 @@ extension GdsDevice on BuildContext {
       screenWidth >= GdsScreen.tableMinWidth ? GdsDeviceType.tablet : GdsDeviceType.mobile;
 
   bool get isTablet => gdsDeviceType == GdsDeviceType.tablet;
-
   bool get isMobile => gdsDeviceType == GdsDeviceType.mobile;
 }

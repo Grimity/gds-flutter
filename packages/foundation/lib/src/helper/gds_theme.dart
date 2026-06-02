@@ -21,15 +21,15 @@ class GdsTheme {
 
   /// Light 모드 [ThemeData].
   static ThemeData light() => _build(
-        brightness: Brightness.light,
-        colors: GdsColors.light,
-      );
+    brightness: Brightness.light,
+    colors: GdsColors.light,
+  );
 
   /// Dark 모드 [ThemeData].
   static ThemeData dark() => _build(
-        brightness: Brightness.dark,
-        colors: GdsColors.dark,
-      );
+    brightness: Brightness.dark,
+    colors: GdsColors.dark,
+  );
 
   static ThemeData _build({
     required Brightness brightness,

@@ -25,8 +25,8 @@ class GdsRefresh extends StatelessWidget {
     return Theme(
       data: ThemeData(
         progressIndicatorTheme: ProgressIndicatorThemeData(
-            color: colors.surface.inverse, // foregroundColor
-            refreshBackgroundColor: colors.surface.base, // backgroundColor
+          color: colors.surface.inverse, // foregroundColor
+          refreshBackgroundColor: colors.surface.base, // backgroundColor
         ),
       ),
       child: RefreshIndicator(

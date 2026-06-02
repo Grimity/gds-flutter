@@ -21,12 +21,7 @@ class GdsTabItem {
 }
 
 class GdsTab extends StatefulWidget {
-  const GdsTab({
-    super.key,
-    required this.items,
-    required this.index,
-    this.size = GdsTabSize.lg
-  });
+  const GdsTab({super.key, required this.items, required this.index, this.size = GdsTabSize.lg});
 
   /// 탭 아이템 리스트
   final List<GdsTabItem> items;
@@ -94,7 +89,6 @@ class _GdsTabState extends State<GdsTab> with SingleTickerProviderStateMixin {
 
 class _TabItem extends StatelessWidget {
   const _TabItem({
-    super.key,
     required this.item,
     required this.size,
     required this.isSelected,

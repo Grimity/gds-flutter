@@ -61,8 +61,7 @@ class GdsBottomSheet extends StatelessWidget {
                 Row(
                   spacing: GdsSpacing.spacing8,
                   children: [
-                    if (type == GdsBottomSheetType.secondary
-                     || type == GdsBottomSheetType.twoButton)
+                    if (type == GdsBottomSheetType.secondary || type == GdsBottomSheetType.twoButton)
                       Expanded(
                         child: GdsOutlinedButton(
                           size: GdsOutlinedButtonSize.large,
@@ -72,8 +71,7 @@ class GdsBottomSheet extends StatelessWidget {
                         ),
                       ),
 
-                    if (type == GdsBottomSheetType.primary
-                     || type == GdsBottomSheetType.twoButton) 
+                    if (type == GdsBottomSheetType.primary || type == GdsBottomSheetType.twoButton)
                       Expanded(
                         child: GdsSolidButton(
                           size: GdsSolidButtonSize.large,
@@ -134,7 +132,6 @@ class GdsBottomSheet extends StatelessWidget {
 
 class _Header extends StatelessWidget {
   const _Header({
-    super.key,
     required this.title,
     required this.onClose,
   });

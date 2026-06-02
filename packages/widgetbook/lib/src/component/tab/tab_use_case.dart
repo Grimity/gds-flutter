@@ -3,11 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(
-  name: 'default',
-  type: GdsTab,
-  path: '[component]/[tab]'
-)
+@widgetbook.UseCase(name: 'default', type: GdsTab, path: '[component]/[tab]')
 Widget buildGdsTabUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Tab',

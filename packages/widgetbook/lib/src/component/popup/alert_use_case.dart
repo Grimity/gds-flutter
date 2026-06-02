@@ -3,11 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(
-  name: 'default',
-  type: GdsAlert,
-  path: '[component]/[popup]'
-)
+@widgetbook.UseCase(name: 'default', type: GdsAlert, path: '[component]/[popup]')
 Widget buildGdsAlertUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Alert',

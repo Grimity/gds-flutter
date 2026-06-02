@@ -79,13 +79,13 @@ class GdsAlert extends StatelessWidget {
         maxWidth: switch (size) {
           GdsAlertSize.xl => 400,
           GdsAlertSize.md => 360,
-        }
+        },
       ),
       padding: EdgeInsets.only(
         top: GdsSpacing.spacing32,
         left: GdsSpacing.spacing16,
         right: GdsSpacing.spacing16,
-        bottom: GdsSpacing.spacing16,        
+        bottom: GdsSpacing.spacing16,
       ),
       decoration: BoxDecoration(
         color: colors.surface.base,
@@ -102,7 +102,7 @@ class GdsAlert extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (type == GdsAlertType.illust) ... [
+              if (type == GdsAlertType.illust) ...[
                 GdsIcon.success.build(width: 60, height: 60),
                 SizedBox(height: GdsSpacing.spacing16),
               ],
@@ -127,7 +127,7 @@ class GdsAlert extends StatelessWidget {
           Row(
             spacing: GdsSpacing.spacing6,
             children: [
-              if (type != GdsAlertType.normal) ... [
+              if (type != GdsAlertType.normal) ...[
                 Expanded(
                   child: GdsOutlinedButton(
                     size: outlinedButtonSize,

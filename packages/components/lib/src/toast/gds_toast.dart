@@ -81,7 +81,8 @@ class GdsToast extends StatelessWidget {
   }
 
   /// 오버레이에 토스트를 화면에 표시합니다.
-  static void open(BuildContext context, {
+  static void open(
+    BuildContext context, {
     required GdsToastType type,
     required String message,
   }) {

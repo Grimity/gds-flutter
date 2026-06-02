@@ -17,4 +17,3 @@ scripts:
   format:
     description: "Format all the files"
     run: fvm exec dart run melos exec -c 2 -- "dart fix --apply && dart format ."
-

@@ -3,11 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(
-  name: 'default',
-  type: GdsNavigation,
-  path: '[component]/[pagination]'
-)
+@widgetbook.UseCase(name: 'default', type: GdsNavigation, path: '[component]/[pagination]')
 Widget buildGdsNavigationUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Navigation',
@@ -53,6 +49,6 @@ Widget _buildPlaygroundSection(BuildContext context) {
           onPageChanged: (newIndex) => setState(() => index = newIndex),
         ),
       );
-    }
+    },
   );
 }

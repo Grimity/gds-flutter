@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_components/gds_components.dart';
-import 'package:gds_components/src/common/widget/gds_ellipse.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
 class GdsDmItem extends StatelessWidget {

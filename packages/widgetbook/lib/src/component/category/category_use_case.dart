@@ -3,11 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import '../../widgetbook_components/widgetbook_components.dart';
 
-@widgetbook.UseCase(
-  name: 'default',
-  type: GdsCategory,
-  path: '[component]/[category]'
-)
+@widgetbook.UseCase(name: 'default', type: GdsCategory, path: '[component]/[category]')
 Widget buildGdsCategoryUseCase(BuildContext context) {
   return WidgetbookPageLayout(
     title: 'Category',
@@ -36,11 +32,31 @@ Widget _buildPlaygroundSection(BuildContext context) {
         child: GdsCategory(
           size: size,
           items: [
-            GdsCategoryItem(label: 'Text NN', isActive: categoryIndex == 0, onTap: () => setState(() => categoryIndex = 0)),
-            GdsCategoryItem(label: 'Text NN', isActive: categoryIndex == 1, onTap: () => setState(() => categoryIndex = 1)),
-            GdsCategoryItem(label: 'Text NN', isActive: categoryIndex == 2, onTap: () => setState(() => categoryIndex = 2)),
-            GdsCategoryItem(label: 'Text NN', isActive: categoryIndex == 3, onTap: () => setState(() => categoryIndex = 3)),
-            GdsCategoryItem(label: 'Text NN', isActive: categoryIndex == 4, onTap: () => setState(() => categoryIndex = 4)),
+            GdsCategoryItem(
+              label: 'Text NN',
+              isActive: categoryIndex == 0,
+              onTap: () => setState(() => categoryIndex = 0),
+            ),
+            GdsCategoryItem(
+              label: 'Text NN',
+              isActive: categoryIndex == 1,
+              onTap: () => setState(() => categoryIndex = 1),
+            ),
+            GdsCategoryItem(
+              label: 'Text NN',
+              isActive: categoryIndex == 2,
+              onTap: () => setState(() => categoryIndex = 2),
+            ),
+            GdsCategoryItem(
+              label: 'Text NN',
+              isActive: categoryIndex == 3,
+              onTap: () => setState(() => categoryIndex = 3),
+            ),
+            GdsCategoryItem(
+              label: 'Text NN',
+              isActive: categoryIndex == 4,
+              onTap: () => setState(() => categoryIndex = 4),
+            ),
           ],
           action: GdsCategoryAction(
             icon: GdsIcon.blank,

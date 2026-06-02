@@ -61,9 +61,6 @@ class _GdsCategoryState extends State<GdsCategory> {
     bool oldCanMaskingRight = _canMaskingRight;
     bool oldCanMaskingLeft = _canMaskingLeft;
 
-    print(_canMaskingRight);
-    print(_canMaskingLeft);
-
     if (needsMasking) {
       // 스크롤 위치가 변경될 때마다 마스킹 적용
       _canMaskingRight = _controller.offset < _controller.position.maxScrollExtent;
@@ -75,8 +72,7 @@ class _GdsCategoryState extends State<GdsCategory> {
     }
 
     // 마스킹 적용 여부가 변경된 경우에만 상태 변경
-    if (oldCanMaskingLeft != _canMaskingLeft
-     || oldCanMaskingRight != _canMaskingRight) {
+    if (oldCanMaskingLeft != _canMaskingLeft || oldCanMaskingRight != _canMaskingRight) {
       setState(() {});
     }
   }
@@ -118,8 +114,7 @@ class _GdsCategoryState extends State<GdsCategory> {
                     mainAxisSize: MainAxisSize.min,
                     spacing: GdsSpacing.spacing8,
                     children: [
-                      for (final item in widget.items)
-                        _Category(item: item, size: widget.size),
+                      for (final item in widget.items) _Category(item: item, size: widget.size),
                     ],
                   ),
                 ),
@@ -186,7 +181,6 @@ class _GdsCategoryState extends State<GdsCategory> {
 
 class _Category extends StatelessWidget {
   const _Category({
-    super.key,
     required this.item,
     required this.size,
   });
@@ -231,17 +225,13 @@ class _Category extends StatelessWidget {
           borderRadius: BorderRadius.circular(GdsRadius.full),
           color: item.isActive ? colors.surface.primaryNormal : null,
           border: Border.all(
-            color: item.isActive
-              ? colors.surface.primaryNormal
-              : colors.border.graySubtle,
+            color: item.isActive ? colors.surface.primaryNormal : colors.border.graySubtle,
           ),
         ),
         child: Text(
           item.label,
           style: _textStyle.copyWith(
-            color: item.isActive
-              ? colors.text.white
-              : colors.surface.grayBold,
+            color: item.isActive ? colors.text.white : colors.surface.grayBold,
           ),
         ),
       ),

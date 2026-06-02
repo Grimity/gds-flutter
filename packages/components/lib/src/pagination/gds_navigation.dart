@@ -81,7 +81,6 @@ class GdsNavigation extends StatelessWidget {
 /// 페이지네이션에서 이전 페이지, 다음 페이지로 이동하는 버튼입니다.
 class _IconButton extends StatelessWidget {
   const _IconButton({
-    super.key,
     required this.icon,
     required this.isActive,
     this.onTap,
@@ -115,7 +114,6 @@ class _IconButton extends StatelessWidget {
 /// 페이지네이션에서 페이지 번호를 표시하는 버튼입니다.
 class _PageButton extends StatelessWidget {
   const _PageButton({
-    super.key,
     required this.label,
     required this.isActive,
     required this.onTap,

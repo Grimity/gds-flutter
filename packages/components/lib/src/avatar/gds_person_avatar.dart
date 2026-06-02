@@ -45,10 +45,13 @@ class GdsPersonAvatar extends StatelessWidget {
 
   bool get _hasImage => (imageUrl ?? '').trim().isNotEmpty;
 
-  bool _isDarkTheme(BuildContext context) => Theme.of(context).brightness == Brightness.dark;
+  bool _isDarkTheme(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark;
+  }
 
-  Color _borderColor(BuildContext context) =>
-      _isDarkTheme(context) ? GdsAtomicColorGray.v80 : context.gdsColors.border.graySubtler;
+  Color _borderColor(BuildContext context) {
+    return _isDarkTheme(context) ? GdsAtomicColorGray.v80 : context.gdsColors.border.graySubtler;
+  }
 
   @override
   Widget build(BuildContext context) {

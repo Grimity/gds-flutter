@@ -56,7 +56,7 @@ Widget _buildEditorDecorationSection(BuildContext context) {
         spacing: GdsSpacing.spacing12,
         children: [
           for (final type in GdsEditorDecorationType.values)
-            GdsEditorDecoration(type: type, state: GdsEditorDecorationState.enabled)
+            GdsEditorDecoration(type: type, state: GdsEditorDecorationState.enabled),
         ],
       ),
 
@@ -65,7 +65,7 @@ Widget _buildEditorDecorationSection(BuildContext context) {
         spacing: GdsSpacing.spacing12,
         children: [
           for (final type in GdsEditorDecorationType.values)
-            GdsEditorDecoration(type: type, state: GdsEditorDecorationState.pressed)
+            GdsEditorDecoration(type: type, state: GdsEditorDecorationState.pressed),
         ],
       ),
     ],
@@ -90,7 +90,12 @@ Widget _buildEditorButtonSection(BuildContext context) {
                   GdsEditorButton.body(context: context, state: state, title: "가나다", label: "본문"),
                   GdsEditorButton.icon(context: context, state: state, icon: GdsIcon.blank, label: "버튼 명"),
                   GdsEditorButton.fontColor(context: context, state: state, color: Colors.white),
-                  GdsEditorButton.fontBgColor(context: context, state: state, backgroundColor: Colors.black, foregroundColor: Colors.white),
+                  GdsEditorButton.fontBgColor(
+                    context: context,
+                    state: state,
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                  ),
                 ],
               ),
             ),
