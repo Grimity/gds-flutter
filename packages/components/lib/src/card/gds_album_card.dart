@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gds_components/src/cell/gds_user_info.dart';
 import 'package:gds_components/src/common/common.dart';
-import 'package:gds_components/src/micro_interaction/icon/gds_icon_animation_button.dart';
 import 'package:gds_components/src/thumbnail/gds_thumbnail.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
@@ -392,7 +391,7 @@ class _AlbumHeartButton extends StatelessWidget {
     return SizedBox(
       width: GdsIconSize.v24,
       height: GdsIconSize.v24,
-      child: onTap == null ? icon : GdsIconAnimationButton(onTap: onTap!, child: icon),
+      child: onTap == null ? icon : GdsGesture(onTap: onTap!, child: icon),
     );
   }
 }

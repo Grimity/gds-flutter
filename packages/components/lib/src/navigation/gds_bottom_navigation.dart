@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_components/src/base/base.dart';
 import 'package:gds_components/src/common/common.dart';
-import 'package:gds_components/src/micro_interaction/icon/gds_icon_animation_button.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
 /// 디자인 시스템에 따라 구현된 Bottom Navigation 컴포넌트입니다.
@@ -130,7 +129,7 @@ class _Badge extends StatelessWidget {
     // 아이콘 위에 Dot을 표시하는 경우와 그렇지 않은 경우 모두 동일한 아이콘 위젯을 사용합니다.
     final iconWidget = icon.build(color: foregroundColor);
 
-    return GdsIconAnimationButton(
+    return GdsGesture(
       onTap: onPressed,
       child: Container(
         padding: EdgeInsets.only(top: GdsSpacing.spacing2),

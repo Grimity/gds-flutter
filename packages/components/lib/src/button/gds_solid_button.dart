@@ -174,30 +174,11 @@ class GdsSolidButton extends StatefulWidget {
 }
 
 class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProviderStateMixin {
-  static const _iconAnimationDuration = Duration(milliseconds: 160);
-
-  late final AnimationController _iconAnimationController;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
 
   bool get _isInteractive => widget.enabled && !widget.loading;
-  bool get _hasIcon => widget.leadingIcon != null || widget.trailingIcon != null;
-
-  @override
-  void initState() {
-    super.initState();
-    _iconAnimationController = AnimationController(
-      vsync: this,
-      duration: _iconAnimationDuration,
-    );
-  }
-
-  @override
-  void dispose() {
-    _iconAnimationController.dispose();
-    super.dispose();
-  }
 
   GdsButtonState get _buttonState {
     if (!widget.enabled) return GdsButtonState.disabled;
@@ -226,9 +207,6 @@ class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProvid
           onTap: _isInteractive && widget.onPressed != null
               ? () {
                   widget.onPressed?.call();
-                  if (_hasIcon) {
-                    _iconAnimationController.forward(from: 0);
-                  }
                 }
               : null,
           child: Container(
@@ -281,12 +259,7 @@ class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProvid
         height: size.iconSize,
       );
 
-      return [
-        GdsIconTapScaleAnimation(
-          controller: _iconAnimationController,
-          child: icon,
-        ),
-      ];
+      return [GdsGesture(child: icon)];
     }
 
     final children = <Widget>[];
@@ -298,12 +271,7 @@ class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProvid
         height: size.iconSize,
       );
 
-      children.add(
-        GdsIconTapScaleAnimation(
-          controller: _iconAnimationController,
-          child: leadingIcon,
-        ),
-      );
+      children.add(GdsGesture(child: leadingIcon));
       children.add(SizedBox(width: size.gap));
     }
 
@@ -324,12 +292,7 @@ class _GdsSolidButtonState extends State<GdsSolidButton> with SingleTickerProvid
       );
 
       children.add(SizedBox(width: size.gap));
-      children.add(
-        GdsIconTapScaleAnimation(
-          controller: _iconAnimationController,
-          child: trailingIcon,
-        ),
-      );
+      children.add(GdsGesture(child: trailingIcon));
     }
 
     return children;

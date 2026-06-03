@@ -315,6 +315,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_touch_scale:
+    dependency: transitive
+    description:
+      name: flutter_touch_scale
+      sha256: aeedf8f9fe5e65147362520aa7618d58e5e19da53a7ebc3e20a0716895ae8636
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
