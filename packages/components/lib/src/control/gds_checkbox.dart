@@ -44,7 +44,7 @@ class GdsCheckbox extends StatelessWidget {
     final colors = context.gdsColors;
     final icon = isChecked ? GdsIcon.checkSquareFill : GdsIcon.checkSquareOutline;
 
-    return GdsIconAnimationButton(
+    return GdsGesture(
       onTap: onTap,
       child: icon.build(
         color: _iconColor(colors),
