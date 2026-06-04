@@ -187,29 +187,11 @@ class GdsIconButton extends StatefulWidget {
 }
 
 class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProviderStateMixin {
-  static const _iconAnimationDuration = Duration(milliseconds: 160);
-
-  late final AnimationController _iconAnimationController;
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
 
   bool get _isInteractive => widget.enabled;
-
-  @override
-  void initState() {
-    super.initState();
-    _iconAnimationController = AnimationController(
-      vsync: this,
-      duration: _iconAnimationDuration,
-    );
-  }
-
-  @override
-  void dispose() {
-    _iconAnimationController.dispose();
-    super.dispose();
-  }
 
   GdsButtonState get _buttonState {
     if (!widget.enabled) return GdsButtonState.disabled;
@@ -243,7 +225,6 @@ class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProvider
           onTap: _isInteractive && widget.onPressed != null
               ? () {
                   widget.onPressed?.call();
-                  _iconAnimationController.forward(from: 0);
                 }
               : null,
           child: Container(
@@ -253,10 +234,7 @@ class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProvider
               borderRadius: BorderRadius.circular(GdsRadius.full),
             ),
             padding: EdgeInsets.all(type.padding),
-            child: GdsIconTapScaleAnimation(
-              controller: _iconAnimationController,
-              child: icon,
-            ),
+            child: GdsGesture(child: icon),
           ),
         ),
       ),

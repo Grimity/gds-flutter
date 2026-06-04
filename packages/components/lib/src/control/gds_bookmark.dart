@@ -42,7 +42,7 @@ class GdsBookmark extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
-    return GdsIconAnimationButton(
+    return GdsGesture(
       onTap: onTap,
       child: icon(isBookmarked).build(
         color: type.iconColor(colors, isBookmarked),
