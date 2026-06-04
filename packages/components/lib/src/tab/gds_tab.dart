@@ -21,7 +21,13 @@ class GdsTabItem {
 }
 
 class GdsTab extends StatefulWidget {
-  const GdsTab({super.key, required this.items, required this.index, this.size = GdsTabSize.lg});
+  const GdsTab({
+    super.key,
+    required this.items,
+    required this.index,
+    this.showBorder = true,
+    this.size = GdsTabSize.lg,
+  });
 
   /// 탭 아이템 리스트
   final List<GdsTabItem> items;
@@ -29,6 +35,10 @@ class GdsTab extends StatefulWidget {
   /// 선택된 탭 인덱스
   final int index;
 
+  /// 탭 하단의 구분선을 표시할지 여부
+  final bool showBorder;
+
+  /// 탭 네비게이션 크기
   final GdsTabSize size;
 
   @override
@@ -40,29 +50,19 @@ class _GdsTabState extends State<GdsTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
-    /*
-      BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: colors.border.grayBold,
-            width: 2,
-          ),
-        ),
-      ),
-    */
-
     return Stack(
       children: [
         // 탭 하단의 구분선
-        Positioned.fill(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 1,
-              color: colors.border.graySubtle,
+        if (widget.showBorder)
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 1,
+                color: colors.border.graySubtle,
+              ),
             ),
           ),
-        ),
 
         // 탭 아이템 리스트
         SizedBox(
