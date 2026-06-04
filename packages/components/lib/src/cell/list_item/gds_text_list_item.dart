@@ -50,6 +50,7 @@ class GdsTextListItem extends GdsListItem {
       state: state,
       isNegative: isNegative,
     );
+
     final textStyle = GdsTypography.label1.copyWith(color: style.textColor);
 
     return GdsGesture(
@@ -64,17 +65,15 @@ class GdsTextListItem extends GdsListItem {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: GdsSpacing.spacing16),
             child: Row(
+              spacing: GdsSpacing.spacing8,
               children: [
-                Expanded(
-                  child: Text(
-                    text,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: textStyle,
-                  ),
+                Text(
+                  text,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: textStyle,
                 ),
                 if (style.showTrailingCheck) ...[
-                  const SizedBox(width: GdsSpacing.spacing8),
                   GdsIcon.check.build(
                     color: style.trailingIconColor,
                     width: GdsIconSize.defaultSize,
@@ -134,7 +133,7 @@ class _GdsTextListItemStyle {
 
     return switch (state) {
       GdsListItemState.enabled => _GdsTextListItemStyle(
-        backgroundColor: colors.surface.base,
+        backgroundColor: GdsColors.transparent,
         textColor: colors.text.grayBold,
         borderColor: null,
         borderWidth: 0,
