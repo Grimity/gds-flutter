@@ -103,6 +103,8 @@ class GdsTopNavigation {
     required VoidCallback onNotification,
     String? avatarImageUrl,
     required bool hasNotification,
+    bool showTitle = true,
+    bool showIcons = true,
   }) {
     return _Title(
       key: key,
@@ -113,6 +115,8 @@ class GdsTopNavigation {
       onNotification: onNotification,
       avatarImageUrl: avatarImageUrl,
       hasNotification: hasNotification,
+      showTitle: showTitle,
+      showIcons: showIcons,
     );
   }
 
@@ -123,6 +127,8 @@ class GdsTopNavigation {
     required VoidCallback onBack,
     required List<GdsIcon> icons,
     required List<VoidCallback> onIconTap,
+    bool showTitle = true,
+    bool showIcons = true,
   }) {
     return _IconButton(
       key: key,
@@ -130,6 +136,8 @@ class GdsTopNavigation {
       onBack: onBack,
       icons: icons,
       onIconTap: onIconTap,
+      showTitle: showTitle,
+      showIcons: showIcons,
     );
   }
 
@@ -326,6 +334,8 @@ class _Title extends StatelessWidget {
     required this.onNotification,
     this.avatarImageUrl,
     required this.hasNotification,
+    this.showTitle = true,
+    this.showIcons = true,
   });
 
   /// 제목 텍스트입니다.
@@ -349,6 +359,12 @@ class _Title extends StatelessWidget {
   /// 알림이 있는지에 대한 여부입니다.
   final bool hasNotification;
 
+  /// 제목 텍스트를 표시할지 여부입니다.
+  final bool showTitle;
+
+  /// 오른쪽 아이콘을 표시할지 여부입니다.
+  final bool showIcons;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
@@ -357,9 +373,11 @@ class _Title extends StatelessWidget {
       context: context,
       onBack: onBack,
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+          if (showTitle) Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+
+          Expanded(child: SizedBox()),
+
           GdsTopNavigation._buildNavigationIcons(
             context: context,
             onSearch: onSearch,
@@ -382,6 +400,8 @@ class _IconButton extends StatelessWidget {
     required this.onBack,
     required this.icons,
     required this.onIconTap,
+    this.showTitle = true,
+    this.showIcons = true,
   });
 
   /// 제목 텍스트입니다.
@@ -396,6 +416,12 @@ class _IconButton extends StatelessWidget {
   /// 각 아이콘 버튼이 탭될 때 호출되는 콜백 함수 목록입니다.
   /// 아이콘과 콜백 목록의 길이는 동일해야 합니다.
   final List<VoidCallback> onIconTap;
+
+  /// 제목 텍스트를 표시할지 여부입니다.
+  final bool showTitle;
+
+  /// 오른쪽 아이콘을 표시할지 여부입니다.
+  final bool showIcons;
 
   @override
   Widget build(BuildContext context) {
@@ -417,10 +443,12 @@ class _IconButton extends StatelessWidget {
       context: context,
       onBack: onBack,
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
-          Row(spacing: GdsSpacing.spacing16, children: iconRows),
+          if (showTitle) Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+
+          Expanded(child: SizedBox()),
+
+          if (showIcons) Row(spacing: GdsSpacing.spacing16, children: iconRows),
         ],
       ),
     );
