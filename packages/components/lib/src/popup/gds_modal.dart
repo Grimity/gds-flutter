@@ -62,14 +62,16 @@ class GdsModal extends StatelessWidget {
             onClose: onClose ?? () => Navigator.pop(context),
             action: action,
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: GdsSpacing.spacing8,
-              left: GdsSpacing.spacing20,
-              right: GdsSpacing.spacing20,
-              bottom: GdsSpacing.spacing20,
+          Flexible(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: GdsSpacing.spacing8,
+                left: GdsSpacing.spacing20,
+                right: GdsSpacing.spacing20,
+                bottom: GdsSpacing.spacing20,
+              ),
+              child: body,
             ),
-            child: body,
           ),
           Padding(
             padding: EdgeInsets.only(
