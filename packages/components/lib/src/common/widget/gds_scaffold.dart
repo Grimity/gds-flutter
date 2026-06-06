@@ -8,6 +8,7 @@ class GdsScaffold extends StatelessWidget {
     super.key,
     required this.body,
     this.appBar,
+    this.drawer,
   });
 
   /// [Scaffold]의 [body]에 해당하는 위젯입니다.
@@ -15,6 +16,9 @@ class GdsScaffold extends StatelessWidget {
 
   /// [Scaffold]의 [appBar]에 해당하는 위젯입니다.
   final Widget? appBar;
+
+  /// [Scaffold.endDrawer]에 해당하는 위젯입니다.
+  final Widget? drawer;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,7 @@ class GdsScaffold extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: colors.bg.primary,
+      endDrawer: drawer,
       body: SafeArea(child: child),
     );
   }
