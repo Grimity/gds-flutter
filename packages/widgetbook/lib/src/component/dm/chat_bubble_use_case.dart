@@ -154,9 +154,6 @@ class _PlaygroundChatBubbleState extends State<_PlaygroundChatBubble> {
           _isLiked = !_isLiked;
         });
       },
-      onReplyTap: () {
-        debugPrint('GdsChatBubble.onReplyTap');
-      },
       onImageTap: widget.imageUrl != null
           ? () {
               debugPrint('GdsChatBubble.onImageTap');
@@ -183,7 +180,7 @@ Widget _buildDemonstrationSection(BuildContext context) {
       ),
       WidgetbookSubsection(
         title: 'interaction',
-        labels: ['Long Press', 'Right Slide'],
+        labels: ['Long Press'],
         content: _OtherChatBubbleInteractionExamples(),
       ),
     ],
@@ -295,41 +292,18 @@ class _OtherChatBubbleInteractionExamples extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
-                child: Text('버블을 길게 눌러 Heart / Reply 액션을 확인하세요.', style: helperStyle),
+                child: Text('버블을 길게 눌러 Heart 액션을 확인하세요.', style: helperStyle),
               ),
               _DemoCanvas(
                 child: GdsChatBubble(
                   type: GdsChatMessageType.other,
                   content: '길게 눌러 상태를 확인하세요.',
                   imageUrl: null,
-                  onReplyTap: () {},
                   onHeartTap: () {},
                 ),
               ),
             ],
           ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text('Right Slide', style: helperStyle),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: Text('버블을 왼쪽으로 슬라이드해 reply 버튼 노출 동작을 확인하세요.', style: helperStyle),
-            ),
-            _DemoCanvas(
-              child: GdsChatBubble(
-                type: GdsChatMessageType.other,
-                content: '왼쪽으로 슬라이드해보세요.',
-                imageUrl: null,
-                onReplyTap: () {},
-              ),
-            ),
-          ],
         ),
       ],
     );
