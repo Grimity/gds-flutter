@@ -531,7 +531,7 @@ class _Dm extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               spacing: GdsSpacing.spacing2,
               children: [
-                Text(displayName, style: GdsTypography.label3),
+                Text(displayName, style: GdsTypography.label3.copyWith(color: colors.text.grayBold)),
                 Text(userId, style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
               ],
             ),
