@@ -96,7 +96,6 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
               imageUrl: widget.imageUrl!,
               type: widget.type,
               isLiked: widget.isLiked,
-              maxWidth: maxBubbleWidth,
             ),
           ),
       ],
