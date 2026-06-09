@@ -38,6 +38,7 @@ class GdsSidebarNavigation extends StatelessWidget {
     required this.followerCount,
     required this.followingCount,
     required this.menuItems,
+    this.padding,
     this.onAvatarTap,
     this.onHandleTap,
     this.onNickNameTap,
@@ -55,6 +56,7 @@ class GdsSidebarNavigation extends StatelessWidget {
   final int followerCount;
   final int followingCount;
   final List<GdsSidebarNavigationItem> menuItems;
+  final EdgeInsets? padding;
   final VoidCallback? onAvatarTap;
   final VoidCallback? onHandleTap;
   final VoidCallback? onNickNameTap;
@@ -68,15 +70,21 @@ class GdsSidebarNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
+    EdgeInsets padding = EdgeInsets.only(
+      top: GdsSpacing.spacing12,
+      left: GdsSpacing.spacing16,
+      right: GdsSpacing.spacing16,
+      bottom: GdsSpacing.spacing24,
+    );
+
+    if (this.padding != null) {
+      padding += this.padding!;
+    }
+
     return Container(
       width: size.width,
       color: colors.surface.base,
-      padding: EdgeInsets.only(
-        top: GdsSpacing.spacing12,
-        left: GdsSpacing.spacing16,
-        right: GdsSpacing.spacing16,
-        bottom: GdsSpacing.spacing24,
-      ),
+      padding: padding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
