@@ -44,6 +44,15 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxBubbleWidth = constraints.hasBoundedWidth ? constraints.maxWidth : double.infinity;
+        return _buildContent(context, maxBubbleWidth);
+      },
+    );
+  }
+
+  Widget _buildContent(BuildContext context, double maxBubbleWidth) {
     final children = [
       if (_hasContent)
         GdsGesture(
@@ -52,6 +61,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
             content: widget.content!,
             type: widget.type,
             isLiked: widget.isLiked,
+            maxWidth: maxBubbleWidth,
           ),
         ),
       if (widget.isSending) const GdsChatSendingIcon(),
@@ -86,6 +96,7 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
               imageUrl: widget.imageUrl!,
               type: widget.type,
               isLiked: widget.isLiked,
+              maxWidth: maxBubbleWidth,
             ),
           ),
       ],

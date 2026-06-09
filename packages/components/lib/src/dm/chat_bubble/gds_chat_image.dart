@@ -7,11 +7,13 @@ class GdsChatImage extends StatelessWidget {
     required this.imageUrl,
     required this.type,
     this.isLiked = false,
+    this.maxWidth = double.infinity,
   });
 
   final String imageUrl;
   final GdsChatMessageType type;
   final bool isLiked;
+  final double maxWidth;
 
   static const double width = 300;
 
@@ -19,11 +21,10 @@ class GdsChatImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final chatImage = ClipRRect(
       borderRadius: BorderRadius.circular(GdsRadius.sm),
-      child: SizedBox(
-        width: width,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: maxWidth),
         child: CachedNetworkImage(
           imageUrl: imageUrl,
-          width: width,
           fit: BoxFit.fitWidth,
         ),
       ),

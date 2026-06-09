@@ -82,9 +82,6 @@ Widget _buildPlaygroundSection(BuildContext context) {
       'replyPreview: $showReplyPreview',
     ],
     child: Container(
-      constraints: BoxConstraints(
-        maxWidth: 337,
-      ),
       color: context.gdsColors.surface.graySubtlest,
       padding: const EdgeInsets.symmetric(
         horizontal: GdsSpacing.spacing16,
