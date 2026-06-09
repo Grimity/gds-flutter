@@ -47,6 +47,7 @@ class GdsSidebarNavigation extends StatelessWidget {
     this.onTermsOfServiceTap,
     this.onPrivacyPolicyTap,
     this.onBusinessInfoTap,
+    this.onSignOutTap,
   });
 
   final GdsSidebarNavigationSize size;
@@ -65,6 +66,7 @@ class GdsSidebarNavigation extends StatelessWidget {
   final VoidCallback? onTermsOfServiceTap;
   final VoidCallback? onPrivacyPolicyTap;
   final VoidCallback? onBusinessInfoTap;
+  final VoidCallback? onSignOutTap;
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +152,7 @@ class GdsSidebarNavigation extends StatelessWidget {
               GdsTextButton(
                 text: "로그아웃",
                 trailingIcon: GdsIcon.signOut,
-                onPressed: () {},
+                onPressed: onSignOutTap,
                 enabled: true,
                 variant: GdsTextButtonVariant.assistive,
                 size: GdsTextButtonSize.small,
