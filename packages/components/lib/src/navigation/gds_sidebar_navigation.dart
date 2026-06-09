@@ -38,6 +38,14 @@ class GdsSidebarNavigation extends StatelessWidget {
     required this.followerCount,
     required this.followingCount,
     required this.menuItems,
+    this.onAvatarTap,
+    this.onHandleTap,
+    this.onNickNameTap,
+    this.onFollowerTap,
+    this.onFollowingTap,
+    this.onTermsOfServiceTap,
+    this.onPrivacyPolicyTap,
+    this.onBusinessInfoTap,
   });
 
   final GdsSidebarNavigationSize size;
@@ -47,6 +55,14 @@ class GdsSidebarNavigation extends StatelessWidget {
   final int followerCount;
   final int followingCount;
   final List<GdsSidebarNavigationItem> menuItems;
+  final VoidCallback? onAvatarTap;
+  final VoidCallback? onHandleTap;
+  final VoidCallback? onNickNameTap;
+  final VoidCallback? onFollowerTap;
+  final VoidCallback? onFollowingTap;
+  final VoidCallback? onTermsOfServiceTap;
+  final VoidCallback? onPrivacyPolicyTap;
+  final VoidCallback? onBusinessInfoTap;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +70,7 @@ class GdsSidebarNavigation extends StatelessWidget {
 
     return Container(
       width: size.width,
+      color: colors.surface.base,
       padding: EdgeInsets.only(
         top: GdsSpacing.spacing12,
         left: GdsSpacing.spacing16,
@@ -68,24 +85,39 @@ class GdsSidebarNavigation extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: GdsSpacing.spacing8,
             children: [
-              GdsPersonAvatar(
-                size: GdsAvatarSize.ml,
-                imageUrl: userImageUrl,
+              GdsGesture(
+                onTap: onAvatarTap,
+                child: GdsPersonAvatar(
+                  size: GdsAvatarSize.ml,
+                  imageUrl: userImageUrl,
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 spacing: GdsSpacing.spacing2,
                 children: [
-                  Text(userName, style: GdsTypography.label3.copyWith(color: colors.text.grayBold)),
-                  Text(userId, style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                  GdsGesture(
+                    onTap: onNickNameTap,
+                    child: Text(userName, style: GdsTypography.label3.copyWith(color: colors.text.grayBold)),
+                  ),
+                  GdsGesture(
+                    onTap: onHandleTap,
+                    child: Text(userId, style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                  ),
                 ],
               ),
               Row(
                 spacing: GdsSpacing.spacing8,
                 children: [
-                  _UserInfo(label: '팔로워', value: '$followerCount'),
-                  _UserInfo(label: '팔로잉', value: '$followingCount'),
+                  GdsGesture(
+                    onTap: onFollowerTap,
+                    child: _UserInfo(label: '팔로워', value: '$followerCount'),
+                  ),
+                  GdsGesture(
+                    onTap: onFollowingTap,
+                    child: _UserInfo(label: '팔로잉', value: '$followingCount'),
+                  ),
                 ],
               ),
             ],
@@ -124,14 +156,23 @@ class GdsSidebarNavigation extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     spacing: GdsSpacing.spacing6,
                     children: [
-                      Text('이용약관', style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                      GdsGesture(
+                        onTap: onTermsOfServiceTap,
+                        child: Text('이용약관', style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                      ),
                       GdsEllipse(),
-                      Text('개인정보처리방침', style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                      GdsGesture(
+                        onTap: onPrivacyPolicyTap,
+                        child: Text('개인정보처리방침', style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                      ),
                     ],
                   ),
-                  Text(
-                    '사업자 정보',
-                    style: GdsTypography.label6.copyWith(color: colors.text.graySubtle),
+                  GdsGesture(
+                    onTap: onBusinessInfoTap,
+                    child: Text(
+                      '사업자 정보',
+                      style: GdsTypography.label6.copyWith(color: colors.text.graySubtle),
+                    ),
                   ),
                   Text(
                     '© Grimity. All rights reserved.',
