@@ -29,7 +29,6 @@ class GdsChatBubble extends StatefulWidget {
   final String? imageUrl;
   final bool isLiked;
   final bool isSending;
-
   final VoidCallback? onTap;
   final VoidCallback? onImageTap;
 
@@ -47,14 +46,12 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
   Widget build(BuildContext context) {
     final children = [
       if (_hasContent)
-        Flexible(
-          child: GdsGesture(
-            onTap: widget.onTap,
-            child: GdsChatTextBubble(
-              content: widget.content!,
-              type: widget.type,
-              isLiked: widget.isLiked,
-            ),
+        GdsGesture(
+          onTap: widget.onTap,
+          child: GdsChatTextBubble(
+            content: widget.content!,
+            type: widget.type,
+            isLiked: widget.isLiked,
           ),
         ),
       if (widget.isSending) const GdsChatSendingIcon(),
@@ -69,34 +66,29 @@ class _GdsChatBubbleState extends State<GdsChatBubble> {
           )
         : null;
 
-    return Padding(
-      padding: widget.type.margin(context),
-      child: Align(
-        alignment: widget.type.alignment,
-        child: Column(
-          spacing: GdsSpacing.spacing6,
-          crossAxisAlignment: widget.type.crossAxisAlignment,
-          children: [
-            if (widget.replyPreviewData != null)
-              GdsChatReplyPreview(
-                messageType: widget.type,
-                replyType: widget.replyPreviewData!.replyType,
-                replyLabel: widget.replyPreviewData!.replyLabel,
-                content: widget.replyPreviewData!.content,
-              ),
-            messageRow ?? const SizedBox.shrink(),
-            if (_hasImage)
-              GdsGesture(
-                onTap: widget.onImageTap,
-                child: GdsChatImage(
-                  imageUrl: widget.imageUrl!,
-                  type: widget.type,
-                  isLiked: widget.isLiked,
-                ),
-              ),
-          ],
-        ),
-      ),
+    return Column(
+      crossAxisAlignment: widget.type.crossAxisAlignment,
+      mainAxisSize: MainAxisSize.min,
+      spacing: GdsSpacing.spacing6,
+      children: [
+        if (widget.replyPreviewData != null)
+          GdsChatReplyPreview(
+            messageType: widget.type,
+            replyType: widget.replyPreviewData!.replyType,
+            replyLabel: widget.replyPreviewData!.replyLabel,
+            content: widget.replyPreviewData!.content,
+          ),
+        ?messageRow,
+        if (_hasImage)
+          GdsGesture(
+            onTap: widget.onImageTap,
+            child: GdsChatImage(
+              imageUrl: widget.imageUrl!,
+              type: widget.type,
+              isLiked: widget.isLiked,
+            ),
+          ),
+      ],
     );
   }
 }

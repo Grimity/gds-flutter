@@ -149,11 +149,6 @@ class _PlaygroundChatBubbleState extends State<_PlaygroundChatBubble> {
       imageUrl: widget.imageUrl,
       isLiked: _isLiked,
       isSending: widget.isSending,
-      onHeartTap: () {
-        setState(() {
-          _isLiked = !_isLiked;
-        });
-      },
       onImageTap: widget.imageUrl != null
           ? () {
               debugPrint('GdsChatBubble.onImageTap');
@@ -299,7 +294,6 @@ class _OtherChatBubbleInteractionExamples extends StatelessWidget {
                   type: GdsChatMessageType.other,
                   content: '길게 눌러 상태를 확인하세요.',
                   imageUrl: null,
-                  onHeartTap: () {},
                 ),
               ),
             ],
