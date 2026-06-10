@@ -3,8 +3,8 @@ part of '../../gds_user_item.dart';
 class GdsDefaultUserItem extends GdsUserItem {
   final String nickName;
   final GdsPersonAvatar personAvatar;
-  final GdsOutlinedButton? primaryActionButton;
-  final GdsOutlinedButton? secondaryActionButton;
+  final Widget? primaryActionButton;
+  final Widget? secondaryActionButton;
 
   const GdsDefaultUserItem({
     super.key,

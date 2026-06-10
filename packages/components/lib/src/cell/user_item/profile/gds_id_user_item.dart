@@ -4,8 +4,8 @@ class GdsIdUserItem extends GdsUserItem {
   final String nickName;
   final GdsPersonAvatar personAvatar;
   final String userId;
-  final GdsOutlinedButton? primaryActionButton;
-  final GdsOutlinedButton? secondaryActionButton;
+  final Widget? primaryActionButton;
+  final Widget? secondaryActionButton;
 
   const GdsIdUserItem({
     super.key,

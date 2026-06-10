@@ -45,8 +45,8 @@ abstract class GdsUserItem extends StatelessWidget {
     Key? key,
     required String nickName,
     required GdsPersonAvatar personAvatar,
-    GdsOutlinedButton? primaryActionButton,
-    GdsOutlinedButton? secondaryActionButton,
+    Widget? primaryActionButton,
+    Widget? secondaryActionButton,
   }) = GdsDefaultUserItem;
 
   const factory GdsUserItem.id({
@@ -54,8 +54,8 @@ abstract class GdsUserItem extends StatelessWidget {
     required String nickName,
     required GdsPersonAvatar personAvatar,
     required String userId,
-    GdsOutlinedButton? primaryActionButton,
-    GdsOutlinedButton? secondaryActionButton,
+    Widget? primaryActionButton,
+    Widget? secondaryActionButton,
   }) = GdsIdUserItem;
 
   const factory GdsUserItem.iconId({
@@ -80,8 +80,8 @@ abstract class GdsUserItem extends StatelessWidget {
     required String nickName,
     required GdsPersonAvatar personAvatar,
     required GdsFollowUserInfo followUserInfo,
-    GdsOutlinedButton? primaryActionButton,
-    GdsOutlinedButton? secondaryActionButton,
+    Widget? primaryActionButton,
+    Widget? secondaryActionButton,
   }) = GdsFollowUserItem;
 
   const factory GdsUserItem.notification({

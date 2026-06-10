@@ -4,8 +4,8 @@ class GdsFollowUserItem extends GdsUserItem {
   final String nickName;
   final GdsPersonAvatar personAvatar;
   final GdsFollowUserInfo followUserInfo;
-  final GdsOutlinedButton? primaryActionButton;
-  final GdsOutlinedButton? secondaryActionButton;
+  final Widget? primaryActionButton;
+  final Widget? secondaryActionButton;
 
   const GdsFollowUserItem({
     super.key,
