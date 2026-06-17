@@ -99,7 +99,7 @@ class _GdsSemanticColorSurfaceDark extends GdsSemanticColorSurface {
   Color get graySubtler => GdsAtomicColorGray.v80;
 
   @override
-  Color get graySubtlest => GdsAtomicColorGray.v100;
+  Color get graySubtlest => GdsAtomicColorGray.v90;
 
   @override
   Color get primaryNormal => GdsAtomicColorGreen.v70;
