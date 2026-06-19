@@ -4,6 +4,7 @@ publish_to: 'none'
 description: Grimity Design System widgetbook package
 environment:
   sdk: ^3.9.2
+resolution: workspace
 
 dependencies:
   flutter:

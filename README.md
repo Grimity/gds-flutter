@@ -70,7 +70,7 @@ Flutter 기반 Grimity Design System 모노레포입니다.
 
 ```bash
 # 1) Flutter version
-fvm install 3.35.7 && fvm use 3.35.7
+fvm install && fvm use --force
 
 # 2) Install dependencies (workspace)
 dart run melos run install
