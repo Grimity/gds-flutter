@@ -28,6 +28,7 @@ class GdsBottomSheet extends StatelessWidget {
     this.secondaryLabel,
     this.onPrimaryTap,
     this.onSecondaryTap,
+    this.showArrow = false,
   });
 
   final GdsBottomSheetType type;
@@ -38,13 +39,18 @@ class GdsBottomSheet extends StatelessWidget {
   final String? secondaryLabel;
   final VoidCallback? onPrimaryTap;
   final VoidCallback? onSecondaryTap;
+  final bool showArrow;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _Header(title: title, onClose: onClose),
+        _Header(
+          title: title,
+          onClose: onClose,
+          showArrow: showArrow,
+        ),
         Padding(
           padding: EdgeInsets.only(
             top: GdsSpacing.spacing8,
@@ -134,10 +140,12 @@ class _Header extends StatelessWidget {
   const _Header({
     required this.title,
     required this.onClose,
+    required this.showArrow,
   });
 
   final String title;
   final VoidCallback onClose;
+  final bool showArrow;
 
   @override
   Widget build(BuildContext context) {
@@ -150,11 +158,12 @@ class _Header extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: GdsSpacing.spacing12,
         children: [
-          GdsIcon.chevronLeftTightThick.build(
-            color: colors.icon.grayBold,
-            width: GdsSpacing.spacing12,
-            height: GdsSpacing.spacing24,
-          ),
+          if (showArrow)
+            GdsIcon.chevronLeftTightThick.build(
+              color: colors.icon.grayBold,
+              width: GdsSpacing.spacing12,
+              height: GdsSpacing.spacing24,
+            ),
           Expanded(
             child: Text(
               title,
