@@ -44,7 +44,9 @@ enum GdsThumbnailRatio {
 class GdsThumbnail extends StatelessWidget {
   const GdsThumbnail({
     super.key,
-    required this.imageUrl,
+    this.imageUrl,
+    this.image,
+    this.imageProvider,
     this.ratio = GdsThumbnailRatio.r1x1,
     this.borderRadius,
     this.width,
@@ -54,11 +56,29 @@ class GdsThumbnail extends StatelessWidget {
     this.fit = BoxFit.cover,
     this.placeholder,
     this.errorWidget,
-  }) : assert(width != null || height != null, 'Either width or height must be provided.'),
+  }) : assert(
+         (imageUrl != null ? 1 : 0) + (image != null ? 1 : 0) + (imageProvider != null ? 1 : 0) == 1,
+         'Exactly one of imageUrl, image, or imageProvider must be provided.',
+       ),
+       assert(width != null || height != null, 'Either width or height must be provided.'),
        assert(width == null || width > 0, 'width must be > 0 when provided.'),
        assert(height == null || height > 0, 'height must be > 0 when provided.');
 
-  final String imageUrl;
+  /// The URL of a network image.
+  ///
+  /// Exactly one of [imageUrl], [image], or [imageProvider] must be provided.
+  final String? imageUrl;
+
+  /// A Flutter image, such as one created with `Image.asset` or `Image.file`.
+  ///
+  /// The thumbnail uses the image's [Image.image] provider and applies its own
+  /// dimensions, fit, loading, and error behavior.
+  final Image? image;
+
+  /// An image source such as [AssetImage], [FileImage], or [MemoryImage].
+  ///
+  /// Exactly one of [imageUrl], [image], or [imageProvider] must be provided.
+  final ImageProvider<Object>? imageProvider;
   final GdsThumbnailRatio ratio;
   final BorderRadius? borderRadius;
   final double? width;
@@ -78,23 +98,57 @@ class GdsThumbnail extends StatelessWidget {
         aspectRatio: ratio.value,
         child: ClipRRect(
           borderRadius: borderRadius ?? BorderRadius.zero,
-          child: CachedNetworkImage(
-            imageUrl: imageUrl,
-            width: width,
-            height: height,
-            memCacheWidth: memCacheWidth,
-            memCacheHeight: memCacheHeight,
-            fit: fit,
-            placeholder: placeholder ?? defaultPlaceholder,
-            errorWidget: errorWidget ?? defaultErrorWidget,
-            fadeInDuration: Duration(milliseconds: 300),
-            fadeInCurve: Curves.easeInOut,
-            fadeOutDuration: Duration(milliseconds: 300),
-            fadeOutCurve: Curves.easeInOut,
-            placeholderFadeInDuration: Duration(milliseconds: 300),
-          ),
+          child: imageUrl != null ? _buildNetworkImage() : _buildProviderImage(),
         ),
       ),
+    );
+  }
+
+  Widget _buildNetworkImage() {
+    return CachedNetworkImage(
+      imageUrl: imageUrl!,
+      width: width,
+      height: height,
+      memCacheWidth: memCacheWidth,
+      memCacheHeight: memCacheHeight,
+      fit: fit,
+      placeholder: placeholder ?? defaultPlaceholder,
+      errorWidget: errorWidget ?? defaultErrorWidget,
+      fadeInDuration: const Duration(milliseconds: 300),
+      fadeInCurve: Curves.easeInOut,
+      fadeOutDuration: const Duration(milliseconds: 300),
+      fadeOutCurve: Curves.easeInOut,
+      placeholderFadeInDuration: const Duration(milliseconds: 300),
+    );
+  }
+
+  Widget _buildProviderImage() {
+    final provider = imageProvider ?? image!.image;
+
+    return Image(
+      image: ResizeImage.resizeIfNeeded(memCacheWidth, memCacheHeight, provider),
+      width: width,
+      height: height,
+      fit: fit,
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded) return child;
+
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            (placeholder ?? defaultPlaceholder)(context, ''),
+            AnimatedOpacity(
+              opacity: frame == null ? 0 : 1,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+              child: child,
+            ),
+          ],
+        );
+      },
+      errorBuilder: (context, error, _) {
+        return (errorWidget ?? defaultErrorWidget)(context, '', error);
+      },
     );
   }
 

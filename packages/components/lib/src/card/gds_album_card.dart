@@ -23,6 +23,8 @@ class GdsAlbumCard extends StatefulWidget {
   const GdsAlbumCard({
     super.key,
     this.imageUrl = '',
+    this.image,
+    this.imageProvider,
     this.title,
     this.nickname,
     this.heartCount,
@@ -42,12 +44,19 @@ class GdsAlbumCard extends StatefulWidget {
     this.onPrimaryBadgeTap,
     this.onCloseTap,
     this.onNicknameTap,
-  }) : assert(width == null || width > 0, 'width must be greater than 0 when provided.'),
+  }) : assert(
+         (image == null && imageProvider == null) || imageUrl == '',
+         'imageUrl cannot be combined with image or imageProvider.',
+       ),
+       assert(image == null || imageProvider == null, 'image and imageProvider cannot be combined.'),
+       assert(width == null || width > 0, 'width must be greater than 0 when provided.'),
        assert(rank > 0, 'rank must be greater than 0.');
 
   static const double frameWidth = 160;
 
   final String imageUrl;
+  final Image? image;
+  final ImageProvider<Object>? imageProvider;
   final String? title;
   final String? nickname;
   final int? heartCount;
@@ -118,6 +127,8 @@ class _GdsAlbumCardState extends State<GdsAlbumCard> {
       children: [
         _AlbumThumbnail(
           imageUrl: widget.imageUrl,
+          image: widget.image,
+          imageProvider: widget.imageProvider,
           width: widget.resolvedWidth,
           state: widget.state,
           type: widget.type,
@@ -165,6 +176,8 @@ class _GdsAlbumCardState extends State<GdsAlbumCard> {
 class _AlbumThumbnail extends StatelessWidget {
   const _AlbumThumbnail({
     required this.imageUrl,
+    required this.image,
+    required this.imageProvider,
     required this.width,
     required this.state,
     required this.type,
@@ -179,6 +192,8 @@ class _AlbumThumbnail extends StatelessWidget {
   });
 
   final String imageUrl;
+  final Image? image;
+  final ImageProvider<Object>? imageProvider;
   final double width;
   final GdsAlbumCardState state;
   final GdsAlbumCardType type;
@@ -193,28 +208,20 @@ class _AlbumThumbnail extends StatelessWidget {
 
   bool get isChecked => state == GdsAlbumCardState.checked;
   bool get isImageChecked => type == GdsAlbumCardType.image && isChecked;
-
   bool get showsImagePill => type == GdsAlbumCardType.image || type == GdsAlbumCardType.imageUpload;
-
   bool get showsCloseButton => type == GdsAlbumCardType.image || type == GdsAlbumCardType.imageUpload;
-
   bool get showsRankBadge => type == GdsAlbumCardType.rank;
-
   bool get showsCheckbox => type == GdsAlbumCardType.check;
-
   bool get showsAlbumCountBadge => type == GdsAlbumCardType.album && isChecked;
-
   bool get showsFilledOverlay => (type == GdsAlbumCardType.check || type == GdsAlbumCardType.album) && isChecked;
-
   bool get showsImageBorder => type == GdsAlbumCardType.image && isChecked;
-
   bool get showsCheckBorder => type == GdsAlbumCardType.check;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
     final borderRadius = BorderRadius.circular(GdsRadius.md);
-    final hasImage = imageUrl.trim().isNotEmpty;
+    final hasImage = imageUrl.trim().isNotEmpty || image != null || imageProvider != null;
     final showsUploadPlaceholder = type == GdsAlbumCardType.imageUpload && !hasImage;
 
     return SizedBox(
@@ -235,7 +242,9 @@ class _AlbumThumbnail extends StatelessWidget {
                   _ImageUploadPlaceholder(width: width)
                 else
                   GdsThumbnail(
-                    imageUrl: imageUrl,
+                    imageUrl: image == null && imageProvider == null ? imageUrl : null,
+                    image: image,
+                    imageProvider: imageProvider,
                     width: width,
                     ratio: GdsThumbnailRatio.r1x1,
                     borderRadius: borderRadius,
