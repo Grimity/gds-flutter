@@ -89,6 +89,7 @@ class GdsAlert extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: colors.surface.base,
+        border: Border.all(color: colors.border.graySubtler),
         borderRadius: BorderRadius.circular(GdsRadius.xl),
         boxShadow: GdsShadows.level2,
       ),
