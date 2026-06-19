@@ -73,39 +73,41 @@ class GdsModal extends StatelessWidget {
               child: body,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: GdsSpacing.spacing20,
-              right: GdsSpacing.spacing20,
-              bottom: GdsSpacing.spacing20,
-            ),
-            child: Row(
-              spacing: GdsSpacing.spacing8,
-              children: [
-                if (onSecondary != null) ...[
-                  Expanded(
-                    child: GdsOutlinedButton(
-                      size: GdsOutlinedButtonSize.large,
-                      text: secondaryLabel,
-                      onPressed: onSecondary,
-                      expanded: true,
-                    ),
-                  ),
-                ],
 
-                if (onPrimary != null) ...[
-                  Expanded(
-                    child: GdsSolidButton(
-                      size: GdsSolidButtonSize.large,
-                      text: primaryLabel,
-                      onPressed: onPrimary,
-                      expanded: true,
+          if (onPrimary != null || onSecondary != null)
+            Padding(
+              padding: EdgeInsets.only(
+                left: GdsSpacing.spacing20,
+                right: GdsSpacing.spacing20,
+                bottom: GdsSpacing.spacing20,
+              ),
+              child: Row(
+                spacing: GdsSpacing.spacing8,
+                children: [
+                  if (onSecondary != null) ...[
+                    Expanded(
+                      child: GdsOutlinedButton(
+                        size: GdsOutlinedButtonSize.large,
+                        text: secondaryLabel,
+                        onPressed: onSecondary,
+                        expanded: true,
+                      ),
                     ),
-                  ),
+                  ],
+
+                  if (onPrimary != null) ...[
+                    Expanded(
+                      child: GdsSolidButton(
+                        size: GdsSolidButtonSize.large,
+                        text: primaryLabel,
+                        onPressed: onPrimary,
+                        expanded: true,
+                      ),
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
-          ),
         ],
       ),
     );
