@@ -137,6 +137,7 @@ class GdsIconButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final GdsIconButtonType type;
   final bool enabled;
+  final LayerLink? layerLink;
 
   /// null이면 버튼 상태 색상을 따르고, 값이 있으면 해당 색상을 아이콘에 우선 적용합니다.
   final Color? iconColor;
@@ -148,6 +149,7 @@ class GdsIconButton extends StatefulWidget {
     this.type = GdsIconButtonType.normal,
     this.enabled = true,
     this.iconColor,
+    this.layerLink,
   });
 
   const GdsIconButton.small({
@@ -156,6 +158,7 @@ class GdsIconButton extends StatefulWidget {
     required this.onPressed,
     this.enabled = true,
     this.iconColor,
+    this.layerLink,
   }) : type = GdsIconButtonType.small;
 
   const GdsIconButton.normal({
@@ -164,6 +167,7 @@ class GdsIconButton extends StatefulWidget {
     required this.onPressed,
     this.enabled = true,
     this.iconColor,
+    this.layerLink,
   }) : type = GdsIconButtonType.normal;
 
   const GdsIconButton.outlined({
@@ -172,6 +176,7 @@ class GdsIconButton extends StatefulWidget {
     required this.onPressed,
     this.enabled = true,
     this.iconColor,
+    this.layerLink,
   }) : type = GdsIconButtonType.outlined;
 
   const GdsIconButton.solid({
@@ -180,6 +185,7 @@ class GdsIconButton extends StatefulWidget {
     required this.onPressed,
     this.enabled = true,
     this.iconColor,
+    this.layerLink,
   }) : type = GdsIconButtonType.solid;
 
   @override
@@ -212,7 +218,7 @@ class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProvider
       height: type.iconSize,
     );
 
-    return Focus(
+    final child = Focus(
       onFocusChange: (focused) => setState(() => _isFocused = focused),
       child: MouseRegion(
         cursor: _isInteractive ? SystemMouseCursors.click : SystemMouseCursors.basic,
@@ -239,5 +245,11 @@ class _GdsIconButtonState extends State<GdsIconButton> with SingleTickerProvider
         ),
       ),
     );
+
+    if (widget.layerLink != null) {
+      return CompositedTransformTarget(link: widget.layerLink!, child: child);
+    }
+
+    return child;
   }
 }
