@@ -12,7 +12,7 @@ class GdsBottomSheet extends StatelessWidget {
     super.key,
     required this.title,
     required this.child,
-    required this.onClose,
+    this.onClose,
     this.primaryLabel,
     this.secondaryLabel,
     this.onPrimaryTap,
