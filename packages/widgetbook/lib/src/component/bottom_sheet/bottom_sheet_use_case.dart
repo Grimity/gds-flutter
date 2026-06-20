@@ -20,12 +20,6 @@ Widget buildGdsBottomSheetUseCase(BuildContext context) {
 Widget _buildBottomSheetSection(BuildContext context) {
   final colors = context.gdsColors;
 
-  final type = context.knobs.list<GdsBottomSheetType>(
-    label: 'type',
-    options: GdsBottomSheetType.values,
-    labelBuilder: (t) => t.displayName,
-  );
-
   final title = context.knobs.string(
     label: "title",
     initialValue: "제목",
@@ -41,20 +35,28 @@ Widget _buildBottomSheetSection(BuildContext context) {
     initialValue: "label",
   );
 
+  final primaryButton = context.knobs.boolean(
+    label: 'primary button',
+    initialValue: true,
+  );
+
+  final secondaryButton = context.knobs.boolean(
+    label: 'primary button',
+    initialValue: true,
+  );
+
   return WidgetbookPlayground(
     info: [
-      'type: ${type.displayName}',
       'title: $title',
       'label: $primaryLabel / $secondaryLabel',
     ],
     child: Container(
       constraints: BoxConstraints(maxWidth: 375),
       child: GdsBottomSheet(
-        type: type,
         title: title,
         onClose: () => debugPrint("Close Tapped"),
-        onPrimaryTap: () => debugPrint("Primary Tapped"),
-        onSecondaryTap: () => debugPrint("Primary Tapped"),
+        onPrimaryTap: primaryButton ? () => debugPrint("Primary Tapped") : null,
+        onSecondaryTap: secondaryButton ? () => debugPrint("Primary Tapped") : null,
         primaryLabel: primaryLabel,
         secondaryLabel: secondaryLabel,
         child: Container(

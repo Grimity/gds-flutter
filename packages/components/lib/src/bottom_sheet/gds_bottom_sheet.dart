@@ -3,16 +3,6 @@ import 'package:flutter_scroll_bottom_sheet/flutter_bottom_sheet.dart';
 import 'package:gds_components/gds_components.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
-enum GdsBottomSheetType {
-  primary("Primary"),
-  secondary("Secondary"),
-  tertiary("Tertiary"),
-  twoButton("2 Button");
-
-  final String displayName;
-  const GdsBottomSheetType(this.displayName);
-}
-
 /// ```dart
 /// final bottomSheet = GdsBottomSheet(...);
 /// bottomSheet.open(context);
@@ -20,7 +10,6 @@ enum GdsBottomSheetType {
 class GdsBottomSheet extends StatelessWidget {
   const GdsBottomSheet({
     super.key,
-    required this.type,
     required this.title,
     required this.child,
     required this.onClose,
@@ -31,10 +20,9 @@ class GdsBottomSheet extends StatelessWidget {
     this.showArrow = false,
   });
 
-  final GdsBottomSheetType type;
   final String title;
   final Widget child;
-  final VoidCallback onClose;
+  final VoidCallback? onClose;
   final String? primaryLabel;
   final String? secondaryLabel;
   final VoidCallback? onPrimaryTap;
@@ -48,7 +36,7 @@ class GdsBottomSheet extends StatelessWidget {
       children: [
         _Header(
           title: title,
-          onClose: onClose,
+          onClose: onClose ?? () => Navigator.pop(context),
           showArrow: showArrow,
         ),
         Padding(
@@ -63,11 +51,11 @@ class GdsBottomSheet extends StatelessWidget {
             children: [
               child,
 
-              if (type != GdsBottomSheetType.tertiary)
+              if (onPrimaryTap != null || onSecondaryTap != null)
                 Row(
                   spacing: GdsSpacing.spacing8,
                   children: [
-                    if (type == GdsBottomSheetType.secondary || type == GdsBottomSheetType.twoButton)
+                    if (onSecondaryTap != null)
                       Expanded(
                         child: GdsOutlinedButton(
                           size: GdsOutlinedButtonSize.large,
@@ -77,7 +65,7 @@ class GdsBottomSheet extends StatelessWidget {
                         ),
                       ),
 
-                    if (type == GdsBottomSheetType.primary || type == GdsBottomSheetType.twoButton)
+                    if (onPrimaryTap != null)
                       Expanded(
                         child: GdsSolidButton(
                           size: GdsSolidButtonSize.large,
