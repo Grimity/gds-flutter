@@ -2,6 +2,7 @@ part of '../gds_user_info.dart';
 
 class GdsDefaultUserInfo extends GdsUserInfo {
   final String nickName;
+  final bool showNickName;
   final VoidCallback? onNameTap;
   final bool showHeart;
   final int? heartCount;
@@ -13,6 +14,7 @@ class GdsDefaultUserInfo extends GdsUserInfo {
   const GdsDefaultUserInfo({
     super.key,
     required this.nickName,
+    this.showNickName = true,
     this.onNameTap,
     required this.showHeart,
     this.heartCount,
@@ -32,19 +34,20 @@ class GdsDefaultUserInfo extends GdsUserInfo {
 
     return Row(
       children: [
-        Flexible(
-          child: GdsGesture(
-            onTap: onNameTap,
-            child: Text(
-              nickName,
-              style: GdsTypography.label6.copyWith(color: colors.text.graySubtle),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+        if (showNickName)
+          Flexible(
+            child: GdsGesture(
+              onTap: onNameTap,
+              child: Text(
+                nickName,
+                style: GdsTypography.label6.copyWith(color: colors.text.graySubtle),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ),
-        ),
         if (showHeart && heartCount != null) ...[
-          dotSeparator,
+          if (showNickName) dotSeparator,
           Row(
             children: [
               GdsIcon.heartOutline.build(

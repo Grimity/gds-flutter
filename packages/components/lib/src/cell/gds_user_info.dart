@@ -16,6 +16,7 @@ abstract class GdsUserInfo extends StatelessWidget {
   const factory GdsUserInfo.defaultType({
     Key? key,
     required String nickName,
+    bool showNickName,
     VoidCallback? onNameTap,
     required bool showHeart,
     int? heartCount,
