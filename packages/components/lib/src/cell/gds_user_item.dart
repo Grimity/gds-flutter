@@ -153,7 +153,8 @@ abstract class GdsUserItem extends StatelessWidget {
     required VoidCallback onLikeTap,
     required int likeCount,
     required VoidCallback onReplyTap,
-    required VoidCallback onMoreHorizontalTap,
+    required VoidCallback onMenuTap,
+    LayerLink? menuLayerLink,
   }) = GdsCommentUserItem;
 
   const factory GdsUserItem.commentPlus({
@@ -166,7 +167,8 @@ abstract class GdsUserItem extends StatelessWidget {
     required VoidCallback onLikeTap,
     required int likeCount,
     required VoidCallback onReplyTap,
-    required VoidCallback onMoreHorizontalTap,
+    required VoidCallback onMenuTap,
+    LayerLink? menuLayerLink,
   }) = GdsCommentPlusUserItem;
 
   const factory GdsUserItem.commentXs({
@@ -178,7 +180,8 @@ abstract class GdsUserItem extends StatelessWidget {
     required VoidCallback onLikeTap,
     required int likeCount,
     required VoidCallback onReplyTap,
-    required VoidCallback onMoreHorizontalTap,
+    required VoidCallback onMenuTap,
+    LayerLink? menuLayerLink,
   }) = GdsCommentUserItem.xs;
 
   const factory GdsUserItem.commentPlusXs({
@@ -191,7 +194,8 @@ abstract class GdsUserItem extends StatelessWidget {
     required VoidCallback onLikeTap,
     required int likeCount,
     required VoidCallback onReplyTap,
-    required VoidCallback onMoreHorizontalTap,
+    required VoidCallback onMenuTap,
+    LayerLink? menuLayerLink,
   }) = GdsCommentPlusUserItem.xs;
 
   const factory GdsUserItem.commentDeleted({

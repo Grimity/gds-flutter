@@ -10,8 +10,9 @@ class _GdsCommentUserItemFrame extends StatelessWidget {
     required this.likeCount,
     required this.onLikeTap,
     required this.onReplyTap,
-    required this.onMoreHorizontalTap,
+    required this.onMenuTap,
     this.mentionText,
+    this.menuLayerLink,
   });
 
   final _GdsCommentUserItemType type;
@@ -23,7 +24,8 @@ class _GdsCommentUserItemFrame extends StatelessWidget {
   final int likeCount;
   final VoidCallback onLikeTap;
   final VoidCallback onReplyTap;
-  final VoidCallback onMoreHorizontalTap;
+  final VoidCallback onMenuTap;
+  final LayerLink? menuLayerLink;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,8 @@ class _GdsCommentUserItemFrame extends StatelessWidget {
         Expanded(child: commentUserInfo),
         GdsIconButton.small(
           icon: GdsIcon.dotMenuHorizontal,
-          onPressed: onMoreHorizontalTap,
+          onPressed: onMenuTap,
+          layerLink: menuLayerLink,
         ),
       ],
     );

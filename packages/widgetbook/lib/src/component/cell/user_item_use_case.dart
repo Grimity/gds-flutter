@@ -384,7 +384,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
         onLikeTap: () {},
         likeCount: likeCount,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       );
 
       info = [
@@ -427,7 +427,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
         onLikeTap: () {},
         likeCount: likeCount,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       );
 
       info = [
@@ -468,7 +468,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
         onLikeTap: () {},
         likeCount: likeCount,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       );
 
       info = [
@@ -511,7 +511,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
         onLikeTap: () {},
         likeCount: likeCount,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       );
 
       info = [
@@ -751,7 +751,7 @@ class _UserItemTypeMatrix extends StatelessWidget {
         onLikeTap: () {},
         likeCount: 21,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       ),
       _UserItemPreviewType.commentPlus => GdsUserItem.commentPlus(
         personAvatar: _buildAvatar(null, size: GdsAvatarSize.xs),
@@ -767,7 +767,7 @@ class _UserItemTypeMatrix extends StatelessWidget {
         onLikeTap: () {},
         likeCount: 21,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       ),
       _UserItemPreviewType.commentXs => GdsUserItem.commentXs(
         personAvatar: _buildAvatar(null, size: GdsAvatarSize.xs),
@@ -782,7 +782,7 @@ class _UserItemTypeMatrix extends StatelessWidget {
         onLikeTap: () {},
         likeCount: 21,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       ),
       _UserItemPreviewType.commentPlusXs => GdsUserItem.commentPlusXs(
         personAvatar: _buildAvatar(null, size: GdsAvatarSize.xs),
@@ -798,7 +798,7 @@ class _UserItemTypeMatrix extends StatelessWidget {
         onLikeTap: () {},
         likeCount: 21,
         onReplyTap: () {},
-        onMoreHorizontalTap: () {},
+        onMenuTap: () {},
       ),
       _UserItemPreviewType.commentDeleted => const GdsUserItem.commentDeleted(),
     };

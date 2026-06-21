@@ -10,7 +10,8 @@ class GdsCommentUserItem extends GdsUserItem {
     required this.onLikeTap,
     required this.likeCount,
     required this.onReplyTap,
-    required this.onMoreHorizontalTap,
+    required this.onMenuTap,
+    this.menuLayerLink,
   }) : _type = _GdsCommentUserItemType.comment;
 
   const GdsCommentUserItem.xs({
@@ -22,7 +23,8 @@ class GdsCommentUserItem extends GdsUserItem {
     required this.onLikeTap,
     required this.likeCount,
     required this.onReplyTap,
-    required this.onMoreHorizontalTap,
+    required this.onMenuTap,
+    this.menuLayerLink,
   }) : _type = _GdsCommentUserItemType.commentXs;
 
   final _GdsCommentUserItemType _type;
@@ -33,7 +35,8 @@ class GdsCommentUserItem extends GdsUserItem {
   final VoidCallback onLikeTap;
   final int likeCount;
   final VoidCallback onReplyTap;
-  final VoidCallback onMoreHorizontalTap;
+  final VoidCallback onMenuTap;
+  final LayerLink? menuLayerLink;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,8 @@ class GdsCommentUserItem extends GdsUserItem {
       likeCount: likeCount,
       onLikeTap: onLikeTap,
       onReplyTap: onReplyTap,
-      onMoreHorizontalTap: onMoreHorizontalTap,
+      onMenuTap: onMenuTap,
+      menuLayerLink: menuLayerLink,
     );
   }
 }
