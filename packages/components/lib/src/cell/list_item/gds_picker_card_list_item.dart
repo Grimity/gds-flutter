@@ -29,11 +29,9 @@ class GdsPickerCardListItem extends GdsListItem {
             width: style.borderWidth,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: GdsSpacing.spacing4,
-            vertical: GdsSpacing.spacing6,
-          ),
+        child: Container(
+          padding: const EdgeInsets.all(GdsSpacing.spacing12),
+          alignment: Alignment.center,
           child: Text(
             text,
             maxLines: 1,
