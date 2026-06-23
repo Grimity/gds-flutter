@@ -374,18 +374,22 @@ class _Title extends StatelessWidget {
       onBack: onBack,
       body: Row(
         children: [
-          if (showTitle) Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+          if (showTitle) ...[
+            Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+          ],
 
           Expanded(child: SizedBox()),
 
-          GdsTopNavigation._buildNavigationIcons(
-            context: context,
-            onSearch: onSearch,
-            onAvatar: onAvatar,
-            onNotification: onNotification,
-            avatarImageUrl: avatarImageUrl,
-            hasNotification: hasNotification,
-          ),
+          if (showIcons) ...[
+            GdsTopNavigation._buildNavigationIcons(
+              context: context,
+              onSearch: onSearch,
+              onAvatar: onAvatar,
+              onNotification: onNotification,
+              avatarImageUrl: avatarImageUrl,
+              hasNotification: hasNotification,
+            ),
+          ],
         ],
       ),
     );
@@ -444,11 +448,15 @@ class _IconButton extends StatelessWidget {
       onBack: onBack,
       body: Row(
         children: [
-          if (showTitle) Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+          if (showTitle) ...[
+            Text(title, style: GdsTypography.subtitle2.copyWith(color: colors.text.grayBold)),
+          ],
 
           Expanded(child: SizedBox()),
 
-          if (showIcons) Row(spacing: GdsSpacing.spacing16, children: iconRows),
+          if (showIcons) ...[
+            Row(spacing: GdsSpacing.spacing16, children: iconRows),
+          ],
         ],
       ),
     );
