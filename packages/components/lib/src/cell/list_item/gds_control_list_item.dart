@@ -8,6 +8,7 @@ class GdsControlListItem extends GdsListItem {
   final String text;
   final GdsListItemState state;
   final VoidCallback onTap;
+  final EdgeInsets? padding;
   final _GdsControlListItemType _type;
 
   const GdsControlListItem.checkbox({
@@ -15,6 +16,7 @@ class GdsControlListItem extends GdsListItem {
     required this.text,
     required this.state,
     required this.onTap,
+    this.padding,
   }) : _type = _GdsControlListItemType.checkBox;
 
   const GdsControlListItem.radio({
@@ -22,6 +24,7 @@ class GdsControlListItem extends GdsListItem {
     required this.text,
     required this.state,
     required this.onTap,
+    this.padding,
   }) : _type = _GdsControlListItemType.radio;
 
   const GdsControlListItem.checkmark({
@@ -29,6 +32,7 @@ class GdsControlListItem extends GdsListItem {
     required this.text,
     required this.state,
     required this.onTap,
+    this.padding,
   }) : _type = _GdsControlListItemType.checkMark;
 
   Widget _buildControl({
@@ -63,34 +67,43 @@ class GdsControlListItem extends GdsListItem {
       enabled: !state.isDisabled,
     );
 
-    return SizedBox(
-      height: _height,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: style.backgroundColor,
-          border: style.border,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: GdsSpacing.spacing12,
-            vertical: GdsSpacing.spacing8,
-          ),
-          child: Row(
-            children: [
-              IgnorePointer(
-                ignoring: state.isDisabled,
-                child: control,
+    EdgeInsets padding = EdgeInsets.symmetric(
+      horizontal: GdsSpacing.spacing12,
+      vertical: GdsSpacing.spacing8,
+    );
+
+    if (this.padding != null) {
+      padding.add(this.padding!);
+    }
+
+    return IgnorePointer(
+      ignoring: state.isDisabled,
+      child: GdsGesture(
+        onTap: onTap,
+        child: SizedBox(
+          height: _height,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: style.backgroundColor,
+              border: style.border,
+            ),
+            child: Padding(
+              padding: padding,
+              child: Row(
+                children: [
+                  control,
+                  const SizedBox(width: GdsSpacing.spacing8),
+                  Expanded(
+                    child: Text(
+                      text,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: GdsTypography.label1.copyWith(color: style.textColor),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: GdsSpacing.spacing8),
-              Expanded(
-                child: Text(
-                  text,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: GdsTypography.label1.copyWith(color: style.textColor),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
