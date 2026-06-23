@@ -88,6 +88,7 @@ abstract class GdsListItem extends StatelessWidget {
     required String text,
     required GdsListItemState state,
     required VoidCallback onTap,
+    EdgeInsets padding,
   }) = GdsControlListItem.checkbox;
 
   const factory GdsListItem.radio({
@@ -95,6 +96,7 @@ abstract class GdsListItem extends StatelessWidget {
     required String text,
     required GdsListItemState state,
     required VoidCallback onTap,
+    EdgeInsets padding,
   }) = GdsControlListItem.radio;
 
   const factory GdsListItem.checkMark({
@@ -102,5 +104,6 @@ abstract class GdsListItem extends StatelessWidget {
     required String text,
     required GdsListItemState state,
     required VoidCallback onTap,
+    EdgeInsets padding,
   }) = GdsControlListItem.checkmark;
 }
