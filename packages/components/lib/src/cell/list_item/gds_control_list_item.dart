@@ -8,7 +8,7 @@ class GdsControlListItem extends GdsListItem {
   final String text;
   final GdsListItemState state;
   final VoidCallback onTap;
-  final EdgeInsets? padding;
+  final bool isZeroPadding;
   final _GdsControlListItemType _type;
 
   const GdsControlListItem.checkbox({
@@ -16,7 +16,7 @@ class GdsControlListItem extends GdsListItem {
     required this.text,
     required this.state,
     required this.onTap,
-    this.padding,
+    this.isZeroPadding = false,
   }) : _type = _GdsControlListItemType.checkBox;
 
   const GdsControlListItem.radio({
@@ -24,7 +24,7 @@ class GdsControlListItem extends GdsListItem {
     required this.text,
     required this.state,
     required this.onTap,
-    this.padding,
+    this.isZeroPadding = false,
   }) : _type = _GdsControlListItemType.radio;
 
   const GdsControlListItem.checkmark({
@@ -32,7 +32,7 @@ class GdsControlListItem extends GdsListItem {
     required this.text,
     required this.state,
     required this.onTap,
-    this.padding,
+    this.isZeroPadding = false,
   }) : _type = _GdsControlListItemType.checkMark;
 
   Widget _buildControl({
@@ -67,14 +67,10 @@ class GdsControlListItem extends GdsListItem {
       enabled: !state.isDisabled,
     );
 
-    EdgeInsets padding = EdgeInsets.symmetric(
-      horizontal: GdsSpacing.spacing12,
+    final padding = EdgeInsets.symmetric(
+      horizontal: isZeroPadding ? 0 : GdsSpacing.spacing12,
       vertical: GdsSpacing.spacing8,
     );
-
-    if (this.padding != null) {
-      padding.add(this.padding!);
-    }
 
     return IgnorePointer(
       ignoring: state.isDisabled,
