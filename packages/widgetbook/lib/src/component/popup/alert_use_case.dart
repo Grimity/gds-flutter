@@ -14,12 +14,6 @@ Widget buildGdsAlertUseCase(BuildContext context) {
 }
 
 Widget _buildPlaygroundSection(BuildContext context) {
-  final type = context.knobs.list<GdsAlertType>(
-    label: 'type',
-    options: GdsAlertType.values,
-    labelBuilder: (v) => v.name,
-  );
-
   final size = context.knobs.list<GdsAlertSize>(
     label: 'size',
     options: GdsAlertSize.values,
@@ -36,20 +30,28 @@ Widget _buildPlaygroundSection(BuildContext context) {
     initialValue: '상황에 대한 설명이 들어가요.\n설명은 최대 2줄까지만 작성해요.',
   );
 
+  final primary = context.knobs.boolean(
+    label: 'primaryButton',
+    initialValue: true,
+  );
+
+  final secondary = context.knobs.boolean(
+    label: 'secondaryButton',
+    initialValue: true,
+  );
+
   return WidgetbookPlayground(
     info: [
-      'type: ${type.name}',
       'size: ${size.name}',
       'title: $title}',
       'description: $description',
     ],
     child: GdsAlert(
-      type: type,
       size: size,
       title: title,
       description: description,
-      onPrimaryTap: () => debugPrint('Primary Tapped'),
-      onSecondaryTap: () => debugPrint('Secondary Tapped'),
+      onPrimaryTap: primary ? () => debugPrint('Primary Tapped') : null,
+      onSecondaryTap: secondary ? () => debugPrint('Secondary Tapped') : null,
     ),
   );
 }
