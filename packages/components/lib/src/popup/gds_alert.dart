@@ -3,12 +3,6 @@ import 'package:gds_components/src/button/button.dart';
 import 'package:gds_components/src/popup/overlay/gds_popup_route.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 
-enum GdsAlertType {
-  illust,
-  content,
-  normal,
-}
-
 enum GdsAlertSize {
   xl,
   md,
@@ -21,20 +15,20 @@ enum GdsAlertSize {
 class GdsAlert extends StatelessWidget {
   const GdsAlert({
     super.key,
-    required this.type,
     required this.size,
     required this.title,
     required this.description,
+    this.icon,
     this.primaryLabel = 'label',
     this.secondaryLabel = 'label',
     this.onPrimaryTap,
     this.onSecondaryTap,
   });
 
-  final GdsAlertType type;
   final GdsAlertSize size;
   final String title;
   final String description;
+  final GdsIcon? icon;
   final String primaryLabel;
   final String secondaryLabel;
   final VoidCallback? onPrimaryTap;
@@ -103,8 +97,8 @@ class GdsAlert extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (type == GdsAlertType.illust) ...[
-                GdsIcon.success.build(width: 60, height: 60),
+              if (icon != null) ...[
+                icon!.build(width: 60, height: 60),
                 SizedBox(height: GdsSpacing.spacing16),
               ],
               Text(
@@ -128,7 +122,7 @@ class GdsAlert extends StatelessWidget {
           Row(
             spacing: GdsSpacing.spacing6,
             children: [
-              if (type != GdsAlertType.normal) ...[
+              if (onSecondaryTap != null) ...[
                 Expanded(
                   child: GdsOutlinedButton(
                     size: outlinedButtonSize,
@@ -138,14 +132,17 @@ class GdsAlert extends StatelessWidget {
                   ),
                 ),
               ],
-              Expanded(
-                child: GdsSolidButton(
-                  size: solidButtonSize,
-                  text: primaryLabel,
-                  expanded: true,
-                  onPressed: onPrimaryTap,
+
+              if (onPrimaryTap != null) ...[
+                Expanded(
+                  child: GdsSolidButton(
+                    size: solidButtonSize,
+                    text: primaryLabel,
+                    expanded: true,
+                    onPressed: onPrimaryTap,
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         ],
