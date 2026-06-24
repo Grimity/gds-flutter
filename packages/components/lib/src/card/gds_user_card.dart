@@ -39,6 +39,7 @@ class GdsUserCard extends StatelessWidget {
     this.followingCount,
     this.latestThumbnails = const [],
     this.actionLabel = '팔로우',
+    this.isActionSoild = true,
     this.onActionPressed,
     this.onTap,
   }) : assert(
@@ -68,6 +69,7 @@ class GdsUserCard extends StatelessWidget {
   final int? followingCount;
   final List<GdsUserCardThumbnailData> latestThumbnails;
   final String actionLabel;
+  final bool isActionSoild;
   final VoidCallback? onActionPressed;
   final VoidCallback? onTap;
 
@@ -90,6 +92,7 @@ class GdsUserCard extends StatelessWidget {
         followerCount: followerCount,
         description: description!,
         actionLabel: actionLabel,
+        isActionSolid: isActionSoild,
         onActionPressed: onActionPressed,
       ),
       GdsUserCardType.tagView => _TagViewUserCard(
@@ -209,6 +212,7 @@ class _SearchUserCard extends StatelessWidget {
     required this.followerCount,
     required this.description,
     required this.actionLabel,
+    required this.isActionSolid,
     required this.onActionPressed,
   });
 
@@ -218,6 +222,7 @@ class _SearchUserCard extends StatelessWidget {
   final int followerCount;
   final String description;
   final String actionLabel;
+  final bool isActionSolid;
   final VoidCallback? onActionPressed;
 
   @override
@@ -298,11 +303,20 @@ class _SearchUserCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          GdsSolidButton(
-                            text: actionLabel,
-                            size: GdsSolidButtonSize.small,
-                            onPressed: onActionPressed,
-                          ),
+
+                          if (isActionSolid) ...[
+                            GdsSolidButton(
+                              text: actionLabel,
+                              size: GdsSolidButtonSize.small,
+                              onPressed: onActionPressed,
+                            ),
+                          ] else ...[
+                            GdsOutlinedButton(
+                              text: actionLabel,
+                              size: GdsOutlinedButtonSize.small,
+                              onPressed: onActionPressed,
+                            ),
+                          ],
                         ],
                       ),
                       Text(
