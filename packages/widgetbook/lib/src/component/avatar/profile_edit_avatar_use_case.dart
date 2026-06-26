@@ -103,6 +103,7 @@ Widget _buildAvatar({
     ),
     _ProfileEditAvatarSize.ml => GdsProfileEditAvatar.ml(
       imageUrl: imageUrl,
+      onTap: () => debugPrint('GdsProfileEditAvatar.ml edit tapped'),
     ),
   };
 }

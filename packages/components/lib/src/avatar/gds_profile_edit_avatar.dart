@@ -13,19 +13,19 @@ class GdsProfileEditAvatar extends StatelessWidget {
   const GdsProfileEditAvatar.ml({
     super.key,
     required this.imageUrl,
-  }) : size = GdsAvatarSize.ml,
-       onTap = null;
+    required this.onTap,
+  }) : size = GdsAvatarSize.ml;
 
   final String? imageUrl;
   final GdsAvatarSize size;
-  final VoidCallback? onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final avatar = GdsPersonAvatar(imageUrl: imageUrl, size: size);
 
     if (size == GdsAvatarSize.ml) {
-      return avatar;
+      return GdsGesture(onTap: onTap, child: avatar);
     }
 
     final colors = context.gdsColors;
