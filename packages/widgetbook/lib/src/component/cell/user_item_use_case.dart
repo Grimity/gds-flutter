@@ -181,8 +181,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
         personAvatar: _buildAvatar(avatarImageUrl),
         followUserInfo: GdsFollowUserInfo(
           followerCount: followerCount,
-          showFollowing: showFollowing,
-          followingCount: followingCount,
+          followingCount: showFollowing ? followingCount : null,
         ),
         primaryActionButton: showPrimaryAction ? _buildOutlinedAction('팔로잉') : null,
         secondaryActionButton: showSecondaryAction ? _buildOutlinedAction('메시지') : null,
@@ -686,7 +685,6 @@ class _UserItemTypeMatrix extends StatelessWidget {
         personAvatar: _buildAvatar(null),
         followUserInfo: GdsFollowUserInfo(
           followerCount: 123,
-          showFollowing: true,
           followingCount: 32,
         ),
         primaryActionButton: _buildOutlinedAction('Label'),

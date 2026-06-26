@@ -117,18 +117,11 @@ class GdsSidebarNavigation extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                spacing: GdsSpacing.spacing8,
-                children: [
-                  GdsGesture(
-                    onTap: onFollowerTap,
-                    child: _UserInfo(label: '팔로워', value: '$followerCount'),
-                  ),
-                  GdsGesture(
-                    onTap: onFollowingTap,
-                    child: _UserInfo(label: '팔로잉', value: '$followingCount'),
-                  ),
-                ],
+              GdsUserInfo.follow(
+                followerCount: followerCount,
+                followingCount: followingCount,
+                onFollowerTap: onFollowerTap,
+                onFollowingTap: onFollowingTap,
               ),
             ],
           ),
@@ -194,31 +187,6 @@ class GdsSidebarNavigation extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _UserInfo extends StatelessWidget {
-  const _UserInfo({
-    required this.label,
-    required this.value,
-  });
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.gdsColors;
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      spacing: GdsSpacing.spacing2,
-      children: [
-        Text(label, style: GdsTypography.label6.copyWith(color: colors.text.grayNormal)),
-        Text(value, style: GdsTypography.label5.copyWith(color: colors.text.grayBold)),
-      ],
     );
   }
 }

@@ -114,8 +114,7 @@ Widget _buildPlaygroundSection(BuildContext context) {
 
       userInfo = GdsUserInfo.follow(
         followerCount: followerCount,
-        showFollowing: showFollowing,
-        followingCount: followingCount,
+        followingCount: showFollowing ? followingCount : null,
       );
 
       info = [
@@ -222,7 +221,6 @@ class _UserInfoTypeMatrix extends StatelessWidget {
       ),
       _UserInfoPreviewType.follow => const GdsUserInfo.follow(
         followerCount: 123,
-        showFollowing: true,
         followingCount: 32,
       ),
     };

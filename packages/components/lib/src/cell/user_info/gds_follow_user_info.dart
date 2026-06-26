@@ -3,7 +3,6 @@ part of '../gds_user_info.dart';
 class GdsFollowUserInfo extends GdsUserInfo {
   final int followerCount;
   final VoidCallback? onFollowerTap;
-  final bool showFollowing;
   final int? followingCount;
   final VoidCallback? onFollowingTap;
 
@@ -11,19 +10,17 @@ class GdsFollowUserInfo extends GdsUserInfo {
     super.key,
     required this.followerCount,
     this.onFollowerTap,
-    required this.showFollowing,
     this.followingCount,
     this.onFollowingTap,
-  }) : assert(
-         !showFollowing || followingCount != null,
-         'followingCount must not be null when showFollowing is true',
-       );
+  });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
+      spacing: GdsSpacing.spacing8,
       children: [
         GdsGesture(
           onTap: onFollowerTap,
@@ -41,8 +38,7 @@ class GdsFollowUserInfo extends GdsUserInfo {
             ],
           ),
         ),
-        if (showFollowing && followingCount != null) ...[
-          const SizedBox(width: GdsSpacing.spacing8),
+        if (followingCount != null) ...[
           GdsGesture(
             onTap: onFollowingTap,
             child: Row(

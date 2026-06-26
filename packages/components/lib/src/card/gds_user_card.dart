@@ -174,7 +174,6 @@ class _DefaultUserCard extends StatelessWidget {
                               ),
                               GdsUserInfo.follow(
                                 followerCount: followerCount,
-                                showFollowing: true,
                                 followingCount: followingCount,
                               ),
                             ],
@@ -294,10 +293,7 @@ class _SearchUserCard extends StatelessWidget {
                                         color: colors.text.grayBold,
                                       ),
                                     ),
-                                    GdsUserInfo.follow(
-                                      followerCount: followerCount,
-                                      showFollowing: false,
-                                    ),
+                                    GdsUserInfo.follow(followerCount: followerCount),
                                   ],
                                 ),
                               ],

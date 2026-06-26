@@ -51,7 +51,6 @@ abstract class GdsUserInfo extends StatelessWidget {
     Key? key,
     required int followerCount,
     VoidCallback? onFollowerTap,
-    required bool showFollowing,
     int? followingCount,
     VoidCallback? onFollowingTap,
   }) = GdsFollowUserInfo;
