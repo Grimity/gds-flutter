@@ -17,6 +17,7 @@ class GdsLinkMainUserItem extends GdsUserItem {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: GdsSpacing.spacing4),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         spacing: GdsSpacing.spacing4,
         children: [
           icon.build(
