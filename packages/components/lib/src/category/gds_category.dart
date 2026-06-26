@@ -36,11 +36,13 @@ class GdsCategory extends StatefulWidget {
     required this.items,
     this.action,
     this.size = GdsCategorySize.lg,
+    this.padding = EdgeInsets.zero,
   });
 
   final List<GdsCategoryItem> items;
   final GdsCategoryAction? action;
   final GdsCategorySize size;
+  final EdgeInsets padding;
 
   @override
   State<GdsCategory> createState() => _GdsCategoryState();
@@ -110,6 +112,7 @@ class _GdsCategoryState extends State<GdsCategory> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   controller: _controller,
+                  padding: widget.padding,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     spacing: GdsSpacing.spacing8,
