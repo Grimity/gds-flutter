@@ -24,11 +24,9 @@ class GdsLinkMainUserItem extends GdsUserItem {
             width: GdsIconSize.v20,
             height: GdsIconSize.v20,
           ),
-          Expanded(
-            child: Text(
-              siteText,
-              style: GdsTypography.label5.copyWith(color: colors.text.grayBold),
-            ),
+          Text(
+            siteText,
+            style: GdsTypography.label5.copyWith(color: colors.text.grayBold),
           ),
         ],
       ),
