@@ -391,17 +391,33 @@ class _AlbumHeartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
-    final icon = (isLiked ? GdsIcon.heartFill : GdsIcon.heartOutline).build(
-      width: GdsIconSize.v24,
-      height: GdsIconSize.v24,
-      color: isLiked ? colors.status.notification : colors.icon.white,
-    );
 
-    return SizedBox(
-      width: GdsIconSize.v24,
-      height: GdsIconSize.v24,
-      child: onTap == null ? icon : GdsGesture(onTap: onTap!, child: icon),
-    );
+    final Widget child;
+
+    if (isLiked) {
+      child = GdsIcon.heartFill.build(
+        width: GdsIconSize.v24,
+        height: GdsIconSize.v24,
+        color: colors.status.notification,
+      );
+    } else {
+      child = Stack(
+        children: [
+          GdsIcon.heartFill.build(
+            width: GdsIconSize.v24,
+            height: GdsIconSize.v24,
+            color: colors.icon.white,
+          ),
+          GdsIcon.heartOutline.build(
+            width: GdsIconSize.v24,
+            height: GdsIconSize.v24,
+            color: colors.icon.graySubtle,
+          ),
+        ],
+      );
+    }
+
+    return GdsGesture(onTap: onTap, child: child);
   }
 }
 
