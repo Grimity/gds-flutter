@@ -149,6 +149,7 @@ class GdsTextField extends StatefulWidget {
   final GdsTextFieldType type;
   final GdsTextFieldSize size;
   final String? placeholder;
+  final String? prefixText;
   final int? maxLength;
 
   /// [isMultipleLine] `default`, `count` 타입에서만 여러 줄 입력을 지원.
@@ -169,6 +170,7 @@ class GdsTextField extends StatefulWidget {
   const GdsTextField({
     super.key,
     this.placeholder,
+    this.prefixText,
     this.isMultipleLine = false,
     this.mentionUser,
     this.onMentionClear,
@@ -189,6 +191,7 @@ class GdsTextField extends StatefulWidget {
     super.key,
     required int this.maxLength,
     this.placeholder,
+    this.prefixText,
     this.isMultipleLine = false,
     this.size = GdsTextFieldSize.medium,
     this.enabled = true,
@@ -207,6 +210,7 @@ class GdsTextField extends StatefulWidget {
   const GdsTextField.search({
     super.key,
     this.placeholder,
+    this.prefixText,
     this.size = GdsTextFieldSize.medium,
     this.enabled = true,
     this.obscureText = false,
@@ -226,6 +230,7 @@ class GdsTextField extends StatefulWidget {
   const GdsTextField.title({
     super.key,
     this.placeholder,
+    this.prefixText,
     this.maxLength,
     this.size = GdsTextFieldSize.medium,
     this.enabled = true,
@@ -252,6 +257,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
   bool _ownsController = false;
   bool _ownsFocusNode = false;
   bool _isFocused = false;
+  TextEditingController? _prefixController;
 
   @override
   void initState() {
@@ -268,6 +274,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
       _controller = widget.controller!;
       _ownsController = false;
     }
+
     _controller.addListener(_onTextChange);
   }
 
@@ -315,6 +322,7 @@ class _GdsTextFieldState extends State<GdsTextField> {
     _focusNode.removeListener(_onFocusChange);
     if (_ownsController) _controller.dispose();
     if (_ownsFocusNode) _focusNode.dispose();
+    _prefixController?.dispose();
     super.dispose();
   }
 
@@ -430,6 +438,28 @@ class _GdsTextFieldState extends State<GdsTextField> {
         ),
       );
       children.add(const SizedBox(width: GdsSpacing.spacing6));
+    }
+
+    if (widget.prefixText?.isNotEmpty ?? false) {
+      _prefixController?.dispose();
+      _prefixController = TextEditingController(text: widget.prefixText);
+
+      children.add(
+        IgnorePointer(
+          child: IntrinsicWidth(
+            child: EditableText(
+              controller: _prefixController!,
+              focusNode: FocusNode(),
+              readOnly: true,
+              style: size.textStyle(type).copyWith(color: colors.text.graySubtle),
+              cursorColor: GdsColors.transparent,
+              cursorWidth: 0,
+              backgroundCursorColor: GdsColors.transparent,
+              scrollPadding: EdgeInsets.zero,
+            ),
+          ),
+        ),
+      );
     }
 
     children.add(
