@@ -176,8 +176,8 @@ class GdsTopNavigation {
     Key? key,
     required String title,
     required String label,
-    required VoidCallback onBack,
-    required VoidCallback onTitle,
+    VoidCallback? onBack,
+    VoidCallback? onTitle,
     required VoidCallback onSave,
     required bool saveEnabled,
   }) {
@@ -582,10 +582,10 @@ class _Editor extends StatelessWidget {
   final String label;
 
   /// 뒤로가기 버튼이 탭될 때 호출되는 콜백 함수입니다.
-  final VoidCallback onBack;
+  final VoidCallback? onBack;
 
   /// 제목이 탭될 때 호출되는 콜백 함수입니다.
-  final VoidCallback onTitle;
+  final VoidCallback? onTitle;
 
   /// 저장 버튼이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onSave;
@@ -599,7 +599,7 @@ class _Editor extends StatelessWidget {
 
     return GdsTopNavigation._buildWithBackButton(
       context: context,
-      onBack: onBack,
+      onBack: onBack ?? () => Navigator.pop(context),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
