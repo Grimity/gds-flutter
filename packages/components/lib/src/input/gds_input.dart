@@ -43,7 +43,7 @@ class GdsInput extends StatelessWidget {
   final String? replyUser;
 
   // Custom 전용
-  final GdsTextField? field;
+  final Widget? child;
 
   /// 기본 타입: Title(선택) + TextField + HelperText(선택)
   const GdsInput({
@@ -67,7 +67,7 @@ class GdsInput extends StatelessWidget {
        buttonEnabled = null,
        onButtonPressed = null,
        replyUser = null,
-       field = null;
+       child = null;
 
   /// 버튼 타입: Title(선택) + Row[TextField + SolidButton] + HelperText(선택)
   const GdsInput.button({
@@ -91,7 +91,7 @@ class GdsInput extends StatelessWidget {
        mentionUser = null,
        onMentionClear = null,
        replyUser = null,
-       field = null;
+       child = null;
 
   /// 커뮤니티 타입: 상단 구분선 + Row[TextField(small) + SolidButton]
   const GdsInput.community({
@@ -115,7 +115,7 @@ class GdsInput extends StatelessWidget {
        mentionUser = null,
        onMentionClear = null,
        replyUser = null,
-       field = null;
+       child = null;
 
   /// 댓글 답장 타입: 상단 구분선 + 답장 헤더 + Row[TextField(small, mention) + SolidButton]
   const GdsInput.communityAnswer({
@@ -139,7 +139,7 @@ class GdsInput extends StatelessWidget {
        enabled = true,
        error = false,
        success = false,
-       field = null;
+       child = null;
 
   const GdsInput.custom({
     super.key,
@@ -148,7 +148,7 @@ class GdsInput extends StatelessWidget {
     this.isRequired = false,
     this.error = false,
     this.success = false,
-    required this.field,
+    required this.child,
   }) : _type = _GdsInputType.custom,
        buttonLabel = null,
        buttonEnabled = null,
@@ -174,17 +174,17 @@ class GdsInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
     return switch (_type) {
-      _GdsInputType.defaultField => _buildDefault(field),
-      _GdsInputType.custom => _buildDefault(field),
+      _GdsInputType.defaultField => _buildDefault(child),
+      _GdsInputType.custom => _buildDefault(child),
       _GdsInputType.button => _buildButton(),
       _GdsInputType.community => _buildCommunity(colors),
       _GdsInputType.communityAnswer => _buildCommunityAnswer(colors),
     };
   }
 
-  Widget _buildDefault(GdsTextField? customField) {
+  Widget _buildDefault(Widget? child) {
     final field =
-        customField ??
+        child ??
         GdsTextField(
           placeholder: placeholder,
           size: GdsTextFieldSize.medium,
