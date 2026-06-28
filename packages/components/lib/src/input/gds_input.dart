@@ -1,10 +1,15 @@
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:gds_components/gds_components.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
-enum _GdsInputType { defaultField, button, community, communityAnswer }
+enum _GdsInputType {
+  defaultField,
+  button,
+  community,
+  communityAnswer,
+  custom,
+}
 
 class GdsInput extends StatelessWidget {
   final _GdsInputType _type;
@@ -37,6 +42,9 @@ class GdsInput extends StatelessWidget {
   // CommunityAnswer 전용
   final String? replyUser;
 
+  // Custom 전용
+  final GdsTextField? field;
+
   /// 기본 타입: Title(선택) + TextField + HelperText(선택)
   const GdsInput({
     super.key,
@@ -58,7 +66,8 @@ class GdsInput extends StatelessWidget {
        buttonLabel = null,
        buttonEnabled = null,
        onButtonPressed = null,
-       replyUser = null;
+       replyUser = null,
+       field = null;
 
   /// 버튼 타입: Title(선택) + Row[TextField + SolidButton] + HelperText(선택)
   const GdsInput.button({
@@ -81,7 +90,8 @@ class GdsInput extends StatelessWidget {
   }) : _type = _GdsInputType.button,
        mentionUser = null,
        onMentionClear = null,
-       replyUser = null;
+       replyUser = null,
+       field = null;
 
   /// 커뮤니티 타입: 상단 구분선 + Row[TextField(small) + SolidButton]
   const GdsInput.community({
@@ -104,7 +114,8 @@ class GdsInput extends StatelessWidget {
        success = false,
        mentionUser = null,
        onMentionClear = null,
-       replyUser = null;
+       replyUser = null,
+       field = null;
 
   /// 댓글 답장 타입: 상단 구분선 + 답장 헤더 + Row[TextField(small, mention) + SolidButton]
   const GdsInput.communityAnswer({
@@ -127,7 +138,31 @@ class GdsInput extends StatelessWidget {
        helperText = null,
        enabled = true,
        error = false,
-       success = false;
+       success = false,
+       field = null;
+
+  const GdsInput.custom({
+    super.key,
+    this.titleText,
+    this.helperText,
+    this.isRequired = false,
+    required this.field,
+  }) : _type = _GdsInputType.custom,
+       buttonLabel = null,
+       buttonEnabled = null,
+       onButtonPressed = null,
+       replyUser = null,
+       placeholder = null,
+       enabled = true,
+       error = false,
+       success = false,
+       controller = null,
+       focusNode = null,
+       onChanged = null,
+       onEditingComplete = null,
+       textInputAction = null,
+       mentionUser = null,
+       onMentionClear = null;
 
   GdsHelperTextState get _helperState {
     if (error) return GdsHelperTextState.error;
@@ -139,28 +174,31 @@ class GdsInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
     return switch (_type) {
-      _GdsInputType.defaultField => _buildDefault(),
+      _GdsInputType.defaultField => _buildDefault(field),
+      _GdsInputType.custom => _buildDefault(field),
       _GdsInputType.button => _buildButton(),
       _GdsInputType.community => _buildCommunity(colors),
       _GdsInputType.communityAnswer => _buildCommunityAnswer(colors),
     };
   }
 
-  Widget _buildDefault() {
-    final field = GdsTextField(
-      placeholder: placeholder,
-      size: GdsTextFieldSize.medium,
-      enabled: enabled,
-      error: error,
-      success: success,
-      controller: controller,
-      focusNode: focusNode,
-      onChanged: onChanged,
-      onEditingComplete: onEditingComplete,
-      textInputAction: textInputAction,
-      mentionUser: mentionUser,
-      onMentionClear: onMentionClear,
-    );
+  Widget _buildDefault(GdsTextField? customField) {
+    final field =
+        customField ??
+        GdsTextField(
+          placeholder: placeholder,
+          size: GdsTextFieldSize.medium,
+          enabled: enabled,
+          error: error,
+          success: success,
+          controller: controller,
+          focusNode: focusNode,
+          onChanged: onChanged,
+          onEditingComplete: onEditingComplete,
+          textInputAction: textInputAction,
+          mentionUser: mentionUser,
+          onMentionClear: onMentionClear,
+        );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
