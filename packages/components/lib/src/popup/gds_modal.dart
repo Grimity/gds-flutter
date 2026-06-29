@@ -45,8 +45,8 @@ class GdsModal extends StatelessWidget {
   final EdgeInsets? padding;
   final bool primaryEnabled;
   final bool secondaryEnabled;
-  final GdsSolidButton? primaryButton;
-  final GdsOutlinedButton? secondaryButton;
+  final Widget? primaryButton;
+  final Widget? secondaryButton;
   final Widget body;
 
   static const solidButtonSize = GdsSolidButtonSize.large;
@@ -61,11 +61,6 @@ class GdsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    assert(primaryButton != null ? primaryButton!.expanded : true);
-    assert(secondaryButton != null ? secondaryButton!.expanded : true);
-    assert(primaryButton != null ? primaryButton!.size == GdsSolidButtonSize.large : true);
-    assert(secondaryButton != null ? secondaryButton!.size == GdsOutlinedButtonSize.large : true);
-
     final colors = context.gdsColors;
 
     return Container(
