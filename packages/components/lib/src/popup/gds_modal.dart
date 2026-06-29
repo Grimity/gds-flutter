@@ -89,7 +89,7 @@ class GdsModal extends StatelessWidget {
             ),
           ),
 
-          if (onPrimary != null || onSecondary != null)
+          if (onPrimary != null || onSecondary != null || primaryButton != null || secondaryButton != null)
             Padding(
               padding: EdgeInsets.only(
                 left: GdsSpacing.spacing20,
@@ -99,7 +99,7 @@ class GdsModal extends StatelessWidget {
               child: Row(
                 spacing: GdsSpacing.spacing8,
                 children: [
-                  if (onSecondary != null) ...[
+                  if (onSecondary != null || secondaryButton != null) ...[
                     Expanded(
                       child:
                           secondaryButton ??
@@ -113,7 +113,7 @@ class GdsModal extends StatelessWidget {
                     ),
                   ],
 
-                  if (onPrimary != null) ...[
+                  if (onPrimary != null || primaryButton != null) ...[
                     Expanded(
                       child:
                           primaryButton ??
