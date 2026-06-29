@@ -27,6 +27,9 @@ class GdsModal extends StatelessWidget {
     this.onPrimary,
     this.onSecondary,
     this.action,
+    this.padding,
+    this.primaryEnabled = true,
+    this.secondaryEnabled = true,
     required this.body,
   });
 
@@ -37,7 +40,17 @@ class GdsModal extends StatelessWidget {
   final VoidCallback? onPrimary;
   final VoidCallback? onSecondary;
   final GdsModalAction? action;
+  final EdgeInsets? padding;
+  final bool primaryEnabled;
+  final bool secondaryEnabled;
   final Widget body;
+
+  static final defualtPadding = EdgeInsets.only(
+    top: GdsSpacing.spacing8,
+    left: GdsSpacing.spacing20,
+    right: GdsSpacing.spacing20,
+    bottom: GdsSpacing.spacing20,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +77,7 @@ class GdsModal extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: EdgeInsets.only(
-                top: GdsSpacing.spacing8,
-                left: GdsSpacing.spacing20,
-                right: GdsSpacing.spacing20,
-                bottom: GdsSpacing.spacing20,
-              ),
+              padding: padding ?? defualtPadding,
               child: body,
             ),
           ),
@@ -91,6 +99,7 @@ class GdsModal extends StatelessWidget {
                         text: secondaryLabel,
                         onPressed: onSecondary,
                         expanded: true,
+                        enabled: secondaryEnabled,
                       ),
                     ),
                   ],
@@ -102,6 +111,7 @@ class GdsModal extends StatelessWidget {
                         text: primaryLabel,
                         onPressed: onPrimary,
                         expanded: true,
+                        enabled: primaryEnabled,
                       ),
                     ),
                   ],
