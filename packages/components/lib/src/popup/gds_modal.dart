@@ -30,6 +30,8 @@ class GdsModal extends StatelessWidget {
     this.padding,
     this.primaryEnabled = true,
     this.secondaryEnabled = true,
+    this.primaryButton,
+    this.secondaryButton,
     required this.body,
   });
 
@@ -43,7 +45,12 @@ class GdsModal extends StatelessWidget {
   final EdgeInsets? padding;
   final bool primaryEnabled;
   final bool secondaryEnabled;
+  final GdsSolidButton? primaryButton;
+  final GdsOutlinedButton? secondaryButton;
   final Widget body;
+
+  static const solidButtonSize = GdsSolidButtonSize.large;
+  static const outlinedButtonSize = GdsOutlinedButtonSize.large;
 
   static final defualtPadding = EdgeInsets.only(
     top: GdsSpacing.spacing8,
@@ -54,6 +61,11 @@ class GdsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(primaryButton != null ? primaryButton!.expanded : true);
+    assert(secondaryButton != null ? secondaryButton!.expanded : true);
+    assert(primaryButton != null ? primaryButton!.size == GdsSolidButtonSize.large : true);
+    assert(secondaryButton != null ? secondaryButton!.size == GdsOutlinedButtonSize.large : true);
+
     final colors = context.gdsColors;
 
     return Container(
@@ -94,25 +106,29 @@ class GdsModal extends StatelessWidget {
                 children: [
                   if (onSecondary != null) ...[
                     Expanded(
-                      child: GdsOutlinedButton(
-                        size: GdsOutlinedButtonSize.large,
-                        text: secondaryLabel,
-                        onPressed: onSecondary,
-                        expanded: true,
-                        enabled: secondaryEnabled,
-                      ),
+                      child:
+                          secondaryButton ??
+                          GdsOutlinedButton(
+                            size: outlinedButtonSize,
+                            text: secondaryLabel,
+                            onPressed: onSecondary,
+                            expanded: true,
+                            enabled: secondaryEnabled,
+                          ),
                     ),
                   ],
 
                   if (onPrimary != null) ...[
                     Expanded(
-                      child: GdsSolidButton(
-                        size: GdsSolidButtonSize.large,
-                        text: primaryLabel,
-                        onPressed: onPrimary,
-                        expanded: true,
-                        enabled: primaryEnabled,
-                      ),
+                      child:
+                          primaryButton ??
+                          GdsSolidButton(
+                            size: solidButtonSize,
+                            text: primaryLabel,
+                            onPressed: onPrimary,
+                            expanded: true,
+                            enabled: primaryEnabled,
+                          ),
                     ),
                   ],
                 ],
