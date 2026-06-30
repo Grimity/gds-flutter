@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gds_components/src/common/common.dart';
+import 'package:gds_components/src/tab/gds_render_tab.dart';
 import 'package:gds_foundation/gds_foundation.dart';
+import 'package:collection/collection.dart';
 
 enum GdsTabSize {
   lg,
@@ -24,7 +26,7 @@ class GdsTab extends StatefulWidget {
   const GdsTab({
     super.key,
     required this.items,
-    required this.index,
+    required this.controller,
     this.showBorder = true,
     this.size = GdsTabSize.lg,
   });
@@ -33,7 +35,7 @@ class GdsTab extends StatefulWidget {
   final List<GdsTabItem> items;
 
   /// 선택된 탭 인덱스
-  final int index;
+  final TabController controller;
 
   /// 탭 하단의 구분선을 표시할지 여부
   final bool showBorder;
@@ -53,7 +55,7 @@ class _GdsTabState extends State<GdsTab> with SingleTickerProviderStateMixin {
     return Stack(
       children: [
         // 탭 하단의 구분선
-        if (widget.showBorder)
+        if (widget.showBorder) ...[
           Positioned.fill(
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -63,22 +65,32 @@ class _GdsTabState extends State<GdsTab> with SingleTickerProviderStateMixin {
               ),
             ),
           ),
+        ],
 
         // 탭 아이템 리스트
         SizedBox(
           width: double.infinity,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (final item in widget.items)
-                  _TabItem(
-                    item: item,
-                    size: widget.size,
-                    isSelected: widget.index == widget.items.indexOf(item),
-                  ),
-              ],
+            child: ListenableBuilder(
+              listenable: widget.controller.animation!,
+              builder: (context, child) {
+                return GdsRenderTab(
+                  indicatorColor: colors.border.grayBold,
+                  dividerColor: colors.border.graySubtle,
+                  offset: widget.controller.index + widget.controller.offset,
+                  children: [
+                    ...widget.items.mapIndexed((index, item) {
+                      return _TabItem(
+                        item: item,
+                        size: widget.size,
+                        index: index,
+                        controller: widget.controller,
+                      );
+                    }),
+                  ],
+                );
+              },
             ),
           ),
         ),
@@ -91,14 +103,15 @@ class _TabItem extends StatelessWidget {
   const _TabItem({
     required this.item,
     required this.size,
-    required this.isSelected,
+    required this.index,
+    required this.controller,
   });
 
   final GdsTabItem item;
   final GdsTabSize size;
-  final bool isSelected;
+  final int index;
+  final TabController controller;
 
-  /// 탭 크기별 텍스트 스타일
   TextStyle get _textStyle {
     return switch (size) {
       GdsTabSize.lg => GdsTypography.subtitle1,
@@ -107,7 +120,6 @@ class _TabItem extends StatelessWidget {
     };
   }
 
-  /// 탭 크기별 수평 패딩
   double get _horizontalPadding {
     return switch (size) {
       GdsTabSize.lg => GdsSpacing.spacing12,
@@ -116,12 +128,34 @@ class _TabItem extends StatelessWidget {
     };
   }
 
+  double get _activatedProgress {
+    final double absolutePosition = controller.index + controller.offset;
+    final double distance = (absolutePosition - index).abs();
+    final double progress = 1.0 - distance;
+
+    return progress.clamp(0.0, 1.0);
+  }
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
+    final progress = _activatedProgress;
+    final isSelected = progress.abs() == 1.0;
+
+    final labelColor = Color.lerp(
+      colors.text.graySubtle,
+      colors.text.grayBold,
+      progress,
+    );
+
+    final badgeColor = Color.lerp(
+      colors.text.graySubtle,
+      colors.text.primaryNormal,
+      progress,
+    );
 
     return GdsGesture(
-      onTap: item.onTap,
+      onTap: isSelected ? null : item.onTap,
       child: Container(
         padding: EdgeInsets.only(
           top: GdsSpacing.spacing12,
@@ -129,34 +163,18 @@ class _TabItem extends StatelessWidget {
           right: _horizontalPadding,
           bottom: GdsSpacing.spacing16,
         ),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: colors.border.grayBold,
-              width: 2,
-              style: isSelected ? BorderStyle.solid : BorderStyle.none,
-            ),
-          ),
-        ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           spacing: GdsSpacing.spacing6,
           children: [
             Text(
               item.label,
-              // 선택된 탭은 grayBold, 선택되지 않은 탭은 graySubtle
-              style: _textStyle.copyWith(
-                color: isSelected ? colors.text.grayBold : colors.text.graySubtle,
-              ),
+              style: _textStyle.copyWith(color: labelColor),
             ),
-
             if (item.badge != null)
               Text(
                 item.badge!,
-                // 선택된 탭은 primaryNormal, 선택되지 않은 탭은 graySubtle
-                style: _textStyle.copyWith(
-                  color: isSelected ? colors.text.primaryNormal : colors.text.graySubtle,
-                ),
+                style: _textStyle.copyWith(color: badgeColor),
               ),
           ],
         ),
