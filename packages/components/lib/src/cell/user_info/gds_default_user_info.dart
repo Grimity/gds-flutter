@@ -47,7 +47,6 @@ class GdsDefaultUserInfo extends GdsUserInfo {
             ),
           ),
         if (showHeart && heartCount != null) ...[
-          if (showNickName) dotSeparator,
           Row(
             children: [
               GdsIcon.heartOutline.build(
@@ -64,7 +63,6 @@ class GdsDefaultUserInfo extends GdsUserInfo {
           ),
         ],
         if (showView && viewCount != null) ...[
-          dotSeparator,
           Row(
             children: [
               GdsIcon.eyeOn.build(
@@ -81,13 +79,12 @@ class GdsDefaultUserInfo extends GdsUserInfo {
           ),
         ],
         if (showTime && timeText != null) ...[
-          dotSeparator,
           Text(
             timeText!,
             style: GdsTypography.label6.copyWith(color: colors.text.graySubtle),
           ),
         ],
-      ],
+      ].expand((child) => [dotSeparator, child]).skip(1).toList(),
     );
   }
 }
