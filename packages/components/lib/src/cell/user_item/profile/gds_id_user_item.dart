@@ -4,6 +4,7 @@ class GdsIdUserItem extends GdsUserItem {
   final String nickName;
   final GdsPersonAvatar personAvatar;
   final String userId;
+  final VoidCallback? onProfileTap;
   final Widget? primaryActionButton;
   final Widget? secondaryActionButton;
 
@@ -12,6 +13,7 @@ class GdsIdUserItem extends GdsUserItem {
     required this.nickName,
     required this.personAvatar,
     required this.userId,
+    this.onProfileTap,
     this.primaryActionButton,
     this.secondaryActionButton,
   });
@@ -21,6 +23,7 @@ class GdsIdUserItem extends GdsUserItem {
     final colors = context.gdsColors;
 
     return _GdsProfileUserItemFrame(
+      onTap: onProfileTap,
       personAvatar: personAvatar,
       mainContent: _GdsProfileMainContent(
         nickName: nickName,

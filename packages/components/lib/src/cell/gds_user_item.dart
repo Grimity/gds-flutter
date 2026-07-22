@@ -45,6 +45,7 @@ abstract class GdsUserItem extends StatelessWidget {
     Key? key,
     required String nickName,
     required GdsPersonAvatar personAvatar,
+    VoidCallback? onProfileTap,
     Widget? primaryActionButton,
     Widget? secondaryActionButton,
   }) = GdsDefaultUserItem;
@@ -54,6 +55,7 @@ abstract class GdsUserItem extends StatelessWidget {
     required String nickName,
     required GdsPersonAvatar personAvatar,
     required String userId,
+    VoidCallback? onProfileTap,
     Widget? primaryActionButton,
     Widget? secondaryActionButton,
   }) = GdsIdUserItem;
@@ -63,6 +65,7 @@ abstract class GdsUserItem extends StatelessWidget {
     required String nickName,
     required GdsPersonAvatar personAvatar,
     required String userId,
+    VoidCallback? onProfileTap,
     GdsIconButton? primaryActionButton,
     GdsIconButton? secondaryActionButton,
   }) = GdsIconIdUserItem;
@@ -73,6 +76,7 @@ abstract class GdsUserItem extends StatelessWidget {
     required GdsPersonAvatar personAvatar,
     required String userId,
     required GdsRadioButton radioButton,
+    VoidCallback? onProfileTap,
   }) = GdsRadioUserItem;
 
   const factory GdsUserItem.follow({
@@ -80,6 +84,7 @@ abstract class GdsUserItem extends StatelessWidget {
     required String nickName,
     required GdsPersonAvatar personAvatar,
     required GdsFollowUserInfo followUserInfo,
+    VoidCallback? onProfileTap,
     Widget? primaryActionButton,
     Widget? secondaryActionButton,
   }) = GdsFollowUserItem;

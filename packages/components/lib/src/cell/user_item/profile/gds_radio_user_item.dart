@@ -5,6 +5,7 @@ class GdsRadioUserItem extends GdsUserItem {
   final GdsPersonAvatar personAvatar;
   final String userId;
   final GdsRadioButton radioButton;
+  final VoidCallback? onProfileTap;
 
   const GdsRadioUserItem({
     super.key,
@@ -12,6 +13,7 @@ class GdsRadioUserItem extends GdsUserItem {
     required this.personAvatar,
     required this.userId,
     required this.radioButton,
+    this.onProfileTap,
   });
 
   @override
@@ -19,6 +21,7 @@ class GdsRadioUserItem extends GdsUserItem {
     final colors = context.gdsColors;
 
     return _GdsProfileUserItemFrame(
+      onTap: onProfileTap,
       personAvatar: personAvatar,
       mainContent: _GdsProfileMainContent(
         nickName: nickName,

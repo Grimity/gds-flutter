@@ -4,6 +4,7 @@ class GdsFollowUserItem extends GdsUserItem {
   final String nickName;
   final GdsPersonAvatar personAvatar;
   final GdsFollowUserInfo followUserInfo;
+  final VoidCallback? onProfileTap;
   final Widget? primaryActionButton;
   final Widget? secondaryActionButton;
 
@@ -12,6 +13,7 @@ class GdsFollowUserItem extends GdsUserItem {
     required this.nickName,
     required this.personAvatar,
     required this.followUserInfo,
+    this.onProfileTap,
     this.primaryActionButton,
     this.secondaryActionButton,
   });
@@ -19,6 +21,7 @@ class GdsFollowUserItem extends GdsUserItem {
   @override
   Widget build(BuildContext context) {
     return _GdsProfileUserItemFrame(
+      onTap: onProfileTap,
       personAvatar: personAvatar,
       mainContent: _GdsProfileMainContent(
         nickName: nickName,
