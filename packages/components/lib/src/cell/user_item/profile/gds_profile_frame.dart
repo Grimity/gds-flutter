@@ -5,21 +5,26 @@ class _GdsProfileUserItemFrame extends StatelessWidget {
     required this.personAvatar,
     required this.mainContent,
     this.trailing,
+    this.onTap,
   });
 
   final Widget personAvatar;
   final Widget mainContent;
   final Widget? trailing;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: GdsSpacing.spacing8),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         spacing: GdsSpacing.spacing12,
         children: [
-          Expanded(
+          GdsGesture(
+            onTap: onTap,
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 personAvatar,
                 const SizedBox(width: GdsSpacing.spacing8),
