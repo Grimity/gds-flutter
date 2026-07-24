@@ -5,6 +5,9 @@ import 'package:gds_components/src/thumbnail/gds_thumbnail.dart';
 import 'package:gds_foundation/gds_foundation.dart';
 import 'package:gds_tokens/gds_tokens.dart';
 
+/// 주어진 레이아웃 크기에 따른 적절한 이미지 URL을 반환하는 함수.
+typedef GdsImageUrlBuilder = String Function(double width, double height);
+
 enum GdsAlbumCardType { mainTitle, check, rank, image, imageUpload, album }
 
 enum GdsAlbumCardState { defaultType, checked }
@@ -25,6 +28,7 @@ class GdsAlbumCard extends StatefulWidget {
     this.imageUrl = '',
     this.image,
     this.imageProvider,
+    this.imageUrlBuilder,
     this.title,
     this.nickname,
     this.heartCount,
@@ -45,10 +49,13 @@ class GdsAlbumCard extends StatefulWidget {
     this.onCloseTap,
     this.onNicknameTap,
   }) : assert(
-         (image == null && imageProvider == null) || imageUrl == '',
-         'imageUrl cannot be combined with image or imageProvider.',
+         (image == null && imageProvider == null && imageUrlBuilder == null) || imageUrl == '',
+         'imageUrl cannot be combined with image, imageProvider, or imageUrlBuilder.',
        ),
-       assert(image == null || imageProvider == null, 'image and imageProvider cannot be combined.'),
+       assert(
+         (image != null ? 1 : 0) + (imageProvider != null ? 1 : 0) + (imageUrlBuilder != null ? 1 : 0) <= 1,
+         'Only one of image, imageProvider, or imageUrlBuilder can be provided.',
+       ),
        assert(width == null || width > 0, 'width must be greater than 0 when provided.'),
        assert(rank > 0, 'rank must be greater than 0.');
 
@@ -57,6 +64,7 @@ class GdsAlbumCard extends StatefulWidget {
   final String imageUrl;
   final Image? image;
   final ImageProvider<Object>? imageProvider;
+  final GdsImageUrlBuilder? imageUrlBuilder;
   final String? title;
   final String? nickname;
   final int? heartCount;
@@ -126,7 +134,9 @@ class _GdsAlbumCardState extends State<GdsAlbumCard> {
       mainAxisSize: MainAxisSize.min,
       children: [
         _AlbumThumbnail(
-          imageUrl: widget.imageUrl,
+          imageUrlBuilder: (width, height) {
+            return widget.imageUrlBuilder?.call(width, height) ?? widget.imageUrl;
+          },
           image: widget.image,
           imageProvider: widget.imageProvider,
           width: widget.resolvedWidth,
@@ -175,7 +185,7 @@ class _GdsAlbumCardState extends State<GdsAlbumCard> {
 
 class _AlbumThumbnail extends StatelessWidget {
   const _AlbumThumbnail({
-    required this.imageUrl,
+    required this.imageUrlBuilder,
     required this.image,
     required this.imageProvider,
     required this.width,
@@ -191,7 +201,7 @@ class _AlbumThumbnail extends StatelessWidget {
     required this.onCloseTap,
   });
 
-  final String imageUrl;
+  final GdsImageUrlBuilder imageUrlBuilder;
   final Image? image;
   final ImageProvider<Object>? imageProvider;
   final double width;
@@ -221,89 +231,95 @@ class _AlbumThumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
     final borderRadius = BorderRadius.circular(GdsRadius.md);
-    final hasImage = imageUrl.trim().isNotEmpty || image != null || imageProvider != null;
-    final showsUploadPlaceholder = type == GdsAlbumCardType.imageUpload && !hasImage;
 
     return SizedBox(
       width: width,
       child: AspectRatio(
         aspectRatio: 1,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            border: _border(colors),
-          ),
-          child: ClipRRect(
-            borderRadius: borderRadius,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                if (showsUploadPlaceholder)
-                  _ImageUploadPlaceholder(width: width)
-                else
-                  GdsThumbnail(
-                    imageUrl: image == null && imageProvider == null ? imageUrl : null,
-                    image: image,
-                    imageProvider: imageProvider,
-                    width: width,
-                    ratio: GdsThumbnailRatio.r1x1,
-                    borderRadius: borderRadius,
-                  ),
-                if (type == GdsAlbumCardType.mainTitle || type == GdsAlbumCardType.rank)
-                  ColoredBox(color: colors.bg.black.withValues(alpha: 0.04)),
-                if (showsFilledOverlay)
-                  DecoratedBox(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0x661A1B1E), Color(0x001A1B1E)],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final imageUrl = imageUrlBuilder(constraints.maxWidth, constraints.maxHeight);
+            final hasImage = imageUrl.trim().isNotEmpty || image != null || imageProvider != null;
+            final showsUploadPlaceholder = type == GdsAlbumCardType.imageUpload && !hasImage;
+
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                border: _border(colors),
+              ),
+              child: ClipRRect(
+                borderRadius: borderRadius,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    if (showsUploadPlaceholder)
+                      _ImageUploadPlaceholder(width: width)
+                    else
+                      GdsThumbnail(
+                        imageUrl: image == null && imageProvider == null ? imageUrl : null,
+                        image: image,
+                        imageProvider: imageProvider,
+                        width: width,
+                        ratio: GdsThumbnailRatio.r1x1,
+                        borderRadius: borderRadius,
                       ),
-                    ),
-                  ),
-                if (showsRankBadge)
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: _RankBadge(rank: rank),
-                  ),
-                if (showsHeartOverlay)
-                  Positioned(
-                    right: GdsSpacing.spacing4,
-                    bottom: GdsSpacing.spacing4,
-                    child: _AlbumHeartButton(isLiked: isLiked, onTap: onHeartTap),
-                  ),
-                if (showsCheckbox)
-                  Positioned(
-                    top: GdsSpacing.spacing8,
-                    right: GdsSpacing.spacing8,
-                    child: _CheckIndicator(isChecked: isChecked),
-                  ),
-                if (showsAlbumCountBadge)
-                  Positioned(
-                    top: GdsSpacing.spacing8,
-                    right: GdsSpacing.spacing8,
-                    child: _AlbumCountBadge(text: albumBadgeText),
-                  ),
-                if (showsImagePill && !showsUploadPlaceholder)
-                  Positioned(
-                    top: isImageChecked ? 6 : 8,
-                    left: isImageChecked ? 6 : 8,
-                    child: _PrimaryImageBadge(
-                      text: primaryBadgeText,
-                      isChecked: isImageChecked,
-                      onTap: onPrimaryBadgeTap,
-                    ),
-                  ),
-                if (showsCloseButton && !showsUploadPlaceholder)
-                  Positioned(
-                    top: isImageChecked ? 6 : 8,
-                    right: isImageChecked ? 6 : 8,
-                    child: _ImageCloseButton(onTap: onCloseTap),
-                  ),
-              ],
-            ),
-          ),
+                    if (type == GdsAlbumCardType.mainTitle || type == GdsAlbumCardType.rank)
+                      ColoredBox(color: colors.bg.black.withValues(alpha: 0.04)),
+                    if (showsFilledOverlay)
+                      DecoratedBox(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Color(0x661A1B1E), Color(0x001A1B1E)],
+                          ),
+                        ),
+                      ),
+                    if (showsRankBadge)
+                      Positioned(
+                        top: 10,
+                        left: 10,
+                        child: _RankBadge(rank: rank),
+                      ),
+                    if (showsHeartOverlay)
+                      Positioned(
+                        right: GdsSpacing.spacing4,
+                        bottom: GdsSpacing.spacing4,
+                        child: _AlbumHeartButton(isLiked: isLiked, onTap: onHeartTap),
+                      ),
+                    if (showsCheckbox)
+                      Positioned(
+                        top: GdsSpacing.spacing8,
+                        right: GdsSpacing.spacing8,
+                        child: _CheckIndicator(isChecked: isChecked),
+                      ),
+                    if (showsAlbumCountBadge)
+                      Positioned(
+                        top: GdsSpacing.spacing8,
+                        right: GdsSpacing.spacing8,
+                        child: _AlbumCountBadge(text: albumBadgeText),
+                      ),
+                    if (showsImagePill && !showsUploadPlaceholder)
+                      Positioned(
+                        top: isImageChecked ? 6 : 8,
+                        left: isImageChecked ? 6 : 8,
+                        child: _PrimaryImageBadge(
+                          text: primaryBadgeText,
+                          isChecked: isImageChecked,
+                          onTap: onPrimaryBadgeTap,
+                        ),
+                      ),
+                    if (showsCloseButton && !showsUploadPlaceholder)
+                      Positioned(
+                        top: isImageChecked ? 6 : 8,
+                        right: isImageChecked ? 6 : 8,
+                        child: _ImageCloseButton(onTap: onCloseTap),
+                      ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
