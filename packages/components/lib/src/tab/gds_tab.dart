@@ -52,49 +52,31 @@ class _GdsTabState extends State<GdsTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
 
-    return Stack(
-      children: [
-        // 탭 하단의 구분선
-        if (widget.showBorder) ...[
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 1,
-                color: colors.border.graySubtle,
-              ),
-            ),
-          ),
-        ],
-
-        // 탭 아이템 리스트
-        SizedBox(
-          width: double.infinity,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: ListenableBuilder(
-              listenable: widget.controller.animation!,
-              builder: (context, child) {
-                return GdsRenderTab(
-                  indicatorColor: colors.border.grayBold,
-                  dividerColor: colors.border.graySubtle,
-                  offset: widget.controller.index + widget.controller.offset,
-                  children: [
-                    ...widget.items.mapIndexed((index, item) {
-                      return _TabItem(
-                        item: item,
-                        size: widget.size,
-                        index: index,
-                        controller: widget.controller,
-                      );
-                    }),
-                  ],
-                );
-              },
-            ),
-          ),
+    return SizedBox(
+      width: double.infinity,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: ListenableBuilder(
+          listenable: widget.controller.animation!,
+          builder: (context, child) {
+            return GdsRenderTab(
+              indicatorColor: colors.border.grayBold,
+              dividerColor: widget.showBorder ? colors.border.graySubtle : GdsColors.transparent,
+              offset: widget.controller.index + widget.controller.offset,
+              children: [
+                ...widget.items.mapIndexed((index, item) {
+                  return _TabItem(
+                    item: item,
+                    size: widget.size,
+                    index: index,
+                    controller: widget.controller,
+                  );
+                }),
+              ],
+            );
+          },
         ),
-      ],
+      ),
     );
   }
 }
