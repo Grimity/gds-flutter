@@ -108,7 +108,7 @@ class _GdsTabRenderBox extends RenderBox with ContainerRenderObject, RenderBoxCo
       child = childParentData.nextSibling;
     }
 
-    size = Size(width, height);
+    size = constraints.constrain(Size(width, height));
   }
 
   @override

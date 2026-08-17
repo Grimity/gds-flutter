@@ -54,28 +54,35 @@ class _GdsTabState extends State<GdsTab> with SingleTickerProviderStateMixin {
 
     return SizedBox(
       width: double.infinity,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: ListenableBuilder(
-          listenable: widget.controller.animation!,
-          builder: (context, child) {
-            return GdsRenderTab(
-              indicatorColor: colors.border.grayBold,
-              dividerColor: widget.showBorder ? colors.border.graySubtle : GdsColors.transparent,
-              offset: widget.controller.index + widget.controller.offset,
-              children: [
-                ...widget.items.mapIndexed((index, item) {
-                  return _TabItem(
-                    item: item,
-                    size: widget.size,
-                    index: index,
-                    controller: widget.controller,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: constraints.maxWidth),
+              child: ListenableBuilder(
+                listenable: widget.controller.animation!,
+                builder: (context, child) {
+                  return GdsRenderTab(
+                    indicatorColor: colors.border.grayBold,
+                    dividerColor: widget.showBorder ? colors.border.graySubtle : GdsColors.transparent,
+                    offset: widget.controller.index + widget.controller.offset,
+                    children: [
+                      ...widget.items.mapIndexed((index, item) {
+                        return _TabItem(
+                          item: item,
+                          size: widget.size,
+                          index: index,
+                          controller: widget.controller,
+                        );
+                      }),
+                    ],
                   );
-                }),
-              ],
-            );
-          },
-        ),
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }
