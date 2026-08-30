@@ -58,6 +58,7 @@ class GdsTopNavigation {
         onBack: () => debugPrint('Back button tapped'),
         onReport: () => debugPrint('Report button tapped'),
         onSignOut: () => debugPrint('Sign out button tapped'),
+        onProfile: () => debugPrint('Profile area tapped'),
       ),
       GdsTopNavigationType.editor => editor(
         title: 'Title',
@@ -158,6 +159,7 @@ class GdsTopNavigation {
     required VoidCallback onBack,
     required VoidCallback onReport,
     required VoidCallback onSignOut,
+    required VoidCallback onProfile,
     String? avatarImageUrl,
   }) {
     return _Dm(
@@ -167,6 +169,7 @@ class GdsTopNavigation {
       onBack: onBack,
       onReport: onReport,
       onSignOut: onSignOut,
+      onProfile: onProfile,
       avatarImageUrl: avatarImageUrl,
     );
   }
@@ -502,6 +505,7 @@ class _Dm extends StatelessWidget {
     required this.onBack,
     required this.onReport,
     required this.onSignOut,
+    required this.onProfile,
     this.avatarImageUrl,
   });
 
@@ -523,6 +527,9 @@ class _Dm extends StatelessWidget {
   /// 로그아웃 버튼이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onSignOut;
 
+  /// 프로필 영역이 탭될 때 호출되는 콜백 함수입니다.
+  final VoidCallback onProfile;
+
   @override
   Widget build(BuildContext context) {
     final colors = context.gdsColors;
@@ -534,30 +541,40 @@ class _Dm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: GdsSpacing.spacing8,
         children: [
-          GdsPersonAvatar(size: GdsAvatarSize.md, imageUrl: avatarImageUrl),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          GdsGesture(
+            onTap: onProfile,
+            child: Row(
               mainAxisSize: MainAxisSize.min,
-              spacing: GdsSpacing.spacing2,
+              spacing: GdsSpacing.spacing8,
               children: [
-                Text(displayName, style: GdsTypography.label3.copyWith(color: colors.text.grayBold)),
-                Text(userId, style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                GdsPersonAvatar(size: GdsAvatarSize.md, imageUrl: avatarImageUrl),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: GdsSpacing.spacing2,
+                  children: [
+                    Text(displayName, style: GdsTypography.label3.copyWith(color: colors.text.grayBold)),
+                    Text(userId, style: GdsTypography.label6.copyWith(color: colors.text.graySubtle)),
+                  ],
+                ),
               ],
             ),
           ),
-          Row(
-            spacing: GdsSpacing.spacing8,
-            children: [
-              GdsGesture(
-                onTap: onReport,
-                child: GdsIcon.sirenOutline.build(color: colors.icon.grayBold),
-              ),
-              GdsGesture(
-                onTap: onSignOut,
-                child: GdsIcon.signOut.build(color: colors.icon.grayBold),
-              ),
-            ],
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              spacing: GdsSpacing.spacing8,
+              children: [
+                GdsGesture(
+                  onTap: onReport,
+                  child: GdsIcon.sirenOutline.build(color: colors.icon.grayBold),
+                ),
+                GdsGesture(
+                  onTap: onSignOut,
+                  child: GdsIcon.signOut.build(color: colors.icon.grayBold),
+                ),
+              ],
+            ),
           ),
         ],
       ),
