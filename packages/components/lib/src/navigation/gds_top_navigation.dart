@@ -197,11 +197,13 @@ class GdsTopNavigation {
     Key? key,
     required VoidCallback onClose,
     required VoidCallback onDownload,
+    bool showDownload = true,
   }) {
     return _ImageViewer(
       key: key,
       onClose: onClose,
       onDownload: onDownload,
+      showDownload: showDownload,
     );
   }
 
@@ -633,6 +635,7 @@ class _ImageViewer extends StatelessWidget {
     super.key,
     required this.onClose,
     required this.onDownload,
+    required this.showDownload,
   });
 
   /// 닫기 버튼이 탭될 때 호출되는 콜백 함수입니다.
@@ -640,6 +643,9 @@ class _ImageViewer extends StatelessWidget {
 
   /// 다운로드 버튼이 탭될 때 호출되는 콜백 함수입니다.
   final VoidCallback onDownload;
+
+  /// 다운로드 버튼을 표시할지 여부입니다.
+  final bool showDownload;
 
   @override
   Widget build(BuildContext context) {
@@ -655,10 +661,13 @@ class _ImageViewer extends StatelessWidget {
             onTap: onClose,
             child: GdsIcon.xMark.build(color: context.gdsColors.icon.grayBold),
           ),
-          GdsGesture(
-            onTap: onDownload,
-            child: GdsIcon.download.build(color: context.gdsColors.icon.grayBold),
-          ),
+
+          if (showDownload) ...[
+            GdsGesture(
+              onTap: onDownload,
+              child: GdsIcon.download.build(color: context.gdsColors.icon.grayBold),
+            ),
+          ],
         ],
       ),
     );
