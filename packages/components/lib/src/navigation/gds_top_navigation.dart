@@ -676,13 +676,13 @@ class _ImageViewer extends StatelessWidget {
         children: [
           GdsGesture(
             onTap: onClose,
-            child: GdsIcon.xMark.build(color: context.gdsColors.icon.grayBold),
+            child: GdsIcon.xMark.build(color: context.gdsColors.icon.white),
           ),
 
           if (showDownload) ...[
             GdsGesture(
               onTap: onDownload,
-              child: GdsIcon.download.build(color: context.gdsColors.icon.grayBold),
+              child: GdsIcon.download.build(color: context.gdsColors.icon.white),
             ),
           ],
         ],
