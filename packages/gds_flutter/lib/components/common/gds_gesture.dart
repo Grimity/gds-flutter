@@ -25,7 +25,7 @@ class GdsGesture extends StatelessWidget {
   final bool useEffect;
 
   /// 자식의 실제 페인트 여부와 관계없이 레이아웃 영역 전체를 터치 영역으로 취급.
-  static const HitTestBehavior hitTestBehavior = HitTestBehavior.opaque;
+  static const hitTestBehavior = HitTestBehavior.opaque;
 
   @override
   Widget build(BuildContext context) {
