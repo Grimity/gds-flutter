@@ -14,22 +14,11 @@ class GdsAlert extends StatelessWidget {
     this.secondaryButton,
   });
 
-  /// 알림 팝업의 크기입니다.
   final GdsSize size;
-
-  /// 알림 팝업에 표시할 제목입니다.
   final String title;
-
-  /// 제목 아래에 표시할 설명입니다.
   final String description;
-
-  /// 제목 위에 표시할 일러스트 아이콘입니다.
   final GdsIcon? illust;
-
-  /// 주요 동작을 수행하는 버튼 정보입니다.
   final GdsTextButtonAction? primaryButton;
-
-  /// 주요 동작을 보조하는 버튼 정보입니다.
   final GdsTextButtonAction? secondaryButton;
 
   @override
