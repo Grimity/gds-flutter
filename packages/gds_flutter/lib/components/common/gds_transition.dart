@@ -4,6 +4,24 @@ import 'package:gds_flutter/foundation/foundation.dart';
 
 /// 디자인 시스템에서 전환 애니메이션을 구현하는 위젯.
 abstract class GdsTransition {
+  /// 주어진 값에 따라 자식 위젯에 전환 애니메이션을 적용하는 위젯.
+  static Widget builder<T>({
+    Key? key,
+    required T value,
+    required ValueWidgetBuilder<T> builder,
+    Widget? child,
+    GdsAnimation animation = .normal,
+  }) {
+    return TweenAnimationBuilder<T>(
+      key: key,
+      tween: .new(begin: value, end: value),
+      duration: animation.duration,
+      curve: animation.curve,
+      builder: builder,
+      child: child,
+    );
+  }
+
   /// 축 기반 전환 애니메이션을 구현하는 위젯.
   static Widget sharedAxis<T>({
     Key? key,

@@ -45,45 +45,9 @@ class GdsFadable extends StatefulWidget {
   State<GdsFadable> createState() => _GdsFadableState();
 }
 
-class _GdsFadableState extends State<GdsFadable> with TickerProviderStateMixin {
-  late final AnimationController _animation;
-  late final CurvedAnimation _curved;
-
+class _GdsFadableState extends State<GdsFadable> {
   // 애니메이션 도중 재빌드를 방지하기 위한 캐싱되는 위젯.
   Widget? _cachedChild;
-
-  @override
-  void initState() {
-    super.initState();
-
-    final initialValue = widget.visible ? 1.0 : 0.0;
-    final curve = widget.animation.curve;
-
-    _animation = .new(vsync: this, duration: widget.animation.duration, value: initialValue);
-    _curved = .new(parent: _animation, curve: curve, reverseCurve: curve.flipped);
-  }
-
-  @override
-  void didUpdateWidget(covariant GdsFadable oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    // visible 속성이 변경되었을 경우.
-    if (widget.visible != oldWidget.visible) {
-      widget.visible ? _animation.forward() : _animation.reverse();
-    }
-
-    // animation 속성이 변경되었을 경우.
-    if (widget.animation != oldWidget.animation) {
-      _animation.duration = widget.animation.duration;
-    }
-  }
-
-  @override
-  void dispose() {
-    _animation.dispose();
-    _curved.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,12 +56,10 @@ class _GdsFadableState extends State<GdsFadable> with TickerProviderStateMixin {
       _cachedChild = widget.builder(context);
     }
 
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        final value = _curved.value;
-        final child = _cachedChild;
-
+    return GdsTransition.builder(
+      value: widget.visible ? 1.0 : 0.0,
+      child: _cachedChild,
+      builder: (context, value, child) {
         // 애니메이션 값이 오차 범위보다 작으면 자식을 빌드하지 않음.
         if (child == null || value < precisionErrorTolerance) {
           return SizedBox.shrink();

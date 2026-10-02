@@ -40,15 +40,19 @@ class _GdsFoldableState extends State<GdsFoldable> with TickerProviderStateMixin
     final initialValue = widget.visible ? 1.0 : 0.0;
     final curve = widget.animation.curve;
 
-    _animation = .new(vsync: this, duration: widget.animation.duration, value: initialValue);
+    _animation = .new(
+      vsync: this,
+      value: initialValue,
+      duration: widget.animation.duration,
+    );
 
-    _curvedSize = CurvedAnimation(
+    _curvedSize = .new(
       parent: _animation,
       curve: Interval(0.0, 0.5, curve: curve),
       reverseCurve: Interval(0.0, 0.5, curve: curve.flipped),
     );
 
-    _curvedOpacity = CurvedAnimation(
+    _curvedOpacity = .new(
       parent: _animation,
       curve: Interval(0.5, 1.0, curve: curve),
       reverseCurve: Interval(0.5, 1.0, curve: curve.flipped),
