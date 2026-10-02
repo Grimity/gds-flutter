@@ -1,0 +1,11 @@
+name: gds_lints
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  analyzer: ^14.3.0
+  analyzer_plugin: ^0.14.16
+  analysis_server_plugin: ^0.3.22

@@ -1,0 +1,55 @@
+name: gds_flutter
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  animations: ^2.2.0
+  collection: ^1.19.1
+  cached_network_image: ^4.0.0
+  flutter_svg: ^2.3.0
+  flutter_touch_scale: ^1.6.1
+  flutter_design_preview:
+    git:
+      url: https://github.com/MTtankkeo/vscode-flutter-design-preview.git
+      path: packages/flutter_design_preview
+  flutter_staggered_grid_view: ^0.7.0
+  flutter_scroll_bottom_sheet: ^1.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  assets:
+    - assets/
+    - assets/fonts/
+    - assets/images/
+    - assets/images/placeholder/
+    - assets/images/placeholder/profile/
+    - assets/vectors/
+    - assets/vectors/component/
+    - assets/vectors/icon/
+    - assets/vectors/icon/brand/
+    - assets/vectors/icon/graphic/
+    - assets/vectors/icon/illust/
+    - assets/vectors/icon/logo/
+    - assets/vectors/icon/navigation/
+    - assets/vectors/icon/normal/
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Pretendard-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Pretendard-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Pretendard-Bold.otf
+          weight: 700
