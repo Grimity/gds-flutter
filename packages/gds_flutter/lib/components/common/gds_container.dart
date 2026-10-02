@@ -61,7 +61,7 @@ class GdsContainer extends StatelessWidget {
     // 기본 외형 베이스.
     final decoration = BoxDecoration(
       shape: shape,
-      borderRadius: radius?.borderRadius,
+      borderRadius: radius?.all,
     );
 
     return Stack(

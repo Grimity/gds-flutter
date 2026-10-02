@@ -100,7 +100,7 @@ class GdsBottomSheet extends StatelessWidget {
 
   /// 오버레이에 바텀 시트를 화면에 표시합니다.
   Future<T?> open<T>(BuildContext context) {
-    final barrierColor = GdsColor.bgOverlayBlack.of(context).opacity40;
+    final barrierColor = GdsColor.bgOverlayBlack.of(context);
 
     // 바텀 시트의 오버레이 색상과 키보드 표시 위치를 설정.
     BottomSheet.config = BottomSheetConfig(

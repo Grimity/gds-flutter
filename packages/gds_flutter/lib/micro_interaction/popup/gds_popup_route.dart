@@ -37,7 +37,7 @@ class GdsPopupRoute<T> extends ModalRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
   ) {
-    final CurvedAnimation curvedAnimation = CurvedAnimation(
+    final curvedAnimation = CurvedAnimation(
       parent: animation,
       curve: fadeAnimation.curve,
     );

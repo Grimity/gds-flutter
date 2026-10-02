@@ -80,7 +80,7 @@ abstract class GdsPushBadge {
           alignment: .center,
           shape: .circle,
           color: switch (variant) {
-            .text => null,
+            .text => .surfaceBase,
             .solid => .statusNotification,
             .outline => null,
           },

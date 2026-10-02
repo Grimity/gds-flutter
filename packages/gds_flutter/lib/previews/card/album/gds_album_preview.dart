@@ -3,7 +3,7 @@ import 'package:flutter_design_preview/flutter_design_preview.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:gds_flutter/previews/preview.dart';
 
-/// [GdsAlbum] preview widget.
+/// [GdsAlbum]에 대한 프리뷰 위젯.
 class GdsAlbumPreview extends PreviewWidget {
   final imageUrlControl = PreviewControl.string(
     initialValue: previewProfileUrl,
@@ -63,7 +63,7 @@ class GdsAlbumPreview extends PreviewWidget {
   String get displayName => 'Album';
 
   @override
-  List<String> get groups => ['Card'];
+  List<String> get groups => ['Card', 'Album'];
 
   @override
   Widget build(BuildContext context) {

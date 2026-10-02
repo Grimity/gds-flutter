@@ -20,6 +20,7 @@ export 'button/gds_icon_button_type.dart';
 export 'button/gds_text_button_type.dart';
 
 // Card
+export 'card/gds_album_upload.dart';
 export 'card/gds_album.dart';
 
 // Category
