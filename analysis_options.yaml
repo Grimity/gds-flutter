@@ -2,7 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 plugins:
   gds_lints:
-    path: D:/Project Files/grimity-flutter-gds/packages/gds_lints
+    path: packages/gds_lints
 
 formatter:
   page_width: 120
