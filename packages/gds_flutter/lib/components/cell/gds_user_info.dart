@@ -19,7 +19,15 @@ abstract class GdsUserInfo {
       children: GdsDot.separated([
         // 닉네임 표시.
         if (nickname != null) ...[
-          GdsText(nickname, color: .textGraySubtle, style: .label6),
+          Flexible(
+            child: GdsText(
+              nickname,
+              color: .textGraySubtle,
+              style: .label6,
+              maxLines: 1,
+              overflow: .ellipsis,
+            ),
+          ),
         ],
 
         // 댓글 개수 표시.

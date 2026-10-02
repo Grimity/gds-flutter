@@ -18,16 +18,27 @@ class GdsHeart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GdsIcon icon = value ? .heartFill : .heart;
-
     return GdsGesture(
       onTap: enabled && onChanged != null ? () => onChanged!(!value) : null,
       child: GdsTransition.crossFade(
         animation: .fast,
         value: [value, black, enabled],
-        child: icon.build(
-          size: 24,
-          color: value ? .statusNotification : (black ? .iconGrayBold : .iconGraySubtle),
+        child: Stack(
+          children: [
+            // 배경 아이콘 표시
+            GdsIcon.heartFill.build(
+              size: 24,
+              color: value ? .statusNotification : .surfaceBase,
+            ),
+
+            // 전경 아이콘 표시
+            if (!value) ...[
+              GdsIcon.heart.build(
+                size: 24,
+                color: black ? .iconGrayBold : .iconGraySubtle,
+              ),
+            ],
+          ],
         ),
       ),
     );

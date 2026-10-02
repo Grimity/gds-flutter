@@ -19,6 +19,9 @@ export 'button/gds_button_status.dart';
 export 'button/gds_icon_button_type.dart';
 export 'button/gds_text_button_type.dart';
 
+// Card
+export 'card/gds_album.dart';
+
 // Category
 export 'category/gds_category_button.dart';
 export 'category/gds_category_item.dart';
