@@ -130,7 +130,7 @@ abstract class GdsAlbumUpload {
         width: 160,
         child: ClipRRect(
           key: key,
-          borderRadius: GdsRadius.md.all,
+          borderRadius: GdsRadius.md.geometry,
           child: Stack(
             children: [
               // 이미지 표시
@@ -234,7 +234,7 @@ class _IconButton extends StatelessWidget {
     return GdsGesture(
       onTap: onTap,
       child: ClipRRect(
-        borderRadius: GdsRadius.sm.all,
+        borderRadius: GdsRadius.sm.geometry,
         child: BackdropFilter(
           filter: .blur(sigmaX: 10, sigmaY: 10),
           child: GdsContainer(

@@ -12,17 +12,17 @@ extension GdsNumberExtension on num {
   ];
 
   // Padding
-  EdgeInsets get all => EdgeInsets.all(toDouble());
-  EdgeInsets get vertical => EdgeInsets.symmetric(vertical: toDouble());
-  EdgeInsets get horizontal => EdgeInsets.symmetric(horizontal: toDouble());
-  EdgeInsets get top => EdgeInsets.only(top: toDouble());
-  EdgeInsets get left => EdgeInsets.only(left: toDouble());
-  EdgeInsets get right => EdgeInsets.only(right: toDouble());
-  EdgeInsets get bottom => EdgeInsets.only(bottom: toDouble());
+  EdgeInsets get all => .all(toDouble());
+  EdgeInsets get vertical => .symmetric(vertical: toDouble());
+  EdgeInsets get horizontal => .symmetric(horizontal: toDouble());
+  EdgeInsets get top => .only(top: toDouble());
+  EdgeInsets get left => .only(left: toDouble());
+  EdgeInsets get right => .only(right: toDouble());
+  EdgeInsets get bottom => .only(bottom: toDouble());
 
   // Gap
-  SizedBox get verticalGap => SizedBox(height: toDouble());
-  SizedBox get horizontalGap => SizedBox(width: toDouble());
+  SizedBox get verticalGap => .new(height: toDouble());
+  SizedBox get horizontalGap => .new(width: toDouble());
 
   /// 숫자의 정수 부분을 세 자리마다 쉼표로 구분합니다.
   String get comma {

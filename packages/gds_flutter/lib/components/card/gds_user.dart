@@ -199,7 +199,7 @@ abstract class GdsUser {
       key: key,
       width: 180,
       child: ClipRRect(
-        borderRadius: GdsRadius.md.all,
+        borderRadius: GdsRadius.md.geometry,
         child: Stack(
           children: [
             // 이미지 표시

@@ -17,7 +17,7 @@ class GdsToast extends StatelessWidget {
     final hasIcon = status.icon != null;
 
     return ClipRRect(
-      borderRadius: GdsRadius.full.all,
+      borderRadius: GdsRadius.full.geometry,
       child: BackdropFilter(
         filter: .blur(sigmaX: 4, sigmaY: 4),
         child: GdsContainer(

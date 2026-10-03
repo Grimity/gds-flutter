@@ -20,7 +20,7 @@ enum GdsRadius {
   Radius get circular => .circular(value);
 
   // BorderRadius
-  BorderRadius get all => .circular(value);
+  BorderRadius get geometry => .circular(value);
 }
 
 /// 각 모서리에 적용할 [GdsRadius]를 지정하는 테두리 반경.
