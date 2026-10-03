@@ -18,6 +18,7 @@ class GdsContainer extends StatelessWidget {
     this.border,
     this.radius,
     this.shadow,
+    this.gradient,
     this.shape = .rectangle,
     this.padding,
     this.margin,
@@ -38,6 +39,7 @@ class GdsContainer extends StatelessWidget {
   final GdsBorder? border;
   final GdsRadius? radius;
   final GdsShadow? shadow;
+  final Gradient? gradient;
   final BoxShape shape;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
@@ -54,8 +56,8 @@ class GdsContainer extends StatelessWidget {
     final constraints = BoxConstraints(
       minWidth: minWidth ?? 0,
       minHeight: minHeight ?? 0,
-      maxWidth: maxWidth ?? double.infinity,
-      maxHeight: maxHeight ?? double.infinity,
+      maxWidth: maxWidth ?? .infinity,
+      maxHeight: maxHeight ?? .infinity,
     );
 
     // 기본 외형 베이스.
@@ -73,6 +75,7 @@ class GdsContainer extends StatelessWidget {
             curve: animation.curve,
             decoration: decoration.copyWith(
               color: color?.of(context).withAlphaIf(opacity?.alpha),
+              gradient: gradient,
               boxShadow: shadow != null ? [shadow!.outer] : null,
             ),
           ),

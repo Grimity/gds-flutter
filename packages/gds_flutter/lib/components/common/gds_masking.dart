@@ -124,19 +124,16 @@ class _GdsMaskingState extends State<GdsMasking> {
         final baseColor = GdsColor.surfaceBase.of(context);
 
         return IgnorePointer(
-          // ignore: gds_lints/prefer_gds_container
-          child: Container(
+          child: GdsContainer(
             width: axis == .vertical ? .infinity : 40,
             height: axis == .vertical ? 40 : .infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: begin,
-                end: end,
-                colors: [
-                  baseColor.withAlpha(255),
-                  baseColor.withAlpha(0),
-                ],
-              ),
+            gradient: LinearGradient(
+              begin: begin,
+              end: end,
+              colors: [
+                baseColor.withAlpha(255),
+                baseColor.withAlpha(0),
+              ],
             ),
           ),
         );

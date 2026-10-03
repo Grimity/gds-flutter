@@ -57,7 +57,7 @@ class GdsUserItemIconButtonPreview extends PreviewWidget {
     return GdsUserItem.iconButton(
       nickname: nickname.value,
       handle: handle.mayBeValue,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       onUser: () => debugPrint('Profile onTap() called'),
       actions: actions,
     );

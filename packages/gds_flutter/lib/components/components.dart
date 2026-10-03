@@ -22,6 +22,7 @@ export 'button/gds_text_button_type.dart';
 // Card
 export 'card/gds_album_upload.dart';
 export 'card/gds_album.dart';
+export 'card/gds_user.dart';
 
 // Category
 export 'category/gds_category_button.dart';

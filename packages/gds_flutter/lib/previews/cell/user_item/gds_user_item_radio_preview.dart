@@ -42,7 +42,7 @@ class GdsUserItemRadioPreview extends PreviewWidget {
       value: value.value,
       nickname: nickname.value,
       handle: handle.mayBeValue,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       onTap: () => value.value = !value.value,
     );
   }

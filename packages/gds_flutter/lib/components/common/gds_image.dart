@@ -53,7 +53,6 @@ class GdsImage extends StatelessWidget {
 
         assert(!size.isInfinite);
         final cacheWidth = size.width.ceil();
-        final cacheHeight = size.height.ceil();
 
         ImageProvider? resolvedImage;
 
@@ -67,7 +66,7 @@ class GdsImage extends StatelessWidget {
         // 리사이즈된 플레이스 홀더 이미지.
         final placeholderImage = ResizeImage.resizeIfNeeded(
           cacheWidth,
-          cacheHeight,
+          null,
           placeholderProvider,
         );
 
@@ -85,14 +84,13 @@ class GdsImage extends StatelessWidget {
             width: width ?? .infinity,
             height: height ?? .infinity,
             memCacheWidth: cacheWidth,
-            memCacheHeight: cacheHeight,
           );
         }
 
         // 리사이즈된 에셋 이미지.
         final resizedImage = ResizeImage.resizeIfNeeded(
           cacheWidth,
-          cacheHeight,
+          null,
           resolvedImage,
         );
 

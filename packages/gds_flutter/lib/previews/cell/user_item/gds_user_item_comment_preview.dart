@@ -86,7 +86,7 @@ class GdsUserItemCommentPreview extends PreviewWidget {
       isLiked: isLiked.value,
       content: content.value,
       mention: mention.mayBeValue,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       createdAt: DateTime.now().subtract(Duration(hours: hoursAgo.value)),
       onMenu: () => debugPrint('onMenu() called'),
       onLike: () => debugPrint('onLike() called'),

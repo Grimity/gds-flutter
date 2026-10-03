@@ -8,7 +8,7 @@ abstract class GdsUserItem {
     Key? key,
     required String nickname,
     String? handle,
-    required String? profileUrl,
+    required ImageProvider? profile,
     required VoidCallback? onUser,
     List<GdsTextButtonAction>? actions,
   }) {
@@ -20,7 +20,7 @@ abstract class GdsUserItem {
         children: [
           info(
             nickname: nickname,
-            profileUrl: profileUrl,
+            profile: profile,
             handle: handle,
             onTap: onUser,
           ),
@@ -53,7 +53,7 @@ abstract class GdsUserItem {
     Key? key,
     required String nickname,
     String? handle,
-    required String? profileUrl,
+    required ImageProvider? profile,
     required VoidCallback? onUser,
     List<GdsIconButtonAction>? actions,
   }) {
@@ -65,7 +65,7 @@ abstract class GdsUserItem {
         children: [
           info(
             nickname: nickname,
-            profileUrl: profileUrl,
+            profile: profile,
             handle: handle,
             onTap: onUser,
           ),
@@ -97,7 +97,7 @@ abstract class GdsUserItem {
     required bool value,
     required String nickname,
     String? handle,
-    required String? profileUrl,
+    required ImageProvider? profile,
     required VoidCallback onTap,
   }) {
     return GdsGesture(
@@ -111,7 +111,7 @@ abstract class GdsUserItem {
           children: [
             info(
               nickname: nickname,
-              profileUrl: profileUrl,
+              profile: profile,
               handle: handle,
             ),
 
@@ -130,8 +130,8 @@ abstract class GdsUserItem {
     required int followingCount,
     required String nickname,
     String? handle,
-    required String? profileUrl,
-    required VoidCallback? onUser,
+    required ImageProvider? profile,
+    VoidCallback? onUser,
     List<GdsTextButtonAction> actions = const [],
   }) {
     return Padding(
@@ -142,7 +142,7 @@ abstract class GdsUserItem {
         children: [
           _ProfileNickName(
             nickname: nickname,
-            profileUrl: profileUrl,
+            profile: profile,
             onTap: onUser,
             child: GdsUserInfo.follow(
               followerCount: followerCount,
@@ -421,7 +421,7 @@ abstract class GdsUserItem {
     required bool isLiked, // 현재 사용자가 좋아요를 눌렀는지 여부
     required String content,
     required String? mention,
-    required String? profileUrl,
+    required ImageProvider? profile,
     required DateTime createdAt,
     required VoidCallback onMenu,
     required VoidCallback onLike,
@@ -455,7 +455,7 @@ abstract class GdsUserItem {
               ],
 
               // 작성자 정보 표시
-              GdsProfile(size: size, url: profileUrl),
+              GdsProfile(size: size, image: profile),
               GdsUserInfo.comment(
                 nickname: nickname,
                 isWriter: isWriter,
@@ -563,14 +563,14 @@ abstract class GdsUserItem {
   static Widget info({
     Key? key,
     required String nickname,
-    required String? profileUrl,
+    required ImageProvider? profile,
     String? handle,
     VoidCallback? onTap,
   }) {
     return _ProfileNickName(
       key: key,
       nickname: nickname,
-      profileUrl: profileUrl,
+      profile: profile,
       onTap: onTap,
       child: handle != null ? GdsText('@$handle', color: .textGraySubtle, style: .label6) : null,
     );
@@ -582,13 +582,13 @@ class _ProfileNickName extends StatelessWidget {
   const _ProfileNickName({
     super.key,
     required this.nickname,
-    required this.profileUrl,
+    required this.profile,
     this.child,
     this.onTap,
   });
 
   final String nickname;
-  final String? profileUrl;
+  final ImageProvider? profile;
   final Widget? child;
   final VoidCallback? onTap;
 
@@ -602,7 +602,7 @@ class _ProfileNickName extends StatelessWidget {
         mainAxisSize: .min,
         spacing: 8,
         children: [
-          GdsProfile(size: .md, url: profileUrl),
+          GdsProfile(size: .md, image: profile),
           Column(
             crossAxisAlignment: .start,
             mainAxisSize: .min,

@@ -68,7 +68,7 @@ class GdsDmListItemPreview extends PreviewWidget {
       active: active.value,
       checked: checked.value,
       checkable: checkable.value,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       nickname: nickname.value,
       message: message.value,
       createdAt: DateTime.now().subtract(Duration(hours: hoursAgo.value)),

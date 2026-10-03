@@ -39,7 +39,7 @@ class GdsDmTopNavigationPreview extends PreviewWidget {
       onReport: () => debugPrint('onReport() called'),
       nickname: nickname.value,
       handle: handle.value,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
     );
   }
 }

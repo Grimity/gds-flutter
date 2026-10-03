@@ -7,12 +7,12 @@ class GdsProfileEdit extends StatelessWidget {
   const GdsProfileEdit({
     super.key,
     required this.size,
-    required this.url,
+    required this.image,
     this.onTap,
   });
 
   final GdsSize size;
-  final String? url;
+  final ImageProvider? image;
   final VoidCallback? onTap;
 
   @override
@@ -22,7 +22,7 @@ class GdsProfileEdit extends StatelessWidget {
       child: Stack(
         clipBehavior: .none,
         children: [
-          GdsProfile(size: size, url: url),
+          GdsProfile(size: size, image: image),
 
           // 우측 하단에 아이콘 배지 표시
           if (size == .xl) ...[

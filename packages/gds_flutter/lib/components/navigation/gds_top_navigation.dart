@@ -9,7 +9,7 @@ abstract class GdsTopNavigation {
     required VoidCallback onSearch,
     required VoidCallback onNotification,
     required VoidCallback onProfile,
-    required String? profileUrl,
+    required ImageProvider? profile,
     required bool hasNotification,
   }) {
     return GdsContainer(
@@ -27,7 +27,7 @@ abstract class GdsTopNavigation {
             onSearch: onSearch,
             onNotification: onNotification,
             onProfile: onProfile,
-            profileUrl: profileUrl,
+            profile: profile,
             hasNotification: hasNotification,
           ),
         ],
@@ -43,7 +43,7 @@ abstract class GdsTopNavigation {
     required VoidCallback onNotification,
     required VoidCallback onProfile,
     String? title,
-    required String? profileUrl,
+    required ImageProvider? profile,
     required bool hasNotification,
   }) {
     final hasTitle = title != null;
@@ -74,7 +74,7 @@ abstract class GdsTopNavigation {
             onSearch: onSearch,
             onNotification: onNotification,
             onProfile: onProfile,
-            profileUrl: profileUrl,
+            profile: profile,
             hasNotification: hasNotification,
           ),
         ],
@@ -175,7 +175,7 @@ abstract class GdsTopNavigation {
     required VoidCallback onReport,
     required String nickname,
     required String handle,
-    required String? profileUrl,
+    required ImageProvider? profile,
   }) {
     return GdsContainer(
       key: key,
@@ -193,7 +193,7 @@ abstract class GdsTopNavigation {
             child: GdsUserItem.info(
               nickname: nickname,
               handle: handle,
-              profileUrl: profileUrl,
+              profile: profile,
             ),
           ),
 
@@ -304,14 +304,14 @@ class _MainIcons extends StatelessWidget {
     required this.onSearch,
     required this.onNotification,
     required this.onProfile,
-    required this.profileUrl,
+    required this.profile,
     required this.hasNotification,
   });
 
   final VoidCallback onSearch;
   final VoidCallback onNotification;
   final VoidCallback onProfile;
-  final String? profileUrl;
+  final ImageProvider? profile;
   final bool hasNotification;
 
   @override
@@ -335,7 +335,7 @@ class _MainIcons extends StatelessWidget {
         // 프로필 이미지 표시
         GdsGesture(
           onTap: onProfile,
-          child: GdsProfile(size: .xs, url: profileUrl),
+          child: GdsProfile(size: .xs, image: profile),
         ),
       ],
     );

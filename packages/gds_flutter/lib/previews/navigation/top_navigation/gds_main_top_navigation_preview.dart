@@ -30,7 +30,7 @@ class GdsMainTopNavigationPreview extends PreviewWidget {
       onSearch: () => debugPrint('onSearch() called'),
       onNotification: () => debugPrint('onNotification() called'),
       onProfile: () => debugPrint('onProfile() called'),
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       hasNotification: hasNotification.value,
     );
   }

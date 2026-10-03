@@ -27,6 +27,9 @@ class GdsProfilePreview extends PreviewWidget {
     final size = sizeControl.of(context);
     final url = urlControl.of(context);
 
-    return GdsProfile(size: size.value, url: url.mayBeValue);
+    return GdsProfile(
+      size: size.value,
+      image: url.mayBeValue?.networkImage,
+    );
   }
 }

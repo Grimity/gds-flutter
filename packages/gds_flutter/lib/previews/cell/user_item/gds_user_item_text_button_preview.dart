@@ -61,7 +61,7 @@ class GdsUserItemTextButtonPreview extends PreviewWidget {
     return GdsUserItem.textButton(
       nickname: nickname.value,
       handle: handle.mayBeValue,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       onUser: () => debugPrint('onUser() called'),
       actions: actions,
     );

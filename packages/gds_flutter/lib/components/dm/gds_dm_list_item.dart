@@ -8,7 +8,7 @@ class GdsDmListItem extends StatelessWidget {
     this.active = false,
     this.checked = false,
     this.checkable = false,
-    required this.profileUrl,
+    required this.profile,
     required this.nickname,
     required this.message,
     required this.createdAt,
@@ -20,7 +20,7 @@ class GdsDmListItem extends StatelessWidget {
   final bool active;
   final bool checked;
   final bool checkable;
-  final String? profileUrl;
+  final ImageProvider? profile;
   final String nickname;
   final String message;
   final DateTime createdAt;
@@ -70,7 +70,7 @@ class GdsDmListItem extends StatelessWidget {
     return Row(
       spacing: 12,
       children: [
-        GdsProfile(size: .md, url: profileUrl),
+        GdsProfile(size: .md, image: profile),
         Expanded(
           child: Column(
             crossAxisAlignment: .start,

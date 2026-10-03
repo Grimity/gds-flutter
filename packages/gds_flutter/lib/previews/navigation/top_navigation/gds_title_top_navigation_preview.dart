@@ -38,7 +38,7 @@ class GdsTitleTopNavigationPreview extends PreviewWidget {
       onNotification: () => debugPrint('onNotification() called'),
       onProfile: () => debugPrint('onProfile() called'),
       title: title.mayBeValue,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       hasNotification: hasNotification.value,
     );
   }

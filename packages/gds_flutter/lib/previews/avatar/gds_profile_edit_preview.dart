@@ -29,7 +29,7 @@ class GdsProfileEditPreview extends PreviewWidget {
 
     return GdsProfileEdit(
       size: size.value,
-      url: url.mayBeValue,
+      image: url.mayBeValue?.networkImage,
       onTap: () => debugPrint('onTap() called'),
     );
   }

@@ -6,11 +6,11 @@ class GdsProfile extends StatelessWidget {
   const GdsProfile({
     super.key,
     required this.size,
-    required this.url,
+    required this.image,
   });
 
   final GdsSize size;
-  final String? url;
+  final ImageProvider? image;
 
   /// 주어진 크기에 해당하는 프로필 이미지의 너비와 높이를 반환합니다.
   static double getDimension(GdsSize size) {
@@ -31,7 +31,7 @@ class GdsProfile extends StatelessWidget {
 
     return GdsThumbnail(
       key: ValueKey(dimension),
-      provider: url?.networkImage,
+      provider: image,
       placeholder: context.theme.profilePlaceholder,
       radius: .full,
       border: .all(color: .borderGraySubtler),

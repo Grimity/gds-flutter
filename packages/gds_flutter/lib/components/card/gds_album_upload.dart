@@ -136,23 +136,20 @@ abstract class GdsAlbumUpload {
               // 이미지 표시
               GdsThumbnail(ratio: .square, provider: image),
 
-              // 그라데이션 표시
+              // 그라디언트 오버레이 표시
               Positioned.fill(
                 child: GdsFadable.builder(
                   type: .fade,
                   visible: checked,
                   builder: (context) {
-                    // ignore: gds_lints/prefer_gds_container
-                    return Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: .topCenter,
-                          end: .bottomCenter,
-                          colors: [
-                            GdsAtomicColor.black,
-                            GdsAtomicColor.transparent,
-                          ],
-                        ),
+                    return GdsContainer(
+                      gradient: LinearGradient(
+                        begin: .topCenter,
+                        end: .bottomCenter,
+                        colors: [
+                          GdsAtomicColor.black,
+                          GdsAtomicColor.transparent,
+                        ],
                       ),
                     );
                   },

@@ -9,7 +9,7 @@ class GdsSidebar extends StatelessWidget {
     required this.size,
     required this.nickname,
     required this.handle,
-    required this.profileUrl,
+    required this.profile,
     required this.followerCount,
     required this.followingCount,
     required this.onProfile,
@@ -27,7 +27,7 @@ class GdsSidebar extends StatelessWidget {
   final GdsSize size;
   final String nickname;
   final String handle;
-  final String? profileUrl;
+  final ImageProvider? profile;
   final int followerCount;
   final int followingCount;
   final VoidCallback onProfile;
@@ -64,7 +64,7 @@ class GdsSidebar extends StatelessWidget {
               // 프로필 사진 표시
               GdsGesture(
                 onTap: onProfile,
-                child: GdsProfile(size: .ml, url: profileUrl),
+                child: GdsProfile(size: .ml, image: profile),
               ),
               8.verticalGap,
 

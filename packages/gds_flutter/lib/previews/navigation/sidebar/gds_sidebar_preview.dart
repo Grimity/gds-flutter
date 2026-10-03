@@ -63,7 +63,7 @@ class GdsSidebarPreview extends PreviewWidget {
       size: size.value,
       nickname: nickname.value,
       handle: handle.value,
-      profileUrl: profileUrl.mayBeValue,
+      profile: profileUrl.mayBeValue?.networkImage,
       followerCount: followerCount.value,
       followingCount: followingCount.value,
       onProfile: () => debugPrint('onProfile() called'),
