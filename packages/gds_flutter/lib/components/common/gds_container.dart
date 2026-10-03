@@ -16,6 +16,7 @@ class GdsContainer extends StatelessWidget {
     this.color,
     this.opacity,
     this.border,
+    this.borderRadius,
     this.radius,
     this.shadow,
     this.gradient,
@@ -26,7 +27,10 @@ class GdsContainer extends StatelessWidget {
     this.animation = .normal,
     this.clip = false,
     this.child,
-  });
+  }) : assert(
+         radius == null || borderRadius == null,
+         'radius와 borderRadius는 동시에 사용할 수 없습니다.',
+       );
 
   final double? width;
   final double? height;
@@ -37,6 +41,7 @@ class GdsContainer extends StatelessWidget {
   final GdsColor? color;
   final GdsOpacity? opacity;
   final GdsBorder? border;
+  final GdsBorderRadius? borderRadius;
   final GdsRadius? radius;
   final GdsShadow? shadow;
   final Gradient? gradient;
@@ -63,7 +68,7 @@ class GdsContainer extends StatelessWidget {
     // 기본 외형 베이스.
     final decoration = BoxDecoration(
       shape: shape,
-      borderRadius: radius?.all,
+      borderRadius: radius?.all ?? borderRadius?.geometry,
     );
 
     return Stack(

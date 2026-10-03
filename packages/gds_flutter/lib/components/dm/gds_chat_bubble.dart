@@ -41,19 +41,14 @@ class GdsChatBubble extends StatelessWidget {
                 child: Stack(
                   children: [
                     // 메시지 본문 표시
-                    // ignore: gds_lints/prefer_gds_container
-                    Container(
+                    GdsContainer(
+                      color: isMine ? .surfacePrimaryNormal : .surfaceGraySubtler,
                       padding: .symmetric(vertical: 8, horizontal: 12),
-                      decoration: BoxDecoration(
-                        borderRadius: .only(
-                          topLeft: GdsRadius.xl.circular,
-                          topRight: GdsRadius.xl.circular,
-                          bottomRight: (isMine ? GdsRadius.xs : GdsRadius.xl).circular,
-                          bottomLeft: (isMine ? GdsRadius.xl : GdsRadius.xs).circular,
-                        ),
-                        color: isMine
-                            ? GdsColor.surfacePrimaryNormal.of(context)
-                            : GdsColor.surfaceGraySubtler.of(context),
+                      borderRadius: .new(
+                        topLeft: .xl,
+                        topRight: .xl,
+                        bottomRight: isMine ? .xs : .xl,
+                        bottomLeft: isMine ? .xl : .xs,
                       ),
                       child: GdsText(message, color: .textGrayBold, style: .label2),
                     ),
