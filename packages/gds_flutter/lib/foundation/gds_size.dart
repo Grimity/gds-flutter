@@ -34,7 +34,7 @@ enum GdsSize {
 
 /// 컴포넌트가 지원하는 [GdsSize] 목록을 선언하는 애너테이션.
 final class GdsSupportedSizes {
-  const GdsSupportedSizes(this.sizes);
+  const new(this.sizes);
 
   /// 컴포넌트에서 사용할 수 있는 크기 목록.
   final List<GdsSize> sizes;

@@ -28,7 +28,7 @@ enum GdsFadableType {
 
 /// 표시 여부에 따라 자식의 시각적 크기나 투명도를 조절하는 애니메이션 위젯.
 class GdsFadable extends StatefulWidget {
-  const GdsFadable.builder({
+  const new builder({
     super.key,
     required this.type,
     required this.visible,

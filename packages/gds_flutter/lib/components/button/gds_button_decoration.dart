@@ -11,7 +11,7 @@ enum GdsButtonType {
 
 /// 버튼의 크기와 콘텐츠 유형에 따른 배치 정보를 정의하는 인터페이스.
 class GdsButtonDecoration {
-  const GdsButtonDecoration({
+  const new({
     this.iconOnly = .zero,
     this.textOnly = .zero,
     this.leadingIcon = .zero,

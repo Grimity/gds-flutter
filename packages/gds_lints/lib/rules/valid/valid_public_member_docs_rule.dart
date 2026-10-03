@@ -8,7 +8,7 @@ import 'package:gds_lints/src/gds_analysis_rule.dart';
 
 /// Public API에 문서 주석을 작성하도록 안내하는 규칙.
 final class ValidPublicMemberDocsRule extends GdsAnalysisRule {
-  ValidPublicMemberDocsRule()
+  new()
     : super(
         name: 'valid_public_member_docs',
         description: 'Public API에 문서 주석을 작성하세요.',
@@ -70,7 +70,7 @@ final class ValidPublicMemberDocsRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final ValidPublicMemberDocsRule rule;
 

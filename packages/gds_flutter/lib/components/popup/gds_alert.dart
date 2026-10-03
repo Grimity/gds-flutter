@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 제목과 메시지 그리고 액션 버튼을 표시하는 알림 팝업 위젯.
 @GdsSupportedSizes([.xl, .md])
 class GdsAlert extends StatelessWidget {
-  const GdsAlert({
+  const new({
     super.key,
     required this.size,
     required this.title,

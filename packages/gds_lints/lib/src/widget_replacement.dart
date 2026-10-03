@@ -3,7 +3,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// Flutter 위젯들을 GDS 위젯으로 대체하기 위한 정보를 정의하는 객체.
 final class WidgetReplacement {
-  const WidgetReplacement({
+  const new({
     required this.sources,
     required this.target,
   });

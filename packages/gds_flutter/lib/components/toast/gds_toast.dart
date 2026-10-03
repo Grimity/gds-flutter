@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 상단에 간단한 경고 혹은 안내 메시지를 표시하는 토스트 위젯.
 class GdsToast extends StatelessWidget {
-  const GdsToast({
+  const new({
     super.key,
     this.status = .none,
     required this.message,

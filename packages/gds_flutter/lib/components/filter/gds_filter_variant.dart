@@ -22,7 +22,7 @@ enum GdsFilterVariant {
     size: .sm,
   );
 
-  const GdsFilterVariant({
+  const new({
     required this.enabled,
     required this.disabled,
     required this.size,

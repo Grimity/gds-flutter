@@ -6,10 +6,7 @@ enum GdsBreakpoint {
   lg(1200, 1599),
   xl(1600, double.infinity);
 
-  const GdsBreakpoint(
-    this.minWidth,
-    this.maxWidth,
-  );
+  const new(this.minWidth, this.maxWidth);
 
   final double minWidth;
   final double maxWidth;

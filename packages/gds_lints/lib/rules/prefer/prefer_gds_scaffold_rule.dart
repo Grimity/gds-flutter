@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [Scaffold] 대신 [GdsScaffold] 사용을 안내하는 규칙.
 final class PreferGdsScaffoldRule extends PreferGdsWidgetRule {
-  PreferGdsScaffoldRule()
+  new()
     : super(
         name: 'prefer_gds_scaffold',
         description: 'Flutter Scaffold 대신 GdsScaffold를 사용하세요.',

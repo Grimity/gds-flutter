@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 하단 내비게이션 탭의 아이콘, 라벨, 알림 점 표시 여부와 탭 콜백을 정의하는 클래스.
 class GdsBottomNavigationTab {
-  const GdsBottomNavigationTab({
+  const new({
     required this.icon,
     required this.label,
     this.showDot = false,

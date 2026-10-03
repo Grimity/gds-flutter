@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 탭 목록과 선택한 탭의 콘텐츠를 함께 표시하는 위젯.
 @GdsSupportedSizes([.lg, .md, .sm])
 class GdsTab extends StatefulWidget {
-  const GdsTab({
+  const new({
     super.key,
     this.size,
     this.initialIndex = 0,

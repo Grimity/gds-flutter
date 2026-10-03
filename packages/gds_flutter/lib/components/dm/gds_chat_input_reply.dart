@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 답글 대상의 닉네임과 메시지를 표시하며 채팅 입력 필드에서 사용되는 위젯.
 class GdsChatInputReply extends StatelessWidget {
-  const GdsChatInputReply({
+  const new({
     super.key,
     required this.isReplyToMe,
     required this.message,

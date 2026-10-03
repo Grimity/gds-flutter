@@ -8,7 +8,7 @@ enum GdsControlSize {
   sm(32),
   xs(24);
 
-  const GdsControlSize(this.value);
+  const new(this.value);
 
   /// 현재 크기에 대응하는 높이 값.
   final double? value;

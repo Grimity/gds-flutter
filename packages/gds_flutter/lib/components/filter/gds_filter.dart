@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 라벨과 팝업의 열림 상태를 표시하는 필터 위젯.
 class GdsFilter extends StatelessWidget {
-  const GdsFilter({
+  const new({
     super.key,
     required this.variant,
     required this.label,

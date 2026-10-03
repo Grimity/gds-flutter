@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 탭에 표시할 라벨과 숫자 정보를 정의하는 인터페이스.
 class GdsTabItem {
-  const GdsTabItem({
+  const new({
     required this.label,
     this.count,
   });
@@ -15,7 +15,7 @@ class GdsTabItem {
 /// 라벨과 숫자로 구성된 가로 스크롤 탭 바 위젯.
 @GdsSupportedSizes([.lg, .md, .sm])
 class GdsTabBar extends StatelessWidget {
-  const GdsTabBar({
+  const new({
     super.key,
     this.size,
     required this.items,

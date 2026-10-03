@@ -5,7 +5,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 상단에 [GdsToast]를 오버레이로 표시할 때, 관련 애니메이션을 처리하는 위젯.
 class GdsToastOverlay extends StatefulWidget {
-  const GdsToastOverlay({
+  const new({
     super.key,
     required this.toast,
     this.duration = const .new(seconds: 20),

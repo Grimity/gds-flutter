@@ -6,7 +6,7 @@ enum GdsMenuPosition {
   right(.bottomRight, .topRight), // 메뉴의 오른쪽 가장자리
   center(.bottomCenter, .topCenter); // 메뉴의 가로 중심
 
-  const GdsMenuPosition(
+  const new(
     this.targetAnchor,
     this.followerAnchor,
   );

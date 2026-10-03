@@ -9,7 +9,7 @@ typedef ImageProviderResolver = ImageProvider Function(ImageProvider provider, S
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 이미지 위젯.
 class GdsImage extends StatelessWidget {
-  const GdsImage({
+  const new({
     super.key,
     this.provider,
     this.resolver,

@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 답장할 사용자에 대한 정보를 표시하는 헤더 위젯.
 class GdsReplyHeader extends StatelessWidget {
-  const GdsReplyHeader({
+  const new({
     super.key,
     required this.text,
   });

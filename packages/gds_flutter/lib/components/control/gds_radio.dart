@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 항목의 선택 여부를 원형 표시로 나타내고 변경하는 라디오 위젯.
 class GdsRadio extends StatelessWidget {
-  const GdsRadio({
+  const new({
     super.key,
     required this.value,
     this.enabled = true,

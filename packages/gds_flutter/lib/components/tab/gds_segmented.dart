@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 여러 항목 중 하나를 선택할 수 있는 분할 탭 위젯.
 class GdsSegmented extends StatelessWidget {
-  const GdsSegmented({
+  const new({
     super.key,
     required this.index,
     required this.items,

@@ -17,7 +17,7 @@ enum GdsEditorFontColor {
   brown(.brown),
   mint(.mint);
 
-  const GdsEditorFontColor(this.color);
+  const new(this.color);
 
   final GdsColor color;
 

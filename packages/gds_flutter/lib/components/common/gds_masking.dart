@@ -4,7 +4,7 @@ import 'package:gds_flutter/src/edge_clipper.dart';
 
 /// 스크롤 가능한 자식의 시작과 끝 지점에 페이드 마스크를 표시하는 위젯.
 class GdsMasking extends StatefulWidget {
-  const GdsMasking({
+  const new({
     super.key,
     required this.child,
   });

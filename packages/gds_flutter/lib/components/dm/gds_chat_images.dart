@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 이미지 개수에 따라 그리드 형태로 배치를 조정하는 채팅용 이미지 위젯.
 class GdsChatImages extends StatelessWidget {
-  const GdsChatImages({
+  const new({
     super.key,
     required this.images,
     required this.onTap,

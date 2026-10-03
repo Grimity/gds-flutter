@@ -179,7 +179,7 @@ abstract class GdsAlbumUpload {
 /// 선택 여부를 표시하는 메인 이미지 배지 위젯.
 @GdsSupportedSizes([.lg, .md])
 class _MainImageBadge extends StatelessWidget {
-  const _MainImageBadge({
+  const new({
     required this.size,
     required this.value,
   });
@@ -221,7 +221,7 @@ class _MainImageBadge extends StatelessWidget {
 
 /// 탭 동작을 처리하는 앨범 업로드용 아이콘 버튼 위젯.
 class _IconButton extends StatelessWidget {
-  const _IconButton({
+  const new({
     required this.icon,
     required this.onTap,
   });

@@ -12,7 +12,7 @@ enum GdsGroupStatus {
 
 /// Select, Accordion, Dropdown 등의 선택창을 보여줄 때 주로 사용되는 위젯.
 class GdsGroup extends StatelessWidget {
-  const GdsGroup({
+  const new({
     super.key,
     this.status = .enabled,
     this.placeholder,

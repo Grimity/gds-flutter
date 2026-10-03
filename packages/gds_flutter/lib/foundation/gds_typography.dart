@@ -34,7 +34,7 @@ enum GdsTypography {
   editorTitle2(.w600, 16, 1.5, 0),
   editorBody(.w400, 14, 1.6, 0);
 
-  const GdsTypography(
+  const new(
     this.fontWeight,
     this.fontSize,
     this.lineHeight,

@@ -9,7 +9,7 @@ import 'package:gds_lints/src/gds_analysis_rule.dart';
 
 /// 위젯을 반환하는 정적 메서드에서 Key를 받아 사용하도록 안내하는 규칙.
 final class PreferWidgetFactoryKeyRule extends GdsAnalysisRule {
-  PreferWidgetFactoryKeyRule()
+  new()
     : super(
         name: 'prefer_widget_factory_key',
         description: '위젯을 반환하는 정적 메서드에서 Key 매개변수를 받아 사용하세요.',
@@ -55,7 +55,7 @@ final class PreferWidgetFactoryKeyRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final PreferWidgetFactoryKeyRule rule;
 
@@ -67,7 +67,7 @@ final class _Visitor extends SimpleAstVisitor<void> {
 
 /// 이름이 같은 지역 변수와 혼동하지 않도록 매개변수 요소를 기준으로 참조를 찾습니다.
 final class _KeyUsageVisitor extends RecursiveAstVisitor<void> {
-  _KeyUsageVisitor(this.keys);
+  new(this.keys);
 
   final Set<FormalParameterElement> keys;
   bool isUsed = false;

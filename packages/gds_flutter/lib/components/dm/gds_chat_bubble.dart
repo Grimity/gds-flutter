@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 발신자에 따른 말풍선 스타일과 메시지와 좋아요 상태를 표시하는 위젯.
 class GdsChatBubble extends StatelessWidget {
-  const GdsChatBubble({
+  const new({
     super.key,
     required this.message,
     this.send = false,

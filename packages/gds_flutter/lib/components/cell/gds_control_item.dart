@@ -7,7 +7,7 @@ enum GdsControlItemVariant {
   bold(.subtitle1),
   normal(.label2);
 
-  const GdsControlItemVariant(this.typography);
+  const new(this.typography);
 
   final GdsTypography typography;
 }

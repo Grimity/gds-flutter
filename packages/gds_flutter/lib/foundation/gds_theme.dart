@@ -6,10 +6,10 @@ export 'theme/gds_light_theme.dart';
 
 /// 디자인 시스템에서 사용하는 테마를 정의하는 인터페이스.
 abstract class GdsTheme {
-  const GdsTheme();
+  const new();
 
-  factory GdsTheme.light() = GdsLightTheme;
-  factory GdsTheme.dark() = GdsDarkTheme;
+  factory light() = GdsLightTheme;
+  factory dark() = GdsDarkTheme;
 
   /// 테마의 이름 혹은 식별자.
   String get name;

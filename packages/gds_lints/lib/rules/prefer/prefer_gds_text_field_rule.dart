@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [TextField], [TextFormField] 대신 [GdsTextField] 사용을 안내하는 규칙.
 final class PreferGdsTextFieldRule extends PreferGdsWidgetRule {
-  PreferGdsTextFieldRule()
+  new()
     : super(
         name: 'prefer_gds_text_field',
         description: 'Flutter 텍스트 입력 위젯 대신 GdsTextField를 사용하세요.',

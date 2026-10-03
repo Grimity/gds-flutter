@@ -1,4 +1,5 @@
 // Prefer
+export 'prefer/prefer_concise_constructor_rule.dart';
 export 'prefer/prefer_gds_button_rule.dart';
 export 'prefer/prefer_gds_check_box_rule.dart';
 export 'prefer/prefer_gds_chip_rule.dart';

@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 페이지네이션에서 페이지를 이동하는 버튼을 표시하는 위젯.
 class GdsNavigation extends StatelessWidget {
-  const GdsNavigation({
+  const new({
     super.key,
     required this.index,
     required this.pageCount,
@@ -79,7 +79,7 @@ class GdsNavigation extends StatelessWidget {
 
 /// 이전 혹은 다음 페이지로 이동하는 버튼 위젯.
 class _IconButton extends StatelessWidget {
-  const _IconButton({
+  const new({
     required this.icon,
     required this.onTap,
     required this.active,
@@ -112,7 +112,7 @@ class _IconButton extends StatelessWidget {
 
 /// 페이지 번호를 표시하는 버튼 위젯.
 class _PageButton extends StatelessWidget {
-  const _PageButton({
+  const new({
     required this.label,
     required this.onTap,
     required this.active,

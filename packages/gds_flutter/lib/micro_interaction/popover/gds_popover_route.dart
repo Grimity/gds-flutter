@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 위젯 옆에 또 다른 위젯을 오버레이 형태로 표시하기 위한 모달 라우트입니다.
 class GdsPopoverRoute<T> extends ModalRoute<T> {
-  GdsPopoverRoute({
+  new({
     required this.followerAnchor,
     required this.targetAnchor,
     required this.layerLink,

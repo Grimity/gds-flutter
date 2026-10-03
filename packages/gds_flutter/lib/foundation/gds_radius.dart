@@ -11,7 +11,7 @@ enum GdsRadius {
   xxl(24),
   full(1e5);
 
-  const GdsRadius(this.value);
+  const new(this.value);
 
   /// 논리적 픽셀 단위의 모서리 반경.
   final double value;
@@ -25,7 +25,7 @@ enum GdsRadius {
 
 /// 각 모서리에 적용할 [GdsRadius]를 지정하는 테두리 반경.
 class GdsBorderRadius {
-  const GdsBorderRadius({
+  const new({
     this.topLeft = .none,
     this.topRight = .none,
     this.bottomLeft = .none,

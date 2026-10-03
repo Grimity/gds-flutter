@@ -5,7 +5,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [Text] 래퍼 위젯.
 class GdsText extends StatelessWidget {
-  const GdsText(
+  const new(
     String this.text, {
     super.key,
     required this.color,
@@ -19,7 +19,7 @@ class GdsText extends StatelessWidget {
   }) : span = null;
 
   /// 여러 스타일이 적용된 텍스트를 표시하는 위젯.
-  const GdsText.rich(
+  const new rich(
     InlineSpan this.span, {
     super.key,
     required this.color,
@@ -72,7 +72,7 @@ class GdsText extends StatelessWidget {
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [TextSpan].
 class GdsTextSpan extends TextSpan {
-  GdsTextSpan(
+  new(
     String? text,
     BuildContext context, {
     GdsColor? color,

@@ -5,7 +5,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [Container] 래퍼 위젯.
 class GdsContainer extends StatelessWidget {
-  const GdsContainer({
+  const new({
     super.key,
     this.width,
     this.height,

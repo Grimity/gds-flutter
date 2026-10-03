@@ -6,7 +6,7 @@ typedef GdsInputWidgetBuilder = Widget? Function(BuildContext context, TextEditi
 
 /// 입력 필드의 상태별 스타일을 정의하는 인터페이스.
 class GdsInputStyle {
-  const GdsInputStyle({
+  const new({
     this.backgroundColor = .surfaceBase,
     this.backgroundOpacity,
     this.borderColor,

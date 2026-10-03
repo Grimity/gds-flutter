@@ -8,7 +8,7 @@ import 'package:gds_lints/src/widget_replacement.dart';
 
 /// Flutter 위젯을 대응하는 GDS 위젯으로 대체하도록 안내하는 기본 규칙.
 abstract class PreferGdsWidgetRule extends GdsAnalysisRule {
-  PreferGdsWidgetRule({
+  new({
     required super.name,
     required super.description,
   });
@@ -35,7 +35,7 @@ abstract class PreferGdsWidgetRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final PreferGdsWidgetRule rule;
 

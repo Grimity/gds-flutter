@@ -300,7 +300,7 @@ abstract class GdsTopNavigation {
 
 /// 상단 내비게이션 우측에 검색, 알림 아이콘과 프로필 이미지를 표시하는 위젯.
 class _MainIcons extends StatelessWidget {
-  const _MainIcons({
+  const new({
     required this.onSearch,
     required this.onNotification,
     required this.onProfile,

@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 바텀 시트의 제목과 닫기 버튼을 표시하는 헤더 위젯.
 class GdsBottomSheetHeader extends StatelessWidget {
-  const GdsBottomSheetHeader({
+  const new({
     super.key,
     required this.title,
     required this.onBack,

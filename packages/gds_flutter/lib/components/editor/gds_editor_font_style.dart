@@ -6,7 +6,7 @@ enum GdsEditorFontStyle {
   title2(.editorTitle2, '제목2'),
   body(.editorBody, '본문');
 
-  const GdsEditorFontStyle(
+  const new(
     this.style,
     this.label,
   );

@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [Text] 대신 [GdsText] 사용을 안내하는 규칙.
 final class PreferGdsTextRule extends PreferGdsWidgetRule {
-  PreferGdsTextRule()
+  new()
     : super(
         name: 'prefer_gds_text',
         description: 'Flutter Text 대신 GdsText를 사용하세요.',

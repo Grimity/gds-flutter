@@ -7,7 +7,7 @@ import 'package:gds_lints/src/gds_analysis_rule.dart';
 
 /// 시맨틱 아이콘에 색상을 명시하도록 안내하는 규칙.
 final class ValidGdsIconColorRule extends GdsAnalysisRule {
-  ValidGdsIconColorRule()
+  new()
     : super(
         name: 'valid_gds_icon_color',
         description: '시맨틱 GdsIcon을 생성할 때 색상을 지정하세요.',
@@ -46,7 +46,7 @@ final class ValidGdsIconColorRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final ValidGdsIconColorRule rule;
 

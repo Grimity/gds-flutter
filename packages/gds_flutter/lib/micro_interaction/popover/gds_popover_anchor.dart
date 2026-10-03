@@ -5,7 +5,7 @@ typedef GdsPopoverAnchorBuilder = Widget Function(BuildContext context, LayerLin
 
 /// 팝오버가 따라갈 기준 위젯을 만들고 [LayerLink]를 제공하는 위젯.
 class GdsPopoverAnchor extends StatefulWidget {
-  const GdsPopoverAnchor({
+  const new({
     super.key,
     required this.builder,
   });

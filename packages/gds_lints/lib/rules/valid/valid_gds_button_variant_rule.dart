@@ -7,7 +7,7 @@ import 'package:gds_lints/src/gds_analysis_rule.dart';
 
 /// 텍스트 버튼 유형에 맞게 variant를 지정하도록 안내하는 규칙.
 final class ValidGdsButtonVariantRule extends GdsAnalysisRule {
-  ValidGdsButtonVariantRule()
+  new()
     : super(
         name: 'valid_gds_button_variant',
         description: '선택한 GdsTextButtonType에 맞게 variant를 지정하세요.',
@@ -62,7 +62,7 @@ final class ValidGdsButtonVariantRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final ValidGdsButtonVariantRule rule;
 

@@ -8,7 +8,7 @@ enum GdsToastStatus {
   cautionary(.dangerTriangleFill, .statusCautionary),
   info(.infoCircleFill, .statusInfo);
 
-  const GdsToastStatus(this.icon, this.color);
+  const new(this.icon, this.color);
 
   final GdsIcon? icon;
   final GdsColor color;

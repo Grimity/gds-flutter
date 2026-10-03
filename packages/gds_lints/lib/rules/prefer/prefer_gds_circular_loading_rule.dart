@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [CircularProgressIndicator] 대신 [GdsCircularLoading] 사용을 안내하는 규칙.
 final class PreferGdsCircularLoadingRule extends PreferGdsWidgetRule {
-  PreferGdsCircularLoadingRule()
+  new()
     : super(
         name: 'prefer_gds_circular_loading',
         description: 'Flutter CircularProgressIndicator 대신 GdsCircularLoading을 사용하세요.',

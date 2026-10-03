@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 항목의 선택 여부를 사각형 체크 아이콘으로 표시하고 변경하는 위젯.
 @GdsSupportedSizes([.md, .sm])
 class GdsCheckBox extends StatelessWidget {
-  const GdsCheckBox({
+  const new({
     super.key,
     required this.size,
     required this.value,

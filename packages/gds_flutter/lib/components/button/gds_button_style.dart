@@ -9,7 +9,7 @@ typedef GdsButtonStyleSet = ({
 
 /// 버튼의 상태별 색상 스타일을 정의하는 인터페이스.
 class GdsButtonStyle {
-  const GdsButtonStyle({
+  const new({
     this.backgroundColor,
     this.borderColor,
     this.textColor,

@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [Chip] 대신 [GdsChip] 사용을 안내하는 규칙.
 final class PreferGdsChipRule extends PreferGdsWidgetRule {
-  PreferGdsChipRule()
+  new()
     : super(
         name: 'prefer_gds_chip',
         description: 'Flutter Chip 대신 GdsChip을 사용하세요.',

@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 라이트 모드에 사용할 테마.
 class GdsLightTheme extends GdsTheme {
-  const GdsLightTheme();
+  const new();
 
   @override
   String get name => 'light';

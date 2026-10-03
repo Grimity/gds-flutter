@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 카테고리 항목을 선택할 수 있는 버튼 위젯.
 @GdsSupportedSizes([.lg, .md])
 class GdsCategoryButton extends StatelessWidget {
-  const GdsCategoryButton({
+  const new({
     super.key,
     required this.size,
     required this.item,

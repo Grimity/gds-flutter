@@ -10,7 +10,7 @@ enum GdsEditorToolbarButtonType {
 
 /// 에디터의 서식 및 편집 동작을 수행하는 툴바 버튼 위젯.
 class GdsEditorToolbarButton extends StatelessWidget {
-  const GdsEditorToolbarButton({
+  const new({
     super.key,
     required this.type,
     required this.icon,

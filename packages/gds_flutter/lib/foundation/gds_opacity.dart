@@ -6,7 +6,7 @@ enum GdsOpacity {
   opacity20(51), // 20%
   opacity10(25); // 10%
 
-  const GdsOpacity(this.alpha);
+  const new(this.alpha);
 
   final int alpha;
 }

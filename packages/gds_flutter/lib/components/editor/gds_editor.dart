@@ -12,7 +12,7 @@ enum GdsEditorStatus {
 
 /// 에디터와 툴바, 옵션 패널을 연동하고 구성하는 위젯.
 class GdsEditor extends StatelessWidget {
-  const GdsEditor({
+  const new({
     super.key,
     required this.status,
     required this.toolbar,

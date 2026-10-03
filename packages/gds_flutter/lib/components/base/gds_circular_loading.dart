@@ -7,7 +7,7 @@ import 'package:gds_flutter/src/id_color_mapper.dart';
 
 /// 디자인 시스템에서 사용하는 회전형 로딩 인디케이터 위젯.
 class GdsCircularLoading extends StatefulWidget {
-  const GdsCircularLoading({
+  const new({
     super.key,
     this.size = 24,
     this.duration = const Duration(seconds: 1),

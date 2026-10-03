@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [Divider], [VerticalDivider] 대신 [GdsDivider] 사용을 안내하는 규칙.
 final class PreferGdsDividerRule extends PreferGdsWidgetRule {
-  PreferGdsDividerRule()
+  new()
     : super(
         name: 'prefer_gds_divider',
         description: 'Flutter 구분선 위젯 대신 GdsDivider를 사용하세요.',

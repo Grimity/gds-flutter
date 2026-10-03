@@ -6,7 +6,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 새 태그를 입력하는 입력란이며 주로 [GdsTagSelect]에서 사용되는 위젯.
 @GdsSupportedSizes([.md, .xs])
 class GdsTagInput extends StatelessWidget {
-  const GdsTagInput({
+  const new({
     super.key,
     required this.size,
     required this.onSubmit,

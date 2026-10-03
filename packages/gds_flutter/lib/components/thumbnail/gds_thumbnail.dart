@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// https://www.figma.com/design/P1ouNc7cOpjW3MDU3wYdvI/Grimity_Design-System?node-id=11138-188022&t=2EoK5AHjHgOYr0lR-4
 class GdsThumbnail extends StatelessWidget {
-  const GdsThumbnail({
+  const new({
     super.key,
     required this.ratio,
     this.radius,

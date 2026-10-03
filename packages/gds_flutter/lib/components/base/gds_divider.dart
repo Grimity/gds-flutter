@@ -7,7 +7,7 @@ enum GdsDividerVariant {
   primary(.borderGraySubtle),
   secondary(.borderGraySubtler);
 
-  const GdsDividerVariant(this.color);
+  const new(this.color);
 
   /// 구분선의 색상을 나타내는 값.
   final GdsColor color;
@@ -15,7 +15,7 @@ enum GdsDividerVariant {
 
 /// 디자인 시스템에서 사용하는 구분선 위젯.
 class GdsDivider extends StatelessWidget {
-  const GdsDivider({
+  const new({
     super.key,
     this.bold = false,
     this.vertical = false,

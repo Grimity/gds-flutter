@@ -6,7 +6,7 @@ final testThemes = <GdsTheme>[.light(), .dark()];
 
 /// 테스트용 앱 래퍼 위젯.
 class TestApp extends StatelessWidget {
-  const TestApp({
+  const new({
     super.key,
     this.theme,
     required this.body,

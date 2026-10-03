@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 현재 페이지와 전체 페이지 수를 표시하는 카운터 위젯.
 @GdsSupportedSizes([.lg, .md])
 class GdsCounter extends StatelessWidget {
-  const GdsCounter({
+  const new({
     super.key,
     required this.size,
     required this.count,

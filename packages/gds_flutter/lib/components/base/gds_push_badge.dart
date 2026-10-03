@@ -8,7 +8,7 @@ enum GdsDotPushBadgePosition {
   bottomLeft(.bottomLeft),
   topLeft(.topLeft);
 
-  const GdsDotPushBadgePosition(this.alignment);
+  const new(this.alignment);
 
   /// 배지의 위치를 나타내는 값.
   final AlignmentGeometry alignment;

@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 컴포넌트에 적용할 테두리의 두께와 시맨틱 색상을 정의하는 인터페이스.
 class GdsBorder {
-  const GdsBorder({
+  const new({
     this.top = 0,
     this.right = 0,
     this.bottom = 0,
@@ -12,7 +12,7 @@ class GdsBorder {
   });
 
   /// 모든 방향에 동일한 [width]를 적용한 테두리를 생성합니다.
-  const GdsBorder.all({
+  const new all({
     double width = 1,
     this.color,
   }) : top = width,

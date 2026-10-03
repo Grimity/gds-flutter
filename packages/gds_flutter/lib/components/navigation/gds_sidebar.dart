@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 프로필, 팔로우 정보, 탭 목록과 서비스 정보를 표시하는 사이드바 위젯.
 @GdsSupportedSizes([.lg, .md])
 class GdsSidebar extends StatelessWidget {
-  const GdsSidebar({
+  const new({
     super.key,
     required this.size,
     required this.nickname,

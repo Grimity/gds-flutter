@@ -579,7 +579,7 @@ abstract class GdsUserItem {
 
 /// 프로필 이미지와 닉네임 및 부가 정보를 표시하는 위젯.
 class _ProfileNickName extends StatelessWidget {
-  const _ProfileNickName({
+  const new({
     super.key,
     required this.nickname,
     required this.profile,

@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [Icon] 대신 [GdsIcon] 사용을 안내하는 규칙.
 final class PreferGdsIconRule extends PreferGdsWidgetRule {
-  PreferGdsIconRule()
+  new()
     : super(
         name: 'prefer_gds_icon',
         description: 'Flutter Icon 대신 GdsIcon을 사용하세요.',

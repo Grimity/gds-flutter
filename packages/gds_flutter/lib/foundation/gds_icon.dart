@@ -193,9 +193,9 @@ enum GdsIcon {
   user.themed('illust/user.svg'),
   warning.themed('illust/warning.svg');
 
-  const GdsIcon.fixed(this.path) : type = .fixed;
-  const GdsIcon.themed(this.path) : type = .themed;
-  const GdsIcon.semantic(this.path) : type = .semantic;
+  const new fixed(this.path) : type = .fixed;
+  const new themed(this.path) : type = .themed;
+  const new semantic(this.path) : type = .semantic;
 
   /// 아이콘의 유형.
   final GdsIconType type;

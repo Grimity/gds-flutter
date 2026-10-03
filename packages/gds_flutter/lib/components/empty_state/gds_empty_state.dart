@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 ///
 @GdsSupportedSizes([.xl, .md])
 class GdsEmptyState extends StatelessWidget {
-  const GdsEmptyState({
+  const new({
     super.key,
     required this.size,
     required this.illust,

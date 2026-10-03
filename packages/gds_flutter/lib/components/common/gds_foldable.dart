@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 표시 여부에 따라 자식의 크기를 접고 펼치는 애니메이션 위젯.
 class GdsFoldable extends StatefulWidget {
-  const GdsFoldable.builder({
+  const new builder({
     super.key,
     required this.alignment,
     this.animation = defaultAnimation,

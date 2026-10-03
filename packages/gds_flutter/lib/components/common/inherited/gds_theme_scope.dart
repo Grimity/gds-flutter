@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 하위 위젯에 테마를 제공하는 위젯.
 class GdsThemeScope extends InheritedWidget {
-  const GdsThemeScope({
+  const new({
     super.key,
     required this.theme,
     required super.child,

@@ -5,7 +5,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [Scaffold] 래퍼 위젯.
 class GdsScaffold extends StatelessWidget {
-  const GdsScaffold({
+  const new({
     super.key,
     required this.body,
     this.appBar,

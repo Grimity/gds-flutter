@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 사용자 프로필 이미지에 편집 기능을 제공하는 위젯.
 @GdsSupportedSizes([.xl, .ml])
 class GdsProfileEdit extends StatelessWidget {
-  const GdsProfileEdit({
+  const new({
     super.key,
     required this.size,
     required this.image,

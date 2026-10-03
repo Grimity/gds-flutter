@@ -8,7 +8,7 @@ import 'package:gds_lints/src/gds_analysis_rule.dart';
 
 /// 컴포넌트에서 지원하는 표준 크기만 사용하도록 안내하는 규칙.
 final class ValidGdsSizeRule extends GdsAnalysisRule {
-  ValidGdsSizeRule()
+  new()
     : super(
         name: 'valid_gds_size',
         description: '컴포넌트에서 지원하는 크기를 사용하세요.',
@@ -83,7 +83,7 @@ final class ValidGdsSizeRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final ValidGdsSizeRule rule;
 

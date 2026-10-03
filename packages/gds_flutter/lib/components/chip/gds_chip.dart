@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// https://www.figma.com/design/P1ouNc7cOpjW3MDU3wYdvI/Grimity_Design-System?node-id=11138-187896&t=aC4Dz1qXNpQSETGX-4
 @GdsSupportedSizes([.xl, .md])
 class GdsChip extends StatelessWidget {
-  const GdsChip({
+  const new({
     super.key,
     required this.variant,
     required this.size,

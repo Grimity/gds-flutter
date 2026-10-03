@@ -5,7 +5,7 @@ import 'package:flutter_touch_scale/flutter_touch_scale.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 제스처 래퍼 위젯.
 class GdsGesture extends StatelessWidget {
-  const GdsGesture({
+  const new({
     super.key,
     this.onTap,
     this.onDoubleTap,

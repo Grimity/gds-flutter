@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 중점(dot) 위젯.
 class GdsDot extends StatelessWidget {
-  const GdsDot({
+  const new({
     super.key,
     this.size = 2,
   }) : assert(size > 0, 'size는 음수가 될 수 없습니다.');

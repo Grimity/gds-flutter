@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 사용자 프로필 이미지를 원형으로 표시하는 위젯.
 class GdsProfile extends StatelessWidget {
-  const GdsProfile({
+  const new({
     super.key,
     required this.size,
     required this.image,

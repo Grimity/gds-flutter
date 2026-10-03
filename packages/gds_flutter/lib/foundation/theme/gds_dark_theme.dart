@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 다크 모드에 사용할 테마.
 class GdsDarkTheme extends GdsTheme {
-  const GdsDarkTheme();
+  const new();
 
   @override
   String get name => 'dark';

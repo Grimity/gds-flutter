@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 앨범 이미지, 제목, 작성자 정보와 상태별 액션을 표시하는 카드 위젯.
 class GdsAlbum extends StatelessWidget {
-  const GdsAlbum({
+  const new({
     super.key,
     required this.image,
     required this.title,

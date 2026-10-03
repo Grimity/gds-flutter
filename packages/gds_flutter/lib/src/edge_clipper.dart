@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// 지정한 방향에서만 자식의 페인팅 영역을 자르는 클리퍼.
 class EdgeClipper extends CustomClipper<Rect> {
-  const EdgeClipper({
+  const new({
     this.top = false,
     this.left = false,
     this.right = false,

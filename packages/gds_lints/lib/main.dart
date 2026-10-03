@@ -13,6 +13,7 @@ class GdsLintsPlugin extends Plugin {
   @override
   void register(PluginRegistry registry) {
     // Prefer
+    registry.registerWarningRule(PreferConciseConstructorRule());
     registry.registerWarningRule(PreferGdsButtonRule());
     registry.registerWarningRule(PreferGdsCheckBoxRule());
     registry.registerWarningRule(PreferGdsChipRule());

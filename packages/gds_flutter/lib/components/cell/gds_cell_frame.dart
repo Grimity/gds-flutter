@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 라벨과 앞뒤 위젯을 일관된 형태로 배치하는 리스트 아이템의 기본 프레임.
 class GdsCellFrame extends StatelessWidget {
-  const GdsCellFrame({
+  const new({
     super.key,
     required this.enabledStyle,
     required this.disabledStyle,

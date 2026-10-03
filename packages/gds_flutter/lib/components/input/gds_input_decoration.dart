@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 입력 필드의 크기와 콘텐츠 유형에 따른 배치 정보를 정의하는 인터페이스.
 class GdsInputDecoration {
-  const GdsInputDecoration({
+  const new({
     required this.typography,
     required this.spacing,
     this.border,

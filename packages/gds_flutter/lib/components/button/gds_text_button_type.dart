@@ -109,7 +109,7 @@ enum GdsTextButtonType {
     ),
   );
 
-  const GdsTextButtonType({
+  const new({
     this.none,
     this.primary,
     this.assistive,

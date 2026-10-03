@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 ///
 class GdsModal extends StatelessWidget {
-  const GdsModal({
+  const new({
     super.key,
     required this.title,
     required this.onBack,
@@ -98,7 +98,7 @@ class GdsModal extends StatelessWidget {
 
 ///
 class _Header extends StatelessWidget {
-  const _Header({
+  const new({
     required this.title,
     required this.onBack,
     this.action,

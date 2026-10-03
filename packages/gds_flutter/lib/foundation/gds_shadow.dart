@@ -17,7 +17,7 @@ enum GdsShadow {
     color: Color(0x1A000000),
   );
 
-  const GdsShadow({
+  const new({
     required this.x,
     required this.y,
     required this.blur,

@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 답글 대상과 메시지를 표시하며 [GdsChatReply] 내부에서 사용되는 위젯.
 class GdsChatReply extends StatelessWidget {
-  const GdsChatReply({
+  const new({
     super.key,
     required this.isReplyToMe,
     required this.message,

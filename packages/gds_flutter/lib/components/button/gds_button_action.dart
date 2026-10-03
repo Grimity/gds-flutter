@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 버튼에 대한 라벨과 동작을 정의하는 인터페이스.
 class GdsTextButtonAction {
-  const GdsTextButtonAction({
+  const new({
     required this.label,
     required this.onTap,
     this._type,
@@ -11,7 +11,7 @@ class GdsTextButtonAction {
   });
 
   /// 팔로우 상태에 따라 적절한 버튼 유형, 레이블 및 동작을 반환.
-  factory GdsTextButtonAction.follow({
+  factory follow({
     required bool following,
     required VoidCallback onFollow,
     required VoidCallback onUnFollow,
@@ -41,7 +41,7 @@ class GdsTextButtonAction {
 
 /// 버튼에 대한 아이콘과 동작을 정의하는 인터페이스.
 class GdsIconButtonAction {
-  const GdsIconButtonAction({
+  const new({
     required this.icon,
     required this.onTap,
     this._type,

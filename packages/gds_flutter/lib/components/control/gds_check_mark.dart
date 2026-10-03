@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 항목의 선택 여부를 체크 아이콘으로 표시하고 변경하는 위젯.
 class GdsCheckMark extends StatelessWidget {
-  const GdsCheckMark({
+  const new({
     super.key,
     required this.value,
     this.enabled = true,

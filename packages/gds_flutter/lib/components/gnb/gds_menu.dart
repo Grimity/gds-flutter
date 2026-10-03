@@ -10,13 +10,13 @@ typedef GdsMenuItem = ({
 /// 내비게이션 활성화 시 하위 메뉴 목록을 보여주는 드롭다운 위젯입니다.
 class GdsMenu extends StatelessWidget {
   /// 메뉴 항목 목록을 하나의 그룹으로 표시하는 위젯.
-  GdsMenu({
+  new({
     super.key,
     required List<GdsMenuItem> items,
   }) : groups = [items];
 
   /// 메뉴 항목 목록을 그룹별로 나누어 표시하는 위젯.
-  const GdsMenu.group({
+  const new group({
     super.key,
     required this.groups,
   });

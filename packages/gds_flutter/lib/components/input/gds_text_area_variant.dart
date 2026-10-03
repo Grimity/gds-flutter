@@ -66,7 +66,7 @@ enum GdsTextAreaVariant {
     ),
   );
 
-  const GdsTextAreaVariant({
+  const new({
     required this.height,
     required this.enabled,
     required this.filled,

@@ -6,10 +6,10 @@ export 'theme/gds_semantic_light_color.dart';
 
 /// 특정 테마에 대응하는 시맨틱 색상을 정의하는 인터페이스.
 abstract class GdsSemanticColor {
-  const GdsSemanticColor();
+  const new();
 
-  factory GdsSemanticColor.light() = GdsSemanticLightColor;
-  factory GdsSemanticColor.dark() = GdsSemanticDartColor;
+  factory light() = GdsSemanticLightColor;
+  factory dark() = GdsSemanticDartColor;
 
   // Background
   Color get bgPrimary;

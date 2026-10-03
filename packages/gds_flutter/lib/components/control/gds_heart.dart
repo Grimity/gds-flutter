@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 좋아요의 선택 여부를 하트 아이콘으로 표시하고 변경하는 위젯.
 class GdsHeart extends StatelessWidget {
-  const GdsHeart({
+  const new({
     super.key,
     required this.value,
     required this.black,

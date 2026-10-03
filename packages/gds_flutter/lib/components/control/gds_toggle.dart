@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 기능의 켜짐 여부를 표시하고 변경하는 토글 스위치 위젯.
 class GdsToggle extends StatelessWidget {
-  const GdsToggle({
+  const new({
     super.key,
     required this.value,
     this.enabled = true,

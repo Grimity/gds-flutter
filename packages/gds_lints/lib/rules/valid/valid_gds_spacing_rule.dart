@@ -8,7 +8,7 @@ import 'package:gds_lints/src/gds_analysis_rule.dart';
 
 /// 디자인 시스템에서 지원하는 표준 간격 값만 사용하도록 안내하는 규칙.
 final class ValidGdsSpacingRule extends GdsAnalysisRule {
-  ValidGdsSpacingRule()
+  new()
     : super(
         name: 'valid_gds_spacing',
         description: '디자인 시스템에서 지원하는 간격 값을 사용하세요.',
@@ -114,7 +114,7 @@ final class ValidGdsSpacingRule extends GdsAnalysisRule {
 }
 
 final class _Visitor extends SimpleAstVisitor<void> {
-  _Visitor(this.rule);
+  new(this.rule);
 
   final ValidGdsSpacingRule rule;
 

@@ -2,7 +2,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 셀의 상태별 색상과 테두리 스타일을 정의하는 인터페이스.
 class GdsCellStyle {
-  const GdsCellStyle({
+  const new({
     this.backgroundColor,
     this.border,
     this.iconColor,

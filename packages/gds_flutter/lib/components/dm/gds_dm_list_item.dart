@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 프로필, 최근 메시지, 경과 시간 등을 표시하는 DM 목록의 항목 위젯.
 class GdsDmListItem extends StatelessWidget {
-  const GdsDmListItem({
+  const new({
     super.key,
     this.active = false,
     this.checked = false,

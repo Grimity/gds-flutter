@@ -5,7 +5,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 선택된 태그 목록과 새 태그 입력란을 표시하는 위젯.
 @GdsSupportedSizes([.md, .xs])
 class GdsTagSelect extends StatefulWidget {
-  const GdsTagSelect({
+  const new({
     super.key,
     required this.size,
     required this.tags,

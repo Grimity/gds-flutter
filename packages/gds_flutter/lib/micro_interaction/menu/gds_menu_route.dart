@@ -2,7 +2,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 기준 위젯 아래에 [GdsMenu]를 표시하는 팝오버 라우트입니다.
 class GdsMenuRoute<T> extends GdsPopoverRoute<T> {
-  GdsMenuRoute({
+  new({
     required GdsMenuPosition position,
     required super.layerLink,
     required GdsMenu child,

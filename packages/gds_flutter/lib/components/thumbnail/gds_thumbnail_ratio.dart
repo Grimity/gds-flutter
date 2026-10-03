@@ -11,7 +11,7 @@ enum GdsThumbnailRatio {
   banner(4, 1), // 4:1
   portrait(3, 4); // 3:4
 
-  const GdsThumbnailRatio(this.width, this.height);
+  const new(this.width, this.height);
 
   // 각 비율의 가로와 세로 길이를 나타내는 정수 값.
   final int width;

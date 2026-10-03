@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 카테고리 목록과 우측에 액션 버튼을 표시하는 위젯.
 @GdsSupportedSizes([.lg, .md])
 class GdsCategory extends StatelessWidget {
-  const GdsCategory({
+  const new({
     super.key,
     this.size,
     required this.index,

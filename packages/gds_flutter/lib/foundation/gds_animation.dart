@@ -7,7 +7,7 @@ enum GdsAnimation {
   slow(.new(milliseconds: 275)),
   slowest(.new(milliseconds: 350));
 
-  const GdsAnimation(this.duration);
+  const new(this.duration);
 
   /// 애니메이션 지속 시간.
   final Duration duration;

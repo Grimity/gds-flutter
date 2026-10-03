@@ -32,7 +32,7 @@ enum GdsIconButtonType {
     loading: .new(backgroundColor: .bgOverlayBlack),
   );
 
-  const GdsIconButtonType({
+  const new({
     required this.iconSize,
     required this.size,
     required this.enabled,

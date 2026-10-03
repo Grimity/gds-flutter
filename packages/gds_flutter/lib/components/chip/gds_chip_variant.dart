@@ -15,7 +15,7 @@ enum GdsChipVariant {
     labelStyle: .label5,
   );
 
-  const GdsChipVariant({
+  const new({
     required this.backgroundColor,
     required this.borderColor,
     required this.labelColor,

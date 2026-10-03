@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 아이콘과 라벨로 구성된 탭 목록을 표시하는 하단 내비게이션 위젯.
 class GdsBottomNavigation extends StatelessWidget {
-  const GdsBottomNavigation({
+  const new({
     super.key,
     required this.index,
     required this.tabs,

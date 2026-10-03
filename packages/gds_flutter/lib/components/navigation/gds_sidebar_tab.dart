@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 아이콘과 라벨, 알림 점을 표시하는 사이드바 탭 위젯.
 class GdsSidebarTab extends StatelessWidget {
-  const GdsSidebarTab({
+  const new({
     super.key,
     required this.icon,
     required this.label,

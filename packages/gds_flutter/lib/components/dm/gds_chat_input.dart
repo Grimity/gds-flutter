@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 채팅 메시지 입력 필드와 답글 미리보기, 전송 버튼을 표시하는 위젯.
 class GdsChatInput extends StatelessWidget {
-  const GdsChatInput({
+  const new({
     super.key,
     this.enabled = true,
     this.reply,

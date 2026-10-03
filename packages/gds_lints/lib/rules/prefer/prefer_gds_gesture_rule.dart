@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter의 [GestureDetector], [InkWell] 대신 [GdsGesture] 사용을 안내하는 규칙.
 final class PreferGdsGestureRule extends PreferGdsWidgetRule {
-  PreferGdsGestureRule()
+  new()
     : super(
         name: 'prefer_gds_gesture',
         description: 'Flutter 제스처 위젯 대신 GdsGesture를 사용하세요.',

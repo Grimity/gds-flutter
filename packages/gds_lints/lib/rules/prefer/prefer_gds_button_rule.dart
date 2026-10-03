@@ -4,7 +4,7 @@ import 'package:gds_lints/src/widget_type_reference.dart';
 
 /// 기존 Flutter 버튼 위젯 대신 [GdsButton] 사용을 안내하는 규칙.
 final class PreferGdsButtonRule extends PreferGdsWidgetRule {
-  PreferGdsButtonRule()
+  new()
     : super(
         name: 'prefer_gds_button',
         description: 'Flutter 버튼 위젯 대신 GdsButton을 사용하세요.',

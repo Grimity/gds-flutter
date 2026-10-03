@@ -7,7 +7,7 @@ enum GdsHelperTextStatus {
   error(color: .statusNegative, icon: .x),
   success(color: .statusPositive, icon: .check);
 
-  const GdsHelperTextStatus({
+  const new({
     required this.color,
     required this.icon,
   });
@@ -18,7 +18,7 @@ enum GdsHelperTextStatus {
 
 /// 입력 필드의 상태를 안내하는 헬퍼 텍스트 위젯.
 class GdsHelperText extends StatelessWidget {
-  const GdsHelperText({
+  const new({
     super.key,
     required this.text,
     required this.status,

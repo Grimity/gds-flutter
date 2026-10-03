@@ -5,7 +5,7 @@ import 'package:analyzer/dart/element/element.dart';
 
 /// 디자인 시스템 애널라이저에서 공통으로 사용하는 기능을 제공하는 기본 클래스.
 abstract class GdsAnalysisRule extends AnalysisRule {
-  GdsAnalysisRule({
+  new({
     required super.name,
     required super.description,
   });

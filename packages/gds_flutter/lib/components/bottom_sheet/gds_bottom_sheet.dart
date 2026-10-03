@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 상단 헤더, 콘텐츠와 액션 버튼을 표시하는 바텀 시트 위젯.
 class GdsBottomSheet extends StatelessWidget {
-  const GdsBottomSheet({
+  const new({
     super.key,
     this.title,
     required this.onBack,

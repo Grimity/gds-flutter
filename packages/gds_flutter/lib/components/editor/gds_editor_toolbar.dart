@@ -9,7 +9,7 @@ typedef GdsEditorToolbarItem = ({
 
 /// 에디터의 서식 및 편집 기능을 제공하는 툴바 위젯.
 class GdsEditorToolbar extends StatelessWidget {
-  const GdsEditorToolbar({
+  const new({
     super.key,
     required this.bold,
     required this.italic,

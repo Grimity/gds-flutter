@@ -5,7 +5,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 상태와 크기에 맞는 스타일 및 배치를 적용하는 버튼의 기본 프레임.
 class GdsButtonFrame extends StatelessWidget {
-  const GdsButtonFrame({
+  const new({
     super.key,
     required this.enabledStyle,
     required this.disabledStyle,

@@ -5,7 +5,7 @@ import 'package:gds_flutter/src/id_color_mapper.dart';
 
 /// 디자인 시스템에서 사용하는 페이지 로딩 인디케이터 위젯.
 class GdsRefreshLoading extends StatefulWidget {
-  const GdsRefreshLoading({
+  const new({
     super.key,
     this.size = 24,
     this.duration = const Duration(seconds: 1),

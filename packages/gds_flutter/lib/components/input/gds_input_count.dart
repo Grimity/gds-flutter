@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 입력한 글자 수와 최대 글자 수를 표시하는 위젯.
 class GdsInputCount extends StatelessWidget {
-  const GdsInputCount({
+  const new({
     super.key,
     required this.count,
     required this.maxCount,

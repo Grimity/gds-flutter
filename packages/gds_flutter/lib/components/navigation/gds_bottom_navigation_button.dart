@@ -3,7 +3,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 하단 내비게이션용 원형 버튼 위젯.
 class GdsBottomNavigationButton extends StatelessWidget {
-  const GdsBottomNavigationButton({
+  const new({
     super.key,
     required this.onTap,
   });

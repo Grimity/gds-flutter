@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 라벨과 아이콘을 표시하는 태그이며 주로 [GdsTagSelect]에서 사용되는 위젯.
 @GdsSupportedSizes([.md, .xs])
 class GdsTag extends StatelessWidget {
-  const GdsTag({
+  const new({
     super.key,
     required this.size,
     required this.label,

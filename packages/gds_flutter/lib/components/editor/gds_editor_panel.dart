@@ -4,7 +4,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// 에디터에서 선택한 툴의 옵션을 표시하는 패널 위젯.
 class GdsEditorPanel extends StatelessWidget {
-  const GdsEditorPanel({
+  const new({
     super.key,
     required this.fontStyle,
     required this.fontColor,
