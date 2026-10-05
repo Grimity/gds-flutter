@@ -9,9 +9,19 @@ Grimity Flutter Design System — 토큰, 테마, 아이콘, 재사용 컴포넌
 프로젝트 내의 *pubspec.yaml*에 다음과 같이 의존성을 추가해주세요.
 
 ```yaml
-gds:
-  git:
-    url: https://github.com/Grimity/gds-flutter.git
+dependencies:
+  gds_flutter:
+    git:
+      url: https://github.com/Grimity/gds-flutter.git
+      path: packages/gds_flutter
+```
+
+```yaml
+dev_dependencies:
+  gds_lints:
+    git:
+      url: https://github.com/Grimity/gds-flutter.git
+      path: packages/gds_lints
 ```
 
 ## 프리뷰 기능
