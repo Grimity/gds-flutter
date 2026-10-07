@@ -10,11 +10,13 @@ class GdsScaffold extends StatelessWidget {
     required this.body,
     this.appBar,
     this.drawer,
+    this.backgroundColor = .surfaceBase,
   });
 
   final Widget body;
   final Widget? appBar;
   final Widget? drawer;
+  final GdsColor backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class GdsScaffold extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: GdsColor.surfaceBase.of(context),
+      backgroundColor: backgroundColor.of(context),
       endDrawer: drawer,
       body: SafeArea(child: child),
     );
