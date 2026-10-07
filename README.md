@@ -16,8 +16,10 @@ dependencies:
       path: packages/gds_flutter
 ```
 
+린트의 경우, 프로젝트 내의 *analysis_options.yaml*에 다음과 같이 의존성을 추가해주세요.
+
 ```yaml
-dev_dependencies:
+plugins:
   gds_lints:
     git:
       url: https://github.com/Grimity/gds-flutter.git
