@@ -14,10 +14,10 @@ class GdsPopoverAnchor extends StatefulWidget {
   final GdsPopoverAnchorBuilder builder;
 
   @override
-  State<GdsPopoverAnchor> createState() => _GdsPopoverAnchorState();
+  State<GdsPopoverAnchor> createState() => _State();
 }
 
-class _GdsPopoverAnchorState extends State<GdsPopoverAnchor> {
+class _State extends State<GdsPopoverAnchor> {
   final link = LayerLink();
 
   @override

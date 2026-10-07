@@ -42,10 +42,10 @@ class GdsFadable extends StatefulWidget {
   final GdsAnimation animation;
 
   @override
-  State<GdsFadable> createState() => _GdsFadableState();
+  State<GdsFadable> createState() => _State();
 }
 
-class _GdsFadableState extends State<GdsFadable> {
+class _State extends State<GdsFadable> {
   // 애니메이션 도중 재빌드를 방지하기 위한 캐싱되는 위젯.
   Widget? _cachedChild;
 

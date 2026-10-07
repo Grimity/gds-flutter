@@ -20,10 +20,10 @@ class GdsCircularLoading extends StatefulWidget {
   final Duration duration;
 
   @override
-  State<GdsCircularLoading> createState() => _GdsCircularLoadingState();
+  State<GdsCircularLoading> createState() => _State();
 }
 
-class _GdsCircularLoadingState extends State<GdsCircularLoading> with SingleTickerProviderStateMixin {
+class _State extends State<GdsCircularLoading> with SingleTickerProviderStateMixin {
   late final _animation = AnimationController(vsync: this, duration: widget.duration);
 
   @override

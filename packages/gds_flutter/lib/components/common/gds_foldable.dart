@@ -21,10 +21,10 @@ class GdsFoldable extends StatefulWidget {
   static const GdsAnimation defaultAnimation = .slowest;
 
   @override
-  State<GdsFoldable> createState() => _GdsFoldableState();
+  State<GdsFoldable> createState() => _State();
 }
 
-class _GdsFoldableState extends State<GdsFoldable> with TickerProviderStateMixin {
+class _State extends State<GdsFoldable> with TickerProviderStateMixin {
   late final AnimationController _animation;
 
   late final CurvedAnimation _curvedOpacity;

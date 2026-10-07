@@ -18,10 +18,10 @@ class GdsTab extends StatefulWidget {
   final List<Widget> pages;
 
   @override
-  State<GdsTab> createState() => _GdsTabState();
+  State<GdsTab> createState() => _State();
 }
 
-class _GdsTabState extends State<GdsTab> with TickerProviderStateMixin {
+class _State extends State<GdsTab> with TickerProviderStateMixin {
   late TabController controller = .new(
     initialIndex: widget.initialIndex,
     length: length,

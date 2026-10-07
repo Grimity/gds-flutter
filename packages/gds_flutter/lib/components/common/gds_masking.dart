@@ -12,10 +12,10 @@ class GdsMasking extends StatefulWidget {
   final Widget child;
 
   @override
-  State<GdsMasking> createState() => _GdsMaskingState();
+  State<GdsMasking> createState() => _State();
 }
 
-class _GdsMaskingState extends State<GdsMasking> {
+class _State extends State<GdsMasking> {
   /// 스크롤 시작 지점에 마스크를 표시할지 여부.
   bool canMaskAtStart = false;
 

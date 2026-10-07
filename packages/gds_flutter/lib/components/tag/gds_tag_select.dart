@@ -19,10 +19,10 @@ class GdsTagSelect extends StatefulWidget {
   final ValueChanged<String> onRemoved;
 
   @override
-  State<GdsTagSelect> createState() => _GdsTagSelectState();
+  State<GdsTagSelect> createState() => _State();
 }
 
-class _GdsTagSelectState extends State<GdsTagSelect> {
+class _State extends State<GdsTagSelect> {
   final TextEditingController controller = .new();
 
   /// 사용자가 태그 입력을 최종적으로 확정 짓는 경우 호출됩니다.

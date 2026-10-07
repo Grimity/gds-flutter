@@ -60,10 +60,10 @@ class GdsInputFrame extends StatefulWidget {
   final double? height;
 
   @override
-  State<GdsInputFrame> createState() => _GdsInputFrameState();
+  State<GdsInputFrame> createState() => _State();
 }
 
-class _GdsInputFrameState extends State<GdsInputFrame> {
+class _State extends State<GdsInputFrame> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
 

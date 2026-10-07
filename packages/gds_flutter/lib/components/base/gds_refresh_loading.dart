@@ -18,10 +18,10 @@ class GdsRefreshLoading extends StatefulWidget {
   final Duration duration;
 
   @override
-  State<GdsRefreshLoading> createState() => _GdsRefreshLoadingState();
+  State<GdsRefreshLoading> createState() => _State();
 }
 
-class _GdsRefreshLoadingState extends State<GdsRefreshLoading> with SingleTickerProviderStateMixin {
+class _State extends State<GdsRefreshLoading> with SingleTickerProviderStateMixin {
   late final _animation = AnimationController(vsync: this, duration: widget.duration);
 
   /// 인디케이터의 각 파트에 대한 색상 배열.

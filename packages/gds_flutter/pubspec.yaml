@@ -30,6 +30,7 @@ flutter:
     - assets/
     - assets/fonts/
     - assets/images/
+    - assets/images/artwork_collage/
     - assets/images/placeholder/
     - assets/images/placeholder/profile/
     - assets/vectors/

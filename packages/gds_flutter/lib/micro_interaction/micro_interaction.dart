@@ -1,3 +1,7 @@
+// Artwork Collage
+export 'artwork_collage/gds_artwork_collage_scroll.dart';
+export 'artwork_collage/gds_artwork_collage.dart';
+
 // Menu
 export 'menu/gds_menu_position.dart';
 export 'menu/gds_menu_route.dart';

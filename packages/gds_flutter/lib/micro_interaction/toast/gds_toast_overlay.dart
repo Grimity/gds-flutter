@@ -23,10 +23,10 @@ class GdsToastOverlay extends StatefulWidget {
   final VoidCallback? onDismissed;
 
   @override
-  State<GdsToastOverlay> createState() => _GdsToastOverlayState();
+  State<GdsToastOverlay> createState() => _State();
 }
 
-class _GdsToastOverlayState extends State<GdsToastOverlay> with TickerProviderStateMixin {
+class _State extends State<GdsToastOverlay> with TickerProviderStateMixin {
   late final fadeIn = AnimationController(vsync: this, duration: widget.animaton.duration);
   late final fadeOut = AnimationController(vsync: this, duration: widget.animaton.duration);
 
