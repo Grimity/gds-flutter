@@ -38,4 +38,7 @@ extension GdsContextExtension on BuildContext {
 
   /// 지정한 [route]를 현재 내비게이터 스택에 푸시합니다.
   void push<T>(Route<T> route) => Navigator.of(this).push<T>(route);
+
+  /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
+  void openDrawer() => GdsScaffold.openDrawer(this);
 }

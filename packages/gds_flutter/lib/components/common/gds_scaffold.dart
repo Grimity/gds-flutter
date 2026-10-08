@@ -22,7 +22,7 @@ class GdsScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget child = GdsOverlay(child: body);
 
-    // 앱 바가 제공된 경우 Column으로 감쌉니다.
+    // 앱 바가 제공된 경우 Column으로 래핑.
     if (appBar != null) {
       child = Column(
         children: [
@@ -37,5 +37,10 @@ class GdsScaffold extends StatelessWidget {
       endDrawer: drawer,
       body: SafeArea(child: child),
     );
+  }
+
+  /// 가장 가까운 [Scaffold]의 오른쪽 드로어를 엽니다.
+  static void openDrawer(BuildContext context) {
+    return Scaffold.of(context).openEndDrawer();
   }
 }
