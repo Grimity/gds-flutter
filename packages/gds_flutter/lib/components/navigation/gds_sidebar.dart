@@ -52,113 +52,115 @@ class GdsSidebar extends StatelessWidget {
         right: 16,
         bottom: 24,
       ),
-      child: Column(
-        crossAxisAlignment: .start,
-        spacing: 20,
-        children: [
-          // 상단에 프로필 영역 표시
-          Column(
-            crossAxisAlignment: .start,
-            mainAxisSize: .min,
-            children: [
-              // 프로필 사진 표시
-              GdsGesture(
-                onTap: onProfile,
-                child: GdsProfile(size: .ml, image: profile),
-              ),
-              8.verticalGap,
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: .start,
+          spacing: 20,
+          children: [
+            // 상단에 프로필 영역 표시
+            Column(
+              crossAxisAlignment: .start,
+              mainAxisSize: .min,
+              children: [
+                // 프로필 사진 표시
+                GdsGesture(
+                  onTap: onProfile,
+                  child: GdsProfile(size: .ml, image: profile),
+                ),
+                8.verticalGap,
 
-              // 닉네임 표시
-              GdsGesture(
-                onTap: onNickname,
-                child: GdsText(nickname, color: .textGrayBold, style: .label3),
-              ),
-              2.verticalGap,
+                // 닉네임 표시
+                GdsGesture(
+                  onTap: onNickname,
+                  child: GdsText(nickname, color: .textGrayBold, style: .label3),
+                ),
+                2.verticalGap,
 
-              // 핸들 표시
-              GdsGesture(
-                onTap: onHandle,
-                child: GdsText('@$handle', color: .textGraySubtle, style: .label6),
-              ),
-              8.verticalGap,
+                // 핸들 표시
+                GdsGesture(
+                  onTap: onHandle,
+                  child: GdsText('@$handle', color: .textGraySubtle, style: .label6),
+                ),
+                8.verticalGap,
 
-              // 팔로워, 팔로잉 개수 표시
-              GdsUserInfo.follow(
-                followerCount: followerCount,
-                followingCount: followingCount,
-                onFollower: onFollower,
-                onFollowing: onFollowing,
-              ),
-            ],
-          ),
+                // 팔로워, 팔로잉 개수 표시
+                GdsUserInfo.follow(
+                  followerCount: followerCount,
+                  followingCount: followingCount,
+                  onFollower: onFollower,
+                  onFollowing: onFollowing,
+                ),
+              ],
+            ),
 
-          // 스크롤 가능한 탭 목록 표시
-          Expanded(
-            child: GdsMasking(
-              child: ListView.separated(
-                clipBehavior: .none,
-                itemCount: tabs.length,
-                itemBuilder: (context, index) => tabs[index],
-                separatorBuilder: (context, index) => 8.verticalGap,
+            // 스크롤 가능한 탭 목록 표시
+            Expanded(
+              child: GdsMasking(
+                child: ListView.separated(
+                  clipBehavior: .none,
+                  itemCount: tabs.length,
+                  itemBuilder: (context, index) => tabs[index],
+                  separatorBuilder: (context, index) => 8.verticalGap,
+                ),
               ),
             ),
-          ),
 
-          // 하단에 액션 버튼과 앱 정보 표시
-          Column(
-            crossAxisAlignment: .start,
-            mainAxisSize: .min,
-            spacing: 12,
-            children: [
-              // 로그아웃 버튼 표시
-              GdsButton.text(
-                type: .borderless,
-                variant: .assistive,
-                size: .sm,
-                onTap: onSignOut,
-                label: '로그아웃',
-                trailingIcon: .out,
-              ),
+            // 하단에 액션 버튼과 앱 정보 표시
+            Column(
+              crossAxisAlignment: .start,
+              mainAxisSize: .min,
+              spacing: 12,
+              children: [
+                // 로그아웃 버튼 표시
+                GdsButton.text(
+                  type: .borderless,
+                  variant: .assistive,
+                  size: .sm,
+                  onTap: onSignOut,
+                  label: '로그아웃',
+                  trailingIcon: .out,
+                ),
 
-              Column(
-                crossAxisAlignment: .start,
-                mainAxisSize: .min,
-                spacing: 4,
-                children: [
-                  Row(
-                    spacing: 6,
-                    children: GdsDot.separated([
-                      // 이용약관 버튼 표시
-                      GdsGesture(
-                        onTap: onTermsOfService,
-                        child: GdsText('이용약관', color: .textGraySubtle, style: .label6),
-                      ),
+                Column(
+                  crossAxisAlignment: .start,
+                  mainAxisSize: .min,
+                  spacing: 4,
+                  children: [
+                    Row(
+                      spacing: 6,
+                      children: GdsDot.separated([
+                        // 이용약관 버튼 표시
+                        GdsGesture(
+                          onTap: onTermsOfService,
+                          child: GdsText('이용약관', color: .textGraySubtle, style: .label6),
+                        ),
 
-                      // 개인정보처리방침 버튼 표시
-                      GdsGesture(
-                        onTap: onPrivacyPolicy,
-                        child: GdsText('개인정보처리방침', color: .textGraySubtle, style: .label6),
-                      ),
-                    ]),
-                  ),
+                        // 개인정보처리방침 버튼 표시
+                        GdsGesture(
+                          onTap: onPrivacyPolicy,
+                          child: GdsText('개인정보처리방침', color: .textGraySubtle, style: .label6),
+                        ),
+                      ]),
+                    ),
 
-                  // 사용자 정보 버튼 표시
-                  GdsGesture(
-                    onTap: onBusinessInfo,
-                    child: GdsText('사용자 정보', color: .textGraySubtle, style: .label6),
-                  ),
+                    // 사용자 정보 버튼 표시
+                    GdsGesture(
+                      onTap: onBusinessInfo,
+                      child: GdsText('사용자 정보', color: .textGraySubtle, style: .label6),
+                    ),
 
-                  // 그리미티 저작권 표시
-                  GdsText(
-                    '© Grimity. All rights reserved.',
-                    color: .textGraySubtle,
-                    style: .label6,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+                    // 그리미티 저작권 표시
+                    GdsText(
+                      '© Grimity. All rights reserved.',
+                      color: .textGraySubtle,
+                      style: .label6,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
