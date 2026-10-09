@@ -50,88 +50,85 @@ class GdsAlbum extends StatelessWidget {
 
     return GdsGesture(
       onTap: onTap,
-      child: SizedBox(
-        width: 160,
-        child: Column(
-          crossAxisAlignment: .start,
-          mainAxisSize: .min,
-          spacing: 12,
-          children: [
-            Stack(
-              children: [
-                // 이미지 표시
-                GdsContainer(
-                  border: hasChecked ? imageBorder : null,
-                  radius: .md,
-                  clip: true,
-                  child: GdsThumbnail(ratio: .square, provider: image),
-                ),
+      child: Column(
+        crossAxisAlignment: .start,
+        mainAxisSize: .min,
+        spacing: 12,
+        children: [
+          Stack(
+            children: [
+              // 이미지 표시
+              GdsContainer(
+                border: hasChecked ? imageBorder : null,
+                radius: .md,
+                clip: true,
+                child: GdsThumbnail(ratio: .square, provider: image),
+              ),
 
-                // 체크 박스 표시
+              // 체크 박스 표시
+              Positioned(
+                top: 8,
+                right: 8,
+                child: GdsFadable.builder(
+                  type: .scaleFade,
+                  visible: hasChecked,
+                  builder: (context) {
+                    return GdsCheckBox(size: .md, value: checked!);
+                  },
+                ),
+              ),
+
+              // 좋아요 버튼 표시
+              Positioned(
+                bottom: 8,
+                right: 8,
+                child: GdsFadable.builder(
+                  type: .scaleFade,
+                  visible: hasLike,
+                  builder: (context) {
+                    return GdsHeart(
+                      value: like!,
+                      black: false,
+                      onChanged: onLike,
+                    );
+                  },
+                ),
+              ),
+
+              // 랭크 배지 표시
+              if (rankIcon != null) ...[
                 Positioned(
                   top: 8,
-                  right: 8,
-                  child: GdsFadable.builder(
-                    type: .scaleFade,
-                    visible: hasChecked,
-                    builder: (context) {
-                      return GdsCheckBox(size: .md, value: checked!);
-                    },
-                  ),
-                ),
-
-                // 좋아요 버튼 표시
-                Positioned(
-                  bottom: 8,
-                  right: 8,
-                  child: GdsFadable.builder(
-                    type: .scaleFade,
-                    visible: hasLike,
-                    builder: (context) {
-                      return GdsHeart(
-                        value: like!,
-                        black: false,
-                        onChanged: onLike,
-                      );
-                    },
-                  ),
-                ),
-
-                // 랭크 배지 표시
-                if (rankIcon != null) ...[
-                  Positioned(
-                    top: 8,
-                    left: 8,
-                    child: rankIcon.build(size: 24),
-                  ),
-                ],
-              ],
-            ),
-
-            Column(
-              crossAxisAlignment: .start,
-              mainAxisSize: .min,
-              spacing: 4,
-              children: [
-                // 제목 표시
-                GdsText(
-                  title,
-                  color: .textGrayBold,
-                  style: .label2,
-                  maxLines: 1,
-                  overflow: .ellipsis,
-                ),
-
-                // 관련 정보 표시
-                GdsUserInfo.normal(
-                  nickname: nickname,
-                  likeCount: likeCount,
-                  viewCount: viewCount,
+                  left: 8,
+                  child: rankIcon.build(size: 24),
                 ),
               ],
-            ),
-          ],
-        ),
+            ],
+          ),
+
+          Column(
+            crossAxisAlignment: .start,
+            mainAxisSize: .min,
+            spacing: 4,
+            children: [
+              // 제목 표시
+              GdsText(
+                title,
+                color: .textGrayBold,
+                style: .label2,
+                maxLines: 1,
+                overflow: .ellipsis,
+              ),
+
+              // 관련 정보 표시
+              GdsUserInfo.normal(
+                nickname: nickname,
+                likeCount: likeCount,
+                viewCount: viewCount,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

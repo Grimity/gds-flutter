@@ -78,17 +78,20 @@ class GdsAlbumPreview extends PreviewWidget {
     final showChecked = showCheckedControl.of(context);
     final checked = checkedControl.of(context);
 
-    return GdsAlbum(
-      image: imageUrl.mayBeValue?.networkImage,
-      title: title.value,
-      nickname: nickname.value,
-      likeCount: likeCount.value,
-      viewCount: viewCount.value,
-      rank: rank.value,
-      like: showLike.value ? like.value : null,
-      checked: showChecked.value ? checked.value : null,
-      onTap: () => debugPrint('onTap() called'),
-      onLike: showLike.value ? like.setter : null,
+    return SizedBox(
+      width: 160,
+      child: GdsAlbum(
+        image: imageUrl.mayBeValue?.networkImage,
+        title: title.value,
+        nickname: nickname.value,
+        likeCount: likeCount.value,
+        viewCount: viewCount.value,
+        rank: rank.value,
+        like: showLike.value ? like.value : null,
+        checked: showChecked.value ? checked.value : null,
+        onTap: () => debugPrint('onTap() called'),
+        onLike: showLike.value ? like.setter : null,
+      ),
     );
   }
 }
