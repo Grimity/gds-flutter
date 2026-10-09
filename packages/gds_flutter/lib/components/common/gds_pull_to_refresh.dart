@@ -4,7 +4,7 @@ import 'package:flutter_refresh_indicator/flutter_refresh_indicator.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [PullToRefresh] 래퍼 위젯.
-class GdsRefreshIndicator extends StatelessWidget {
+class GdsPullToRefresh extends StatelessWidget {
   const new({
     super.key,
     required this.onRefresh,
