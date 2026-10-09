@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
@@ -6,7 +5,7 @@ import 'package:flutter/painting.dart';
 typedef ImageResolver = String Function(String url, Size size);
 
 /// 표시 크기에 맞는 URL을 선택하고 네트워크 이미지를 캐싱하는 이미지.
-class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
+class ResponsiveImage extends ImageProvider<NetworkImage> {
   const new(
     this.url, {
     this.resolver = defaultImageResolver,
@@ -16,7 +15,7 @@ class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
   final ImageResolver resolver;
 
   @override
-  Future<CachedNetworkImageProvider> obtainKey(ImageConfiguration config) {
+  Future<NetworkImage> obtainKey(ImageConfiguration config) {
     final size = config.size;
     if (size == null) {
       throw StateError('ImageConfiguration에서 size가 지정되지 않았습니다.');
@@ -31,7 +30,7 @@ class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
 
   @override
   ImageStreamCompleter loadImage(
-    CachedNetworkImageProvider key,
+    NetworkImage key,
     ImageDecoderCallback decode,
   ) {
     return key.loadImage(key, decode);

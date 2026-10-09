@@ -1,6 +1,5 @@
 // ignore_for_file: gds_lints/prefer_gds_image
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
@@ -46,16 +45,6 @@ class GdsImage extends StatelessWidget {
         assert(!size.isInfinite);
         final cacheWidth = size.width.ceil();
 
-        var resolvedImage = provider ?? placeholderProvider;
-
-        // 네트워크 기반 이미지인 경우 캐시된 네트워크 이미지를 사용.
-        if (resolvedImage is NetworkImage) {
-          resolvedImage = CachedNetworkImageProvider(
-            resolvedImage.url,
-            cacheKey: cacheKey,
-          );
-        }
-
         // 리사이즈된 플레이스 홀더 이미지.
         final placeholderImage = ResizeImage.resizeIfNeeded(
           cacheWidth,
@@ -67,7 +56,7 @@ class GdsImage extends StatelessWidget {
         final resizedImage = ResizeImage.resizeIfNeeded(
           cacheWidth,
           null,
-          resolvedImage,
+          provider ?? placeholderProvider,
         );
 
         return Image(
