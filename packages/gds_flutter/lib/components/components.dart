@@ -48,6 +48,7 @@ export 'common/gds_fadable.dart';
 export 'common/gds_foldable.dart';
 export 'common/gds_gesture.dart';
 export 'common/gds_image.dart';
+export '../foundation/gds_responsive_image.dart';
 export 'common/gds_masking.dart';
 export 'common/gds_overlay.dart';
 export 'common/gds_scaffold.dart';

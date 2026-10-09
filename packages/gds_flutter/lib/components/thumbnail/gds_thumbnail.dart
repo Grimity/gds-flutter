@@ -9,7 +9,6 @@ class GdsThumbnail extends StatelessWidget {
     this.radius,
     this.border,
     this.provider,
-    this.resolver,
     this.placeholder,
     this.width,
     this.height,
@@ -21,7 +20,6 @@ class GdsThumbnail extends StatelessWidget {
   final GdsRadius? radius;
   final GdsBorder? border;
   final ImageProvider? provider;
-  final ImageProviderResolver? resolver;
   final ImageProvider? placeholder;
   final double? width;
   final double? height;
@@ -40,7 +38,6 @@ class GdsThumbnail extends StatelessWidget {
         aspectRatio: ratio.value,
         child: GdsImage(
           provider: provider,
-          resolver: resolver,
           placeholder: placeholder,
           cacheKey: cacheKey,
           fit: fit,

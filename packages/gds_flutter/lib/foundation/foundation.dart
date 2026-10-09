@@ -8,6 +8,7 @@ export 'gds_device.dart';
 export 'gds_icon.dart';
 export 'gds_opacity.dart';
 export 'gds_radius.dart';
+export 'gds_responsive_image.dart';
 export 'gds_semantic_color.dart';
 export 'gds_shadow.dart';
 export 'gds_size.dart';
