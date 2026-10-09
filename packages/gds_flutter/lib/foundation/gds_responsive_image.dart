@@ -51,10 +51,12 @@ class GdsResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
     // 지원되는 리사이즈 크기보다 큰 경우.
     if (closest == -1) return url;
 
+    final uri = Uri.parse(url);
     final query = {
+      ...uri.queryParameters,
       's': closest.toString(),
     };
 
-    return Uri.parse(url).replace(queryParameters: query).toString();
+    return uri.replace(queryParameters: query).toString();
   }
 }
