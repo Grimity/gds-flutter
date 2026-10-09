@@ -44,6 +44,7 @@ class GdsUserSearchPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
+    final showSkeleton = showSkeletonControl.of(context);
     final nickname = nicknameControl.of(context);
     final introduction = introductionControl.of(context);
     final profileUrl = profileUrlControl.of(context);
@@ -51,16 +52,19 @@ class GdsUserSearchPreview extends PreviewWidget {
     final followerCount = followerCountControl.of(context);
     final following = followingControl.of(context);
 
-    return GdsUser.search(
-      nickname: nickname.value,
-      introduction: introduction.value,
-      followerCount: followerCount.value,
-      profile: profileUrl.mayBeValue?.networkImage,
-      banner: bannerUrl.mayBeValue?.networkImage,
-      following: following.value,
-      onTap: () => debugPrint('onTap() called'),
-      onFollow: () => debugPrint('onFollow() called'),
-      onUnFollow: () => debugPrint('onUnFollow() called'),
+    return GdsSkeleton(
+      enabled: showSkeleton.value,
+      child: GdsUser.search(
+        nickname: nickname.value,
+        introduction: introduction.value,
+        followerCount: followerCount.value,
+        profile: profileUrl.mayBeValue?.networkImage,
+        banner: bannerUrl.mayBeValue?.networkImage,
+        following: following.value,
+        onTap: () => debugPrint('onTap() called'),
+        onFollow: () => debugPrint('onFollow() called'),
+        onUnFollow: () => debugPrint('onUnFollow() called'),
+      ),
     );
   }
 }

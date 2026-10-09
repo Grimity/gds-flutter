@@ -40,22 +40,26 @@ class GdsUserNormalPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
+    final showSkeleton = showSkeletonControl.of(context);
     final nickname = nicknameControl.of(context);
     final profileUrl = profileUrlControl.of(context);
     final followerCount = followerCountControl.of(context);
     final followingCount = followingCountControl.of(context);
     final following = followingControl.of(context);
 
-    return GdsUser.normal(
-      nickname: nickname.value,
-      profile: profileUrl.mayBeValue?.networkImage,
-      followerCount: followerCount.value,
-      followingCount: followingCount.value,
-      thumbnails: [],
-      following: following.value,
-      onTap: () => debugPrint('onTap() called'),
-      onFollow: () => debugPrint('onFollow() called'),
-      onUnFollow: () => debugPrint('onUnFollow() called'),
+    return GdsSkeleton(
+      enabled: showSkeleton.value,
+      child: GdsUser.normal(
+        nickname: nickname.value,
+        profile: profileUrl.mayBeValue?.networkImage,
+        followerCount: followerCount.value,
+        followingCount: followingCount.value,
+        thumbnails: [],
+        following: following.value,
+        onTap: () => debugPrint('onTap() called'),
+        onFollow: () => debugPrint('onFollow() called'),
+        onUnFollow: () => debugPrint('onUnFollow() called'),
+      ),
     );
   }
 }

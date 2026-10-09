@@ -13,5 +13,8 @@ export 'popover/gds_popover_route.dart';
 // Popup
 export 'popup/gds_popup_route.dart';
 
+// Skeleton
+export 'skeleton/gds_skeleton.dart';
+
 // Toast
 export 'toast/gds_toast_overlay.dart';

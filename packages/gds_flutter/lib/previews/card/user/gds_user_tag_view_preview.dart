@@ -23,12 +23,16 @@ class GdsUserTagViewPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
+    final showSkeleton = showSkeletonControl.of(context);
     final content = contentControl.of(context);
     final thumbnailUrl = thumbnailUrlControl.of(context);
 
-    return GdsUser.tagView(
-      content: content.value,
-      thumbnail: thumbnailUrl.mayBeValue?.networkImage,
+    return GdsSkeleton(
+      enabled: showSkeleton.value,
+      child: GdsUser.tagView(
+        content: content.value,
+        thumbnail: thumbnailUrl.mayBeValue?.networkImage,
+      ),
     );
   }
 }
