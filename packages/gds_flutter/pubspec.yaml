@@ -21,6 +21,7 @@ dependencies:
   flutter_scroll_bottom_sheet: ^1.2.1
   skeletonizer: ^3.0.0
   pervice: ^1.1.0
+  transparent_image: ^2.0.1
 
 dev_dependencies:
   flutter_test:
