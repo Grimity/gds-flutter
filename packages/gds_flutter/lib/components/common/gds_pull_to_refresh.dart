@@ -8,7 +8,7 @@ class GdsPullToRefresh extends StatelessWidget {
   const new({
     super.key,
     required this.onRefresh,
-    required this.enabled,
+    this.enabled = true,
     required this.child,
   });
 
@@ -22,10 +22,10 @@ class GdsPullToRefresh extends StatelessWidget {
       data: Theme.of(context).copyWith(
         progressIndicatorTheme: .new(
           // 전경 색상.
-          color: GdsColor.surfaceGraySubtler.of(context),
+          color: GdsColor.graphicBold.of(context),
 
           // 배경 색상.
-          refreshBackgroundColor: GdsColor.graphicBold.of(context),
+          refreshBackgroundColor: GdsColor.surfaceGraySubtler.of(context),
         ),
       ),
       child: PullToRefresh(
