@@ -3,17 +3,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
 /// 원본 URL과 실제 픽셀 크기를 기반으로 사용할 이미지 URL을 결정하는 함수.
-typedef GdsImageResolver = String Function(String url, Size size);
+typedef ImageResolver = String Function(String url, Size size);
 
 /// 표시 크기에 맞는 URL을 선택하고 네트워크 이미지를 캐싱하는 이미지.
-class GdsResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
+class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
   const new(
     this.url, {
     this.resolver = defaultImageResolver,
   });
 
   final String url;
-  final GdsImageResolver resolver;
+  final ImageResolver resolver;
 
   @override
   Future<CachedNetworkImageProvider> obtainKey(ImageConfiguration config) {

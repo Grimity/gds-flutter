@@ -11,6 +11,6 @@ extension GdsStringExtension on String {
 
   /// n.b. 문자열이 오직 이미지 링크일 경우만 사용하세요.
   ImageProvider get responsiveImage {
-    return isEmpty ? MemoryImage(kTransparentImage) : GdsResponsiveImage(this);
+    return isEmpty ? MemoryImage(kTransparentImage) : ResponsiveImage(this);
   }
 }
