@@ -29,9 +29,6 @@ class GdsImage extends StatelessWidget {
   /// 캐시 키를 지정하지 않으면 URL을 기반으로 캐시됩니다.
   final String? cacheKey;
 
-  static const _fadeIn = GdsAnimation.normal;
-  static const _fadeOut = GdsAnimation.normal;
-
   @override
   Widget build(BuildContext context) {
     // 이미지 로딩 중에 임시로 표시할 이미지.
@@ -73,16 +70,37 @@ class GdsImage extends StatelessWidget {
           resolvedImage,
         );
 
-        return FadeInImage(
-          fadeInDuration: _fadeIn.duration,
-          fadeInCurve: _fadeIn.curve,
-          fadeOutDuration: _fadeOut.duration,
-          fadeOutCurve: _fadeOut.curve,
-          placeholder: placeholderImage,
+        return Image(
           image: resizedImage,
           fit: fit,
           width: w,
           height: h,
+          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+            if (wasSynchronouslyLoaded) return child;
+
+            // 본 이미지의 페이드 인이 끝날 때까지 플레이스홀더 유지.
+            return GdsTransition.builder<double>(
+              key: ValueKey(resizedImage),
+              value: frame == null ? 0 : 1,
+              child: child,
+              builder: (context, opacity, child) {
+                return Stack(
+                  children: [
+                    if (opacity < 1)
+                      Image(
+                        image: placeholderImage,
+                        fit: fit,
+                        width: w,
+                        height: h,
+                        excludeFromSemantics: true,
+                      ),
+
+                    Opacity(opacity: opacity, child: child),
+                  ],
+                );
+              },
+            );
+          },
         );
       },
     );
