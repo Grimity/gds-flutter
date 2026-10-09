@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
@@ -41,4 +43,7 @@ extension GdsContextExtension on BuildContext {
 
   /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
   void openDrawer() => GdsScaffold.openDrawer(this);
+
+  /// 화면 가로 너비에 따른 피드 그리드의 열 개수를 반환합니다.
+  int get feedGridCrossAxisCount => max(2, viewport.width ~/ 260);
 }
