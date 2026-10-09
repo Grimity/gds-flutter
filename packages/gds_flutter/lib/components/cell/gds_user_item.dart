@@ -305,12 +305,12 @@ abstract class GdsUserItem {
       onTap: onTap,
       child: GdsContainer(
         padding: hasContent ? 20.vertical : 12.vertical,
-        border: .new(bottom: 1, color: GdsDividerVariant.secondary.color),
+        border: .new(bottom: 1, color: .borderGraySubtler),
         child: Row(
           crossAxisAlignment: .start,
           children: [
             // 좌측에 이미지 표시
-            if (showImage) ...[
+            if (showImage && hasImage) ...[
               Padding(
                 padding: 12.right,
                 child: GdsThumbnail(
