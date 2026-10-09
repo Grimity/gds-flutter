@@ -21,12 +21,21 @@ class GdsInfiniteScroll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InfiniteScrollPagination(
-      loadingIndicator: const GdsCircularLoading(),
+      loadingIndicator: indicator(),
       preloadOffset: 500,
       onLoadMore: onLoadMore,
       isEnabled: enabled,
       reverse: reverse,
       child: child,
+    );
+  }
+
+  /// 추가 데이터를 불러오는 동안 표시할 로딩 인디케이터 위젯.
+  static Widget indicator({Key? key}) {
+    return Padding(
+      key: key,
+      padding: .all(16),
+      child: const GdsCircularLoading(),
     );
   }
 }
