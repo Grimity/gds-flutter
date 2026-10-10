@@ -73,20 +73,7 @@ class GdsContainer extends StatelessWidget {
 
     return Stack(
       children: [
-        // 뒤쪽은 배경색, 그림자 표시
-        Positioned.fill(
-          child: AnimatedContainer(
-            duration: animation.duration,
-            curve: animation.curve,
-            decoration: decoration.copyWith(
-              color: color?.of(context).withAlphaIf(opacity?.alpha),
-              gradient: gradient,
-              boxShadow: shadow != null ? [shadow!.outer] : null,
-            ),
-          ),
-        ),
-
-        // 레이아웃(e.g. 크기, 정렬)
+        // 레이아웃(e.g. 크기, 정렬, 배경색, 그림자)
         AnimatedContainer(
           duration: animation.duration,
           curve: animation.curve,
@@ -96,7 +83,11 @@ class GdsContainer extends StatelessWidget {
           padding: padding,
           margin: margin,
           alignment: alignment,
-          decoration: decoration,
+          decoration: decoration.copyWith(
+            color: color?.of(context).withAlphaIf(opacity?.alpha),
+            gradient: gradient,
+            boxShadow: shadow != null ? [shadow!.outer] : null,
+          ),
           clipBehavior: clipBehavior,
           child: child,
         ),
