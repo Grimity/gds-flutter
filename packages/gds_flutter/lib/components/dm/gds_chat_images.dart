@@ -27,10 +27,12 @@ class GdsChatImages extends StatelessWidget {
       clip: true,
       child: Builder(
         builder: (context) {
-          // TODO: 이미지가 1장이면 원본 비율에 따라 동적으로 높이를 조정.
+          // 이미지가 1장이면 원본 비율에 따라 동적으로 높이를 조정.
           if (images.length == 1) {
+            final image = images.first;
+
             return AspectRatio(
-              aspectRatio: 1,
+              aspectRatio: image is ResponsiveImage ? image.size.aspectRatio : 1,
               child: buildImage(images.single),
             );
           }
