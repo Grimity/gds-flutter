@@ -6,6 +6,7 @@ class GdsTextButtonAction {
   const new({
     required this.label,
     required this.onTap,
+    this.status = .enabled,
     this._type,
     this._variant,
   });
@@ -25,6 +26,7 @@ class GdsTextButtonAction {
 
   final String label;
   final VoidCallback onTap;
+  final GdsButtonStatus status;
   final GdsTextButtonType? _type;
   final GdsTextButtonVariant? _variant;
 
@@ -44,11 +46,13 @@ class GdsIconButtonAction {
   const new({
     required this.icon,
     required this.onTap,
+    this.status = .enabled,
     this._type,
   });
 
   final GdsIcon icon;
   final VoidCallback onTap;
+  final GdsButtonStatus status;
   final GdsIconButtonType? _type;
 
   GdsIconButtonType get type {
