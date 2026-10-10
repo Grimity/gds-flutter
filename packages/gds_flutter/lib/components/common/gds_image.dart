@@ -43,7 +43,7 @@ class GdsImage extends StatelessWidget {
         );
 
         assert(!size.isInfinite);
-        final cacheWidth = size.width.ceil();
+        final cacheWidth = (size.width / 50).ceil() * 50;
 
         // 리사이즈된 플레이스 홀더 이미지.
         final placeholderImage = ResizeImage.resizeIfNeeded(
