@@ -14,6 +14,19 @@ class ResponsiveImage extends ImageProvider<NetworkImage> {
   final String url;
   final ImageResolver resolver;
 
+  /// URL에서 `너비x높이` 형식의 이미지 고유 크기를 추출합니다.
+  Size get size {
+    final match = RegExp(r'(\d+)x(\d+)').firstMatch(url);
+    if (match == null) {
+      throw StateError('URL에서 너비x높이 형식의 이미지 크기를 찾을 수 없습니다.');
+    }
+
+    return Size(
+      .parse(match.group(1) ?? (throw StateError('URL에서 너비를 추출할 수 없습니다.'))),
+      .parse(match.group(2) ?? (throw StateError('URL에서 높이를 추출할 수 없습니다.'))),
+    );
+  }
+
   @override
   Future<NetworkImage> obtainKey(ImageConfiguration config) {
     final size = config.size;
