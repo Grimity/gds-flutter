@@ -51,29 +51,28 @@ class GdsImage extends StatelessWidget {
           provider ?? placeholderProvider,
         );
 
-        return Image(
-          image: resizedImage,
+        return ImmediateImage(
+          provider: resizedImage,
           fit: fit,
           width: w,
           height: h,
-          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-            if (wasSynchronouslyLoaded) return child;
+          builder: (child, loaded, synchronous) {
+            if (synchronous) return child;
 
             // 본 이미지의 페이드 인이 끝날 때까지 플레이스홀더 유지.
             return GdsTransition.builder<double>(
               key: ValueKey(resizedImage),
-              value: frame == null ? 0 : 1,
+              value: loaded ? 1 : 0,
               child: child,
               builder: (context, opacity, child) {
                 return Stack(
                   children: [
                     if (opacity < 1)
-                      Image(
-                        image: placeholderImage,
+                      ImmediateImage(
+                        provider: placeholderImage,
                         fit: fit,
                         width: w,
                         height: h,
-                        excludeFromSemantics: true,
                       ),
 
                     Opacity(opacity: opacity, child: child),
