@@ -12,7 +12,6 @@ class GdsThumbnail extends StatelessWidget {
     this.placeholder,
     this.width,
     this.height,
-    this.cacheKey,
     this.fit = .cover,
   });
 
@@ -23,7 +22,6 @@ class GdsThumbnail extends StatelessWidget {
   final ImageProvider? placeholder;
   final double? width;
   final double? height;
-  final String? cacheKey;
   final BoxFit fit;
 
   @override
@@ -40,7 +38,6 @@ class GdsThumbnail extends StatelessWidget {
           child: GdsImage(
             provider: provider,
             placeholder: placeholder,
-            cacheKey: cacheKey,
             fit: fit,
           ),
         ),

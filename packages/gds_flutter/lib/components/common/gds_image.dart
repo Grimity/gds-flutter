@@ -12,21 +12,13 @@ class GdsImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit = .cover,
-    this.cacheKey,
-  }) : assert(
-         provider is! NetworkImage ? cacheKey == null : true,
-         'NetworkImage가 아닌 경우 cacheKey를 사용할 수 없습니다.',
-       );
+  });
 
   final ImageProvider? provider;
   final ImageProvider? placeholder;
   final double? width;
   final double? height;
   final BoxFit fit;
-
-  /// 네트워크 기반 이미지인 경우 캐시 키를 지정할 수 있습니다.
-  /// 캐시 키를 지정하지 않으면 URL을 기반으로 캐시됩니다.
-  final String? cacheKey;
 
   @override
   Widget build(BuildContext context) {

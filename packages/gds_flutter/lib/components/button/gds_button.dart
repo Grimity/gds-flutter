@@ -55,7 +55,7 @@ abstract class GdsButton {
   }
 
   /// 아이콘만을 표시하는 원형 버튼 위젯.
-  static GdsButtonFrame icon({
+  static Widget icon({
     Key? key,
     GdsButtonStatus status = .enabled,
     required GdsIconButtonType type,
