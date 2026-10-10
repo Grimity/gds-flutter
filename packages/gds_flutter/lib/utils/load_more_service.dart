@@ -24,7 +24,7 @@ class LoadMoreService<T> extends Service<List<T>> {
   /// 기존 콘텐츠를 유지하면서 다음 페이지를 불러오고 이를 삽입합니다.
   Future<void> loadMore() async {
     data.add(await builder(cursorOf(data.last)).request());
-    notifyUpdated();
+    notifyChanged();
   }
 
   @override
