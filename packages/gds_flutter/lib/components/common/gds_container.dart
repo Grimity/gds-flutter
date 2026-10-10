@@ -55,7 +55,7 @@ class GdsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Clip clipBehavior = clip ? .antiAlias : .none;
+    final Clip clipBehavior = clip ? .hardEdge : .none;
 
     // 크기 제약.
     final constraints = BoxConstraints(
