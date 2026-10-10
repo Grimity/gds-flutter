@@ -251,6 +251,7 @@ enum GdsIcon {
         Widget build(Color? color) {
           return SvgPicture.string(
             content,
+            renderingStrategy: .raster,
             colorFilter: color != null ? ColorFilter.mode(color, .srcIn) : null,
             colorMapper: resolvedColorMap != null ? IdColorMapper(resolvedColorMap) : null,
             width: size,

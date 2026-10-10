@@ -85,6 +85,7 @@ class _State extends State<GdsRefreshLoading> with SingleTickerProviderStateMixi
           package: 'gds_flutter',
           width: widget.size,
           height: widget.size,
+          renderingStrategy: .raster,
           colorMapper: IdColorMapper({
             'p1': colorAt(0),
             'p2': colorAt(1),

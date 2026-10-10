@@ -28,19 +28,21 @@ class GdsThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GdsContainer(
-      width: width,
-      height: height,
-      radius: radius,
-      border: border,
-      clip: true,
-      child: AspectRatio(
-        aspectRatio: ratio.value,
-        child: GdsImage(
-          provider: provider,
-          placeholder: placeholder,
-          cacheKey: cacheKey,
-          fit: fit,
+    return RepaintBoundary(
+      child: GdsContainer(
+        width: width,
+        height: height,
+        radius: radius,
+        border: border,
+        clip: radius != null,
+        child: AspectRatio(
+          aspectRatio: ratio.value,
+          child: GdsImage(
+            provider: provider,
+            placeholder: placeholder,
+            cacheKey: cacheKey,
+            fit: fit,
+          ),
         ),
       ),
     );

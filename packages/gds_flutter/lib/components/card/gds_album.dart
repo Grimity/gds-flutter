@@ -58,11 +58,11 @@ class GdsAlbum extends StatelessWidget {
           Stack(
             children: [
               // 이미지 표시
-              GdsContainer(
-                border: hasChecked ? imageBorder : null,
+              GdsThumbnail(
+                ratio: .square,
                 radius: .md,
-                clip: true,
-                child: GdsThumbnail(ratio: .square, provider: image),
+                border: hasChecked ? imageBorder : null,
+                provider: image,
               ),
 
               // 체크 박스 표시

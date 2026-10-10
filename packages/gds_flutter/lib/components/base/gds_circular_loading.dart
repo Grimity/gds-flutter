@@ -65,6 +65,7 @@ class _State extends State<GdsCircularLoading> with SingleTickerProviderStateMix
         package: 'gds_flutter',
         width: widget.size,
         height: widget.size,
+        renderingStrategy: .raster,
         colorMapper: IdColorMapper({
           'p1': GdsColor.iconGraySubtle.of(context),
         }),
