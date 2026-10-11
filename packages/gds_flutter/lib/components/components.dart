@@ -56,6 +56,7 @@ export 'common/gds_pull_to_refresh.dart';
 export 'common/gds_scaffold.dart';
 export 'common/gds_text.dart';
 export 'common/gds_transition.dart';
+export 'common/gds_view_stack.dart';
 
 export 'common/inherited/gds_theme_scope.dart';
 
