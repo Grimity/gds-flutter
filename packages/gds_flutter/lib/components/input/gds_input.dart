@@ -7,7 +7,7 @@ abstract class GdsInput {
   /// 제목과 헬퍼 텍스트를 함께 표시하는 입력 필드 위젯.
   static Widget title({
     Key? key,
-    required GdsInputAction field,
+    required Widget field,
     GdsTextButtonAction? button,
     String? title,
     String? helperText,
@@ -41,15 +41,7 @@ abstract class GdsInput {
           spacing: 8,
           children: [
             // 입력 필드 표시.
-            Expanded(
-              child: GdsTextField.normal(
-                size: .md,
-                placeholder: field.placeholder,
-                onSubmitted: field.onSubmitted,
-                onComplete: field.onComplete,
-                onChanged: field.onChanged,
-              ),
-            ),
+            Expanded(child: field),
 
             // 옆에 버튼 표시.
             if (button != null) ...[

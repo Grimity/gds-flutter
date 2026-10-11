@@ -54,7 +54,7 @@ class GdsTitleInputPreview extends PreviewWidget {
       helperText: helperText.mayBeValue,
       helperStatus: helperStatus.value,
       required: required.value,
-      field: GdsInputAction(placeholder: 'Placeholder'),
+      field: GdsTextField.normal(size: .md, placeholder: 'Placeholder'),
       button: showButton.value ? createButtonAction() : null,
     );
   }
