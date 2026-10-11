@@ -22,7 +22,7 @@ class GdsBottomNavigation extends StatelessWidget {
 
         // 탭 목록 표시
         GdsContainer(
-          padding: .only(top: 2),
+          padding: .symmetric(vertical: 4),
           child: Row(children: tabs.builder(buildTab)),
         ),
       ],
