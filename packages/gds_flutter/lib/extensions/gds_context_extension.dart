@@ -36,11 +36,17 @@ extension GdsContextExtension on BuildContext {
   GdsTheme get theme => GdsThemeScope.of(this);
 
   /// 현재 라우트를 닫고 이전 화면으로 돌아갑니다.
-  void pop<T>() => Navigator.of(this).pop<T>();
+  void pop<T>() {
+    if (mounted) {
+      Navigator.of(this).pop<T>();
+    }
+  }
 
   /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
-  void push<T>(Widget Function() builder) {
-    Navigator.of(this).push<T>(MaterialPageRoute(builder: (_) => builder()));
+  void push<T>(Widget child) {
+    if (mounted) {
+      Navigator.of(this).push<T>(MaterialPageRoute(builder: (_) => child));
+    }
   }
 
   /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
