@@ -43,8 +43,8 @@ class GdsScrollPhysics extends ClampingScrollPhysics {
 
     return ClampingScrollSimulation(
       position: position.pixels,
-      velocity: velocity * 0.7,
-      friction: 0.0075,
+      velocity: velocity * 0.75,
+      friction: 0.006,
       tolerance: tolerance,
     );
   }
