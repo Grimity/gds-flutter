@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템에서 제공하는 [BuildContext]에 대한 유틸리티 확장.
@@ -38,8 +38,10 @@ extension GdsContextExtension on BuildContext {
   /// 현재 라우트를 닫고 이전 화면으로 돌아갑니다.
   void pop<T>() => Navigator.of(this).pop<T>();
 
-  /// 지정한 [route]를 현재 내비게이터 스택에 푸시합니다.
-  void push<T>(Route<T> route) => Navigator.of(this).push<T>(route);
+  /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
+  void push<T>(Widget Function() builder) {
+    Navigator.of(this).push<T>(MaterialPageRoute(builder: (_) => builder()));
+  }
 
   /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
   void openDrawer() => GdsScaffold.openDrawer(this);
