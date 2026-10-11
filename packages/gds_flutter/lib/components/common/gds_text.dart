@@ -15,7 +15,8 @@ class GdsText extends StatelessWidget {
     this.overflow,
     this.textAlign,
     this.strutStyle,
-    this.textDirection,
+    this.direction,
+    this.decoration,
   }) : span = null;
 
   /// 여러 스타일이 적용된 텍스트를 표시하는 위젯.
@@ -29,7 +30,8 @@ class GdsText extends StatelessWidget {
     this.overflow,
     this.textAlign,
     this.strutStyle,
-    this.textDirection,
+    this.direction,
+    this.decoration,
   }) : text = null;
 
   final String? text;
@@ -41,14 +43,18 @@ class GdsText extends StatelessWidget {
   final TextOverflow? overflow;
   final TextAlign? textAlign;
   final StrutStyle? strutStyle;
-  final TextDirection? textDirection;
+  final TextDirection? direction;
+  final TextDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedDefaultTextStyle(
       duration: animation.duration,
       curve: animation.curve,
-      style: style.style.copyWith(color: color.of(context)),
+      style: style.style.copyWith(
+        color: color.of(context),
+        decoration: decoration,
+      ),
       child: span == null
           ? Text(
               text!,
@@ -56,7 +62,7 @@ class GdsText extends StatelessWidget {
               overflow: overflow,
               textAlign: textAlign,
               strutStyle: strutStyle,
-              textDirection: textDirection,
+              textDirection: direction,
             )
           : Text.rich(
               span!,
@@ -64,7 +70,7 @@ class GdsText extends StatelessWidget {
               overflow: overflow,
               textAlign: textAlign,
               strutStyle: strutStyle,
-              textDirection: textDirection,
+              textDirection: direction,
             ),
     );
   }
