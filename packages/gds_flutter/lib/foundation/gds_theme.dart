@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
@@ -8,8 +9,8 @@ export 'theme/gds_light_theme.dart';
 abstract class GdsTheme {
   const new();
 
-  factory light() = GdsLightTheme;
-  factory dark() = GdsDarkTheme;
+  const factory light() = GdsLightTheme;
+  const factory dark() = GdsDarkTheme;
 
   /// 테마의 이름 혹은 식별자.
   String get name;

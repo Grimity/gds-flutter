@@ -42,6 +42,7 @@ export 'chip/gds_chip.dart';
 export 'chip/gds_chip_variant.dart';
 
 // Common
+export 'common/gds_app.dart';
 export 'common/gds_container.dart';
 export 'common/gds_dot.dart';
 export 'common/gds_fadable.dart';

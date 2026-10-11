@@ -7,4 +7,5 @@ export 'gds_list_extension.dart';
 export 'gds_number_extension.dart';
 export 'gds_service_extension.dart';
 export 'gds_string_extension.dart';
+export 'gds_theme_extension.dart';
 export 'gds_value_notifier_extension.dart';
