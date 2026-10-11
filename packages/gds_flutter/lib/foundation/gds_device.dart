@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 화면 가로 너비를 기준으로 분류한 기기 유형.
@@ -14,5 +15,13 @@ enum GdsDevice {
       .lg => .tablet,
       .xl => .tablet,
     };
+  }
+
+  /// 화면 가로 너비를 기준으로 기기 유형을 반환합니다.
+  static GdsDevice get current {
+    final view = WidgetsBinding.instance.platformDispatcher.views.first;
+    final size = view.physicalSize / view.devicePixelRatio;
+
+    return fromWidth(size.width);
   }
 }

@@ -9,7 +9,7 @@ extension GdsContextExtension on BuildContext {
   Size get viewport => MediaQuery.of(this).size;
 
   /// 화면 가로 너비를 기준으로 기기 유형을 반환합니다.
-  GdsDevice get device => .fromWidth(viewport.width);
+  GdsDevice get device => GdsDevice.current;
 
   /// 현재 기기 유형이 모바일인지 여부를 반환합니다.
   bool get isMobile => device == .mobile;
