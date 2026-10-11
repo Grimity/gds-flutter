@@ -46,7 +46,7 @@ abstract class GdsTransition {
           child: child,
         );
       },
-      child: KeyedSubtree(key: ValueKey(value.toString()), child: child),
+      child: KeyedSubtree(key: ValueKey(value), child: child),
     );
   }
 
@@ -72,7 +72,7 @@ abstract class GdsTransition {
           child: child,
         );
       },
-      child: KeyedSubtree(key: ValueKey(value.toString()), child: child),
+      child: KeyedSubtree(key: ValueKey(value), child: child),
     );
   }
 
@@ -92,7 +92,7 @@ abstract class GdsTransition {
       layoutBuilder: (current, previous) {
         return _layoutBuilder(alignment, [...previous, ?current]);
       },
-      child: KeyedSubtree(key: ValueKey(value.toString()), child: child),
+      child: KeyedSubtree(key: ValueKey(value), child: child),
     );
   }
 
