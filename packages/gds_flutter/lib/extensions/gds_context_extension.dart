@@ -36,9 +36,9 @@ extension GdsContextExtension on BuildContext {
   GdsTheme get theme => GdsThemeScope.of(this);
 
   /// 현재 라우트를 닫고 이전 화면으로 돌아갑니다.
-  void pop<T>() {
+  void pop<T>([T? result]) {
     if (mounted) {
-      Navigator.of(this).pop<T>();
+      Navigator.of(this).pop<T>(result);
     }
   }
 
