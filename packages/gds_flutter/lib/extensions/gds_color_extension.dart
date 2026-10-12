@@ -9,6 +9,7 @@ extension GdsColorExtension on Color {
   Color get opacity40 => withAlpha(GdsOpacity.opacity40.alpha);
   Color get opacity20 => withAlpha(GdsOpacity.opacity20.alpha);
   Color get opacity10 => withAlpha(GdsOpacity.opacity10.alpha);
+  Color get transparent => withAlpha(0);
 
   /// '#FFFFFF'와 같은 16진수 색상 코드로 변환합니다.
   String toHex({bool includeHashSign = true}) {

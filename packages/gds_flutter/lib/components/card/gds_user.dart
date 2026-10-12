@@ -188,8 +188,8 @@ abstract class GdsUser {
                   begin: .topCenter,
                   end: .bottomCenter,
                   colors: [
-                    GdsAtomicColor.transparent,
-                    GdsAtomicColor.black,
+                    GdsAtomicColor.black.transparent,
+                    GdsAtomicColor.black.opacity80,
                   ],
                 ),
                 alignment: .bottomLeft,

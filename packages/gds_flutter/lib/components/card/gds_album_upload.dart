@@ -147,8 +147,8 @@ abstract class GdsAlbumUpload {
                         begin: .topCenter,
                         end: .bottomCenter,
                         colors: [
-                          GdsAtomicColor.black,
-                          GdsAtomicColor.transparent,
+                          GdsAtomicColor.black.opacity80,
+                          GdsAtomicColor.black.transparent,
                         ],
                       ),
                     );
