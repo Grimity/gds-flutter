@@ -175,27 +175,25 @@ abstract class GdsListItem {
       border: .all(color: .borderGraySubtle),
     );
 
-    return IntrinsicWidth(
+    return GdsCellFrame(
       key: key,
-      child: GdsCellFrame(
-        status: status,
-        label: label,
-        labelStyle: .label4,
-        onTap: onTap,
-        enabledStyle: enabled,
-        selectedStyle: const .new(
-          textColor: .textPrimaryNormal,
-          backgroundColor: .surfacePrimarySubtlest,
-          border: .all(color: .borderPrimaryNormal),
-        ),
-        disabledStyle: const .new(
-          textColor: .textGraySubtler,
-          backgroundColor: .surfaceGraySubtlest,
-          border: .all(color: .borderGraySubtler),
-        ),
-        padding: .symmetric(horizontal: 4),
-        radius: .sm,
+      status: status,
+      label: label,
+      labelStyle: .label4,
+      onTap: onTap,
+      enabledStyle: enabled,
+      selectedStyle: const .new(
+        textColor: .textPrimaryNormal,
+        backgroundColor: .surfacePrimarySubtlest,
+        border: .all(color: .borderPrimaryNormal),
       ),
+      disabledStyle: const .new(
+        textColor: .textGraySubtler,
+        backgroundColor: .surfaceGraySubtlest,
+        border: .all(color: .borderGraySubtler),
+      ),
+      padding: .symmetric(vertical: 12, horizontal: 4),
+      radius: .sm,
     );
   }
 
