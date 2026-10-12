@@ -16,15 +16,28 @@ class LoadMoreService<T> extends Service<List<T>> {
   final LoadMoreBuilder<T> builder;
   final LoadMoreCursorOf<T> cursorOf;
 
+  /// 추가 페이지 요청이 진행 중인지 여부.
+  bool isLoadingMore = false;
+
   /// 추가 로딩이 가능한지, 즉 마지막 페이지에 다음 커서가 있는지 여부를 반환합니다.
   bool get canLoreMore {
-    return status == .loaded ? cursorOf(data.last) != null : false;
+    return status == .loaded && !isLoadingMore ? cursorOf(data.last) != null : false;
   }
 
   /// 기존 콘텐츠를 유지하면서 다음 페이지를 불러오고 이를 삽입합니다.
+  /// 또한 이미 추가 로딩 중이면 해당 함수를 호출하지 않아야 합니다.
   Future<void> loadMore() async {
-    data.add(await builder(cursorOf(data.last)).request());
-    notifyChanged();
+    if (isLoadingMore) {
+      throw StateError('이미 추가 페이지를 불러오는 중입니다.');
+    }
+
+    try {
+      isLoadingMore = true;
+      data.add(await builder(cursorOf(data.last)).request());
+      notifyChanged();
+    } finally {
+      isLoadingMore = false;
+    }
   }
 
   @override
