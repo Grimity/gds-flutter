@@ -192,6 +192,7 @@ abstract class GdsListItem {
         backgroundColor: .surfaceGraySubtlest,
         border: .all(color: .borderGraySubtler),
       ),
+      textAlign: .center,
       padding: .symmetric(vertical: 12, horizontal: 4),
       radius: .sm,
     );

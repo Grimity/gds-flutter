@@ -15,6 +15,7 @@ class GdsCellFrame extends StatelessWidget {
     this.onTap,
     this.padding,
     this.radius,
+    this.textAlign,
     this.leadingWidget,
     this.trailingWidget,
   });
@@ -29,6 +30,7 @@ class GdsCellFrame extends StatelessWidget {
   final VoidCallback? onTap;
   final EdgeInsets? padding;
   final GdsRadius? radius;
+  final TextAlign? textAlign;
   final Widget? leadingWidget;
   final Widget? trailingWidget;
 
@@ -60,6 +62,7 @@ class GdsCellFrame extends StatelessWidget {
                   label,
                   style: labelStyle,
                   color: style.textColor,
+                  textAlign: textAlign,
                 ),
               ),
               ?trailingWidget,
