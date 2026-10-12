@@ -1,13 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
-/// 사용자 카드에 표시할 썸네일 정보.
-typedef GdsUserThumbnail = ({
-  ImageProvider image,
-  bool like,
-  ValueChanged<bool> onLike,
-});
-
 /// 사용자 정보를 다양한 형태의 카드로 표시하는 위젯을 제공합니다.
 abstract class GdsUser {
   /// 사용자 정보와 최근 작품 썸네일을 포함하여 추천 시 사용되는 위젯.
@@ -17,7 +10,7 @@ abstract class GdsUser {
     required int followingCount,
     required String nickname,
     required ImageProvider? profile,
-    required List<GdsUserThumbnail> thumbnails,
+    required List<ImageProvider> thumbnails,
     required bool following,
     required VoidCallback onTap,
     required VoidCallback onFollow,
@@ -57,28 +50,10 @@ abstract class GdsUser {
                 final thumbnail = thumbnails.elementAtOrNull(index);
 
                 return Expanded(
-                  child: Stack(
-                    children: [
-                      // 이미지 표시
-                      GdsThumbnail(
-                        ratio: .square,
-                        radius: .sm,
-                        provider: thumbnail?.image,
-                      ),
-
-                      // 좋아요 버튼 표시
-                      if (thumbnail != null) ...[
-                        Positioned(
-                          right: 6,
-                          bottom: 6,
-                          child: GdsHeart(
-                            value: thumbnail.like,
-                            black: false,
-                            onChanged: thumbnail.onLike,
-                          ),
-                        ),
-                      ],
-                    ],
+                  child: GdsThumbnail(
+                    ratio: .square,
+                    radius: .sm,
+                    provider: thumbnail,
                   ),
                 );
               }),
