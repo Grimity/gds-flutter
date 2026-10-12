@@ -5,19 +5,19 @@ import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
 
 /// 페이지 로딩 테스트에 사용할 식별자와 다음 커서 정보.
-typedef _Page = ({
+typedef _TestPage = ({
   int id,
   String? cursor,
 });
 
 /// 테스트에서 지정한 시점에 페이지 응답을 반환하는 서비스.
-class _PageService extends Service<_Page> {
+class _TestService extends Service<_TestPage> {
   new(this.response);
 
-  final Future<_Page> response;
+  final Future<_TestPage> response;
 
   @override
-  Future<_Page> fetchData() => response;
+  Future<_TestPage> fetchData() => response;
 }
 
 void main() {
@@ -29,7 +29,7 @@ void main() {
     final service = LoadMoreService(
       builder: (cursor) {
         cursors.add(cursor);
-        return _PageService(.value(cursor == null ? first : second));
+        return _TestService(.value(cursor == null ? first : second));
       },
       cursorOf: (page) => page.cursor,
     );
@@ -48,17 +48,17 @@ void main() {
   });
 
   test('추가 로딩 중 다시 호출하면 예외가 발생하고 기존 요청만 완료되는지 확인', () async {
-    final response = Completer<_Page>();
+    final response = Completer<_TestPage>();
     var requestCount = 0;
 
     final service = LoadMoreService(
       builder: (cursor) {
         if (cursor == null) {
-          return _PageService(.value((id: 1, cursor: 'next')));
+          return _TestService(.value((id: 1, cursor: 'next')));
         }
 
         requestCount++;
-        return _PageService(response.future);
+        return _TestService(response.future);
       },
       cursorOf: (page) => page.cursor,
     );
@@ -81,10 +81,10 @@ void main() {
   });
 
   test('새로고침 후 이전 추가 로딩이 완료되어도 새 목록에 섞이지 않는지 확인', () async {
-    final response = Completer<_Page>();
+    final response = Completer<_TestPage>();
     var firstPageCount = 0;
     final service = LoadMoreService(
-      builder: (cursor) => _PageService(
+      builder: (cursor) => _TestService(
         cursor == null ? .value((id: ++firstPageCount, cursor: 'next')) : response.future,
       ),
       cursorOf: (page) => page.cursor,
