@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design_preview/flutter_design_preview.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:pervice/pervice.dart';
 
 /// 디자인 시스템 컴포넌트 프리뷰를 위한 앱을 구성합니다.
 @preview
 Widget previewBuilder(PreviewWidget widget) {
   return MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData.light(),
-    darkTheme: ThemeData.dark(),
+    theme: .light(),
+    darkTheme: .dark(),
     themeMode: PreviewBinding.themeMode,
     builder: (context, child) {
       final brightness = Theme.of(context).brightness;
 
       return GdsThemeScope(
         theme: brightness == .dark ? .dark() : .light(),
-        child: child!,
+        child: ServiceScope.withState(
+          child: child!,
+        ),
       );
     },
     home: Builder(

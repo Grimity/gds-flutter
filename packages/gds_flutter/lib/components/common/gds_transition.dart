@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gds_flutter/extensions/extensions.dart';
 import 'package:gds_flutter/foundation/foundation.dart';
 
 /// 디자인 시스템에서 전환 애니메이션을 구현하는 위젯.
@@ -96,7 +97,18 @@ abstract class GdsTransition {
     );
   }
 
+  /// 현재 위젯을 기준으로 크기를 결정하고, 이전 위젯을 겹쳐 표시하는 빌더.
   static Widget _layoutBuilder(Alignment alignment, List<Widget> entries, {Key? key}) {
-    return Stack(key: key, alignment: alignment, children: entries);
+    return Stack(
+      key: key,
+      alignment: alignment,
+      children: entries.indexedBuilder((index, entry) {
+        if (index == entries.length - 1) {
+          return entry;
+        }
+
+        return Positioned.fill(child: entry);
+      }),
+    );
   }
 }
