@@ -11,7 +11,7 @@ void main() {
 
     final width = 40.0;
     final height = 20.0;
-    final animation = GdsFoldable.defaultAnimation;
+    final animation = GdsAnimation.normal;
     final duration = animation.duration;
 
     tester.view.physicalSize = Size(width, height);

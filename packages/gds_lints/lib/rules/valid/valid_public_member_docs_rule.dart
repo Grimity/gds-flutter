@@ -29,6 +29,7 @@ final class ValidPublicMemberDocsRule extends GdsAnalysisRule {
       ..addEnumDeclaration(this, visitor)
       ..addExtensionDeclaration(this, visitor)
       ..addExtensionTypeDeclaration(this, visitor)
+      ..addFieldDeclaration(this, visitor)
       ..addFunctionDeclaration(this, visitor)
       ..addGenericTypeAlias(this, visitor)
       ..addMethodDeclaration(this, visitor)
@@ -43,7 +44,7 @@ final class ValidPublicMemberDocsRule extends GdsAnalysisRule {
     reportAtNode(node);
   }
 
-  /// [node]에 선언된 public 최상위 변수가 있으면 문서 주석 여부를 검사합니다.
+  /// [node]에 선언된 public 변수가 있으면 문서 주석 여부를 검사합니다.
   void checkVariables(AnnotatedNode node, VariableDeclarationList variables) {
     final isPublicApi = variables.variables.any((variable) => _isPublicApi(variable.declaredFragment?.element));
     if (node.documentationComment != null || !isPublicApi) return;
@@ -95,6 +96,14 @@ final class _Visitor extends SimpleAstVisitor<void> {
   }
 
   @override
+  void visitFieldDeclaration(FieldDeclaration node) {
+    // 정적 필드가 아닌 경우 제외.
+    if (!node.isStatic) return;
+
+    rule.checkVariables(node, node.fields);
+  }
+
+  @override
   void visitFunctionDeclaration(FunctionDeclaration node) {
     // 메인 함수 제외.
     if (node.name.lexeme == 'main') return;
@@ -109,7 +118,7 @@ final class _Visitor extends SimpleAstVisitor<void> {
 
   @override
   void visitMethodDeclaration(MethodDeclaration node) {
-    if (node.isGetter) return;
+    if (node.isGetter && !node.isStatic) return;
 
     rule.check(node, node.declaredFragment?.element);
   }

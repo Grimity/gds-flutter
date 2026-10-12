@@ -6,7 +6,7 @@ class GdsFoldable extends StatefulWidget {
   const new builder({
     super.key,
     required this.alignment,
-    this.animation = defaultAnimation,
+    this.animation = .slowest,
     required this.visible,
     required this.axis,
     required this.builder,
@@ -17,8 +17,6 @@ class GdsFoldable extends StatefulWidget {
   final bool visible;
   final Axis axis;
   final WidgetBuilder builder;
-
-  static const GdsAnimation defaultAnimation = .slowest;
 
   @override
   State<GdsFoldable> createState() => _State();

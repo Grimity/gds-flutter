@@ -17,6 +17,7 @@ class GdsTagInput extends StatelessWidget {
   final VoidCallback onSubmit;
   final TextEditingController controller;
 
+  /// 태그 입력 필드에 적용할 기본 텍스트 스타일.
   static const style = GdsInputStyle(textColor: .textGrayBold);
 
   @override
@@ -32,7 +33,9 @@ class GdsTagInput extends StatelessWidget {
         decoration: .new(
           typography: .label4,
           spacing: 0,
-          padding: .symmetric(vertical: size.when(md: 6.2, xs: 2.2)), // 고정 높이 md 32px, xs 24px 기준
+
+          // 고정 높이 md 32px, xs 24px 기준
+          padding: .symmetric(vertical: size.when(md: 6.2, xs: 2.2)),
           size: size.when(md: .sm, xs: .xs),
         ),
         status: .enabled,

@@ -1,3 +1,5 @@
+// ignore_for_file: gds_lints/valid_public_member_docs
+
 import 'package:flutter/widgets.dart';
 
 /// https://www.figma.com/design/P1ouNc7cOpjW3MDU3wYdvI/Grimity_Design-System?node-id=9038-188653&m=dev
