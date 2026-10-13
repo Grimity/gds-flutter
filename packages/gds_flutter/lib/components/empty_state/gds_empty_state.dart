@@ -6,7 +6,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 class GdsEmptyState extends StatelessWidget {
   const new({
     super.key,
-    required this.size,
+    this.size,
     required this.illust,
     required this.title,
     this.description,
@@ -14,7 +14,7 @@ class GdsEmptyState extends StatelessWidget {
     this.buttonType = .solid,
   });
 
-  final GdsSize size;
+  final GdsSize? size;
   final GdsIcon illust;
   final String title;
   final String? description;
@@ -26,6 +26,14 @@ class GdsEmptyState extends StatelessWidget {
     assert(illust.type != .semantic);
     final hasDescription = description != null;
     final hasButton = button != null;
+
+    // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
+    final GdsSize sizeByDevice = context.whenDevice(
+      mobile: .md,
+      tablet: .xl,
+    );
+
+    final GdsSize size = this.size ?? sizeByDevice;
 
     return Padding(
       padding: .symmetric(vertical: 72),

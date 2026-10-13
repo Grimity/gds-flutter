@@ -32,7 +32,11 @@ class GdsTabBar extends StatelessWidget {
     final indicatorColor = GdsColor.borderGrayBold.of(context);
 
     // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
-    final GdsSize sizeByDevice = context.whenDevice(mobile: .sm, tablet: .md);
+    final GdsSize sizeByDevice = context.whenDevice(
+      mobile: .sm,
+      tablet: .md,
+    );
+
     final GdsSize size = this.size ?? sizeByDevice;
 
     return GdsMasking(
