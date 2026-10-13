@@ -24,7 +24,7 @@ class GdsButtonFrame extends StatelessWidget {
   final GdsButtonStyle loadingStyle;
   final GdsButtonDecoration decoration;
   final GdsButtonStatus status;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String? label;
   final MainAxisSize? mainAxisSize;
   final GdsIcon? leadingIcon;

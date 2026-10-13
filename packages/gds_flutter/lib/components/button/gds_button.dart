@@ -10,9 +10,9 @@ abstract class GdsButton {
   static Widget text({
     Key? key,
     required GdsTextButtonType type,
-    GdsTextButtonVariant? variant,
     required GdsSize size,
-    required VoidCallback onTap,
+    GdsTextButtonVariant? variant,
+    VoidCallback? onTap,
     GdsButtonStatus status = .enabled,
     String? label,
     MainAxisSize? mainAxisSize,
@@ -60,8 +60,8 @@ abstract class GdsButton {
     Key? key,
     GdsButtonStatus status = .enabled,
     required GdsIconButtonType type,
-    required VoidCallback onTap,
     required GdsIcon icon,
+    VoidCallback? onTap,
     GdsColor? color,
   }) {
     final decoration = GdsButtonDecoration(
