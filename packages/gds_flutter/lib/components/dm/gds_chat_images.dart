@@ -31,10 +31,15 @@ class GdsChatImages extends StatelessWidget {
           if (images.length == 1) {
             final image = images.first;
 
-            return AspectRatio(
-              aspectRatio: image is ResponsiveImage ? image.size.aspectRatio : 1,
-              child: buildImage(images.single),
-            );
+            // 원본 비율을 알 수 없는 프리뷰 이미지는 정사각형.
+            if (image is! ResponsiveImage) {
+              return AspectRatio(
+                aspectRatio: 1,
+                child: buildImage(images.single),
+              );
+            }
+
+            return buildImage(images.single);
           }
 
           return StaggeredGrid.count(

@@ -27,14 +27,31 @@ class GdsImage extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final w = constraints.constrainWidth(width ?? constraints.maxWidth);
-        final h = constraints.constrainHeight(height ?? constraints.maxHeight);
+        var w = constraints.constrainWidth(width ?? constraints.maxWidth);
+        var h = constraints.constrainHeight(height ?? constraints.maxHeight);
+
+        // 한쪽 크기만 정해진 반응형 이미지는 원본 비율로 나머지 크기를 계산.
+        final image = provider;
+        if (image is ResponsiveImage) {
+          if (w.isFinite && !h.isFinite) {
+            h = constraints.constrainHeight(w / image.size.aspectRatio);
+          } else if (h.isFinite && !w.isFinite) {
+            w = constraints.constrainWidth(h * image.size.aspectRatio);
+          }
+        }
+
         final size = Size(
           context.toPhysicalPixels(w),
           context.toPhysicalPixels(h),
         );
 
-        assert(!size.isInfinite);
+        if (size.isInfinite) {
+          throw StateError(
+            '부모 크기를 참조할 수 없어 이미지의 크기를 결정할 수 없습니다. '
+            '유한한 크기 제약을 제공하거나 width와 height를 지정해주세요.',
+          );
+        }
+
         final cacheWidth = (size.width / 50).ceil() * 50;
 
         // 리사이즈된 플레이스 홀더 이미지.
