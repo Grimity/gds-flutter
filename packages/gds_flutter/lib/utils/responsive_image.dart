@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gds_flutter/gds_flutter.dart';
 
 /// 원본 URL과 실제 픽셀 크기를 기반으로 사용할 이미지 URL을 결정하는 함수.
 typedef ImageResolver = String Function(String url, Size size);
@@ -70,5 +71,14 @@ class ResponsiveImage extends ImageProvider<NetworkImage> {
     };
 
     return uri.replace(queryParameters: query).toString();
+  }
+
+  /// 이미지의 원본 비율을 유지하는 [GdsImage] 위젯을 빌드합니다.
+  Widget build({Key? key}) {
+    return AspectRatio(
+      key: key,
+      aspectRatio: size.aspectRatio,
+      child: GdsImage(provider: this),
+    );
   }
 }
