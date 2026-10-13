@@ -71,7 +71,7 @@ class GdsSidebarPreview extends PreviewWidget {
       onHandle: () => debugPrint('onHandle() called'),
       onFollower: () => debugPrint('onFollower() called'),
       onFollowing: () => debugPrint('onFollowing() called'),
-      onSignOut: () => debugPrint('onSignOut() called'),
+      onSignOut: () async => debugPrint('onSignOut() called'),
       onTermsOfService: () => debugPrint('onTermsOfService() called'),
       onPrivacyPolicy: () => debugPrint('onPrivacyPolicy() called'),
       onBusinessInfo: () => debugPrint('onBusinessInfo() called'),
