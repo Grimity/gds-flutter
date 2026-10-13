@@ -18,6 +18,7 @@ abstract class GdsButton {
     MainAxisSize? mainAxisSize,
     GdsIcon? leadingIcon,
     GdsIcon? trailingIcon,
+    GdsColor? iconColor,
   }) {
     assert(
       type.supportsVariant ? variant != null : variant == null,
@@ -37,7 +38,7 @@ abstract class GdsButton {
 
     return GdsButtonFrame(
       key: key,
-      enabledStyle: styleSet.enabled,
+      enabledStyle: styleSet.enabled.copyWith(iconColor: iconColor),
       disabledStyle: styleSet.disabled,
       loadingStyle: styleSet.loading,
       decoration: size.when(
