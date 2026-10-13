@@ -16,6 +16,6 @@ extension GdsListExtension<T> on List<T> {
 
   /// 이미지 URL 목록을 [ImageProvider] 목록으로 변환합니다.
   List<ImageProvider> toImages() {
-    return builder((e) => (e as String).responsiveImage);
+    return builder((e) => (e as String).toImage());
   }
 }

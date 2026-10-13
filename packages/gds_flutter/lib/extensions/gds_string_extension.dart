@@ -9,8 +9,8 @@ extension GdsStringExtension on String {
     return isEmpty ? MemoryImage(kTransparentImage) : NetworkImage(this);
   }
 
-  /// n.b. 문자열이 오직 이미지 링크일 경우만 사용하세요.
-  ImageProvider get responsiveImage {
+  /// 이미지 URL을 [ImageProvider]로 변환하며, 빈 문자열은 투명 이미지로 처리합니다.
+  ImageProvider toImage() {
     return isEmpty ? MemoryImage(kTransparentImage) : ResponsiveImage(this);
   }
 }
