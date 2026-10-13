@@ -16,11 +16,14 @@ class GdsPageTransition<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedTransition(
-      transitionBuilder: transitionBuilder,
-      duration: animation.duration,
-      curve: animation.curve,
-      child: child,
+    return ClipRect(
+      clipBehavior: .hardEdge,
+      child: CachedTransition(
+        transitionBuilder: transitionBuilder,
+        duration: animation.duration,
+        curve: animation.curve,
+        child: child,
+      ),
     );
   }
 
