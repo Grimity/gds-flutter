@@ -4,16 +4,14 @@ import 'package:gds_flutter/gds_flutter.dart';
 /// 탭하면 모바일에서는 바텀 시트, 태블릿에서는 팝오버로 액션 목록을 표시하는 위젯.
 class GdsAdaptiveMenu {
   const new({
+    required this.layerLink,
     required this.position,
-    required this.link,
     required this.items,
-    required this.child,
   });
 
+  final LayerLink layerLink;
   final GdsMenuPosition position;
-  final LayerLink link;
   final List<GdsMenuItem> items;
-  final Widget child;
 
   /// 현재 기기에 맞는 표시 방식으로 액션 목록을 엽니다.
   Future<T?> open<T>(BuildContext context) {
@@ -39,7 +37,7 @@ class GdsAdaptiveMenu {
     // 태블릿에서는 팝오버 메뉴 표시.
     return GdsMenu(items: items).open(
       context,
-      layerLink: link,
+      layerLink: layerLink,
       position: position,
     );
   }
