@@ -37,6 +37,7 @@ abstract class GdsUserItem {
                     variant: action.variant,
                     size: .sm,
                     onTap: action.onTap,
+                    layerLink: action.layerLink,
                     label: action.label,
                   );
                 }),
@@ -81,6 +82,7 @@ abstract class GdsUserItem {
                     type: .normal,
                     icon: action.icon,
                     onTap: action.onTap,
+                    layerLink: action.layerLink,
                   );
                 }),
               ),
@@ -162,6 +164,7 @@ abstract class GdsUserItem {
                     variant: action.variant,
                     size: .sm,
                     onTap: action.onTap,
+                    layerLink: action.layerLink,
                     label: action.label,
                   );
                 }),

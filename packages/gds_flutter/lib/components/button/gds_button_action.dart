@@ -7,6 +7,7 @@ class GdsTextButtonAction {
     required this.label,
     required this.onTap,
     this.status = .enabled,
+    this.layerLink,
     this._type,
     this._variant,
   });
@@ -27,6 +28,7 @@ class GdsTextButtonAction {
   final String label;
   final VoidCallback onTap;
   final GdsButtonStatus status;
+  final LayerLink? layerLink;
   final GdsTextButtonType? _type;
   final GdsTextButtonVariant? _variant;
 
@@ -47,12 +49,14 @@ class GdsIconButtonAction {
     required this.icon,
     required this.onTap,
     this.status = .enabled,
+    this.layerLink,
     this._type,
   });
 
   final GdsIcon icon;
   final VoidCallback onTap;
   final GdsButtonStatus status;
+  final LayerLink? layerLink;
   final GdsIconButtonType? _type;
 
   GdsIconButtonType get type {

@@ -82,6 +82,7 @@ class GdsEmptyState extends StatelessWidget {
               variant: buttonType.supportsVariant ? .assistive : null,
               label: button!.label,
               onTap: button!.onTap,
+              layerLink: button!.layerLink,
             ),
           ],
         ],

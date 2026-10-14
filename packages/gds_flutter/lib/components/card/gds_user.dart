@@ -142,6 +142,7 @@ abstract class GdsUser {
                           size: .sm,
                           label: followAction.label,
                           onTap: followAction.onTap,
+                          layerLink: followAction.layerLink,
                         ),
                       ],
                     ),

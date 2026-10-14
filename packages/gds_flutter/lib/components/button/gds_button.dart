@@ -9,6 +9,7 @@ abstract class GdsButton {
   @GdsSupportedSizes([.lg, .md, .sm])
   static Widget text({
     Key? key,
+    LayerLink? layerLink,
     required GdsTextButtonType type,
     required GdsSize size,
     GdsTextButtonVariant? variant,
@@ -36,28 +37,32 @@ abstract class GdsButton {
       throw StateError('지원하지 않는 버튼 유형과 variant 조합입니다.');
     }
 
-    return GdsButtonFrame(
+    return GdsPopoverAnchor(
       key: key,
-      enabledStyle: styleSet.enabled.copyWith(iconColor: iconColor),
-      disabledStyle: styleSet.disabled,
-      loadingStyle: styleSet.loading,
-      decoration: size.when(
-        lg: type.lgDecoration,
-        md: type.mdDecoration,
-        sm: type.smDecoration,
+      layerLink: layerLink,
+      child: GdsButtonFrame(
+        enabledStyle: styleSet.enabled.copyWith(iconColor: iconColor),
+        disabledStyle: styleSet.disabled,
+        loadingStyle: styleSet.loading,
+        decoration: size.when(
+          lg: type.lgDecoration,
+          md: type.mdDecoration,
+          sm: type.smDecoration,
+        ),
+        status: status,
+        onTap: onTap,
+        label: label,
+        mainAxisSize: mainAxisSize,
+        leadingIcon: leadingIcon,
+        trailingIcon: trailingIcon,
       ),
-      status: status,
-      onTap: onTap,
-      label: label,
-      mainAxisSize: mainAxisSize,
-      leadingIcon: leadingIcon,
-      trailingIcon: trailingIcon,
     );
   }
 
   /// 아이콘만을 표시하는 원형 버튼 위젯.
   static Widget icon({
     Key? key,
+    LayerLink? layerLink,
     GdsButtonStatus status = .enabled,
     required GdsIconButtonType type,
     required GdsIcon icon,
@@ -72,18 +77,21 @@ abstract class GdsButton {
       size: type.size,
     );
 
-    return GdsButtonFrame(
+    return GdsPopoverAnchor(
       key: key,
-      enabledStyle: type.enabled.copyWith(iconColor: color),
-      disabledStyle: type.disabled,
-      loadingStyle: type.loading,
-      decoration: decoration,
-      status: status,
-      onTap: onTap,
-      label: null,
-      mainAxisSize: null,
-      leadingIcon: icon,
-      trailingIcon: null,
+      layerLink: layerLink,
+      child: GdsButtonFrame(
+        enabledStyle: type.enabled.copyWith(iconColor: color),
+        disabledStyle: type.disabled,
+        loadingStyle: type.loading,
+        decoration: decoration,
+        status: status,
+        onTap: onTap,
+        label: null,
+        mainAxisSize: null,
+        leadingIcon: icon,
+        trailingIcon: null,
+      ),
     );
   }
 }

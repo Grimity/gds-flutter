@@ -122,6 +122,7 @@ abstract class GdsTopNavigation {
                 type: .normal,
                 icon: action.icon,
                 onTap: action.onTap,
+                layerLink: action.layerLink,
               );
             }),
           ),

@@ -34,10 +34,10 @@ class GdsChatBubble extends StatelessWidget {
       spacing: 6,
       children: [
         Flexible(
-          child: GdsPopoverAnchor(
-            builder: (context, link) {
+          child: GdsPopoverAnchor.builder(
+            builder: (context, layerLink) {
               return GdsGesture(
-                onTap: () => openPopover(context, link, isMine),
+                onTap: () => openPopover(context, layerLink, isMine),
                 child: Stack(
                   children: [
                     // 메시지 본문 표시
@@ -100,14 +100,14 @@ class GdsChatBubble extends StatelessWidget {
   }
 
   /// 말풍선 옆에 좋아요와 답글 버튼을 표시하는 팝오버.
-  Future<void> openPopover(BuildContext context, LayerLink link, bool isMine) {
+  Future<void> openPopover(BuildContext context, LayerLink layerLink, bool isMine) {
     final hasLike = onLike != null;
     final hasReply = onReply != null;
 
     final route = GdsPopoverRoute(
       followerAnchor: isMine ? .centerRight : .centerLeft,
       targetAnchor: isMine ? .centerLeft : .centerRight,
-      layerLink: link,
+      layerLink: layerLink,
       offset: .new(isMine ? -6 : 6, 0),
       child: Row(
         mainAxisSize: .min,

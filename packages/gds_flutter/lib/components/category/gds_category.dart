@@ -58,6 +58,7 @@ class GdsCategory extends StatelessWidget {
                 type: .outlined,
                 icon: action!.icon,
                 onTap: action!.onTap,
+                layerLink: action!.layerLink,
               ),
             );
           },
