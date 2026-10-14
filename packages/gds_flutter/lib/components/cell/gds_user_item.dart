@@ -522,6 +522,7 @@ abstract class GdsUserItem {
                       type: .borderless,
                       variant: .assistive,
                       leadingIcon: isLiked ? .heartFill : .heart,
+                      iconColor: isLiked ? .statusNotification : null,
                       label: likeCount.toString(),
                       onTap: onLike,
                     ),

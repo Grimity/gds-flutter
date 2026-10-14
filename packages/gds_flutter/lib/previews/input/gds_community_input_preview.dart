@@ -4,7 +4,9 @@ import 'package:gds_flutter/gds_flutter.dart';
 
 /// [GdsInput.community]에 대한 프리뷰 위젯.
 class GdsCommunityInputPreview extends PreviewWidget {
-  final userNameControl = PreviewControl.string(displayName: 'User Name');
+  final mentionTextControl = PreviewControl.string(
+    displayName: 'Mention Text',
+  );
 
   @override
   String get displayName => 'Input · Community';
@@ -14,10 +16,10 @@ class GdsCommunityInputPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userName = userNameControl.of(context);
+    final mentionText = mentionTextControl.of(context);
 
     return GdsInput.community(
-      userName: userName.mayBeValue,
+      mentionText: mentionText.mayBeValue,
       field: .new(placeholder: '댓글 입력'),
       button: .new(
         onTap: () => debugPrint('onTap() called'),

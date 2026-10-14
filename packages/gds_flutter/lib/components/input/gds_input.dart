@@ -81,7 +81,7 @@ abstract class GdsInput {
     Key? key,
     required GdsInputAction field,
     required GdsTextButtonAction button,
-    String? userName,
+    String? mentionText,
   }) {
     return GdsContainer(
       key: key,
@@ -93,12 +93,12 @@ abstract class GdsInput {
           // 답장 헤더 표시.
           GdsFoldable.builder(
             alignment: .topCenter,
-            visible: userName != null,
+            visible: mentionText != null,
             axis: .vertical,
             builder: (context) {
               return Padding(
                 padding: .only(top: 8, left: 16, right: 16, bottom: 4),
-                child: GdsReplyHeader(text: '[$userName]님에게 답장'),
+                child: GdsReplyHeader(text: '[$mentionText]님에게 답장'),
               );
             },
           ),
@@ -112,7 +112,7 @@ abstract class GdsInput {
                 Expanded(
                   child: GdsTextField.normal(
                     size: .sm,
-                    mentionText: userName,
+                    mentionText: mentionText,
                     placeholder: field.placeholder,
                     onSubmitted: field.onSubmitted,
                     onComplete: field.onComplete,
@@ -122,9 +122,10 @@ abstract class GdsInput {
                 GdsButton.text(
                   type: .solid,
                   size: .md,
-                  onTap: button.onTap,
                   layerLink: button.layerLink,
+                  onTap: button.onTap,
                   label: button.label,
+                  status: button.status,
                 ),
               ],
             ),
