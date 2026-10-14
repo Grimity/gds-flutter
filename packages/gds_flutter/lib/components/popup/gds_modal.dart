@@ -94,9 +94,19 @@ class GdsModal extends StatelessWidget {
       ),
     );
   }
+
+  /// 모달 팝업을 오버레이에 표시합니다.
+  Future<T?> open<T>(BuildContext context) {
+    final route = GdsPopupRoute<T>(
+      barrierDismissible: false,
+      child: this,
+    );
+
+    return Navigator.of(context).push(route);
+  }
 }
 
-///
+/// 모달의 제목과 닫기 버튼을 표시하는 헤더 위젯.
 class _Header extends StatelessWidget {
   const new({
     required this.title,
@@ -142,15 +152,5 @@ class _Header extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  /// 모달 팝업을 오버레이에 표시합니다.
-  Future<T?> open<T>(BuildContext context) {
-    final route = GdsPopupRoute<T>(
-      barrierDismissible: false,
-      child: this,
-    );
-
-    return Navigator.of(context).push(route);
   }
 }

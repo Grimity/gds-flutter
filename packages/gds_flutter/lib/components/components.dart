@@ -62,7 +62,8 @@ export 'common/gds_transition.dart';
 export 'common/gds_view_stack.dart';
 
 export 'common/inherited/gds_theme_scope.dart';
-export 'common/template/gds_action_menu.dart';
+export 'common/template/gds_adaptive_menu.dart';
+export 'common/template/gds_adaptive_modal.dart';
 
 // Control
 export 'control/gds_check_box.dart';

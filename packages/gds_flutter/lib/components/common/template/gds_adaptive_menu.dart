@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 탭하면 모바일에서는 바텀 시트, 태블릿에서는 팝오버로 액션 목록을 표시하는 위젯.
-class GdsActionMenu extends StatelessWidget {
+class GdsAdaptiveMenu extends StatelessWidget {
   const new({
     super.key,
     required this.position,
