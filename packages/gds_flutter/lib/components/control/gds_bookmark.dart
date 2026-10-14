@@ -24,7 +24,7 @@ class GdsBookmark extends StatelessWidget {
       onTap: enabled && onChanged != null ? () => onChanged!(!value) : null,
       child: GdsTransition.crossFade(
         animation: .fast,
-        value: [value, black, enabled],
+        value: (value, black, enabled),
         child: icon.build(
           size: 24,
           color: value ? .iconPrimaryNormal : (black ? .iconGrayBold : .iconGraySubtle),

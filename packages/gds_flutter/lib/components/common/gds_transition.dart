@@ -32,6 +32,12 @@ abstract class GdsTransition {
     Alignment alignment = .center,
     GdsAnimation animation = .normal,
   }) {
+    assert(
+      value is! List,
+      'List는 내용이 동일하더라도 매번 다른 값으로 비교됩니다. '
+      '여러 값을 전환 기준으로 사용하려면 record를 사용하세요.',
+    );
+
     return PageTransitionSwitcher(
       key: key,
       duration: animation.duration,
@@ -59,6 +65,12 @@ abstract class GdsTransition {
     Alignment alignment = .center,
     GdsAnimation animation = .normal,
   }) {
+    assert(
+      value is! List,
+      'List는 내용이 동일하더라도 매번 다른 값으로 비교됩니다. '
+      '여러 값을 전환 기준으로 사용하려면 record를 사용하세요.',
+    );
+
     return PageTransitionSwitcher(
       key: key,
       duration: animation.duration,
@@ -85,6 +97,12 @@ abstract class GdsTransition {
     Alignment alignment = .center,
     GdsAnimation animation = .normal,
   }) {
+    assert(
+      value is! List,
+      'List는 내용이 동일하더라도 매번 다른 값으로 비교됩니다. '
+      '여러 값을 전환 기준으로 사용하려면 record를 사용하세요.',
+    );
+
     return AnimatedSwitcher(
       key: key,
       duration: animation.duration,

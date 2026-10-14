@@ -22,7 +22,7 @@ class GdsHeart extends StatelessWidget {
       onTap: enabled && onChanged != null ? () => onChanged!(!value) : null,
       child: GdsTransition.crossFade(
         animation: .fast,
-        value: [value, black, enabled],
+        value: (value, black, enabled),
         child: Stack(
           children: [
             // 배경 아이콘 표시

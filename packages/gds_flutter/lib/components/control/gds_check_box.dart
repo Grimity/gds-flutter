@@ -25,7 +25,7 @@ class GdsCheckBox extends StatelessWidget {
       onTap: enabled && onChanged != null ? () => onChanged!(!value) : null,
       child: GdsTransition.crossFade(
         animation: .fast,
-        value: [value, enabled],
+        value: (value, enabled),
         child: icon.build(
           size: size.when(md: 24, sm: 16),
           color: GdsControl.colorOf(value, enabled),
