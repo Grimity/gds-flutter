@@ -20,10 +20,6 @@ extension GdsNumberExtension on num {
   EdgeInsets get right => .only(right: toDouble());
   EdgeInsets get bottom => .only(bottom: toDouble());
 
-  // Gap
-  SizedBox get verticalGap => .new(height: toDouble());
-  SizedBox get horizontalGap => .new(width: toDouble());
-
   /// 숫자의 정수 부분을 세 자리마다 쉼표로 구분합니다.
   String get comma {
     final parts = toString().split('.');

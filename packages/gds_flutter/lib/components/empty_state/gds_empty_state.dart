@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 ///
@@ -45,7 +46,10 @@ class GdsEmptyState extends StatelessWidget {
           illust.build(size: 60),
 
           // 본문 간의 간격.
-          size.when(xl: 24, md: 16).verticalGap,
+          size.when(
+            xl: const Gap(24),
+            md: const Gap(16),
+          ),
 
           Column(
             crossAxisAlignment: .center,
@@ -74,7 +78,7 @@ class GdsEmptyState extends StatelessWidget {
 
           // 하단에 액션 버튼 표시
           if (hasButton) ...[
-            24.verticalGap,
+            const Gap(24),
 
             GdsButton.text(
               type: buttonType,

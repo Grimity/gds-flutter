@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// https://www.figma.com/design/P1ouNc7cOpjW3MDU3wYdvI/Grimity_Design-System?node-id=11481-167250&t=6LD6RMnOg9mBwzNp-4
@@ -202,7 +203,7 @@ abstract class GdsUserItem {
                 style: .label5,
                 color: read ? .textGrayNormal : .textPrimaryNormal,
               ),
-              2.verticalGap,
+              const Gap(2),
 
               // 본문 표시
               GdsText(
@@ -210,7 +211,7 @@ abstract class GdsUserItem {
                 style: .label4,
                 color: read ? .textGraySubtle : .textGrayBold,
               ),
-              8.verticalGap,
+              const Gap(8),
 
               // 지난 시각 표시
               GdsText(

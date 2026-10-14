@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 사용자 정보를 다양한 형태의 카드로 표시하는 위젯을 제공합니다.
@@ -119,11 +120,11 @@ abstract class GdsUser {
                           children: [
                             // 프로필 이미지 표시
                             GdsProfile(size: .md, image: profile),
-                            8.verticalGap,
+                            const Gap(8),
 
                             // 사용자 이름 표시
                             GdsText(nickname, color: .textGrayBold, style: .label1),
-                            2.verticalGap,
+                            const Gap(2),
 
                             // 팔로워 수 표시
                             Row(

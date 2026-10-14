@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 ///
@@ -132,7 +133,7 @@ class _Header extends StatelessWidget {
         children: [
           // 왼쪽 화살표 표시
           GdsIcon.chevronLeftTightThick.build(size: 24, color: .iconGrayBold),
-          12.horizontalGap,
+          const Gap(12),
 
           // 헤더 제목 표시
           Expanded(
@@ -147,7 +148,7 @@ class _Header extends StatelessWidget {
               layerLink: action!.layerLink,
               icon: action!.icon,
             ),
-            4.horizontalGap,
+            const Gap(4),
           ],
 
           // 닫기 버튼 표시

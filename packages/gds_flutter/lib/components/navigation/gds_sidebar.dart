@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
 
@@ -69,21 +70,21 @@ class GdsSidebar extends StatelessWidget {
                   onTap: onProfile,
                   child: GdsProfile(size: .ml, image: profile),
                 ),
-                8.verticalGap,
+                const Gap(8),
 
                 // 닉네임 표시
                 GdsGesture(
                   onTap: onNickname,
                   child: GdsText(nickname, color: .textGrayBold, style: .label3),
                 ),
-                2.verticalGap,
+                const Gap(2),
 
                 // 핸들 표시
                 GdsGesture(
                   onTap: onHandle,
                   child: GdsText('@$handle', color: .textGraySubtle, style: .label6),
                 ),
-                8.verticalGap,
+                const Gap(8),
 
                 // 팔로워, 팔로잉 개수 표시
                 GdsUserInfo.follow(
@@ -102,7 +103,7 @@ class GdsSidebar extends StatelessWidget {
                   clipBehavior: .none,
                   itemCount: tabs.length,
                   itemBuilder: (context, index) => tabs[index],
-                  separatorBuilder: (context, index) => 8.verticalGap,
+                  separatorBuilder: (context, index) => const Gap(8),
                 ),
               ),
             ),
