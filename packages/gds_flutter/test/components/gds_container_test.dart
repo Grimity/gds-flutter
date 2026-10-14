@@ -5,6 +5,38 @@ import 'package:gds_flutter/gds_flutter.dart';
 import '../test.dart';
 
 void main() {
+  testWidgets('테두리를 추가하고 제거해도 자식 상태와 크기를 유지하는지 확인', (tester) async {
+    Widget build(GdsBorder? border) => TestApp(
+      body: Center(
+        child: GdsContainer(
+          border: border,
+          child: StatefulBuilder(
+            builder: (_, _) => SizedBox(width: 40, height: 20),
+          ),
+        ),
+      ),
+    );
+
+    // 테두리가 없는 상태의 자식과 크기를 기록.
+    await tester.pumpWidget(build(null));
+
+    final finder = find.byType(StatefulBuilder);
+    final state = tester.state(finder);
+    final size = tester.getSize(find.byType(GdsContainer));
+
+    // 전환 도중과 완료 후에도 동일한 상태와 크기를 유지.
+    for (final border in [GdsBorder.all(color: .borderGraySubtler, width: 4), null]) {
+      await tester.pumpWidget(build(border));
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(tester.state(finder), same(state));
+      expect(tester.getSize(find.byType(GdsContainer)), size);
+
+      await tester.pumpAndSettle();
+      expect(tester.state(finder), same(state));
+      expect(tester.getSize(find.byType(GdsContainer)), size);
+    }
+  });
+
   testWidgets('테마 색상과 투명도가 올바르게 적용되는지 확인', (tester) async {
     const GdsColor color = .surfacePrimaryNormal;
     const GdsOpacity opacity = .opacity60;

@@ -52,7 +52,7 @@ class GdsImage extends StatelessWidget {
           );
         }
 
-        final cacheWidth = (size.width / 50).ceil() * 50;
+        final cacheWidth = (size.width / 100).ceil() * 100;
 
         // 리사이즈된 플레이스 홀더 이미지.
         final placeholderImage = ResizeImage.resizeIfNeeded(

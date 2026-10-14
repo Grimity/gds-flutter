@@ -71,40 +71,25 @@ class GdsContainer extends StatelessWidget {
       borderRadius: radius?.geometry ?? borderRadius?.geometry,
     );
 
-    return Stack(
-      children: [
-        // 레이아웃(e.g. 크기, 정렬, 배경색, 그림자)
-        AnimatedContainer(
-          duration: animation.duration,
-          curve: animation.curve,
-          width: width,
-          height: height,
-          constraints: constraints,
-          padding: padding,
-          margin: margin,
-          alignment: alignment,
-          decoration: decoration.copyWith(
-            color: color?.of(context).withAlphaIf(opacity?.alpha),
-            gradient: gradient,
-            boxShadow: shadow != null ? [shadow!.outer] : null,
-          ),
-          clipBehavior: clipBehavior,
-          child: child,
-        ),
-
-        // 앞쪽은 보더 표시
-        Positioned.fill(
-          child: IgnorePointer(
-            ignoring: true,
-            child: AnimatedContainer(
-              duration: animation.duration,
-              curve: animation.curve,
-              decoration: decoration.copyWith(border: border?.of(context)),
-              clipBehavior: clipBehavior,
-            ),
-          ),
-        ),
-      ],
+    return AnimatedContainer(
+      duration: animation.duration,
+      curve: animation.curve,
+      width: width,
+      height: height,
+      constraints: constraints,
+      padding: padding,
+      margin: margin,
+      alignment: alignment,
+      decoration: decoration.copyWith(
+        color: color?.of(context).withAlphaIf(opacity?.alpha),
+        gradient: gradient,
+        boxShadow: shadow != null ? [shadow!.outer] : null,
+      ),
+      // 테두리는 레이아웃에 영향을 주지 않도록 자식 앞에 표시.
+      // 테두리가 없어도 장식 구조를 유지하여 자식 상태 초기화를 방지.
+      foregroundDecoration: decoration.copyWith(border: border?.of(context)),
+      clipBehavior: clipBehavior,
+      child: child,
     );
   }
 }
