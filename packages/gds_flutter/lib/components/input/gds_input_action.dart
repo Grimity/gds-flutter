@@ -7,10 +7,12 @@ class GdsInputAction {
     this.onSubmitted,
     this.onComplete,
     this.onChanged,
+    this.focusNode,
   });
 
   final String? placeholder;
   final ValueChanged<String>? onSubmitted;
   final VoidCallback? onComplete;
   final ValueChanged<String>? onChanged;
+  final FocusNode? focusNode;
 }
