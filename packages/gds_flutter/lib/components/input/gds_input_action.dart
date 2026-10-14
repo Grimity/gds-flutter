@@ -8,6 +8,7 @@ class GdsInputAction {
     this.onComplete,
     this.onChanged,
     this.focusNode,
+    this.controller,
   });
 
   final String? placeholder;
@@ -15,4 +16,5 @@ class GdsInputAction {
   final VoidCallback? onComplete;
   final ValueChanged<String>? onChanged;
   final FocusNode? focusNode;
+  final TextEditingController? controller;
 }

@@ -118,6 +118,7 @@ abstract class GdsInput {
                     onComplete: field.onComplete,
                     onChanged: field.onChanged,
                     focusNode: field.focusNode,
+                    controller: field.controller,
                   ),
                 ),
                 GdsButton.text(
