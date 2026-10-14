@@ -5,14 +5,18 @@ import 'package:gds_flutter/gds_flutter.dart';
 class GdsAdaptiveMenu {
   const new({
     required this.position,
+    required this.link,
     required this.items,
+    required this.child,
   });
 
   final GdsMenuPosition position;
+  final LayerLink link;
   final List<GdsMenuItem> items;
+  final Widget child;
 
   /// 현재 기기에 맞는 표시 방식으로 액션 목록을 엽니다.
-  Future<T?> open<T>(BuildContext context, LayerLink link) {
+  Future<T?> open<T>(BuildContext context) {
     if (context.isMobile) {
       // 모바일에서는 액션 목록을 바텀 시트로 표시.
       final bottomSheet = GdsBottomSheet(
