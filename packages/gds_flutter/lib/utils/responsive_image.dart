@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
@@ -5,13 +6,15 @@ import 'package:flutter/widgets.dart';
 typedef ImageResolver = String Function(String url, Size size);
 
 /// 표시 크기에 맞는 URL을 선택하고 네트워크 이미지를 캐싱하는 이미지.
-class ResponsiveImage extends ImageProvider<NetworkImage> {
+class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
   const new(
     this.url, {
+    this.cacheKey,
     this.resolver = defaultImageResolver,
   });
 
   final String url;
+  final String? cacheKey;
   final ImageResolver resolver;
 
   /// URL에서 `너비x높이` 형식의 이미지 고유 크기를 추출합니다.
@@ -28,7 +31,7 @@ class ResponsiveImage extends ImageProvider<NetworkImage> {
   }
 
   @override
-  Future<NetworkImage> obtainKey(ImageConfiguration config) {
+  Future<CachedNetworkImageProvider> obtainKey(ImageConfiguration config) {
     final size = config.size;
     if (size == null) {
       throw StateError('ImageConfiguration에서 size가 지정되지 않았습니다.');
@@ -38,12 +41,12 @@ class ResponsiveImage extends ImageProvider<NetworkImage> {
     final resolvedUrl = resolver(url, size * dpr);
 
     // 변환된 URL을 캐시 키로 사용하여 크기별 이미지가 섞이지 않도록 함.
-    return SynchronousFuture(.new(resolvedUrl));
+    return SynchronousFuture(.new(resolvedUrl, cacheKey: cacheKey));
   }
 
   @override
   ImageStreamCompleter loadImage(
-    NetworkImage key,
+    CachedNetworkImageProvider key,
     ImageDecoderCallback decode,
   ) {
     return key.loadImage(key, decode);
