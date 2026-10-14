@@ -60,7 +60,7 @@ class GdsChatInput extends StatelessWidget {
                 child: GdsTextField.normal(
                   size: .sm,
                   placeholder: '메세지 입력',
-                  status: enabled ? .enabled : .disabled,
+                  status: .from(enabled: enabled),
                   maxLines: 4,
                 ),
               ),
@@ -71,7 +71,7 @@ class GdsChatInput extends StatelessWidget {
                 size: .md,
                 onTap: onSubmit,
                 label: '전송',
-                status: enabled ? .enabled : .disabled,
+                status: .from(enabled: enabled),
               ),
             ],
           ),

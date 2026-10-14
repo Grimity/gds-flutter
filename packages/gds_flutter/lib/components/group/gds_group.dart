@@ -56,7 +56,7 @@ class GdsGroup extends StatelessWidget {
             size: .md,
             placeholder: placeholder,
             leadingIcon: showLeadingIcon ? .penFill : null,
-            status: status == .disabled ? .disabled : .enabled,
+            status: .from(enabled: status != .disabled),
             shadow: status == .selected ? .level1 : null,
             onSubmitted: onSubmitted,
             onComplete: onComplete,

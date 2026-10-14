@@ -123,7 +123,7 @@ class GdsSidebar extends StatelessWidget {
                       type: .borderless,
                       size: .sm,
                       variant: .assistive,
-                      status: loading.value ? .loading : .enabled,
+                      status: .from(loading: loading.value),
                       onTap: () async {
                         try {
                           loading.value = true;
