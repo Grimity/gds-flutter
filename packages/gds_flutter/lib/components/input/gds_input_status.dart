@@ -8,13 +8,14 @@ enum GdsInputStatus {
 
   /// 활성화 여부에 따라 입력 필드 상태를 반환합니다.
   static GdsInputStatus from({
-    bool enabled = false,
-    bool error = false,
-    bool success = false,
+    bool? enabled,
+    bool? error,
+    bool? success,
   }) {
-    if (!enabled) return .disabled;
-    if (error) return .error;
-    if (success) return .success;
+    if (enabled == true) return .enabled;
+    if (enabled == false) return .disabled;
+    if (error == true) return .error;
+    if (success == true) return .success;
 
     return .enabled;
   }

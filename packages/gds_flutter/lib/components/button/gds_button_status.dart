@@ -6,11 +6,12 @@ enum GdsButtonStatus {
 
   /// 활성화 및 로딩 여부에 따라 버튼 상태를 반환합니다.
   static GdsButtonStatus from({
-    bool enabled = false,
-    bool loading = false,
+    bool? enabled,
+    bool? loading,
   }) {
-    if (loading) return .loading;
+    if (loading == true) return .loading;
+    if (enabled == false) return .disabled;
 
-    return enabled ? .enabled : .disabled;
+    return .enabled;
   }
 }

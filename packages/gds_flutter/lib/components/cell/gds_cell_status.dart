@@ -7,13 +7,13 @@ enum GdsCellStatus {
 
   /// 활성화 여부에 따라 셀 상태를 반환합니다.
   static GdsCellStatus from({
-    bool enabled = false,
-    bool selected = false,
-    bool negative = false,
+    bool? enabled,
+    bool? selected,
+    bool? negative,
   }) {
-    if (!enabled) return .disabled;
-    if (negative) return .negative;
-    if (selected) return .selected;
+    if (enabled == false) return .disabled;
+    if (negative == true) return .negative;
+    if (selected == true) return .selected;
 
     return .enabled;
   }
