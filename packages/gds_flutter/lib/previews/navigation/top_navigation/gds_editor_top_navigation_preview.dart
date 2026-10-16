@@ -14,6 +14,11 @@ class GdsEditorTopNavigationPreview extends PreviewWidget {
     displayName: 'Label',
   );
 
+  final openControl = PreviewControl.boolean(
+    defaultValue: false,
+    displayName: 'Open',
+  );
+
   @override
   String get displayName => 'Editor';
 
@@ -24,13 +29,17 @@ class GdsEditorTopNavigationPreview extends PreviewWidget {
   Widget build(BuildContext context) {
     final title = titleControl.of(context);
     final label = labelControl.of(context);
+    final open = openControl.of(context);
 
     return GdsTopNavigation.editor(
       onBack: () => debugPrint('onBack() called'),
       onTitle: () => debugPrint('onTitle() called'),
-      onAction: () => debugPrint('onAction() called'),
+      action: .new(
+        label: label.value,
+        onTap: () => debugPrint('action.onTap() called'),
+      ),
       title: title.value,
-      label: label.value,
+      open: open.value,
     );
   }
 }

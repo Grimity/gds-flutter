@@ -213,11 +213,13 @@ abstract class GdsTopNavigation {
   static Widget editor({
     Key? key,
     required VoidCallback onBack,
-    required VoidCallback onTitle,
-    required VoidCallback onAction,
+    required VoidCallback? onTitle,
+    required GdsTextButtonAction action,
     required String title,
-    required String label,
+    bool open = false,
   }) {
+    final GdsIcon icon = open ? .chevronUpThick : .chevronDownThick;
+
     return GdsContainer(
       key: key,
       height: GdsControlSize.ml.value,
@@ -240,7 +242,14 @@ abstract class GdsTopNavigation {
                     spacing: 4,
                     children: [
                       GdsText(title, color: .textGrayBold, style: .subtitle2),
-                      GdsIcon.chevronDownThick.build(size: 20, color: .iconGrayBold),
+
+                      // 열림 여부에 따라 화살표 아이콘 전환
+                      if (onTitle != null) ...[
+                        GdsTransition.fadeThrough(
+                          value: open,
+                          child: icon.build(size: 20, color: .iconGrayBold),
+                        ),
+                      ],
                     ],
                   ),
                 ),
@@ -253,8 +262,9 @@ abstract class GdsTopNavigation {
             type: .borderless,
             variant: .primary,
             size: .lg,
-            label: label,
-            onTap: onAction,
+            label: action.label,
+            onTap: action.onTap,
+            status: action.status,
           ),
         ],
       ),
