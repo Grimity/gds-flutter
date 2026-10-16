@@ -11,22 +11,21 @@ class GdsEmptyState extends StatelessWidget {
     required this.illust,
     required this.title,
     this.description,
-    this.button,
-    this.buttonType = .solid,
+    this.action,
   });
 
   final GdsSize? size;
   final GdsIcon illust;
   final String title;
   final String? description;
-  final GdsTextButtonAction? button;
-  final GdsTextButtonType buttonType;
+  final GdsTextButtonAction? action;
 
   @override
   Widget build(BuildContext context) {
     assert(illust.type != .semantic);
     final hasDescription = description != null;
-    final hasButton = button != null;
+    final hasAction = action != null;
+    final actionType = action?.type ?? .solid;
 
     // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
     final GdsSize sizeByDevice = context.whenDevice(
@@ -77,16 +76,16 @@ class GdsEmptyState extends StatelessWidget {
           ),
 
           // 하단에 액션 버튼 표시
-          if (hasButton) ...[
+          if (hasAction) ...[
             const Gap(24),
 
             GdsButton.text(
-              type: buttonType,
+              type: actionType,
               size: size.when(xl: .lg, md: .md),
-              variant: buttonType.supportsVariant ? .assistive : null,
-              label: button!.label,
-              onTap: button!.onTap,
-              layerLink: button!.layerLink,
+              variant: actionType.supportsVariant ? .assistive : null,
+              label: action!.label,
+              onTap: action!.onTap,
+              layerLink: action!.layerLink,
             ),
           ],
         ],

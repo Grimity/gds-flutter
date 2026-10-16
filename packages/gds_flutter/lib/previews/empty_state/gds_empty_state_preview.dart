@@ -49,6 +49,7 @@ class GdsEmptyStatePreview extends PreviewWidget {
     final button = GdsTextButtonAction(
       label: 'Label',
       onTap: () => debugPrint('GdsEmptyState.button.onTap() called'),
+      type: buttonType.value,
     );
 
     return GdsEmptyState(
@@ -56,8 +57,7 @@ class GdsEmptyStatePreview extends PreviewWidget {
       illust: .resultNull,
       title: title.value,
       description: description.mayBeValue,
-      button: showButton.value ? button : null,
-      buttonType: buttonType.value,
+      action: showButton.value ? button : null,
     );
   }
 }
