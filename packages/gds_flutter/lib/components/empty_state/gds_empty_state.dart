@@ -25,7 +25,6 @@ class GdsEmptyState extends StatelessWidget {
     assert(illust.type != .semantic);
     final hasDescription = description != null;
     final hasAction = action != null;
-    final actionType = action?.type ?? .solid;
 
     // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
     final GdsSize sizeByDevice = context.whenDevice(
@@ -80,9 +79,9 @@ class GdsEmptyState extends StatelessWidget {
             const Gap(24),
 
             GdsButton.text(
-              type: actionType,
+              type: action!.type,
               size: size.when(xl: .lg, md: .md),
-              variant: actionType.supportsVariant ? .assistive : null,
+              variant: action!.type.supportsVariant ? .assistive : null,
               label: action!.label,
               onTap: action!.onTap,
               layerLink: action!.layerLink,
