@@ -46,10 +46,14 @@ extension GdsContextExtension on BuildContext {
   }
 
   /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
-  void push<T>(Widget child) {
+  Future<T?> push<T>(Widget child) async {
     if (mounted) {
-      Navigator.of(this).push<T>(MaterialPageRoute(builder: (_) => child));
+      return Navigator.of(this).push<T>(
+        MaterialPageRoute(builder: (_) => child),
+      );
     }
+
+    return null;
   }
 
   /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
