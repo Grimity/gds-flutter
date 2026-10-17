@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
-///
+/// 표시할 데이터가 없을 때 안내 문구 혹은 액션 버튼을 표시하는 위젯.
 @GdsSupportedSizes([.xl, .md])
 class GdsEmptyState extends StatelessWidget {
   const new({

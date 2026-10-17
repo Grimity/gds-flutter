@@ -91,9 +91,6 @@ export 'editor/gds_editor_panel_button.dart';
 export 'editor/gds_editor_toolbar.dart';
 export 'editor/gds_editor_toolbar_button.dart';
 
-// Empty State
-export 'empty_state/gds_empty_state.dart';
-
 // Filter
 export 'filter/gds_filter.dart';
 export 'filter/gds_filter_variant.dart';
@@ -120,6 +117,10 @@ export 'pagination/gds_navigation.dart';
 // Popup
 export 'popup/gds_alert.dart';
 export 'popup/gds_modal.dart';
+
+// Empty State
+export 'state/gds_empty_state.dart';
+export 'state/gds_error_state.dart';
 
 // Navigation
 export 'navigation/gds_bottom_navigation_button.dart';
