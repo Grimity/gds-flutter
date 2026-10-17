@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
@@ -14,7 +15,7 @@ class GdsErrorState extends StatelessWidget {
   });
 
   final GdsSize? size;
-  final VoidCallback retry;
+  final AsyncCallback retry;
   final Object error;
   final StackTrace stackTrace;
 
@@ -23,6 +24,8 @@ class GdsErrorState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loading = context.stateOf(() => false);
+
     // 초기 빌드에서 등록된 콜백에 주어진 오류와 스택 트레이스를 전달.
     context.onInitState(() {
       onReport?.call(error, stackTrace);
@@ -34,8 +37,16 @@ class GdsErrorState extends StatelessWidget {
       title: '알 수 없는 에러가 발생했어요',
       description: error.toString(),
       action: .new(
+        type: .solid,
         label: '다시 시도',
-        onTap: retry,
+        onTap: () async {
+          try {
+            loading.value = true;
+            await retry();
+          } finally {
+            loading.value = false;
+          }
+        },
       ),
     );
   }
