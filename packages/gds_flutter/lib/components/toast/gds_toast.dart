@@ -45,28 +45,34 @@ class GdsToast extends StatelessWidget {
     );
   }
 
-  /// 현재 컨텍스트의 오버레이에 토스트를 표시합니다.
-  void open(BuildContext context) {
-    final overlay = Overlay.maybeOf(context);
-    assert(overlay != null, '상위 트리에 오버레이가 존재하지 않습니다.');
+  /// 현재 화면의 오버레이에 토스트를 표시합니다.
+  void open() {
+    // 화면 교체 시에도 새 화면의 오버레이가 준비된 뒤 표시할 수 있도록 함.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final overlay = GdsOverlay.current;
+      if (overlay == null) {
+        throw StateError('현재 화면에서 GdsOverlay가 존재하지 않습니다.');
+      }
 
-    late final OverlayEntry entry;
+      late final OverlayEntry entry;
 
-    overlay?.insert(
-      entry = OverlayEntry(
-        builder: (context) {
-          return GdsToastOverlay(toast: this, onDismissed: entry.remove);
-        },
-      ),
-    );
+      overlay.insert(
+        entry = OverlayEntry(
+          builder: (context) {
+            return GdsToastOverlay(toast: this, onDismissed: entry.remove);
+          },
+        ),
+      );
+    });
+
+    WidgetsBinding.instance.ensureVisualUpdate();
   }
 
-  /// 상태와 메시지를 지정해 현재 컨텍스트에 토스트를 표시합니다.
+  /// 상태와 메시지를 지정해 현재 화면에 토스트를 표시합니다.
   static void show(
-    BuildContext context,
     String message, {
     GdsToastStatus status = .none,
   }) {
-    GdsToast(status: status, message: message).open(context);
+    GdsToast(status: status, message: message).open();
   }
 }

@@ -9,11 +9,31 @@ class GdsOverlay extends StatefulWidget {
 
   final Widget child;
 
+  static final _states = <_State>{};
+
+  /// 현재 라우트에 속하거나 라우트 밖에 있는 오버레이 중 마지막으로 등록된 것을 반환합니다.
+  /// 해당 오버레이가 없으면 null을 반환합니다.
+  static OverlayState? get current {
+    for (final state in _states.toList().reversed) {
+      final isCurrent = ModalRoute.isCurrentOf(state.context);
+
+      if (state.mounted && isCurrent == true) {
+        return state._overlayKey.currentState;
+      }
+    }
+
+    return null;
+  }
+
   @override
   State<GdsOverlay> createState() => _State();
 }
 
 class _State extends State<GdsOverlay> {
+  /// 내부 Overlay의 상태에 접근하기 위한 키.
+  final _overlayKey = GlobalKey<OverlayState>();
+
+  /// 자식 위젯을 오버레이의 기본 콘텐츠로 표시하는 엔트리.
   late final _entry = OverlayEntry(builder: (_) => widget.child);
 
   @override
@@ -25,7 +45,14 @@ class _State extends State<GdsOverlay> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    GdsOverlay._states.add(this);
+  }
+
+  @override
   void dispose() {
+    GdsOverlay._states.remove(this);
     _entry.remove();
     _entry.dispose();
     super.dispose();
@@ -33,6 +60,6 @@ class _State extends State<GdsOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    return Overlay(initialEntries: [_entry]);
+    return Overlay(key: _overlayKey, initialEntries: [_entry]);
   }
 }
