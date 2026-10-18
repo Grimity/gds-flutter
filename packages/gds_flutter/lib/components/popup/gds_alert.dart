@@ -6,7 +6,7 @@ import 'package:gds_flutter/gds_flutter.dart';
 class GdsAlert extends StatelessWidget {
   const new({
     super.key,
-    required this.size,
+    this.size,
     required this.title,
     required this.description,
     this.illust,
@@ -14,7 +14,7 @@ class GdsAlert extends StatelessWidget {
     this.secondaryButton,
   });
 
-  final GdsSize size;
+  final GdsSize? size;
   final String title;
   final String description;
   final GdsIcon? illust;
@@ -26,6 +26,14 @@ class GdsAlert extends StatelessWidget {
     final hasIllust = illust != null;
     final hasPrimaryButton = primaryButton != null;
     final hasSecondaryButton = secondaryButton != null;
+
+    // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
+    final GdsSize sizeByDevice = context.whenDevice(
+      mobile: .md,
+      tablet: .xl,
+    );
+
+    final GdsSize size = this.size ?? sizeByDevice;
 
     return GdsContainer(
       minWidth: size.when(xl: 400, md: 320),
