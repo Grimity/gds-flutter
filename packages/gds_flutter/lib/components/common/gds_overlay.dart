@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [Overlay] 래퍼 위젯.
 class GdsOverlay extends StatefulWidget {
@@ -22,7 +23,13 @@ class GdsOverlay extends StatefulWidget {
       }
     }
 
-    return null;
+    // 현재 화면의 오버레이가 없으면 앱 내비게이터를 기준으로.
+    final navigatorContext = GdsApp.navigationKey.currentContext;
+    if (navigatorContext == null) {
+      throw StateError('앱 내비게이터가 위젯 트리에 연결되어 있지 않습니다.');
+    }
+
+    return Overlay.of(navigatorContext);
   }
 
   @override

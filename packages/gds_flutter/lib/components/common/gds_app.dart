@@ -13,6 +13,9 @@ class GdsApp extends StatelessWidget {
   final ThemeMode themeMode;
   final Widget initialPage;
 
+  /// 앱의 내비게이터 상태에 전역으로 접근하기 위한 키.
+  static final navigationKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,6 +23,7 @@ class GdsApp extends StatelessWidget {
       theme: .light(),
       darkTheme: .dark(),
       themeMode: themeMode,
+      navigatorKey: navigationKey,
       scrollBehavior: GdsScrollBehavior(),
       builder: (context, child) {
         return ServiceScope.withState(

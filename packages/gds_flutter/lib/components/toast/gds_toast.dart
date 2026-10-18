@@ -51,7 +51,7 @@ class GdsToast extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final overlay = GdsOverlay.current;
       if (overlay == null) {
-        throw StateError('현재 화면에서 GdsOverlay가 존재하지 않습니다.');
+        throw StateError('현재 화면에서 Overlay가 존재하지 않습니다.');
       }
 
       late final OverlayEntry entry;
