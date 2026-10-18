@@ -2,6 +2,7 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 이미지 위젯.
 class GdsImage extends StatelessWidget {
@@ -52,7 +53,21 @@ class GdsImage extends StatelessWidget {
           );
         }
 
+        // 이미지 캐시 재사용을 위해 크기를 100픽셀 단위로 올림.
         final cacheWidth = (size.width / 100).ceil() * 100;
+        final cacheHeight = (size.height / 100).ceil() * 100;
+
+        ImageProvider resolvedImage = provider ?? placeholderProvider;
+
+        // 기기 사진은 표시 크기에 알맞은 크기의 섬네일로 요청.
+        if (resolvedImage is AssetEntityImageProvider) {
+          resolvedImage = .new(
+            resolvedImage.entity,
+            isOriginal: false,
+            thumbnailSize: .new(cacheWidth, cacheHeight),
+            thumbnailFormat: .jpeg,
+          );
+        }
 
         // 리사이즈된 플레이스 홀더 이미지.
         final placeholderImage = ResizeImage.resizeIfNeeded(
@@ -65,7 +80,7 @@ class GdsImage extends StatelessWidget {
         final resizedImage = ResizeImage.resizeIfNeeded(
           cacheWidth,
           null,
-          provider ?? placeholderProvider,
+          resolvedImage,
         );
 
         return ImmediateImage(
