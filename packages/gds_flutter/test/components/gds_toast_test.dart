@@ -65,6 +65,6 @@ void main() {
 
     // 화면을 제거하면 등록된 오버레이도 정리되는지 확인.
     await tester.pumpWidget(const SizedBox());
-    expect(GdsOverlay.current, isNull);
+    expect(() => GdsOverlay.current, throwsStateError);
   });
 }

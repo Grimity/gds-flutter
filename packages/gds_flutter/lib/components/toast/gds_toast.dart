@@ -49,14 +49,9 @@ class GdsToast extends StatelessWidget {
   void open() {
     // 화면 교체 시에도 새 화면의 오버레이가 준비된 뒤 표시할 수 있도록 함.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final overlay = GdsOverlay.current;
-      if (overlay == null) {
-        throw StateError('현재 화면에서 Overlay가 존재하지 않습니다.');
-      }
-
       late final OverlayEntry entry;
 
-      overlay.insert(
+      GdsOverlay.current.insert(
         entry = OverlayEntry(
           builder: (context) {
             return GdsToastOverlay(toast: this, onDismissed: entry.remove);

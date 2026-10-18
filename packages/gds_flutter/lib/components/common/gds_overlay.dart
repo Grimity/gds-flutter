@@ -14,12 +14,12 @@ class GdsOverlay extends StatefulWidget {
 
   /// 현재 라우트에 속하거나 라우트 밖에 있는 오버레이 중 마지막으로 등록된 것을 반환합니다.
   /// 해당 오버레이가 없으면 null을 반환합니다.
-  static OverlayState? get current {
+  static OverlayState get current {
     for (final state in _states.toList().reversed) {
       final isCurrent = ModalRoute.isCurrentOf(state.context);
 
       if (state.mounted && isCurrent == true) {
-        return state._overlayKey.currentState;
+        return state._overlayKey.currentState!;
       }
     }
 
