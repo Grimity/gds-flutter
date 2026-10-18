@@ -177,8 +177,14 @@ abstract class GdsTextField {
       trailingBuilder: (context, controller) {
         if (controller.text.isNotEmpty) {
           return GdsGesture(
-            onTap: controller.clear,
-            child: GdsIcon.closeCircleFill.build(size: 24, color: .iconGraySubtle),
+            onTap: () {
+              controller.clear();
+              onSubmitted?.call('');
+            },
+            child: GdsIcon.closeCircleFill.build(
+              size: 24,
+              color: .iconGraySubtle,
+            ),
           );
         }
 
