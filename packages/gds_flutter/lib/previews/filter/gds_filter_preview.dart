@@ -20,11 +20,6 @@ class GdsFilterPreview extends PreviewWidget {
     displayName: 'Enabled',
   );
 
-  final openControl = PreviewControl.boolean(
-    defaultValue: false,
-    displayName: 'Open',
-  );
-
   @override
   String get displayName => 'Filter';
 
@@ -36,14 +31,16 @@ class GdsFilterPreview extends PreviewWidget {
     final variant = variantControl.of(context);
     final label = labelControl.of(context);
     final enabled = enabledControl.of(context);
-    final open = openControl.of(context);
 
     return GdsFilter(
       variant: variant.value,
       label: label.value,
       enabled: enabled.value,
-      onTap: () => debugPrint('onTap() called'),
-      open: open.value,
+      onTap: () async {
+        debugPrint('onTap() called');
+
+        await Future.delayed(.new(seconds: 1));
+      },
     );
   }
 }

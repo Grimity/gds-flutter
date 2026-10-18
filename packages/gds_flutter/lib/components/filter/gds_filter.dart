@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:pervice/pervice.dart';
 
 /// 라벨과 팝업의 열림 상태를 표시하는 필터 위젯.
 class GdsFilter extends StatelessWidget {
@@ -9,27 +11,37 @@ class GdsFilter extends StatelessWidget {
     required this.label,
     this.enabled = true,
     this.onTap,
-    this.open = false,
   });
 
   final GdsFilterVariant variant;
   final String label;
   final bool enabled;
-  final VoidCallback? onTap;
-
-  /// 필터 팝업의 열림 여부이고 열려 있으면 위쪽, 닫혀 있으면 아래쪽 화살표 표시.
-  final bool open;
+  final AsyncCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final GdsIcon chevronIcon = open ? .chevronUpThick : .chevronDownThick;
+    final open = context.stateOf(() => false);
 
+    // 열려 있으면 위쪽, 닫혀 있으면 아래쪽 화살표 표시.
+    final GdsIcon chevronIcon = open.value ? .chevronUpThick : .chevronDownThick;
+
+    // 활성화 여부에 맞는 필터 스타일 적용.
     final style = enabled ? variant.enabled : variant.disabled;
 
     return IgnorePointer(
       ignoring: !enabled,
       child: GdsGesture(
-        onTap: onTap,
+        onTap: () async {
+          if (onTap == null) return;
+
+          // 별도 UI가 열리는 동안 열림 상태 반영.
+          try {
+            open.value = true;
+            await onTap!();
+          } finally {
+            open.value = false;
+          }
+        },
         child: GdsContainer(
           animation: .fast,
           height: variant.size.value,
@@ -50,7 +62,7 @@ class GdsFilter extends StatelessWidget {
 
               // 우측에 팝업의 열림 상태에 따른 화살표 표시.
               GdsTransition.fadeThrough(
-                value: open,
+                value: open.value,
                 child: chevronIcon.build(
                   size: 16,
                   color: style.iconColor,
