@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,23 +13,7 @@ class GdsScrollPhysics extends ClampingScrollPhysics {
   @override
   Simulation? createBallisticSimulation(ScrollMetrics position, double velocity) {
     final Tolerance tolerance = toleranceFor(position);
-    if (position.outOfRange) {
-      double? end;
-      if (position.pixels > position.maxScrollExtent) {
-        end = position.maxScrollExtent;
-      }
-      if (position.pixels < position.minScrollExtent) {
-        end = position.minScrollExtent;
-      }
-      assert(end != null);
-      return ScrollSpringSimulation(
-        spring,
-        position.pixels,
-        end!,
-        min(0.0, velocity),
-        tolerance: tolerance,
-      );
-    }
+
     if (velocity.abs() < tolerance.velocity) {
       return null;
     }
