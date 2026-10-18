@@ -30,6 +30,12 @@ class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
     );
   }
 
+  /// 이미지 URL에서 저장 경로를 추출합니다.
+  String get name {
+    final segments = Uri.parse(url).pathSegments;
+    return segments.sublist(segments.indexOf('v2')).join('/');
+  }
+
   @override
   Future<CachedNetworkImageProvider> obtainKey(ImageConfiguration config) {
     final size = config.size;
