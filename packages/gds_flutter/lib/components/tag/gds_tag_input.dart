@@ -34,9 +34,8 @@ class GdsTagInput extends StatelessWidget {
           typography: .label4,
           spacing: 0,
 
-          // 고정 높이 md 32px, xs 24px 기준
-          padding: .symmetric(vertical: size.when(md: 6.2, xs: 2.2)),
-          size: size.when(md: .sm, xs: .xs),
+          // 동적 높이 md 31.6px, xs 27.6px 기준
+          padding: .symmetric(vertical: size.when(md: 6, xs: 4)),
         ),
         status: .enabled,
         prefixText: '#',
