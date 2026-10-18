@@ -57,7 +57,7 @@ abstract class GdsListItem {
   static Widget optionCard({
     Key? key,
     GdsCellStatus status = .enabled,
-    required GdsIcon icon,
+    GdsIcon? icon,
     required String label,
     VoidCallback? onTap,
   }) {
@@ -90,7 +90,10 @@ abstract class GdsListItem {
       ),
       padding: 16.all,
       radius: .sm,
-      leadingWidget: icon.build(size: 20, color: status == .disabled ? .iconGraySubtler : .iconGrayBold),
+      leadingWidget: icon?.build(
+        size: 20,
+        color: status == .disabled ? .iconGraySubtler : .iconGrayBold,
+      ),
     );
   }
 
