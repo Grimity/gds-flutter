@@ -34,8 +34,10 @@ class GdsAdaptiveMenu {
       return bottomSheet.open(context);
     }
 
+    final menu = GdsMenu(items: items);
+
     // 태블릿에서는 팝오버 메뉴 표시.
-    return GdsMenu(items: items).open(
+    return menu.open(
       context,
       layerLink: layerLink,
       position: position,
