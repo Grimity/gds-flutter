@@ -40,20 +40,22 @@ extension GdsContextExtension on BuildContext {
 
   /// 현재 라우트를 닫고 이전 화면으로 돌아갑니다.
   void pop<T>([T? result]) {
-    if (mounted) {
-      Navigator.of(this).pop<T>(result);
-    }
+    Navigator.of(this).pop<T>(result);
   }
 
   /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
-  Future<T?> push<T>(Widget child) async {
-    if (mounted) {
-      return Navigator.of(this).push<T>(
-        MaterialPageRoute(builder: (_) => child),
-      );
-    }
+  Future<T?> push<T>(Widget child) {
+    return Navigator.of(this).push<T>(
+      MaterialPageRoute(builder: (_) => child),
+    );
+  }
 
-    return null;
+  /// 현재 화면을 주어진 위젯으로 교체합니다.
+  Future<T?> pushReplacement<T, TO>(Widget child, [TO? result]) {
+    return Navigator.of(this).pushReplacement<T, TO>(
+      MaterialPageRoute<T>(builder: (_) => child),
+      result: result,
+    );
   }
 
   /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
