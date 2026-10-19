@@ -42,6 +42,7 @@ final class ValidGdsSpacingRule extends GdsAnalysisRule {
 
   /// Flutter 위젯 타입별로 간격을 지정하는 매개변수 이름.
   static const _spacingParameters = {
+    'Gap': {'mainAxisExtent'},
     'Row': {'spacing'},
     'Column': {'spacing'},
     'Wrap': {'spacing', 'runSpacing'},
@@ -91,7 +92,7 @@ final class ValidGdsSpacingRule extends GdsAnalysisRule {
     reportAtNode(expression);
   }
 
-  /// 매개변수가 디자인 시스템 또는 Flutter에서 정의한 간격 값인지 확인합니다.
+  /// 매개변수가 디자인 시스템, Flutter 또는 Gap에서 정의한 간격 값인지 확인합니다.
   bool _isSpacingParameter(FormalParameterElement parameter) {
     if (_isGdsSpacing(parameter)) return true;
 
@@ -100,8 +101,6 @@ final class ValidGdsSpacingRule extends GdsAnalysisRule {
     if (interface is! InterfaceElement) {
       return false;
     }
-
-    if (!isPackageElement(interface, packageName: 'flutter')) return false;
 
     return _spacingParameters[interface.name]?.contains(parameter.name) ?? false;
   }
