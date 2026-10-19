@@ -29,10 +29,10 @@ enum GdsTypography {
   label5(.w600, 12, 1.4, -0.8),
   label6(.w500, 12, 1.4, -0.8),
 
-  // Editor
-  editorTitle1(.w700, 20, 1.5, 0),
-  editorTitle2(.w600, 16, 1.5, 0),
-  editorBody(.w400, 14, 1.6, 0);
+  // Post / Editor
+  postTitle1(.w700, 20, 1.5, 0),
+  postTitle2(.w600, 16, 1.5, 0),
+  postBody(.w400, 14, 1.6, 0);
 
   const new(
     this.fontWeight,
