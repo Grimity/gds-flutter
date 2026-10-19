@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
 
@@ -7,7 +8,19 @@ extension GdsHookExtension on BuildContext {
   /// [GdsViewStackController]를 생성하고 자동으로 이를 해제합니다.
   GdsViewStackController<T> useGdsViewStackController<T>(T Function() builder) {
     final state = stateOf(
-      () => GdsViewStackController<T>(initialView: builder()),
+      () => GdsViewStackController<T>(
+        initialView: builder(),
+      ),
+      onDispose: (e) => e.dispose(),
+    );
+
+    return state.value;
+  }
+
+  /// [QuillController]를 생성하고 자동으로 이를 해제합니다.
+  QuillController useQuillController() {
+    final state = stateOf(
+      () => QuillController.basic(),
       onDispose: (e) => e.dispose(),
     );
 

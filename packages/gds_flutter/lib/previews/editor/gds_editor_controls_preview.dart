@@ -114,8 +114,12 @@ class GdsEditorControlsPreview extends PreviewWidget {
         fontStyle: fontStyle.mayBeValue,
         fontColor: fontColor.mayBeValue,
         fontBgColor: fontBgColor.mayBeValue,
-        onAddImage: () => debugPrint('GdsEditorSheet.onAddImage() called'),
-        onAddLink: () => debugPrint('GdsEditorSheet.onAddLink() called'),
+        onAddImage: () {
+          debugPrint('GdsEditorSheet.onAddImage() called');
+        },
+        onAddLink: () {
+          debugPrint('GdsEditorSheet.onAddLink() called');
+        },
         onFontStyleChanged: (newValue) {
           debugPrint('GdsEditorSheet.onFontStyleChanged($newValue) called');
           fontStyle.value = newValue;

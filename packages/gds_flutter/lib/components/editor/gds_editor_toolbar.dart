@@ -56,6 +56,7 @@ class GdsEditorToolbar extends StatelessWidget {
       child: GdsMasking(
         child: SingleChildScrollView(
           scrollDirection: .horizontal,
+          clipBehavior: .none,
           child: Row(
             spacing: 10,
             children: divider.separated([

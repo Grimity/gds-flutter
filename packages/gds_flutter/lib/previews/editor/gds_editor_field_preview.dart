@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_design_preview/flutter_design_preview.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
-import 'package:pervice/pervice.dart';
 
 /// [GdsEditorField]에 대한 프리뷰 위젯.
 class GdsEditorFieldPreview extends PreviewWidget {
@@ -14,14 +12,10 @@ class GdsEditorFieldPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.stateOf(
-      QuillController.basic,
-      mode: .read,
-      onDispose: (controller) => controller.dispose(),
-    );
+    final controller = context.useQuillController();
 
     return GdsEditorField(
-      controller: controller.value,
+      controller: controller,
       maxCount: 500,
       placeholder: '내용을 입력하세요',
     );

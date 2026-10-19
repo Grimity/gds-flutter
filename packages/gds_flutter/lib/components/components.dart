@@ -88,10 +88,11 @@ export 'editor/gds_editor_controls.dart';
 export 'editor/gds_editor_field.dart';
 export 'editor/gds_editor_font_color.dart';
 export 'editor/gds_editor_font_style.dart';
-export 'editor/gds_editor_panel.dart';
 export 'editor/gds_editor_panel_button.dart';
-export 'editor/gds_editor_toolbar.dart';
+export 'editor/gds_editor_panel.dart';
 export 'editor/gds_editor_toolbar_button.dart';
+export 'editor/gds_editor_toolbar.dart';
+export 'editor/gds_editor.dart';
 
 // Filter
 export 'filter/gds_filter.dart';
