@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_design_preview/flutter_design_preview.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
 
@@ -11,6 +12,7 @@ Widget previewBuilder(PreviewWidget widget) {
     theme: .light(),
     darkTheme: .dark(),
     themeMode: PreviewBinding.themeMode,
+    localizationsDelegates: const [FlutterQuillLocalizations.delegate],
     builder: (context, child) {
       final brightness = Theme.of(context).brightness;
 

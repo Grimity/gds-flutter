@@ -27,12 +27,12 @@ class GdsEditorPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final editor = context.findAncestorWidgetOfExactType<GdsEditor>();
+    final editor = context.findAncestorWidgetOfExactType<GdsEditorControls>();
     final status = editor?.status;
     if (status == null) {
       throw FlutterError(
-        'GdsEditorPanel은 GdsEditor 내부에서만 사용할 수 있습니다.'
-        'GdsEditor의 panel 속성으로 전달해 주세요.',
+        'GdsEditorPanel은 GdsEditorControls 내부에서만 사용할 수 있습니다.'
+        'GdsEditorControls의 panel 속성으로 전달해 주세요.',
       );
     }
 

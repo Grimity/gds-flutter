@@ -10,8 +10,8 @@ enum GdsEditorStatus {
   fontBgColor,
 }
 
-/// 에디터와 툴바, 옵션 패널을 연동하고 구성하는 위젯.
-class GdsEditor extends StatelessWidget {
+/// 에디터 툴바와 옵션 패널을 구성하는 위젯.
+class GdsEditorControls extends StatelessWidget {
   const new({
     super.key,
     required this.status,

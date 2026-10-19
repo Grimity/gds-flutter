@@ -84,7 +84,8 @@ export 'dm/gds_chat.dart';
 export 'dm/gds_dm_list_item.dart';
 
 // Editor
-export 'editor/gds_editor.dart';
+export 'editor/gds_editor_controls.dart';
+export 'editor/gds_editor_field.dart';
 export 'editor/gds_editor_font_color.dart';
 export 'editor/gds_editor_font_style.dart';
 export 'editor/gds_editor_panel.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
 
@@ -24,7 +25,8 @@ class GdsApp extends StatelessWidget {
       darkTheme: .dark(),
       themeMode: themeMode,
       navigatorKey: navigationKey,
-      scrollBehavior: GdsScrollBehavior(),
+      scrollBehavior: const GdsScrollBehavior(),
+      localizationsDelegates: const [FlutterQuillLocalizations.delegate],
       builder: (context, child) {
         return ServiceScope.withState(
           child: GdsThemeScope(

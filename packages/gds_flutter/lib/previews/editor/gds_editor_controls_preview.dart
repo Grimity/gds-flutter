@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_design_preview/flutter_design_preview.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
-/// [GdsEditor]에 대한 프리뷰 위젯.
-class GdsEditorPreview extends PreviewWidget {
+/// [GdsEditorControls]에 대한 프리뷰 위젯.
+class GdsEditorControlsPreview extends PreviewWidget {
   final statusControl = PreviewControl.select<GdsEditorStatus>(
     defaultValue: .none,
     displayName: 'Type',
@@ -51,7 +51,7 @@ class GdsEditorPreview extends PreviewWidget {
   String get displayName => 'Editor';
 
   @override
-  List<String> get groups => ['Editor'];
+  List<String> get groups => ['Editor Controls'];
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class GdsEditorPreview extends PreviewWidget {
     final fontColor = fontColorControl.of(context);
     final fontBgColor = fontBgColorControl.of(context);
 
-    return GdsEditor(
+    return GdsEditorControls(
       status: status.value,
       toolbar: .new(
         bold: (
