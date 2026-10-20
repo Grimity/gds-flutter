@@ -41,7 +41,7 @@ class GdsEditor extends StatelessWidget {
                     maxCount: maxCount,
                     placeholder: '내용을 입력해주세요',
                     imageBuilder: (context, url) {
-                      return GdsImage(provider: url.networkImage);
+                      return GdsImage(provider: url.toImage());
                     },
                   ),
                 ),
