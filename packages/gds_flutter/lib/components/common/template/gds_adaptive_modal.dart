@@ -6,17 +6,23 @@ class GdsAdaptiveModal extends StatelessWidget {
   const new({
     super.key,
     required this.title,
+    this.primaryButton,
+    this.secondaryButton,
+    this.spacing = 8,
     required this.children,
   });
 
   final String title;
+  final GdsTextButtonAction? primaryButton;
+  final GdsTextButtonAction? secondaryButton;
+  final GdsSpacing spacing;
   final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: .min,
-      spacing: 8,
+      spacing: spacing,
       children: children,
     );
   }
@@ -28,6 +34,8 @@ class GdsAdaptiveModal extends StatelessWidget {
       final bottomSheet = GdsBottomSheet(
         onBack: context.pop,
         title: title,
+        primaryButton: primaryButton,
+        secondaryButton: secondaryButton,
         child: this,
       );
 
@@ -38,6 +46,8 @@ class GdsAdaptiveModal extends StatelessWidget {
     final model = GdsModal(
       onBack: context.pop,
       title: title,
+      primaryButton: primaryButton,
+      secondaryButton: secondaryButton,
       child: this,
     );
 
