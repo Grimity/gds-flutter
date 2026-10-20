@@ -15,6 +15,14 @@ extension GdsQuillControllerExtension on QuillController {
     });
   }
 
+  /// 이미지 등의 임베드를 제외하고 공백이 아닌 텍스트가 있는지 여부.
+  bool get hasText {
+    return document.toDelta().toList().any((operation) {
+      final data = operation.data;
+      return data is String && data.trim().isNotEmpty;
+    });
+  }
+
   /// 선택 영역에 서식을 적용하며, 동일한 서식이 적용되어 있으면 해제합니다.
   void toggleFormat(Attribute attribute) {
     final current = getSelectionStyle().attributes[attribute.key]?.value;
