@@ -70,22 +70,11 @@ class GdsEditorControls extends StatelessWidget {
         final status = context.stateOf(() => GdsEditorStatus.none);
         final attributes = controller.getSelectionStyle().attributes;
 
-        // 선택한 서식을 다시 누르면 해제.
-        void format(Attribute attribute) {
-          final current = attributes[attribute.key]?.value;
-          final value = attribute.value;
-          final selected = current is String && value is String
-              ? current.toUpperCase() == value.toUpperCase()
-              : current == value;
-
-          controller.formatSelection(selected ? Attribute.clone(attribute, null) : attribute);
-        }
-
         /// 서식의 선택 여부와 토글 동작을 툴바 항목으로 구성합니다.
         GdsEditorToolbarItem item(Attribute attribute) {
           return (
             selected: attributes[attribute.key]?.value == attribute.value,
-            onChanged: (_) => format(attribute),
+            onChanged: (_) => controller.toggleFormat(attribute),
           );
         }
 
@@ -169,7 +158,7 @@ class GdsEditorControls extends StatelessWidget {
             },
             onFontStyleChanged: (value) {
               // 제목1, 제목2, 본문을 각각 h1, h2, h3 서식으로 적용.
-              format(
+              controller.toggleFormat(
                 switch (value) {
                   .title1 => Attribute.h1,
                   .title2 => Attribute.h2,
@@ -181,7 +170,7 @@ class GdsEditorControls extends StatelessWidget {
             },
             onFontColorChanged: (value) {
               // 글자색을 적용하고 옵션 패널 닫기.
-              format(
+              controller.toggleFormat(
                 ColorAttribute(value.color.of(context).toHex()),
               );
 
@@ -189,7 +178,7 @@ class GdsEditorControls extends StatelessWidget {
             },
             onFontBgColorChanged: (value) {
               // 글자 배경색을 적용하고 옵션 패널 닫기.
-              format(
+              controller.toggleFormat(
                 BackgroundAttribute(value.color.of(context).toHex()),
               );
 

@@ -91,11 +91,8 @@ class GdsEditorField extends StatelessWidget {
           ListenableBuilder(
             listenable: controller,
             builder: (context, child) {
-              // Quill 문서 끝에 자동으로 추가되는 줄바꿈은 글자 수에서 제외.
-              final count = controller.document.toPlainText().length - 1;
-
               return GdsInputCount(
-                count: count,
+                count: controller.characterCount,
                 maxCount: maxCount,
               );
             },
