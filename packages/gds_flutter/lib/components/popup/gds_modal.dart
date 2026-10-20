@@ -70,6 +70,7 @@ class GdsModal extends StatelessWidget {
                         size: .lg,
                         label: secondaryButton!.label,
                         onTap: secondaryButton!.onTap,
+                        status: secondaryButton!.status,
                         layerLink: secondaryButton!.layerLink,
                         mainAxisSize: .max,
                       ),
@@ -84,6 +85,7 @@ class GdsModal extends StatelessWidget {
                         size: .lg,
                         label: primaryButton!.label,
                         onTap: primaryButton!.onTap,
+                        status: secondaryButton!.status,
                         layerLink: primaryButton!.layerLink,
                         mainAxisSize: .max,
                       ),
@@ -148,6 +150,7 @@ class _Header extends StatelessWidget {
             GdsButton.icon(
               type: .normal,
               onTap: action!.onTap,
+              status: action!.status,
               layerLink: action!.layerLink,
               icon: action!.icon,
             ),
