@@ -49,15 +49,12 @@ class GdsExpandableText extends StatelessWidget {
                 alignment: .topCenter,
                 duration: animation.duration,
                 curve: animation.curve,
-                child: GdsTransition.crossFade(
-                  value: expanded.value,
-                  child: GdsText(
-                    text,
-                    color: color,
-                    style: style,
-                    maxLines: expanded.value ? null : maxLines,
-                    overflow: expanded.value ? .visible : .ellipsis,
-                  ),
+                child: GdsText(
+                  text,
+                  color: color,
+                  style: style,
+                  maxLines: expanded.value ? null : maxLines,
+                  overflow: expanded.value ? .visible : .ellipsis,
                 ),
               ),
             ),
