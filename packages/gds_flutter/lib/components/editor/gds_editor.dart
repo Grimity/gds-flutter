@@ -16,7 +16,7 @@ class GdsEditor extends StatelessWidget {
 
   final QuillController controller;
   final Future<String?> Function() onAddImage;
-  final Future<String?> Function() onAddLink;
+  final Future<GdsLink?> Function() onAddLink;
   final int maxCount;
   final EdgeInsets padding;
 
@@ -39,7 +39,7 @@ class GdsEditor extends StatelessWidget {
                   child: GdsEditorField(
                     controller: controller,
                     maxCount: maxCount,
-                    placeholder: '내용을 입력하세요',
+                    placeholder: '내용을 입력해주세요',
                     imageBuilder: (context, url) {
                       return GdsImage(provider: url.networkImage);
                     },

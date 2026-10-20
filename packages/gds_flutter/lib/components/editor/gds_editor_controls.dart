@@ -4,6 +4,12 @@ import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
 
+/// 링크에 표시할 이름과 이동할 주소를 지정하는 레코드.
+typedef GdsLink = ({
+  String name,
+  String url,
+});
+
 /// 에디터 툴바에서 선택된 툴의 상태를 나타내는 열거형.
 enum GdsEditorStatus {
   none,
@@ -59,7 +65,7 @@ class GdsEditorControls extends StatelessWidget {
     QuillController controller, {
     Key? key,
     required Future<String?> Function() onAddImage,
-    required Future<String?> Function() onAddLink,
+    required Future<GdsLink?> Function() onAddLink,
   }) {
     return Builder(
       key: key ?? ObjectKey(controller),
@@ -135,22 +141,20 @@ class GdsEditorControls extends StatelessWidget {
               final link = await onAddLink();
 
               // 위젯이 제거되었거나 링크 입력을 취소한 경우 종료.
-              if (!context.mounted || link == null || link.isEmpty) return;
+              if (!context.mounted || link == null || link.name.isEmpty || link.url.isEmpty) return;
 
-              // 선택한 텍스트에 링크를 적용하고, 선택 영역이 없으면 URL을 삽입.
-              if (selection.isCollapsed) {
-                controller.replaceText(
-                  selection.start,
-                  0,
-                  link,
-                  .collapsed(offset: selection.start + link.length),
-                );
-              }
+              // 선택 영역을 링크 이름으로 교체하고 해당 주소 연결.
+              controller.replaceText(
+                selection.start,
+                selection.end - selection.start,
+                link.name,
+                .collapsed(offset: selection.start + link.name.length),
+              );
 
               controller.formatText(
                 selection.start,
-                selection.isCollapsed ? link.length : selection.end - selection.start,
-                LinkAttribute(link),
+                link.name.length,
+                LinkAttribute(link.url),
               );
 
               status.value = .none;
