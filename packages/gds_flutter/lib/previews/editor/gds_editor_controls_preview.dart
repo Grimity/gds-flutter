@@ -48,10 +48,10 @@ class GdsEditorControlsPreview extends PreviewWidget {
   );
 
   @override
-  String get displayName => 'Editor';
+  String get displayName => 'Editor Controls';
 
   @override
-  List<String> get groups => ['Editor Controls'];
+  List<String> get groups => ['Editor'];
 
   @override
   Widget build(BuildContext context) {

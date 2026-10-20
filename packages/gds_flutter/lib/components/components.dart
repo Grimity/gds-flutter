@@ -93,6 +93,7 @@ export 'editor/gds_editor_panel.dart';
 export 'editor/gds_editor_toolbar_button.dart';
 export 'editor/gds_editor_toolbar.dart';
 export 'editor/gds_editor.dart';
+export 'editor/gds_editor_viewer.dart';
 
 // Filter
 export 'filter/gds_filter.dart';
