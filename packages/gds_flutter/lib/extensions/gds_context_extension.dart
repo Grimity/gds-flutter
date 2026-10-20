@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gds_flutter/gds_flutter.dart';
-import 'package:pervice/pervice.dart';
 
 /// 디자인 시스템에서 제공하는 [BuildContext]에 대한 유틸리티 확장.
 extension GdsContextExtension on BuildContext {
@@ -60,7 +59,4 @@ extension GdsContextExtension on BuildContext {
 
   /// 현재 컨텍스트에서 가장 가까운 [GdsScaffold]의 드로어를 엽니다.
   void openDrawer() => GdsScaffold.openDrawer(this);
-
-  /// 위젯 생명주기 동안 유지되는 [LayerLink]를 반환합니다.
-  LayerLink useLayerLink() => stateOf(LayerLink.new).value;
 }
