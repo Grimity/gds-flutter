@@ -17,30 +17,30 @@ class GdsAdaptiveMenu {
   Future<T?> open<T>(BuildContext context) {
     if (context.isMobile) {
       // 모바일에서는 액션 목록을 바텀 시트로 표시.
-      final bottomSheet = GdsBottomSheet(
-        onBack: context.pop,
-        child: Column(
-          mainAxisSize: .min,
-          children: items.builder((item) {
-            return GdsListItem.text(
-              size: .lg,
-              label: item.label,
-              onTap: item.onTap,
-            );
-          }),
+      return GdsBottomSheet.show<T>(
+        context,
+        builder: (context) => GdsBottomSheet(
+          onBack: context.pop,
+          child: Column(
+            mainAxisSize: .min,
+            children: items.builder((item) {
+              return GdsListItem.text(
+                size: .lg,
+                label: item.label,
+                onTap: item.onTap,
+              );
+            }),
+          ),
         ),
       );
-
-      return bottomSheet.open(context);
     }
 
-    final menu = GdsMenu(items: items);
-
     // 태블릿에서는 팝오버 메뉴 표시.
-    return menu.open(
+    return GdsMenu.show<T>(
       context,
       layerLink: layerLink,
       position: position,
+      builder: (context) => GdsMenu(items: items),
     );
   }
 }

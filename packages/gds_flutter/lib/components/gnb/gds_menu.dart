@@ -56,13 +56,14 @@ class GdsMenu extends StatelessWidget {
   }
 
   /// 오버레이에 메뉴를 화면에 표시합니다.
-  Future<T?> open<T>(
+  static Future<T?> show<T>(
     BuildContext context, {
     required LayerLink layerLink,
     required GdsMenuPosition position,
+    required WidgetBuilder builder,
   }) {
     final route = GdsMenuRoute<T>(
-      child: this,
+      child: Builder(builder: builder),
       position: position,
       layerLink: layerLink,
     );

@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
-///
+/// 상단 헤더, 콘텐츠와 액션 버튼을 표시하는 모달 팝업 위젯.
 class GdsModal extends StatelessWidget {
   const new({
     super.key,
@@ -99,10 +99,13 @@ class GdsModal extends StatelessWidget {
   }
 
   /// 모달 팝업을 오버레이에 표시합니다.
-  Future<T?> open<T>(BuildContext context) {
+  static Future<T?> show<T>(
+    BuildContext context, {
+    required WidgetBuilder builder,
+  }) {
     final route = GdsPopupRoute<T>(
       barrierDismissible: false,
-      child: this,
+      child: Builder(builder: builder),
     );
 
     return Navigator.of(context).push(route);

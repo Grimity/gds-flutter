@@ -5,11 +5,10 @@ class GdsMenuRoute<T> extends GdsPopoverRoute<T> {
   new({
     required GdsMenuPosition position,
     required super.layerLink,
-    required GdsMenu child,
+    required super.child,
   }) : super(
          followerAnchor: position.followerAnchor,
          targetAnchor: position.targetAnchor,
          offset: const .new(0, 8),
-         child: child,
        );
 }

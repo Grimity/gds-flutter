@@ -114,10 +114,13 @@ class GdsAlert extends StatelessWidget {
   }
 
   /// 알림 팝업을 오버레이에 표시합니다.
-  Future<T?> open<T>(BuildContext context) {
+  static Future<T?> show<T>(
+    BuildContext context, {
+    required WidgetBuilder builder,
+  }) {
     final route = GdsPopupRoute<T>(
       barrierDismissible: false,
-      child: this,
+      child: Builder(builder: builder),
     );
 
     return Navigator.of(context).push(route);
