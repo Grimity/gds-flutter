@@ -82,7 +82,7 @@ class GdsEditorControls extends StatelessWidget {
         GdsEditorFontColor? colorOf(Attribute attribute) {
           final value = attributes[attribute.key]?.value?.toString().toUpperCase();
 
-          return GdsEditorFontColor.values.firstWhereOrNull(
+          return .values.firstWhereOrNull(
             (color) => color.color.of(context).toHex() == value,
           );
         }
@@ -107,8 +107,7 @@ class GdsEditorControls extends StatelessWidget {
             fontStyle: switch (attributes[Attribute.header.key]?.value) {
               1 => .title1,
               2 => .title2,
-              3 => .body,
-              _ => null,
+              _ => .body,
             },
             fontColor: colorOf(.color),
             fontBgColor: colorOf(.background),
@@ -125,7 +124,7 @@ class GdsEditorControls extends StatelessWidget {
                 selection.start,
                 selection.end - selection.start,
                 BlockEmbed.image(url),
-                TextSelection.collapsed(offset: selection.start + 1),
+                .collapsed(offset: selection.start + 1),
               );
 
               status.value = .none;
@@ -144,7 +143,7 @@ class GdsEditorControls extends StatelessWidget {
                   selection.start,
                   0,
                   link,
-                  TextSelection.collapsed(offset: selection.start + link.length),
+                  .collapsed(offset: selection.start + link.length),
                 );
               }
 
@@ -157,12 +156,12 @@ class GdsEditorControls extends StatelessWidget {
               status.value = .none;
             },
             onFontStyleChanged: (value) {
-              // 제목1, 제목2, 본문을 각각 h1, h2, h3 서식으로 적용.
+              // 본문은 제목 서식을 제거하여 일반 문단으로 저장.
               controller.toggleFormat(
                 switch (value) {
-                  .title1 => Attribute.h1,
-                  .title2 => Attribute.h2,
-                  .body => Attribute.h3,
+                  .title1 => .h1,
+                  .title2 => .h2,
+                  .body => .clone(.header, null),
                 },
               );
 

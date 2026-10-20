@@ -19,7 +19,7 @@ class GdsEditorViewerPreview extends PreviewWidget {
             '''
           <h1>제목1 스타일</h1>
           <h2>제목2 스타일</h2>
-          <h3>본문 서식 스타일</h3>
+          <p>본문 스타일</p>
           <p>기기 유형에 맞는 기본 본문 스타일입니다.</p>
           <p><strong>굵게</strong>, <em>기울이기</em>, <u>밑줄</u>, <s>취소선</s></p>
           <p><span style="color: #FF0000">글자색</span>과

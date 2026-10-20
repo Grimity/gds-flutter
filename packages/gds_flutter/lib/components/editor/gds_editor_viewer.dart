@@ -33,11 +33,10 @@ class GdsEditorViewer extends StatelessWidget {
       html,
       textStyle: body.style.copyWith(color: textColor),
       customStylesBuilder: (element) {
-        // 제목과 명시적으로 지정한 본문 서식 적용.
+        // 제목 서식 적용. 일반 문단은 기본 본문 스타일 사용.
         final typography = switch (element.localName) {
           'h1' => GdsTypography.postTitle1,
           'h2' => GdsTypography.postTitle2,
-          'h3' => GdsTypography.postBody,
           _ => null,
         };
 

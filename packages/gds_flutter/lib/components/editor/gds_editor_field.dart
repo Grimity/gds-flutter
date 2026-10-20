@@ -74,7 +74,6 @@ class GdsEditorField extends StatelessWidget {
                   link: .new(color: linkColor, decoration: .underline),
                   h1: blockStyle(.postTitle1),
                   h2: blockStyle(.postTitle2),
-                  h3: blockStyle(.postBody),
                   paragraph: blockStyle(.label2),
                   placeHolder: blockStyle(.label2, color: .textGraySubtle),
                 ),
