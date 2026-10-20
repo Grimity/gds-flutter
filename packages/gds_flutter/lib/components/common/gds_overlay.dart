@@ -12,8 +12,8 @@ class GdsOverlay extends StatefulWidget {
 
   static final _states = <_State>{};
 
-  /// 현재 라우트에 속하거나 라우트 밖에 있는 오버레이 중 마지막으로 등록된 것을 반환합니다.
-  /// 해당 오버레이가 없으면 null을 반환합니다.
+  /// 현재 라우트의 마지막 등록 오버레이를 반환하며, 없으면 앱 내비게이터의 오버레이를 사용합니다.
+  /// 앱 내비게이터의 오버레이도 준비되지 않았으면 [StateError]를 발생시킵니다.
   static OverlayState get current {
     for (final state in _states.toList().reversed) {
       final isCurrent = ModalRoute.isCurrentOf(state.context);
@@ -24,12 +24,12 @@ class GdsOverlay extends StatefulWidget {
     }
 
     // 현재 화면의 오버레이가 없으면 앱 내비게이터를 기준으로.
-    final navigatorContext = GdsApp.navigationKey.currentContext;
-    if (navigatorContext == null) {
-      throw StateError('앱 내비게이터가 위젯 트리에 연결되어 있지 않습니다.');
+    final overlay = GdsApp.navigationKey.currentState?.overlay;
+    if (overlay == null) {
+      throw StateError('앱 내비게이터의 오버레이가 준비되어 있지 않습니다.');
     }
 
-    return Overlay.of(navigatorContext);
+    return overlay;
   }
 
   @override
