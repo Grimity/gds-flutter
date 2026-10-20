@@ -1,8 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
+
+/// 에디터에 삽입할 이미지 URL 목록을 비동기로 반환하는 콜백.
+typedef GdsEditorImageBuilder = Future<List<String>?> Function();
+
+/// 에디터에 삽입할 링크 정보를 비동기로 반환하는 콜백.
+typedef GdsEditorLinkBuilder = Future<GdsLink?> Function();
 
 /// 링크에 표시할 이름과 이동할 주소를 지정하는 레코드.
 typedef GdsLink = ({
@@ -64,8 +72,8 @@ class GdsEditorControls extends StatelessWidget {
   static Widget fromController(
     QuillController controller, {
     Key? key,
-    required Future<String?> Function() onAddImage,
-    required Future<GdsLink?> Function() onAddLink,
+    required GdsEditorImageBuilder onAddImage,
+    required GdsEditorLinkBuilder onAddLink,
   }) {
     return Builder(
       key: key ?? ObjectKey(controller),
@@ -119,19 +127,23 @@ class GdsEditorControls extends StatelessWidget {
             fontBgColor: colorOf(.background),
             onAddImage: () async {
               // 이미지 선택 중 커서가 이동해도 최초 선택 영역에 삽입.
-              final selection = controller.selection;
-              final url = await onAddImage();
+              var selection = controller.selection;
+              final urls = await onAddImage();
 
               // 위젯이 제거되었거나 이미지 선택을 취소한 경우 종료.
-              if (!context.mounted || url == null || url.isEmpty) return;
+              if (!context.mounted || urls == null || urls.isEmpty) return;
 
-              // 반환된 이미지 URL을 선택한 위치에 삽입.
-              controller.replaceText(
-                selection.start,
-                selection.end - selection.start,
-                BlockEmbed.image(url),
-                .collapsed(offset: selection.start + 1),
-              );
+              // 첫 이미지는 선택 영역을 교체하고 나머지는 이동한 커서 뒤에 순서대로 삽입.
+              for (final url in urls) {
+                controller.replaceText(
+                  selection.start,
+                  selection.end - selection.start,
+                  BlockEmbed.image(url),
+                  .collapsed(offset: selection.start + 1),
+                );
+
+                selection = controller.selection;
+              }
 
               status.value = .none;
             },

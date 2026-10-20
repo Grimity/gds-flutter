@@ -15,8 +15,8 @@ class GdsEditor extends StatelessWidget {
   });
 
   final QuillController controller;
-  final Future<String?> Function() onAddImage;
-  final Future<GdsLink?> Function() onAddLink;
+  final GdsEditorImageBuilder onAddImage;
+  final GdsEditorLinkBuilder onAddLink;
   final int maxCount;
   final EdgeInsets padding;
 

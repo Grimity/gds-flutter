@@ -18,7 +18,7 @@ class GdsEditorPreview extends PreviewWidget {
     return GdsEditor(
       controller: controller,
       maxCount: 500,
-      onAddImage: () async => previewProfileUrl,
+      onAddImage: () async => [previewProfileUrl],
       onAddLink: () async => (
         name: '링크 확인하기',
         url: 'https://example.com',
