@@ -63,7 +63,7 @@ class GdsEditorField extends StatelessWidget {
               focusNode: focusNode ?? defaultFocusNode,
               scrollController: scrollController,
               config: .new(
-                scrollable: false,
+                scrollable: true,
                 placeholder: placeholder,
                 embedBuilders: [
                   if (imageBuilder != null) ...[
