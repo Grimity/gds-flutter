@@ -28,31 +28,42 @@ class GdsAdaptiveModal extends StatelessWidget {
   }
 
   /// 모바일에서는 바텀 시트, 태블릿에서는 모달 팝업으로 엽니다.
-  Future<T?> open<T>(BuildContext context) {
+  static Future<T?> show<T>(
+    BuildContext context, {
+    required GdsAdaptiveModal Function(BuildContext context) builder,
+  }) {
     if (context.isMobile) {
       // 모바일에서는 바텀 시트로 표시.
-      return GdsBottomSheet.show(
+      return GdsBottomSheet.show<T>(
         context,
-        builder: (context) => GdsBottomSheet(
-          onBack: context.pop,
-          title: title,
-          primaryButton: primaryButton,
-          secondaryButton: secondaryButton,
-          child: this,
-        ),
+        builder: (context) {
+          final modal = builder(context);
+
+          return GdsBottomSheet(
+            onBack: context.pop,
+            title: modal.title,
+            primaryButton: modal.primaryButton,
+            secondaryButton: modal.secondaryButton,
+            child: modal,
+          );
+        },
       );
     }
 
     // 태블릿에서는 모달 팝업으로 표시.
     return GdsModal.show<T>(
       context,
-      builder: (context) => GdsModal(
-        onBack: context.pop,
-        title: title,
-        primaryButton: primaryButton,
-        secondaryButton: secondaryButton,
-        child: this,
-      ),
+      builder: (context) {
+        final modal = builder(context);
+
+        return GdsModal(
+          onBack: context.pop,
+          title: modal.title,
+          primaryButton: modal.primaryButton,
+          secondaryButton: modal.secondaryButton,
+          child: modal,
+        );
+      },
     );
   }
 }

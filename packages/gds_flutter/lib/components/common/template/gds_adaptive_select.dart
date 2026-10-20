@@ -5,15 +5,11 @@ import 'package:gds_flutter/gds_flutter.dart';
 class GdsAdaptiveSelect extends StatelessWidget {
   const new({
     super.key,
-    required this.layerLink,
-    required this.position,
     required this.title,
     required this.index,
     required this.items,
   });
 
-  final LayerLink layerLink;
-  final GdsMenuPosition position;
   final String title;
   final int index;
   final List<GdsMenuItem> items;
@@ -34,16 +30,25 @@ class GdsAdaptiveSelect extends StatelessWidget {
   }
 
   /// 현재 기기에 맞는 표시 방식으로 선택 목록을 엽니다.
-  Future<T?> open<T>(BuildContext context) {
+  static Future<T?> show<T>(
+    BuildContext context, {
+    required LayerLink layerLink,
+    required GdsMenuPosition position,
+    required GdsAdaptiveSelect Function(BuildContext context) builder,
+  }) {
     if (context.isMobile) {
       // 모바일에서는 선택 목록을 바텀 시트로 표시.
       return GdsBottomSheet.show<T>(
         context,
-        builder: (context) => GdsBottomSheet(
-          onBack: context.pop,
-          title: title,
-          child: this,
-        ),
+        builder: (context) {
+          final select = builder(context);
+
+          return GdsBottomSheet(
+            onBack: context.pop,
+            title: select.title,
+            child: select,
+          );
+        },
       );
     }
 
@@ -52,7 +57,7 @@ class GdsAdaptiveSelect extends StatelessWidget {
       context,
       layerLink: layerLink,
       position: position,
-      builder: (context) => GdsMenu(items: items),
+      builder: (context) => GdsMenu(items: builder(context).items),
     );
   }
 }
