@@ -1,6 +1,5 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gds_flutter/extensions/extensions.dart';
 import 'package:gds_flutter/foundation/foundation.dart';
 
 /// 디자인 시스템에서 전환 애니메이션을 구현하는 위젯.
@@ -120,13 +119,7 @@ abstract class GdsTransition {
     return Stack(
       key: key,
       alignment: alignment,
-      children: entries.indexedBuilder((index, entry) {
-        if (index == entries.length - 1) {
-          return entry;
-        }
-
-        return Positioned.fill(child: entry);
-      }),
+      children: entries,
     );
   }
 }
