@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' hide BottomSheet;
+import 'package:flutter/material.dart';
 import 'package:flutter_scroll_bottom_sheet/flutter_bottom_sheet.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
@@ -110,19 +110,11 @@ class GdsBottomSheet extends StatelessWidget {
     final barrierColor = GdsColor.bgOverlayBlack.of(context);
 
     // 바텀 시트의 오버레이 색상과 키보드 표시 위치를 설정.
-    BottomSheet.config = BottomSheetConfig(
+    final config = ScrollBottomSheetConfig(
       barrierColor: barrierColor,
-      sheetBuilder: (context, child) {
-        final keyboardHeight = MediaQuery.viewInsetsOf(context).bottom;
-
-        return Transform.translate(
-          offset: Offset(0, -keyboardHeight),
-          transformHitTests: true,
-          child: child,
-        );
-      },
     );
 
-    return BottomSheet.open<T>(context, Builder(builder: builder));
+    final child = Builder(builder: builder);
+    return ScrollBottomSheet.open<T>(context, child, config: config);
   }
 }
