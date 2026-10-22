@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nested_scroll/flutter_nested_scroll.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:pervice/pervice.dart';
@@ -7,6 +8,28 @@ import 'package:pervice/pervice.dart';
 extension GdsHookExtension on BuildContext {
   /// [LayerLink]를 생성하고 자동으로 이를 해제합니다.
   LayerLink useLayerLink() => stateOf(LayerLink.new).value;
+
+  /// [NestedScrollController]를 생성하고 자동으로 이를 해제합니다.
+  NestedScrollController useNestedScrollController({
+    double initialScrollOffset = 0.0,
+    bool keepScrollOffset = true,
+    String? debugLabel,
+    ScrollControllerCallback? onAttach,
+    ScrollControllerCallback? onDetach,
+  }) {
+    final state = stateOf(
+      () => NestedScrollController(
+        initialScrollOffset: initialScrollOffset,
+        keepScrollOffset: keepScrollOffset,
+        debugLabel: debugLabel,
+        onAttach: onAttach,
+        onDetach: onDetach,
+      ),
+      onDispose: (e) => e.dispose(),
+    );
+
+    return state.value;
+  }
 
   /// [GdsViewStackController]를 생성하고 자동으로 이를 해제합니다.
   GdsViewStackController<T> useGdsViewStackController<T>(T Function() builder) {
