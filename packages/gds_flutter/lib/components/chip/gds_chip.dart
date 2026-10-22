@@ -18,19 +18,18 @@ class GdsChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GdsContainer(
-      height: size.when(xl: 24, md: 22),
       radius: .full,
       border: .all(color: variant.borderColor),
-      alignment: .center,
       padding: size.when(
-        xl: 10.horizontal,
-        md: 8.horizontal,
+        xl: .symmetric(horizontal: 10, vertical: 4),
+        md: .symmetric(horizontal: 8, vertical: 2),
       ),
       color: variant.backgroundColor,
       child: GdsText(
         label,
         color: variant.labelColor,
         style: variant.labelStyle,
+        textAlign: .center,
       ),
     );
   }

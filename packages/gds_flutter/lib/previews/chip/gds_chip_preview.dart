@@ -33,12 +33,10 @@ class GdsChipPreview extends PreviewWidget {
     final label = labelControl.of(context);
     final variant = variantControl.of(context);
 
-    return IntrinsicWidth(
-      child: GdsChip(
-        size: size.value,
-        label: label.value,
-        variant: variant.value,
-      ),
+    return GdsChip(
+      size: size.value,
+      label: label.value,
+      variant: variant.value,
     );
   }
 }
