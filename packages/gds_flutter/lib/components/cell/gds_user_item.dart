@@ -430,6 +430,7 @@ abstract class GdsUserItem {
     required VoidCallback onMenu,
     required VoidCallback onLike,
     required VoidCallback onReply,
+    LayerLink? layerLink,
   }) {
     final profileWidth = GdsProfile.getDimension(size);
     final hasMention = mention != null;
@@ -474,6 +475,7 @@ abstract class GdsUserItem {
                     type: .sm,
                     icon: .dotmenuHorizontal,
                     onTap: onMenu,
+                    layerLink: layerLink,
                   ),
                 ),
               ),
