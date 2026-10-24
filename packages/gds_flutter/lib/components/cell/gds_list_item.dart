@@ -11,9 +11,18 @@ abstract class GdsListItem {
       status: .enabled,
       label: label,
       labelStyle: .label6,
-      enabledStyle: const .new(textColor: .textGrayNormal, backgroundColor: .surfaceGraySubtlest),
-      selectedStyle: const .new(textColor: .textGrayNormal, backgroundColor: .surfaceGraySubtlest),
-      disabledStyle: const .new(textColor: .textGrayNormal, backgroundColor: .surfaceGraySubtlest),
+      enabledStyle: const .new(
+        textColor: .textGrayNormal,
+        backgroundColor: .surfaceGraySubtlest,
+      ),
+      selectedStyle: const .new(
+        textColor: .textGrayNormal,
+        backgroundColor: .surfaceGraySubtlest,
+      ),
+      disabledStyle: const .new(
+        textColor: .textGrayNormal,
+        backgroundColor: .surfaceGraySubtlest,
+      ),
       padding: .symmetric(vertical: 6, horizontal: 24),
     );
   }
@@ -46,8 +55,16 @@ abstract class GdsListItem {
         mainAxisSize: .min,
         spacing: 4,
         children: [
-          GdsText(iconLabel, color: status == .disabled ? .textGraySubtler : .textGraySubtle, style: .label6),
-          icon.build(size: 20, color: status == .disabled ? .iconGraySubtler : .iconGrayBold),
+          GdsText(
+            iconLabel,
+            color: status == .disabled ? .textGraySubtler : .textGraySubtle,
+            style: .label6,
+          ),
+
+          icon.build(
+            size: 20,
+            color: status == .disabled ? .iconGraySubtler : .iconGrayBold,
+          ),
         ],
       ),
     );
@@ -76,6 +93,8 @@ abstract class GdsListItem {
       border: .all(color: .borderGraySubtler),
     );
 
+    final GdsColor iconColor = status == .disabled ? .iconGraySubtler : .iconGrayBold;
+
     return GdsCellFrame(
       key: key,
       status: status,
@@ -88,11 +107,11 @@ abstract class GdsListItem {
         backgroundColor: .surfacePrimarySubtlest,
         border: .all(color: .borderPrimaryNormal),
       ),
-      padding: 16.all,
       radius: .sm,
+      padding: 16.all,
       leadingWidget: icon?.build(
         size: 20,
-        color: status == .disabled ? .iconGraySubtler : .iconGrayBold,
+        color: icon.type == .semantic ? iconColor : null,
       ),
     );
   }
@@ -112,6 +131,8 @@ abstract class GdsListItem {
       iconColor: .iconGrayNormal,
     );
 
+    final GdsColor iconColor = status == .disabled ? .iconGraySubtler : .iconGrayNormal;
+
     return GdsCellFrame(
       key: key,
       status: status,
@@ -129,7 +150,10 @@ abstract class GdsListItem {
         backgroundColor: .surfaceGraySubtlest,
       ),
       padding: 16.all,
-      leadingWidget: icon.build(size: 20, color: status == .disabled ? .iconGraySubtler : .iconGrayNormal),
+      leadingWidget: icon.build(
+        size: 20,
+        color: icon.type == .semantic ? iconColor : null,
+      ),
     );
   }
 
@@ -155,8 +179,13 @@ abstract class GdsListItem {
         textColor: .textPrimaryNormal,
         iconColor: .iconPrimaryNormal,
       ),
-      disabledStyle: const .new(textColor: .textGraySubtler, backgroundColor: .surfaceGraySubtlest),
-      negativeStyle: const .new(textColor: .statusNegative),
+      disabledStyle: const .new(
+        textColor: .textGraySubtler,
+        backgroundColor: .surfaceGraySubtlest,
+      ),
+      negativeStyle: const .new(
+        textColor: .statusNegative,
+      ),
       padding: size.when(
         lg: .all(16),
         md: .symmetric(vertical: 8, horizontal: 16),
