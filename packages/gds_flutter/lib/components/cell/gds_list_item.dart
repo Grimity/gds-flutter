@@ -276,8 +276,8 @@ abstract class GdsListItem {
       enabledStyle: enabled,
       selectedStyle: enabled,
       disabledStyle: const GdsCellStyle(textColor: .textGraySubtler),
-      padding: .symmetric(vertical: 8, horizontal: 16),
       leadingWidget: IgnorePointer(ignoring: true, child: child),
+      padding: 8.vertical,
     );
   }
 }
