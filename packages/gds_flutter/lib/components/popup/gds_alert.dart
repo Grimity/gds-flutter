@@ -24,8 +24,6 @@ class GdsAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasIllust = illust != null;
-    final hasPrimaryButton = primaryButton != null;
-    final hasSecondaryButton = secondaryButton != null;
 
     // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
     final GdsSize sizeByDevice = context.whenDevice(
@@ -80,28 +78,30 @@ class GdsAlert extends StatelessWidget {
             spacing: 8,
             children: [
               // 보조 버튼 표시
-              if (hasSecondaryButton) ...[
+              if (secondaryButton case final action?) ...[
                 Expanded(
                   child: GdsButton.text(
                     type: .outlined,
                     size: size.when(xl: .lg, md: .md),
-                    label: secondaryButton!.label,
-                    onTap: secondaryButton!.onTap,
-                    layerLink: secondaryButton!.layerLink,
+                    label: action.label,
+                    onTap: action.onTap,
+                    status: action.status,
+                    layerLink: action.layerLink,
                     mainAxisSize: .max,
                   ),
                 ),
               ],
 
               // 주 버튼 표시
-              if (hasPrimaryButton) ...[
+              if (primaryButton case final action?) ...[
                 Expanded(
                   child: GdsButton.text(
                     type: .solid,
                     size: size.when(xl: .lg, md: .md),
-                    label: primaryButton!.label,
-                    onTap: primaryButton!.onTap,
-                    layerLink: primaryButton!.layerLink,
+                    label: action.label,
+                    onTap: action.onTap,
+                    status: action.status,
+                    layerLink: action.layerLink,
                     mainAxisSize: .max,
                   ),
                 ),
