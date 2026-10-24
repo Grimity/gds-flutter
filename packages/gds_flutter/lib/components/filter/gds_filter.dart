@@ -35,12 +35,7 @@ class GdsFilter extends StatelessWidget {
           if (onTap == null) return;
 
           // 별도 UI가 열리는 동안 열림 상태 반영.
-          try {
-            open.value = true;
-            await onTap!();
-          } finally {
-            open.value = false;
-          }
+          await open.run(onTap!);
         },
         child: GdsContainer(
           animation: .fast,

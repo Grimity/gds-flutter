@@ -39,14 +39,7 @@ class GdsErrorState extends StatelessWidget {
       action: .new(
         type: .solid,
         label: '다시 시도',
-        onTap: () async {
-          try {
-            loading.value = true;
-            await retry();
-          } finally {
-            loading.value = false;
-          }
-        },
+        onTap: () => loading.run(retry),
       ),
     );
   }

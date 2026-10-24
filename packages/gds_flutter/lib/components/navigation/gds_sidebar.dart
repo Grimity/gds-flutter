@@ -124,14 +124,7 @@ class GdsSidebar extends StatelessWidget {
                       size: .sm,
                       variant: .assistive,
                       status: .from(loading: loading.value),
-                      onTap: () async {
-                        try {
-                          loading.value = true;
-                          await onSignOut();
-                        } finally {
-                          loading.value = false;
-                        }
-                      },
+                      onTap: () => loading.run(onSignOut),
                       label: '로그아웃',
                       trailingIcon: .out,
                     );
