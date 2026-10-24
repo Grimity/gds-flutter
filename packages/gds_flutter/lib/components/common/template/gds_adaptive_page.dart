@@ -101,4 +101,14 @@ abstract class GdsAdaptivePage {
       return GdsModal.show(context, builder: buildModal);
     }
   }
+
+  /// 모바일에서는 페이지를 교체하고, 태블릿에서는 페이지를 닫고 동시에 모달을 엽니다.
+  Future<T?> pushReplacement<T>(BuildContext context) {
+    if (context.isMobile) {
+      return context.pushReplacement(Builder(builder: buildView));
+    } else {
+      context.pop();
+      return GdsModal.show(context, builder: buildModal);
+    }
+  }
 }
