@@ -63,30 +63,30 @@ class GdsModal extends StatelessWidget {
                 spacing: 8,
                 children: [
                   // 보조 버튼 표시
-                  if (hasSecondaryButton) ...[
+                  if (secondaryButton case final action?) ...[
                     Expanded(
                       child: GdsButton.text(
                         type: .outlined,
                         size: .lg,
-                        label: secondaryButton!.label,
-                        onTap: secondaryButton!.onTap,
-                        status: secondaryButton!.status,
-                        layerLink: secondaryButton!.layerLink,
+                        label: action.label,
+                        onTap: action.onTap,
+                        status: action.status,
+                        layerLink: action.layerLink,
                         mainAxisSize: .max,
                       ),
                     ),
                   ],
 
                   // 주 버튼 표시
-                  if (hasPrimaryButton) ...[
+                  if (primaryButton case final action?) ...[
                     Expanded(
                       child: GdsButton.text(
                         type: .solid,
                         size: .lg,
-                        label: primaryButton!.label,
-                        onTap: primaryButton!.onTap,
-                        status: secondaryButton!.status,
-                        layerLink: primaryButton!.layerLink,
+                        label: action.label,
+                        onTap: action.onTap,
+                        status: action.status,
+                        layerLink: action.layerLink,
                         mainAxisSize: .max,
                       ),
                     ),
