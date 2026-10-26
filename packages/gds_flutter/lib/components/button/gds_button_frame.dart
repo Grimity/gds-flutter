@@ -61,7 +61,7 @@ class GdsButtonFrame extends StatelessWidget {
     final iconColor = style.iconColor ?? .transparent;
 
     return IgnorePointer(
-      ignoring: enabled,
+      ignoring: !enabled || loading.value,
       child: GdsGesture(
         onTap: onTap == null ? null : () => onTap!.run(loading),
         child: GdsContainer(
