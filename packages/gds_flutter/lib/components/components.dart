@@ -138,6 +138,7 @@ export 'navigation/gds_top_navigation.dart';
 // Tab
 export 'tab/gds_segmented.dart';
 export 'tab/gds_tab_bar.dart';
+export 'tab/gds_tab_view.dart';
 export 'tab/gds_tab.dart';
 
 // Tag
