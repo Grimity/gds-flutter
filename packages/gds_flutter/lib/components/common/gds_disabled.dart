@@ -27,3 +27,30 @@ class GdsDisabled extends StatelessWidget {
     );
   }
 }
+
+/// 비활성화 시 슬리버를 반투명하게 표시하고 사용자 입력을 차단하는 위젯.
+class GdsSliverDisabled extends StatelessWidget {
+  const new({
+    super.key,
+    this.animation = .normal,
+    required this.enabled,
+    required this.sliver,
+  });
+
+  final GdsAnimation animation;
+  final bool enabled;
+  final Widget sliver;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAnimatedOpacity(
+      opacity: enabled ? 1 : 0.5,
+      duration: animation.duration,
+      curve: animation.curve,
+      sliver: SliverIgnorePointer(
+        ignoring: !enabled,
+        sliver: sliver,
+      ),
+    );
+  }
+}

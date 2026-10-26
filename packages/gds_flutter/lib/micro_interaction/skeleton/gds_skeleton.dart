@@ -15,15 +15,46 @@ class GdsSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effect = ShimmerEffect(
-      baseColor: GdsColor.surfaceGraySubtlest.of(context),
-      highlightColor: GdsColor.surfaceGraySubtler.of(context),
-      duration: const .new(seconds: 1),
-    );
+    final effect = createEffect(context);
 
     return GdsTransition.crossFade(
       value: enabled,
       child: Skeletonizer(
+        enabled: enabled,
+        effect: effect,
+        child: child,
+      ),
+    );
+  }
+
+  /// 현재 테마에 대응하는 스켈레톤 효과를 생성합니다.
+  static ShimmerEffect createEffect(BuildContext context) {
+    return ShimmerEffect(
+      baseColor: GdsColor.surfaceGraySubtlest.of(context),
+      highlightColor: GdsColor.surfaceGraySubtler.of(context),
+      duration: const .new(seconds: 1),
+    );
+  }
+}
+
+/// 자식 위젯을 스켈레톤 UI 형태로 표시하는 로딩 슬리버.
+class GdsSliverSkeleton extends StatelessWidget {
+  const new({
+    super.key,
+    this.enabled = true,
+    required this.child,
+  });
+
+  final bool enabled;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final effect = GdsSkeleton.createEffect(context);
+
+    return GdsSliverTransition.crossFade(
+      value: enabled,
+      child: Skeletonizer.sliver(
         enabled: enabled,
         effect: effect,
         child: child,

@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/foundation/foundation.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 /// 디자인 시스템에서 전환 애니메이션을 구현하는 위젯.
 abstract class GdsTransition {
@@ -120,6 +121,32 @@ abstract class GdsTransition {
       key: key,
       alignment: alignment,
       children: entries,
+    );
+  }
+}
+
+/// 디자인 시스템에서 전환 애니메이션을 구현하는 슬리버.
+abstract class GdsSliverTransition {
+  /// 페이드 교차 전환 애니메이션을 구현하는 위젯.
+  static Widget crossFade<T>({
+    Key? key,
+    required T value,
+    required Widget child,
+    Alignment alignment = .center,
+    GdsAnimation animation = .normal,
+  }) {
+    assert(
+      value is! List,
+      'List는 내용이 동일하더라도 매번 다른 값으로 비교됩니다. '
+      '여러 값을 전환 기준으로 사용하려면 record를 사용하세요.',
+    );
+
+    return SliverAnimatedSwitcher(
+      key: key,
+      duration: animation.duration,
+      switchInCurve: animation.curve,
+      switchOutCurve: animation.curve,
+      child: KeyedSubtree(key: ValueKey(value), child: child),
     );
   }
 }

@@ -9,19 +9,19 @@ typedef LoadMoreCursorOf<T> = String? Function(T data);
 /// 커서를 기반으로 다음 페이지를 불러오고 이를 관리하는 서비스.
 class LoadMoreService<T> extends Service<List<T>> {
   new({
-    required this.builder,
-    required this.cursorOf,
+    required this._builder,
+    required this._cursorOf,
   });
 
-  final LoadMoreBuilder<T> builder;
-  final LoadMoreCursorOf<T> cursorOf;
+  final LoadMoreBuilder<T> _builder;
+  final LoadMoreCursorOf<T> _cursorOf;
 
   /// 추가 페이지 요청이 진행 중인지 여부.
   bool isLoadingMore = false;
 
   /// 추가 로딩이 가능한지, 즉 마지막 페이지에 다음 커서가 있는지 여부를 반환합니다.
   bool get canLoreMore {
-    return status == .loaded && !isLoadingMore ? cursorOf(data.last) != null : false;
+    return status == .loaded && !isLoadingMore ? _cursorOf(data.last) != null : false;
   }
 
   /// 기존 콘텐츠를 유지하면서 다음 페이지를 불러오고 이를 삽입합니다.
@@ -33,7 +33,7 @@ class LoadMoreService<T> extends Service<List<T>> {
 
     try {
       isLoadingMore = true;
-      data.add(await builder(cursorOf(data.last)).request());
+      data.add(await _builder(_cursorOf(data.last)).request());
       notifyChanged();
     } finally {
       isLoadingMore = false;
@@ -42,6 +42,6 @@ class LoadMoreService<T> extends Service<List<T>> {
 
   @override
   Future<List<T>> fetchData() async {
-    return [await builder(null).request()];
+    return [await _builder(null).request()];
   }
 }
