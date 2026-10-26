@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:gds_flutter/src/future_or_callback.dart';
 
 /// 사용자 정보를 다양한 형태의 카드로 표시하는 위젯을 제공합니다.
 abstract class GdsUser {
@@ -14,8 +15,8 @@ abstract class GdsUser {
     required List<ImageProvider> thumbnails,
     required bool following,
     required VoidCallback onTap,
-    required VoidCallback onFollow,
-    required VoidCallback onUnFollow,
+    required FutureOrCallback onFollow,
+    required FutureOrCallback onUnFollow,
   }) {
     return GdsGesture(
       key: key,
@@ -75,8 +76,8 @@ abstract class GdsUser {
     required ImageProvider? banner,
     required bool following,
     required VoidCallback onTap,
-    required VoidCallback onFollow,
-    required VoidCallback onUnFollow,
+    required FutureOrCallback onFollow,
+    required FutureOrCallback onUnFollow,
   }) {
     final followAction = GdsTextButtonAction.follow(
       following: following,

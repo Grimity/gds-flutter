@@ -16,8 +16,8 @@ class GdsTextButtonAction {
   /// 팔로우 상태에 따라 적절한 버튼 유형, 레이블 및 동작을 반환.
   factory follow({
     required bool following,
-    required VoidCallback onFollow,
-    required VoidCallback onUnFollow,
+    required FutureOrCallback onFollow,
+    required FutureOrCallback onUnFollow,
   }) {
     return .new(
       type: following ? .outlined : .solid,

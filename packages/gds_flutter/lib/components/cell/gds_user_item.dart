@@ -165,8 +165,8 @@ abstract class GdsUserItem {
                     variant: action.variant,
                     size: .sm,
                     onTap: action.onTap,
-                    layerLink: action.layerLink,
                     label: action.label,
+                    layerLink: action.layerLink,
                   );
                 }),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:gds_flutter/src/future_or_callback.dart';
 
 /// 화면 상단에 위치한 내비게이션으로, 작은 화면을 디자인할 때 사용됩니다.
 abstract class GdsTopNavigation {
@@ -277,7 +278,7 @@ abstract class GdsTopNavigation {
   static Widget imageViewer({
     Key? key,
     required VoidCallback onBack,
-    required VoidCallback onDownload,
+    required FutureOrCallback onDownload,
     required bool canDownload,
   }) {
     return GdsContainer(

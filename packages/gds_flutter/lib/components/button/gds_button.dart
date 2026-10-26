@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/components/button/gds_button_decoration.dart';
 import 'package:gds_flutter/components/button/gds_button_frame.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:gds_flutter/src/future_or_callback.dart';
 
 /// https://www.figma.com/design/P1ouNc7cOpjW3MDU3wYdvI/Grimity_Design-System?node-id=11017-181907&m=dev
 abstract class GdsButton {
@@ -13,7 +14,7 @@ abstract class GdsButton {
     required GdsTextButtonType type,
     required GdsSize size,
     GdsTextButtonVariant? variant,
-    VoidCallback? onTap,
+    FutureOrCallback? onTap,
     bool enabled = true,
     String? label,
     MainAxisSize? mainAxisSize,
@@ -66,7 +67,7 @@ abstract class GdsButton {
     bool enabled = true,
     required GdsIconButtonType type,
     required GdsIcon icon,
-    VoidCallback? onTap,
+    FutureOrCallback? onTap,
     GdsColor? color,
   }) {
     final decoration = GdsButtonDecoration(
