@@ -10,12 +10,14 @@ class GdsTab extends StatefulWidget {
     this.initialIndex = 0,
     required this.items,
     required this.pages,
+    this.trailing,
   });
 
   final GdsSize? size;
   final int initialIndex;
   final List<GdsTabItem> items;
   final List<Widget> pages;
+  final Widget? trailing;
 
   @override
   State<GdsTab> createState() => _State();
@@ -59,6 +61,7 @@ class _State extends State<GdsTab> with TickerProviderStateMixin {
           size: widget.size,
           items: widget.items,
           controller: controller,
+          trailing: widget.trailing,
         ),
 
         // 탭뷰 표시

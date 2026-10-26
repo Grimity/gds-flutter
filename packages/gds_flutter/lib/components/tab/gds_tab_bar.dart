@@ -20,15 +20,16 @@ class GdsTabBar extends StatelessWidget {
     this.size,
     required this.items,
     required this.controller,
+    this.trailing,
   });
 
   final GdsSize? size;
   final List<GdsTabItem> items;
   final TabController controller;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
-    final dividerColor = GdsColor.borderGraySubtle.of(context);
     final indicatorColor = GdsColor.borderGrayBold.of(context);
 
     // 크기를 지정하지 않은 경우, 현재 기기에 맞는 기본 크기를 적용.
@@ -39,20 +40,33 @@ class GdsTabBar extends StatelessWidget {
 
     final GdsSize size = this.size ?? sizeByDevice;
 
-    return GdsMasking(
-      child: TabBar(
-        controller: controller,
-        isScrollable: true,
-        tabAlignment: .start,
-        dividerColor: dividerColor,
-        indicatorSize: .tab,
-        indicator: BoxDecoration(
-          border: Border(bottom: .new(color: indicatorColor, width: 2)),
-        ),
-        enableFeedback: false,
-        splashFactory: NoSplash.splashFactory,
-        overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-        tabs: items.indexedBuilder((index, item) => buildTab(size, index, item)),
+    return GdsContainer(
+      border: .new(
+        bottom: 1,
+        color: .borderGraySubtle,
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: GdsMasking(
+              child: TabBar(
+                controller: controller,
+                isScrollable: true,
+                tabAlignment: .start,
+                dividerColor: Colors.transparent,
+                indicatorSize: .tab,
+                indicator: BoxDecoration(
+                  border: Border(bottom: .new(color: indicatorColor, width: 2)),
+                ),
+                enableFeedback: false,
+                splashFactory: NoSplash.splashFactory,
+                overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+                tabs: items.indexedBuilder((index, item) => buildTab(size, index, item)),
+              ),
+            ),
+          ),
+          ?trailing,
+        ],
       ),
     );
   }
