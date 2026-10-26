@@ -17,6 +17,7 @@ class GdsInputFrame extends StatefulWidget {
     required this.decoration,
     required this.status,
     required this.placeholder,
+    required this.text,
     required this.initialText,
     required this.prefixText,
     required this.obscureText,
@@ -44,6 +45,7 @@ class GdsInputFrame extends StatefulWidget {
   final GdsInputStatus status;
   final GdsShadow? shadow;
   final String? placeholder;
+  final String? text;
   final String? initialText;
   final String? prefixText;
   final bool? obscureText;
@@ -113,6 +115,11 @@ class _State extends State<GdsInputFrame> {
       }
 
       _focusNode = widget.focusNode ?? .new();
+    }
+
+    // ensuredText가 현재 입력값과 다르면 반영.
+    if (widget.text case final text? when text != _controller.text) {
+      _controller.text = text;
     }
   }
 

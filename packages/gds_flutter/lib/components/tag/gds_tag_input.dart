@@ -40,6 +40,7 @@ class GdsTagInput extends StatelessWidget {
         status: .enabled,
         prefixText: '#',
         placeholder: '태그 추가',
+        text: null,
         initialText: null,
         obscureText: false,
         onSubmitted: null,

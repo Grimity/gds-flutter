@@ -10,6 +10,7 @@ class GdsTextArea extends StatelessWidget {
     required this.variant,
     this.status = .enabled,
     this.placeholder,
+    this.text,
     this.initialText,
     this.shadow,
     this.onSubmitted,
@@ -24,6 +25,7 @@ class GdsTextArea extends StatelessWidget {
   final GdsTextAreaVariant variant;
   final GdsInputStatus status;
   final String? placeholder;
+  final String? text;
   final String? initialText;
   final GdsShadow? shadow;
   final ValueChanged<String>? onSubmitted;
@@ -47,6 +49,7 @@ class GdsTextArea extends StatelessWidget {
       status: status,
       shadow: shadow,
       placeholder: placeholder,
+      text: text,
       initialText: initialText,
       prefixText: null,
       obscureText: null,

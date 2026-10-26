@@ -136,6 +136,7 @@ abstract class GdsTopNavigation {
     Key? key,
     required VoidCallback onBack,
     String? placeholder,
+    String? text,
     String? initialText,
     ValueChanged<String>? onSubmitted,
     VoidCallback? onComplete,
@@ -156,6 +157,7 @@ abstract class GdsTopNavigation {
             child: GdsTextField.search(
               size: .md,
               placeholder: placeholder,
+              text: text,
               initialText: initialText,
               onChanged: onChanged,
               onComplete: onComplete,
