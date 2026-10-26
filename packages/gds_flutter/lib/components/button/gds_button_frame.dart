@@ -2,6 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/components/button/gds_button_decoration.dart';
 import 'package:gds_flutter/components/button/gds_button_style.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:gds_flutter/src/future_or_callback.dart';
+import 'package:pervice/pervice.dart';
 
 /// 상태와 크기에 맞는 스타일 및 배치를 적용하는 버튼의 기본 프레임.
 class GdsButtonFrame extends StatelessWidget {
@@ -11,7 +13,7 @@ class GdsButtonFrame extends StatelessWidget {
     required this.disabledStyle,
     required this.loadingStyle,
     required this.decoration,
-    required this.status,
+    required this.enabled,
     required this.onTap,
     required this.label,
     required this.mainAxisSize,
@@ -23,8 +25,8 @@ class GdsButtonFrame extends StatelessWidget {
   final GdsButtonStyle disabledStyle;
   final GdsButtonStyle loadingStyle;
   final GdsButtonDecoration decoration;
-  final GdsButtonStatus status;
-  final VoidCallback? onTap;
+  final bool enabled;
+  final FutureOrCallback? onTap;
   final String? label;
   final MainAxisSize? mainAxisSize;
   final GdsIcon? leadingIcon;
@@ -39,13 +41,6 @@ class GdsButtonFrame extends StatelessWidget {
     return .textOnly;
   }
 
-  /// 현재 [status]에 해당하는 버튼 스타일.
-  GdsButtonStyle get style => switch (status) {
-    .enabled => enabledStyle,
-    .disabled => disabledStyle,
-    .loading => loadingStyle,
-  };
-
   /// 현재 아이콘의 크기.
   double get iconSize => decoration.iconSize;
 
@@ -57,15 +52,18 @@ class GdsButtonFrame extends StatelessWidget {
     assert(label != null || leadingIcon != null || trailingIcon != null);
     assert(leadingIcon == null || trailingIcon == null);
 
-    final style = this.style;
+    // 비동기 콜백 실행 중 로딩 상태 관리.
+    final loading = context.stateOf(() => false);
+
+    final style = loading.value ? loadingStyle : (enabled ? enabledStyle : disabledStyle);
     final borderColor = style.borderColor ?? .transparent;
     final textColor = style.textColor ?? .transparent;
     final iconColor = style.iconColor ?? .transparent;
 
     return IgnorePointer(
-      ignoring: status != .enabled,
+      ignoring: enabled,
       child: GdsGesture(
-        onTap: onTap,
+        onTap: onTap == null ? null : () => onTap!.run(loading),
         child: GdsContainer(
           animation: .fast,
           padding: decoration.of(type),
@@ -110,8 +108,8 @@ class GdsButtonFrame extends StatelessWidget {
               Positioned.fill(
                 child: Center(
                   child: GdsTransition.crossFade(
-                    value: status == .loading,
-                    child: status == .loading ? GdsCircularLoading(size: iconSize) : SizedBox.shrink(),
+                    value: loading.value,
+                    child: loading.value ? GdsCircularLoading(size: iconSize) : SizedBox.shrink(),
                   ),
                 ),
               ),

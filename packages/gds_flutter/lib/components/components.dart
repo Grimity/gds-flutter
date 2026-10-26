@@ -15,7 +15,6 @@ export 'base/gds_refresh_loading.dart';
 // Button
 export 'button/gds_button.dart';
 export 'button/gds_button_action.dart';
-export 'button/gds_button_status.dart';
 export 'button/gds_icon_button_type.dart';
 export 'button/gds_text_button_type.dart';
 

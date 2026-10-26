@@ -16,10 +16,9 @@ class GdsTextButtonPreview extends PreviewWidget {
     values: GdsTextButtonVariant.values,
   );
 
-  final statusControl = PreviewControl.select<GdsButtonStatus>(
-    defaultValue: .enabled,
-    displayName: 'Status',
-    values: GdsButtonStatus.values,
+  final enabledControl = PreviewControl.boolean(
+    defaultValue: true,
+    displayName: 'Enabled',
   );
 
   final labelControl = PreviewControl.string(
@@ -53,7 +52,7 @@ class GdsTextButtonPreview extends PreviewWidget {
   Widget build(BuildContext context) {
     final type = typeControl.of(context);
     final variant = variantControl.of(context);
-    final status = statusControl.of(context);
+    final enabled = enabledControl.of(context);
     final label = labelControl.of(context);
     final size = sizeControl.of(context);
     final leadingIcon = leadingIconControl.of(context);
@@ -63,7 +62,7 @@ class GdsTextButtonPreview extends PreviewWidget {
       onTap: () => debugPrint('onTap() called'),
       type: type.value,
       variant: type.value.supportsVariant ? variant.value : null,
-      status: status.value,
+      enabled: enabled.value,
       label: label.value,
       size: size.value,
       leadingIcon: leadingIcon.mayBeValue,

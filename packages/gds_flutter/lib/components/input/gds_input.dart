@@ -127,7 +127,7 @@ abstract class GdsInput {
                   layerLink: button.layerLink,
                   onTap: button.onTap,
                   label: button.label,
-                  status: button.status,
+                  enabled: button.enabled,
                 ),
               ],
             ),

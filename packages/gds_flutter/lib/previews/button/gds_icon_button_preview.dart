@@ -16,10 +16,9 @@ class GdsIconButtonPreview extends PreviewWidget {
     values: GdsIconButtonType.values,
   );
 
-  final statusControl = PreviewControl.select<GdsButtonStatus>(
-    defaultValue: .enabled,
-    displayName: 'Status',
-    values: GdsButtonStatus.values,
+  final enabledControl = PreviewControl.boolean(
+    defaultValue: true,
+    displayName: 'Enabled',
   );
 
   @override
@@ -32,13 +31,13 @@ class GdsIconButtonPreview extends PreviewWidget {
   Widget build(BuildContext context) {
     final icon = iconControl.of(context);
     final type = typeControl.of(context);
-    final status = statusControl.of(context);
+    final enabled = enabledControl.of(context);
 
     return GdsButton.icon(
       onTap: () => debugPrint('onTap() called'),
       icon: icon.value,
       type: type.value,
-      status: status.value,
+      enabled: enabled.value,
     );
   }
 }

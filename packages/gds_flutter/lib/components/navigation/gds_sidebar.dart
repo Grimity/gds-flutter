@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:gds_flutter/gds_flutter.dart';
-import 'package:pervice/pervice.dart';
 
 /// 프로필, 팔로우 정보, 탭 목록과 서비스 정보를 표시하는 사이드바 위젯.
 @GdsSupportedSizes([.lg, .md])
@@ -115,20 +114,13 @@ class GdsSidebar extends StatelessWidget {
               spacing: 12,
               children: [
                 // 로그아웃 버튼 표시
-                Builder(
-                  builder: (context) {
-                    final loading = context.stateOf(() => false);
-
-                    return GdsButton.text(
-                      type: .borderless,
-                      size: .sm,
-                      variant: .assistive,
-                      status: .from(loading: loading.value),
-                      onTap: () => loading.run(onSignOut),
-                      label: '로그아웃',
-                      trailingIcon: .out,
-                    );
-                  },
+                GdsButton.text(
+                  type: .borderless,
+                  size: .sm,
+                  variant: .assistive,
+                  onTap: onSignOut,
+                  label: '로그아웃',
+                  trailingIcon: .out,
                 ),
 
                 Column(

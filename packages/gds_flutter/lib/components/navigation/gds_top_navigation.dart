@@ -264,7 +264,7 @@ abstract class GdsTopNavigation {
             size: .lg,
             label: action.label,
             onTap: action.onTap,
-            status: action.status,
+            enabled: action.enabled,
           ),
         ],
       ),

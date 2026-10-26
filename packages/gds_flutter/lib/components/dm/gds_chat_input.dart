@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:gds_flutter/src/future_or_callback.dart';
 
 /// 채팅 메시지 입력 필드와 답글 미리보기, 전송 버튼을 표시하는 위젯.
 class GdsChatInput extends StatelessWidget {
@@ -14,7 +15,7 @@ class GdsChatInput extends StatelessWidget {
   final bool enabled;
   final GdsChatInputReply? reply;
   final VoidCallback onCameraTap;
-  final VoidCallback onSubmit;
+  final FutureOrCallback onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,7 @@ class GdsChatInput extends StatelessWidget {
                 size: .md,
                 onTap: onSubmit,
                 label: '전송',
-                status: .from(enabled: enabled),
+                enabled: enabled,
               ),
             ],
           ),

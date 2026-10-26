@@ -1,12 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:gds_flutter/src/future_or_callback.dart';
 
 /// 버튼에 대한 라벨과 동작을 정의하는 인터페이스.
 class GdsTextButtonAction {
   const new({
     required this.label,
     required this.onTap,
-    this.status = .enabled,
+    this.enabled = true,
     this.layerLink,
     this._type,
     this._variant,
@@ -26,8 +27,8 @@ class GdsTextButtonAction {
   }
 
   final String label;
-  final VoidCallback onTap;
-  final GdsButtonStatus status;
+  final FutureOrCallback onTap;
+  final bool enabled;
   final LayerLink? layerLink;
   final GdsTextButtonType? _type;
   final GdsTextButtonVariant? _variant;
@@ -48,14 +49,14 @@ class GdsIconButtonAction {
   const new({
     required this.icon,
     required this.onTap,
-    this.status = .enabled,
+    this.enabled = true,
     this.layerLink,
     this._type,
   });
 
   final GdsIcon icon;
-  final VoidCallback onTap;
-  final GdsButtonStatus status;
+  final FutureOrCallback onTap;
+  final bool enabled;
   final LayerLink? layerLink;
   final GdsIconButtonType? _type;
 
