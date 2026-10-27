@@ -68,4 +68,32 @@ extension GdsServiceExtension<T> on Service<T> {
       ),
     );
   }
+
+  /// 주로 페이지 로드에 사용하며, 로딩 중에는 인디케이터를,
+  /// 실패 시에는 오류 상태를, 완료 시에는 본문을 표시합니다.
+  Widget page({
+    Widget? Function(Object error, StackTrace stackTrace)? failed,
+    required Widget Function(T data) loaded,
+  }) {
+    return when(
+      failed: (error, stackTrace) {
+        final child = failed?.call(error, stackTrace);
+        if (child != null) {
+          return child;
+        }
+
+        return GdsErrorState(
+          retry: refresh,
+          error: error,
+          stackTrace: stackTrace,
+        );
+      },
+      loading: () {
+        return const Center(
+          child: GdsCircularLoading(),
+        );
+      },
+      loaded: loaded,
+    );
+  }
 }
