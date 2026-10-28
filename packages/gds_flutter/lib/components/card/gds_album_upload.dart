@@ -67,6 +67,7 @@ abstract class GdsAlbumUpload {
     required VoidCallback onRemove,
   }) {
     return GdsGesture(
+      useEffect: false,
       onTap: onTap,
       child: SizedBox(
         key: key,
