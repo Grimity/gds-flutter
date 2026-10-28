@@ -80,4 +80,12 @@ class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
 
     return uri.replace(queryParameters: query).toString();
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) || other is ResponsiveImage && other.url == url && other.cacheKey == cacheKey;
+  }
+
+  @override
+  int get hashCode => Object.hash(url, cacheKey);
 }
