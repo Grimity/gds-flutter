@@ -437,10 +437,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_touch_scale
-      sha256: f71bfe3738482b72c8108d4acefcac2270b4c51e0742cd02228fe0ad04156d77
+      sha256: "7e423e20db442c94a6a3fe51cafff0ce2d10fa5a45efd80df39bc8fd9617ab3c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.6.1"
+    version: "1.6.2"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

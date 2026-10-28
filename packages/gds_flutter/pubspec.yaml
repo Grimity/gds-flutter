@@ -11,7 +11,7 @@ dependencies:
   animations: ^3.0.0
   collection: ^1.19.1
   flutter_svg: ^2.3.0
-  flutter_touch_scale: ^1.6.1
+  flutter_touch_scale: ^1.6.2
   flutter_design_preview:
     git:
       url: https://github.com/MTtankkeo/vscode-flutter-design-preview.git
