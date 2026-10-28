@@ -53,6 +53,11 @@ class GdsImage extends StatelessWidget {
           );
         }
 
+        // 드래그 등으로 표시 영역이 사라진 경우 이미지 요청 생략.
+        if (size.isEmpty) {
+          return SizedBox(width: w, height: h);
+        }
+
         // 이미지 캐시 재사용을 위해 크기를 100픽셀 단위로 올림.
         final cacheWidth = (size.width / 100).ceil() * 100;
         final cacheHeight = (size.height / 100).ceil() * 100;
