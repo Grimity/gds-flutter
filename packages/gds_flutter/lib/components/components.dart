@@ -66,6 +66,7 @@ export 'common/template/gds_adaptive_menu.dart';
 export 'common/template/gds_adaptive_modal.dart';
 export 'common/template/gds_adaptive_page.dart';
 export 'common/template/gds_adaptive_select.dart';
+export 'common/template/gds_adaptive_widget.dart';
 
 // Control
 export 'control/gds_check_box.dart';
