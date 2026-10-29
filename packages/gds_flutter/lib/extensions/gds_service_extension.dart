@@ -13,7 +13,7 @@ extension GdsServiceExtension<T> on Service<T> {
     required Widget Function(T data) builder,
   }) {
     return GdsTransition.crossFade(
-      value: status,
+      value: hasError,
       child: Builder(
         builder: (context) {
           if (hasError) {
@@ -44,7 +44,7 @@ extension GdsServiceExtension<T> on Service<T> {
     required Widget Function(T data) builder,
   }) {
     return GdsSliverTransition.crossFade(
-      value: status,
+      value: hasError,
       child: Builder(
         builder: (context) {
           if (hasError) {
