@@ -237,8 +237,8 @@ abstract class GdsUserItem {
   static Widget link({
     Key? key,
     required String name,
-    required String? link,
     required GdsIcon icon,
+    String? link,
     VoidCallback? onTap,
   }) {
     final hasLink = link != null;
@@ -249,6 +249,7 @@ abstract class GdsUserItem {
       child: Padding(
         padding: hasLink ? 8.vertical : 4.vertical,
         child: Row(
+          mainAxisSize: hasLink ? .max : .min,
           spacing: hasLink ? 12 : 4,
           children: [
             icon.build(
