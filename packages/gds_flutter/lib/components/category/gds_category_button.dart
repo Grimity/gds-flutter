@@ -38,15 +38,23 @@ class GdsCategoryButton extends StatelessWidget {
             GdsText(
               item.label,
               color: selected ? .textWhite : .textGrayBold,
-              style: size.when(lg: .label1, md: .label3),
+              style: size.when(
+                lg: .label1,
+                md: .label3,
+              ),
             ),
 
             // 숫자 표시
-            GdsText(
-              item.count.toString(),
-              color: selected ? .textWhite : .textGrayBold,
-              style: size.when(lg: .label1, md: .label3),
-            ),
+            if (item.count != null) ...[
+              GdsText(
+                item.count.toString(),
+                color: selected ? .textWhite : .textGrayBold,
+                style: size.when(
+                  lg: .label1,
+                  md: .label3,
+                ),
+              ),
+            ],
           ],
         ),
       ),
