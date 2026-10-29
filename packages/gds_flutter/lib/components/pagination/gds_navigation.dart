@@ -7,7 +7,7 @@ class GdsNavigation extends StatelessWidget {
     super.key,
     required this.index,
     required this.pageCount,
-    required this.maxCount,
+    required this.visibleCount,
     required this.onChanged,
   });
 
@@ -18,7 +18,7 @@ class GdsNavigation extends StatelessWidget {
   final int pageCount;
 
   /// 한 번에 표시할 최대 페이지 버튼 수.
-  final int maxCount;
+  final int visibleCount;
 
   /// 변경된 인덱스를 전달하는 콜백.
   final ValueChanged<int> onChanged;
@@ -27,32 +27,32 @@ class GdsNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     assert(index >= 0, 'index는 0 이상이어야 합니다.');
     assert(pageCount > 0, 'pageCount는 0보다 커야 합니다.');
-    assert(maxCount > 0, 'maxCount는 0보다 커야 합니다.');
+    assert(visibleCount > 0, 'visibleCount는 0보다 커야 합니다.');
     assert(index < pageCount && index < pageCount);
 
-    final int half = maxCount ~/ 2;
+    final int half = visibleCount ~/ 2;
     int startPage = index - half;
-    int endPage = startPage + maxCount - 1;
+    int endPage = startPage + visibleCount - 1;
 
     // 좌측 경계를 벗어난 경우.
     if (startPage < 0) {
       startPage = 0;
-      endPage = maxCount - 1;
+      endPage = visibleCount - 1;
     }
 
     // 우측 경계를 벗어난 경우.
     if (endPage >= pageCount) {
       endPage = pageCount - 1;
-      startPage = (endPage - maxCount + 1).clamp(0, pageCount - 1);
+      startPage = (endPage - visibleCount + 1).clamp(0, pageCount - 1);
     }
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       spacing: 4,
       children: [
         // 이전 페이지 버튼 표시
         _IconButton(
-          icon: GdsIcon.chevronLeft,
+          icon: .chevronLeft,
           onTap: index > 0 ? () => onChanged(index - 1) : null,
           active: index > 0,
         ),
@@ -68,7 +68,7 @@ class GdsNavigation extends StatelessWidget {
 
         // 다음 페이지 버튼 표시
         _IconButton(
-          icon: GdsIcon.chevronRight,
+          icon: .chevronRight,
           onTap: index < pageCount - 1 ? () => onChanged(index + 1) : null,
           active: index < pageCount - 1,
         ),

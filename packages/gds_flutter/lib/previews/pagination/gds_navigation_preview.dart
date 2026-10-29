@@ -18,7 +18,7 @@ class GdsNavigationPreview extends PreviewWidget {
     maxValue: 99,
   );
 
-  final maxCountControl = PreviewControl.integer(
+  final visibleCountControl = PreviewControl.integer(
     defaultValue: 5,
     displayName: 'Max Count',
     minValue: 1,
@@ -35,13 +35,13 @@ class GdsNavigationPreview extends PreviewWidget {
   Widget build(BuildContext context) {
     final index = indexControl.of(context);
     final pageCount = pageCountControl.of(context);
-    final maxCount = maxCountControl.of(context);
+    final visibleCount = visibleCountControl.of(context);
     final currentIndex = index.value.clamp(0, pageCount.value - 1).toInt();
 
     return GdsNavigation(
       index: currentIndex,
       pageCount: pageCount.value,
-      maxCount: maxCount.value,
+      visibleCount: visibleCount.value,
       onChanged: (newIndex) => index.value = newIndex,
     );
   }
