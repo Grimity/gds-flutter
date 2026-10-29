@@ -7,6 +7,8 @@ class GdsTextButtonAction {
   const new({
     required this.label,
     required this.onTap,
+    this.leadingIcon,
+    this.trailingIcon,
     this.enabled = true,
     this.layerLink,
     this._type,
@@ -28,6 +30,8 @@ class GdsTextButtonAction {
 
   final String label;
   final FutureOrCallback onTap;
+  final GdsIcon? leadingIcon;
+  final GdsIcon? trailingIcon;
   final bool enabled;
   final LayerLink? layerLink;
   final GdsTextButtonType? _type;
