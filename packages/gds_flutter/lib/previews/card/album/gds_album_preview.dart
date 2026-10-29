@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_design_preview/flutter_design_preview.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:gds_flutter/previews/preview.dart';
+import 'package:pervice/pervice.dart';
 
 /// [GdsAlbum]에 대한 프리뷰 위젯.
 class GdsAlbumPreview extends PreviewWidget {

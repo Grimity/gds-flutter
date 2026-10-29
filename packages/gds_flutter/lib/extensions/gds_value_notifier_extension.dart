@@ -7,7 +7,4 @@ extension GdsValueNotifierExtension<T> on ValueNotifier {
     assert(value is bool);
     return value = !value;
   }
-
-  /// 주어진 값으로 해당 값을 정의합니다.
-  void setter(T newValue) => value = newValue;
 }

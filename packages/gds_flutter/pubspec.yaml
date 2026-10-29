@@ -24,7 +24,7 @@ dependencies:
   flutter_refresh_indicator: ^1.4.0
   flutter_infinite_scroll_pagination: ^1.3.0
   skeletonizer: ^3.0.0
-  pervice: ^1.5.1
+  pervice: ^1.5.2
   transparent_image: ^2.0.1
   cached_network_image: ^4.0.5
   intl: ^0.20.3
