@@ -38,8 +38,15 @@ abstract class GdsListItem {
   }) {
     assert(status != .negative);
 
-    const enabled = GdsCellStyle(textColor: .textGrayBold, iconColor: .iconGrayBold);
-    const disabled = GdsCellStyle(textColor: .textGraySubtler, iconColor: .iconGraySubtler);
+    const enabled = GdsCellStyle(
+      textColor: .textGrayBold,
+      iconColor: .iconGrayBold,
+    );
+
+    const disabled = GdsCellStyle(
+      textColor: .textGraySubtler,
+      iconColor: .iconGraySubtler,
+    );
 
     return GdsCellFrame(
       key: key,
@@ -49,7 +56,9 @@ abstract class GdsListItem {
       onTap: onTap,
       enabledStyle: enabled,
       disabledStyle: disabled,
-      selectedStyle: enabled.copyWith(backgroundColor: .surfaceGraySubtlest),
+      selectedStyle: enabled.copyWith(
+        backgroundColor: .surfaceGraySubtlest,
+      ),
       padding: 16.all,
       trailingWidget: Row(
         mainAxisSize: .min,
@@ -93,7 +102,12 @@ abstract class GdsListItem {
       border: .all(color: .borderGraySubtler),
     );
 
-    final GdsColor iconColor = status == .disabled ? .iconGraySubtler : .iconGrayBold;
+    final GdsColor iconColor = switch (status) {
+      .enabled => .iconGrayBold,
+      .disabled => .iconGraySubtler,
+      .selected => .iconPrimaryNormal,
+      _ => throw UnimplementedError(),
+    };
 
     return GdsCellFrame(
       key: key,
@@ -105,6 +119,7 @@ abstract class GdsListItem {
       disabledStyle: disabled,
       selectedStyle: enabled.copyWith(
         backgroundColor: .surfacePrimarySubtlest,
+        textColor: .textPrimaryNormal,
         border: .all(color: .borderPrimaryNormal),
       ),
       radius: .sm,
@@ -112,6 +127,10 @@ abstract class GdsListItem {
       leadingWidget: icon?.build(
         size: 20,
         color: icon.type == .semantic ? iconColor : null,
+      ),
+      trailingWidget: GdsIcon.check.build(
+        size: 24,
+        color: status == .selected ? iconColor : .transparent,
       ),
     );
   }
@@ -131,7 +150,12 @@ abstract class GdsListItem {
       iconColor: .iconGrayNormal,
     );
 
-    final GdsColor iconColor = status == .disabled ? .iconGraySubtler : .iconGrayNormal;
+    final GdsColor iconColor = switch (status) {
+      .enabled => .iconGrayNormal,
+      .disabled => .iconGraySubtler,
+      .selected => .iconGrayBold,
+      _ => throw UnimplementedError(),
+    };
 
     return GdsCellFrame(
       key: key,
@@ -189,6 +213,10 @@ abstract class GdsListItem {
       padding: size.when(
         lg: .all(16),
         md: .symmetric(vertical: 8, horizontal: 16),
+      ),
+      trailingWidget: GdsIcon.check.build(
+        size: 24,
+        color: status == .selected ? .iconPrimaryNormal : .transparent,
       ),
     );
   }

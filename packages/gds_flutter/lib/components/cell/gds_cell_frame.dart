@@ -37,10 +37,10 @@ class GdsCellFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = switch (status) {
+      .enabled => enabledStyle,
       .disabled => disabledStyle,
       .negative => negativeStyle ?? enabledStyle,
       .selected => selectedStyle,
-      .enabled => enabledStyle,
     };
 
     return IgnorePointer(

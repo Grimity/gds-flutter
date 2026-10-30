@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
-/// 각각의 메뉴 항목의 라벨과 콜백을 정의하는 레코드.
-typedef GdsMenuItem = ({
-  String label,
-  VoidCallback onTap,
+/// 각각의 메뉴 항목의 라벨과 콜백, 상태를 정의하는 인터페이스.
+class GdsMenuItem({
+  required final String label,
+  required final VoidCallback onTap,
+  final GdsCellStatus status = .enabled,
 });
 
 /// 내비게이션 활성화 시 하위 메뉴 목록을 보여주는 드롭다운 위젯입니다.
@@ -48,6 +49,7 @@ class GdsMenu extends StatelessWidget {
                 size: .md,
                 label: item.label,
                 onTap: item.onTap,
+                status: item.status,
               ),
           ],
         ],

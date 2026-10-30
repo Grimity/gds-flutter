@@ -23,6 +23,12 @@ class GdsMenuPreview extends PreviewWidget {
     maxValue: 3,
   );
 
+  final statusControl = PreviewControl.select<GdsCellStatus>(
+    defaultValue: .enabled,
+    displayName: 'Status',
+    values: GdsCellStatus.values,
+  );
+
   @override
   String get displayName => 'Menu';
 
@@ -34,14 +40,16 @@ class GdsMenuPreview extends PreviewWidget {
     final label = labelControl.of(context);
     final itemCount = itemCountControl.of(context);
     final groupCount = groupCountControl.of(context);
+    final status = statusControl.of(context);
 
     final menuGroups = List.generate(groupCount.value, (groupIndex) {
       return List.generate(itemCount.value, (itemIndex) {
         final index = groupIndex * itemCount.value + itemIndex;
 
-        return (
+        return GdsMenuItem(
           label: '${label.value} ${index + 1}',
           onTap: () => debugPrint('GdsMenu.onTap() called with index: $index'),
+          status: status.value,
         );
       });
     });

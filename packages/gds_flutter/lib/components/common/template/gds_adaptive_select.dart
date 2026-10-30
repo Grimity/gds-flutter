@@ -1,6 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
+/// 각각의 선택 메뉴 항목의 라벨과 콜백을 정의하는 레코드.
+typedef GdsSelectItem = ({
+  String label,
+  VoidCallback onTap,
+});
+
 /// 모바일에서는 바텀 시트, 태블릿에서는 팝오버로 선택 항목을 표시하는 위젯.
 class GdsAdaptiveSelect extends StatelessWidget {
   const new({
@@ -12,7 +18,7 @@ class GdsAdaptiveSelect extends StatelessWidget {
 
   final String title;
   final int index;
-  final List<GdsMenuItem> items;
+  final List<GdsSelectItem> items;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +63,19 @@ class GdsAdaptiveSelect extends StatelessWidget {
       context,
       layerLink: layerLink,
       position: position,
-      builder: (context) => GdsMenu(items: builder(context).items),
+      builder: (context) {
+        final widget = builder(context);
+
+        return GdsMenu(
+          items: widget.items.indexedBuilder((index, item) {
+            return .new(
+              label: item.label,
+              onTap: item.onTap,
+              status: .from(selected: widget.index == index),
+            );
+          }),
+        );
+      },
     );
   }
 }
