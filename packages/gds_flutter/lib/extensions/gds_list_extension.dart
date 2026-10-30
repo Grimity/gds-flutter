@@ -13,9 +13,20 @@ extension GdsListExtension<T> on List<T> {
   List<R> indexedBuilder<R>(R Function(int index, T value) builder) {
     return mapIndexed(builder).toList();
   }
+}
 
+/// 디자인 시스템에서 제공하는 [String] 목록에 대한 유틸리티 확장.
+extension GdsStringListExtension on List<String> {
   /// 이미지 URL 목록을 [ImageProvider] 목록으로 변환합니다.
   List<ImageProvider> toImages() {
-    return builder((e) => (e as String).toImage());
+    return builder((e) => e.toImage());
+  }
+}
+
+/// 디자인 시스템에서 제공하는 [Widget] 목록에 대한 유틸리티 확장.
+extension GdsWidgetListExtensionon on List<Widget> {
+  /// 각 위젯을 상태가 유지되도록 [KeepAliveWrapper]로 감싸 반환합니다.
+  List<Widget> get keepAliveWrappers {
+    return builder((view) => KeepAliveWrapper(child: view));
   }
 }
