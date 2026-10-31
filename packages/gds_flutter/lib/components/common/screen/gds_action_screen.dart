@@ -19,6 +19,9 @@ abstract class GdsActionScreen {
   /// 페이지의 앱바 또는 모달의 헤더에 표시할 제목.
   String get title;
 
+  /// 본문 스크롤에 적용할 여백.
+  EdgeInsets? get padding => null;
+
   /// 화면에 표시할 본문과 액션 버튼을 구성합니다.
   GdsActionContent build(BuildContext context);
 
@@ -36,7 +39,7 @@ abstract class GdsActionScreen {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: .all(16),
+              padding: padding ?? .all(16),
               child: content.child,
             ),
           ),
@@ -87,10 +90,11 @@ abstract class GdsActionScreen {
     final content = build(context);
 
     return .new(
+      title: title,
       onBack: context.pop,
       primaryButton: content.primaryButton,
       secondaryButton: content.secondaryButton,
-      title: title,
+      padding: padding ?? GdsModal.defaultPadding,
       child: content.child,
     );
   }
