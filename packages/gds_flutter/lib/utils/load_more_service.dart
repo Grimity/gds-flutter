@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:pervice/pervice.dart';
 
 /// 커서에 해당하는 페이지를 요청하는 서비스를 생성하는 빌더.

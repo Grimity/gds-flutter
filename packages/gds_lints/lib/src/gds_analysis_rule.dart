@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:analyzer/analysis_rule/analysis_rule.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/constant/value.dart';

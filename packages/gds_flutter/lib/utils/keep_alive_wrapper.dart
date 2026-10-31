@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:flutter/widgets.dart';
 
 /// 스크롤 영역에서 자식이 화면 밖으로 나가도 상태를 유지하도록 하는 래퍼 위젯.

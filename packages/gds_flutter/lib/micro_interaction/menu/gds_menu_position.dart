@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:flutter/widgets.dart';
 
 /// 기준 위젯 아래에 표시할 메뉴의 가로 정렬 방식을 나타내는 열거형.

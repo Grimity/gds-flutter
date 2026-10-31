@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 // Prefer
 export 'prefer/prefer_concise_constructor_rule.dart';
 export 'prefer/prefer_gds_button_rule.dart';

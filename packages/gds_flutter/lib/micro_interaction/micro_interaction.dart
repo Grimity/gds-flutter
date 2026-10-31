@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 // Artwork Collage
 export 'artwork_collage/gds_artwork_collage_scroll.dart';
 export 'artwork_collage/gds_artwork_collage.dart';

@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 /// 썸네일 이미지의 가로 세로 비율을 나타내는 열거형.
 enum GdsThumbnailRatio {
   square(1, 1), // 1:1

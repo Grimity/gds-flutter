@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 /// 입력 필드의 표시 상태를 나타내는 열거형.
 /// filled, focused, mention 상태는 내부에서 제어하므로 의도적으로 제외.
 enum GdsInputStatus {

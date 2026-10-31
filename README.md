@@ -29,3 +29,9 @@ plugins:
 ## 프리뷰 기능
 
 해당 프로젝트는 IDE 내에서 쉽게 위젯을 개발하고 디버깅하기 위해 VSCode용 [vscode-flutter-design-preview](https://github.com/MTtankkeo/vscode-flutter-design-preview)를 사용합니다.
+
+## License
+
+Grimity is source-available under the Grimity Source-Available License v1.0.
+
+This project is not Open Source as defined by the Open Source Initiative.

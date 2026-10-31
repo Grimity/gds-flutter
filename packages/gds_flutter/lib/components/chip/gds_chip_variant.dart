@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 칩의 시각적 스타일을 나타내는 열거형.

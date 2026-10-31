@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:analyzer/dart/element/element.dart';
 
 /// 이름과 선언된 패키지를 기준으로 Dart 타입을 식별하는 객체.

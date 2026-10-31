@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 /// 디자인 시스템 내 인터랙티브 컴포넌트(버튼, 입력창 등)에서 사용하는 고정 크기.
 enum GdsControlSize {
   none(null),

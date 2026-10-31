@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 에디터에서 사용할 수 있는 글자색을 나타내는 열거형.

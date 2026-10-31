@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 export 'gds_animation.dart';
 export 'gds_atomic_color.dart';
 export 'gds_border.dart';

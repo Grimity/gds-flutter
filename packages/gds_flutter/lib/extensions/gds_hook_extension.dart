@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:flutter/material.dart';
 import 'package:flutter_nested_scroll/flutter_nested_scroll.dart';
 import 'package:flutter_quill/flutter_quill.dart';

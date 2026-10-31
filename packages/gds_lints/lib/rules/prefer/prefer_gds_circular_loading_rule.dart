@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:gds_lints/rules/prefer/prefer_gds_widget_rule.dart';
 import 'package:gds_lints/src/widget_replacement.dart';
 import 'package:gds_lints/src/widget_type_reference.dart';

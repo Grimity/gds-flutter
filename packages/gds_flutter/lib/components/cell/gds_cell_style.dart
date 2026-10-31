@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 셀의 상태별 색상과 테두리 스타일을 정의하는 인터페이스.

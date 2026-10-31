@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:intl/intl.dart';
 
 /// 디자인 시스템에서 제공하는 [DateTime]에 대한 유틸리티 확장.
