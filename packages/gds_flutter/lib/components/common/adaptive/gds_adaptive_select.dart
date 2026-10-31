@@ -21,7 +21,7 @@ class GdsAdaptiveSelect extends StatelessWidget {
   });
 
   final String title;
-  final int? index;
+  final int index;
   final List<GdsSelectItem> items;
 
   @override
