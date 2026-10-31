@@ -15,6 +15,7 @@ class GdsModal extends StatelessWidget {
     this.iconAction,
     this.primaryButton,
     this.secondaryButton,
+    this.padding = defaultPadding,
     required this.child,
   });
 
@@ -23,7 +24,11 @@ class GdsModal extends StatelessWidget {
   final GdsIconButtonAction? iconAction;
   final GdsTextButtonAction? primaryButton;
   final GdsTextButtonAction? secondaryButton;
+  final EdgeInsets? padding;
   final Widget child;
+
+  /// 모달에 기본으로 적용할 여백.
+  static const defaultPadding = EdgeInsets.only(top: 8, bottom: 20, left: 20, right: 20);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,7 @@ class GdsModal extends StatelessWidget {
           // 헤더 내용 표시
           Flexible(
             child: SingleChildScrollView(
-              padding: .only(top: 8, bottom: 20, left: 20, right: 20),
+              padding: padding,
               child: child,
             ),
           ),
