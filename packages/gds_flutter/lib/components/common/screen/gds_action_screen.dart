@@ -6,21 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 적응형 화면에 표시할 본문과 액션 버튼을 정의하는 구성.
-class GdsPageContent({
+class GdsActionContent({
   final GdsTextButtonAction? primaryButton,
   final GdsTextButtonAction? secondaryButton,
   required final Widget child,
 });
 
-/// 모바일에서는 페이지, 태블릿에서는 모달로 표시할 화면.
-abstract class GdsAdaptivePage {
+/// 본문과 하단 액션 버튼을 모바일에서는 페이지, 태블릿에서는 모달로 표시하는 화면.
+abstract class GdsActionScreen {
   const new();
 
   /// 페이지의 앱바 또는 모달의 헤더에 표시할 제목.
   String get title;
 
   /// 화면에 표시할 본문과 액션 버튼을 구성합니다.
-  GdsPageContent build(BuildContext context);
+  GdsActionContent build(BuildContext context);
 
   /// 제목, 본문과 하단 액션 버튼을 갖춘 페이지를 구성합니다.
   Widget buildPage(BuildContext context) {
