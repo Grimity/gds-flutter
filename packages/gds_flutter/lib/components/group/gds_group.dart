@@ -19,6 +19,7 @@ class GdsGroup extends StatelessWidget {
   const new({
     super.key,
     this.status = .enabled,
+    this.initialText,
     this.placeholder,
     this.onSubmitted,
     this.onComplete,
@@ -28,6 +29,7 @@ class GdsGroup extends StatelessWidget {
   final GdsGroupStatus status;
 
   // GdsInputFrame
+  final String? initialText;
   final String? placeholder;
   final ValueChanged<String>? onSubmitted;
   final VoidCallback? onComplete;
@@ -49,7 +51,7 @@ class GdsGroup extends StatelessWidget {
     }.contains(status);
 
     // 입력 필드 우측에 표시할 아이콘 유형.
-    final leadingIcon = isDelete ? GdsIcon.minusCircleFill : GdsIcon.hamburgerFill;
+    final GdsIcon leadingIcon = isDelete ? .minusCircleFill : .hamburgerFill;
 
     return Row(
       spacing: 8,
@@ -58,6 +60,7 @@ class GdsGroup extends StatelessWidget {
         Expanded(
           child: GdsTextField.normal(
             size: .md,
+            initialText: initialText,
             placeholder: placeholder,
             leadingIcon: showLeadingIcon ? .penFill : null,
             status: .from(enabled: status != .disabled),
