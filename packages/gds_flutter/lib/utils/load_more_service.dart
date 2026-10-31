@@ -35,6 +35,10 @@ class LoadMoreService<T> extends Service<List<T>> {
       throw StateError('이미 추가 페이지를 불러오는 중입니다.');
     }
 
+    if (!canLoreMore) {
+      throw StateError('현재 상태에서는 추가 페이지를 불러올 수 없습니다.');
+    }
+
     try {
       isLoadingMore = true;
       data.add(await _builder(_cursorOf(data.last)).request());

@@ -22,7 +22,7 @@ dependencies:
   flutter_appbar: ^1.10.0
   flutter_scroll_bottom_sheet: ^1.3.1
   flutter_refresh_indicator: ^1.4.0
-  flutter_infinite_scroll_pagination: ^1.3.0
+  flutter_infinite_scroll_pagination: ^1.3.1
   skeletonizer: ^3.0.0
   pervice: ^1.5.2
   transparent_image: ^2.0.1
