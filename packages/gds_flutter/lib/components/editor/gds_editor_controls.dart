@@ -106,18 +106,18 @@ class GdsEditorControls extends StatelessWidget {
         }
 
         return GdsEditorControls(
-          status: status.value,
+          status: status(),
           toolbar: .new(
             bold: item(.bold),
             italic: item(.italic),
             underline: item(.underline),
             strikethrough: item(.strikeThrough),
-            onChanged: (value) => status.value = status.value == value ? .none : value,
+            onChanged: (value) => status.set(status() == value ? .none : value),
             onUndo: controller.undo,
             onRedo: controller.redo,
             onClose: () {
               // 옵션 패널과 키보드 닫기.
-              status.value = .none;
+              status.set(.none);
               FocusManager.instance.primaryFocus?.unfocus();
             },
           ),
@@ -149,7 +149,7 @@ class GdsEditorControls extends StatelessWidget {
                 selection = controller.selection;
               }
 
-              status.value = .none;
+              status.set(.none);
             },
             onAddLink: () async {
               // 링크 입력 전 선택한 텍스트 범위 유지.
@@ -173,7 +173,7 @@ class GdsEditorControls extends StatelessWidget {
                 LinkAttribute(link.url),
               );
 
-              status.value = .none;
+              status.set(.none);
             },
             onFontStyleChanged: (value) {
               // 본문은 제목 서식을 제거하여 일반 문단으로 저장.
@@ -185,7 +185,7 @@ class GdsEditorControls extends StatelessWidget {
                 },
               );
 
-              status.value = .none;
+              status.set(.none);
             },
             onFontColorChanged: (value) {
               // 글자색을 적용하고 옵션 패널 닫기.
@@ -193,7 +193,7 @@ class GdsEditorControls extends StatelessWidget {
                 ColorAttribute(value.color.of(context).toHex()),
               );
 
-              status.value = .none;
+              status.set(.none);
             },
             onFontBgColorChanged: (value) {
               // 글자 배경색을 적용하고 옵션 패널 닫기.
@@ -201,7 +201,7 @@ class GdsEditorControls extends StatelessWidget {
                 BackgroundAttribute(value.color.of(context).toHex()),
               );
 
-              status.value = .none;
+              status.set(.none);
             },
           ),
         );

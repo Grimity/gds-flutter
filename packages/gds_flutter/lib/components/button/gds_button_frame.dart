@@ -59,13 +59,13 @@ class GdsButtonFrame extends StatelessWidget {
     // 비동기 콜백 실행 중 로딩 상태 관리.
     final loading = context.stateOf(() => false);
 
-    final style = loading.value ? loadingStyle : (enabled ? enabledStyle : disabledStyle);
+    final style = loading() ? loadingStyle : (enabled ? enabledStyle : disabledStyle);
     final borderColor = style.borderColor ?? .transparent;
     final textColor = style.textColor ?? .transparent;
     final iconColor = style.iconColor ?? .transparent;
 
     return IgnorePointer(
-      ignoring: !enabled || loading.value,
+      ignoring: !enabled || loading(),
       child: GdsGesture(
         onTap: onTap == null ? null : () => onTap!.run(loading),
         child: GdsContainer(
@@ -112,8 +112,8 @@ class GdsButtonFrame extends StatelessWidget {
               Positioned.fill(
                 child: Center(
                   child: GdsTransition.crossFade(
-                    value: loading.value,
-                    child: loading.value ? GdsCircularLoading(size: iconSize) : SizedBox.shrink(),
+                    value: loading(),
+                    child: loading() ? GdsCircularLoading(size: iconSize) : SizedBox.shrink(),
                   ),
                 ),
               ),

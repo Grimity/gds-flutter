@@ -27,7 +27,7 @@ class GdsFilter extends StatelessWidget {
     final open = context.stateOf(() => false);
 
     // 열려 있으면 위쪽, 닫혀 있으면 아래쪽 화살표 표시.
-    final GdsIcon chevronIcon = open.value ? .chevronUpThick : .chevronDownThick;
+    final GdsIcon chevronIcon = open() ? .chevronUpThick : .chevronDownThick;
 
     // 활성화 여부에 맞는 필터 스타일 적용.
     final style = enabled ? variant.enabled : variant.disabled;
@@ -61,7 +61,7 @@ class GdsFilter extends StatelessWidget {
 
               // 우측에 팝업의 열림 상태에 따른 화살표 표시.
               GdsTransition.fadeThrough(
-                value: open.value,
+                value: open(),
                 child: chevronIcon.build(
                   size: 16,
                   color: style.iconColor,

@@ -33,11 +33,11 @@ class GdsExpandableText extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         // 최초 레이아웃에서 최대 줄 수 초과 여부를 확인.
-        if (overflow.value == null) {
+        if (overflow() == null) {
           final painter = createTextPainter();
           painter.layout(maxWidth: constraints.maxWidth);
 
-          overflow.value = painter.didExceedMaxLines;
+          overflow.set(painter.didExceedMaxLines);
           painter.dispose();
         }
 
@@ -57,20 +57,20 @@ class GdsExpandableText extends StatelessWidget {
                   text,
                   color: color,
                   style: style,
-                  maxLines: expanded.value ? null : maxLines,
-                  overflow: expanded.value ? .visible : .ellipsis,
+                  maxLines: expanded() ? null : maxLines,
+                  overflow: expanded() ? .visible : .ellipsis,
                 ),
               ),
             ),
 
             // 더보기 혹은 축소 표시
-            if (overflow.value == true) ...[
+            if (overflow() == true) ...[
               GdsButton.text(
                 type: .borderless,
                 size: .sm,
                 variant: .primary,
                 onTap: expanded.toogle,
-                label: expanded.value ? '접기' : '더보기',
+                label: expanded() ? '접기' : '더보기',
               ),
             ],
           ],
