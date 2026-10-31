@@ -66,11 +66,11 @@ export 'common/gds_view_stack.dart';
 
 export 'common/inherited/gds_theme_scope.dart';
 
-export 'common/template/gds_adaptive_menu.dart';
-export 'common/template/gds_adaptive_modal.dart';
-export 'common/template/gds_adaptive_page.dart';
-export 'common/template/gds_adaptive_select.dart';
-export 'common/template/gds_adaptive_widget.dart';
+export 'common/adaptive/gds_adaptive_menu.dart';
+export 'common/adaptive/gds_adaptive_modal.dart';
+export 'common/adaptive/gds_adaptive_page.dart';
+export 'common/adaptive/gds_adaptive_select.dart';
+export 'common/adaptive/gds_adaptive_widget.dart';
 
 // Control
 export 'control/gds_check_box.dart';
