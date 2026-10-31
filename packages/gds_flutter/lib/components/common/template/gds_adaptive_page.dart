@@ -14,9 +14,7 @@ class GdsAdaptiveContent({
 
 /// 모바일에서는 페이지, 태블릿에서는 모달로 표시할 화면을 정의하는 위젯.
 abstract class GdsAdaptivePage {
-  const new({this.key});
-
-  final Key? key;
+  const new();
 
   /// 페이지의 앱바 또는 모달의 헤더에 표시할 제목.
   String get title;
@@ -25,7 +23,7 @@ abstract class GdsAdaptivePage {
   GdsAdaptiveContent build(BuildContext context);
 
   /// 제목, 본문과 하단 액션 버튼을 갖춘 페이지를 구성합니다.
-  Widget buildView(BuildContext context) {
+  Widget buildPage(BuildContext context) {
     final content = build(context);
 
     return GdsScaffold(
@@ -100,7 +98,7 @@ abstract class GdsAdaptivePage {
   /// 모바일에서는 페이지로 이동하고, 태블릿에서는 모달을 엽니다.
   Future<T?> push<T>(BuildContext context) {
     if (context.isMobile) {
-      return context.push(Builder(builder: buildView));
+      return context.push(Builder(builder: buildPage));
     } else {
       return GdsModal.show(context, builder: buildModal);
     }
@@ -109,7 +107,7 @@ abstract class GdsAdaptivePage {
   /// 모바일에서는 페이지를 교체하고, 태블릿에서는 페이지를 닫고 동시에 모달을 엽니다.
   Future<T?> pushReplacement<T>(BuildContext context) {
     if (context.isMobile) {
-      return context.pushReplacement(Builder(builder: buildView));
+      return context.pushReplacement(Builder(builder: buildPage));
     } else {
       context.pop();
       return GdsModal.show(context, builder: buildModal);
