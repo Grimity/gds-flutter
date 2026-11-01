@@ -5,13 +5,19 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
+/// 그룹의 순서 변경 아이콘을 드래그 핸들로 구성하는 빌더.
+typedef GdsGroupDragHandleBuilder = Widget Function(
+  BuildContext context,
+  Widget child,
+);
+
 /// 그룹의 표시 상태를 나타내는 열거형.
 enum GdsGroupStatus {
   enabled,
+  disabled,
   selected,
   delete,
   editDelete,
-  disabled,
 }
 
 /// Select, Accordion, Dropdown 등의 선택창을 보여줄 때 주로 사용되는 위젯.
@@ -19,6 +25,8 @@ class GdsGroup extends StatelessWidget {
   const new({
     super.key,
     this.status = .enabled,
+    this.onTap,
+    this.dragHandleBuilder = defaultDragHandleBuilder,
     this.initialText,
     this.placeholder,
     this.onSubmitted,
@@ -27,6 +35,8 @@ class GdsGroup extends StatelessWidget {
   });
 
   final GdsGroupStatus status;
+  final VoidCallback? onTap;
+  final GdsGroupDragHandleBuilder dragHandleBuilder;
 
   // GdsInputFrame
   final String? initialText;
@@ -72,14 +82,26 @@ class GdsGroup extends StatelessWidget {
         ),
 
         // 우측에 삭제 또는 순서 변경 아이콘 표시.
-        GdsTransition.crossFade(
-          value: isDelete,
-          child: leadingIcon.build(
-            size: 24,
-            color: status == .disabled ? .iconGraySubtlest : .iconGraySubtle,
+        GdsGesture(
+          onTap: onTap,
+          child: dragHandleBuilder(
+            context,
+            GdsTransition.crossFade(
+              value: isDelete,
+              child: leadingIcon.build(
+                size: 24,
+                color: status == .disabled ? .iconGraySubtlest : .iconGraySubtle,
+              ),
+            ),
           ),
         ),
       ],
     );
+  }
+
+  /// 별도의 드래그 처리 없이 주어진 핸들 위젯을 반환합니다.
+  // ignore: gds_lints/prefer_widget_factory_key
+  static Widget defaultDragHandleBuilder(BuildContext context, Widget child) {
+    return child;
   }
 }
