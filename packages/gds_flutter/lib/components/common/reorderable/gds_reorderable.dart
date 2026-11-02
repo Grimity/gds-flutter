@@ -8,6 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:paint_order_flex/paint_order_flex.dart';
 
 part 'gds_reorderable_drag_handle.dart';
 part 'gds_reorderable_long_press_handle.dart';
@@ -56,11 +57,17 @@ class GdsReorderable extends StatelessWidget {
     );
 
     // 배치 방향에 따라 헤더, 정렬 항목, 푸터 표시.
-    final child = Flex(
+    final child = PaintOrderFlex(
       mainAxisSize: .min,
       direction: axis,
       spacing: spacing,
-      children: [?header, reorderable, ?footer],
+      children: [
+        ?header,
+
+        // 드래그 중인 항목이 헤더와 푸터보다 위에 표시되도록 지정.
+        PaintOrder(order: 1, child: reorderable),
+        ?footer,
+      ],
     );
 
     if (!scroll) return child;

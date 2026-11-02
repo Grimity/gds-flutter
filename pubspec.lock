@@ -654,6 +654,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  paint_order_flex:
+    dependency: transitive
+    description:
+      name: paint_order_flex
+      sha256: "56d3fe38737d46b19bd97532c380931a8acbe60ecca88ed785f0955d895077bd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   path:
     dependency: transitive
     description:
