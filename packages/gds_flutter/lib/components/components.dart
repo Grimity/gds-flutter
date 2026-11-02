@@ -58,6 +58,7 @@ export 'common/gds_masking.dart';
 export 'common/gds_overlay.dart';
 export 'common/gds_page_transition.dart';
 export 'common/gds_pull_to_refresh.dart';
+export 'common/reorderable/gds_reorderable.dart';
 export 'common/gds_scaffold.dart';
 export 'common/gds_splash.dart';
 export 'common/gds_text.dart';
