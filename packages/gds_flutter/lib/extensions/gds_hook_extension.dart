@@ -2,6 +2,7 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
+import 'package:custom_image_crop/custom_image_crop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nested_scroll/flutter_nested_scroll.dart';
 import 'package:flutter_quill/flutter_quill.dart';
@@ -50,7 +51,17 @@ extension GdsHookExtension on BuildContext {
   /// [QuillController]를 생성하고 자동으로 이를 해제합니다.
   QuillController useQuillController() {
     final state = stateOf(
-      () => QuillController.basic(),
+      QuillController.basic,
+      onDispose: (e) => e.dispose(),
+    );
+
+    return state.value;
+  }
+
+  /// [CustomImageCropController]를 생성하고 자동으로 이를 해제합니다.
+  CustomImageCropController useCustomImageCropController() {
+    final state = stateOf(
+      CustomImageCropController.new,
       onDispose: (e) => e.dispose(),
     );
 

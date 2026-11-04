@@ -12,10 +12,6 @@ dependencies:
   collection: ^1.19.1
   flutter_svg: ^2.3.0
   flutter_touch_scale: ^1.6.2
-  flutter_design_preview:
-    git:
-      url: https://github.com/MTtankkeo/vscode-flutter-design-preview.git
-      path: packages/flutter_design_preview
   flutter_staggered_grid_view: ^0.7.0
   flutter_cached_transition: ^1.1.0
   flutter_nested_scroll: ^1.1.0
@@ -36,6 +32,17 @@ dependencies:
   flutter_widget_from_html_core: ^0.17.4
   sliver_tools: ^0.2.12
   paint_order_flex: ^0.1.0
+
+  # Design Preview for Flutter
+  flutter_design_preview:
+    git:
+      url: https://github.com/MTtankkeo/vscode-flutter-design-preview.git
+      path: packages/flutter_design_preview
+
+  # Fix zoom-out behavior when forceInsideCropArea is enabled
+  custom_image_crop:
+    git:
+      url: https://github.com/MTtankkeo/flutter-custom-image-crop
 
 dev_dependencies:
   flutter_test:

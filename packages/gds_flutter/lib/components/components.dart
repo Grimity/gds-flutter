@@ -52,7 +52,6 @@ export 'common/gds_expandable_text.dart';
 export 'common/gds_fadable.dart';
 export 'common/gds_foldable.dart';
 export 'common/gds_gesture.dart';
-export 'common/gds_image.dart';
 export 'common/gds_infinite_scroll.dart';
 export 'common/gds_masking.dart';
 export 'common/gds_overlay.dart';
@@ -118,6 +117,10 @@ export 'gnb/gds_menu.dart';
 
 // Group
 export 'group/gds_group.dart';
+
+// Image
+export 'image/gds_image_cropper.dart';
+export 'image/gds_image.dart';
 
 // Input
 export 'input/gds_helper_text.dart';
