@@ -79,11 +79,13 @@ export 'common/screen/gds_action_screen.dart';
 export 'common/screen/gds_editor_screen.dart';
 
 // Control
+export 'control/gds_bookmark.dart';
 export 'control/gds_check_box.dart';
 export 'control/gds_check_mark.dart';
 export 'control/gds_control.dart';
 export 'control/gds_heart.dart';
 export 'control/gds_radio.dart';
+export 'control/gds_slider.dart';
 export 'control/gds_toggle.dart';
 
 // DM

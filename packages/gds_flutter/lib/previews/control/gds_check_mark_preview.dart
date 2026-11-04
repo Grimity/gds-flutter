@@ -27,9 +27,11 @@ class GdsCheckMarkPreview extends PreviewWidget {
   @override
   Widget build(BuildContext context) {
     final value = valueControl.of(context);
+    final enabled = enabledControl.of(context);
+
     return GdsCheckMark(
       value: value.value,
-      enabled: enabledControl.of(context).value,
+      enabled: enabled.value,
       onChanged: (newValue) => value.value = newValue,
     );
   }

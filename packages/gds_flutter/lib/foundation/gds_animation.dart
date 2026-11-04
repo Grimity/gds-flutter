@@ -6,6 +6,7 @@ import 'package:flutter/animation.dart';
 
 /// 디자인 시스템에서 사용하는 표준 애니메이션 속도.
 enum GdsAnimation {
+  none(.zero),
   fast(.new(milliseconds: 175)),
   normal(.new(milliseconds: 250)),
   slow(.new(milliseconds: 300)),

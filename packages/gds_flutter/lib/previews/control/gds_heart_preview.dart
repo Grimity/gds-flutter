@@ -32,10 +32,13 @@ class GdsHeartPreview extends PreviewWidget {
   @override
   Widget build(BuildContext context) {
     final value = valueControl.of(context);
+    final black = blackControl.of(context);
+    final enabled = enabledControl.of(context);
+
     return GdsHeart(
       value: value.value,
-      black: blackControl.of(context).value,
-      enabled: enabledControl.of(context).value,
+      black: black.value,
+      enabled: enabled.value,
       onChanged: (newValue) => value.value = newValue,
     );
   }

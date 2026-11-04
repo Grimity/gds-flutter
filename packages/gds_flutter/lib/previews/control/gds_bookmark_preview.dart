@@ -4,7 +4,7 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_design_preview/flutter_design_preview.dart';
-import 'package:gds_flutter/components/control/gds_bookmark.dart';
+import 'package:gds_flutter/gds_flutter.dart';
 
 /// [GdsBookmark]에 대한 프리뷰 위젯.
 class GdsBookmarkPreview extends PreviewWidget {
@@ -32,10 +32,13 @@ class GdsBookmarkPreview extends PreviewWidget {
   @override
   Widget build(BuildContext context) {
     final value = valueControl.of(context);
+    final black = blackControl.of(context);
+    final enabled = enabledControl.of(context);
+
     return GdsBookmark(
       value: value.value,
-      black: blackControl.of(context).value,
-      enabled: enabledControl.of(context).value,
+      black: black.value,
+      enabled: enabled.value,
       onChanged: (newValue) => value.value = newValue,
     );
   }

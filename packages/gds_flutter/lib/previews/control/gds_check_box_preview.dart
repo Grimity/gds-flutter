@@ -32,11 +32,14 @@ class GdsCheckBoxPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = sizeControl.of(context);
     final value = valueControl.of(context);
+    final enabled = enabledControl.of(context);
+
     return GdsCheckBox(
-      size: sizeControl.of(context).value,
+      size: size.value,
       value: value.value,
-      enabled: enabledControl.of(context).value,
+      enabled: enabled.value,
       onChanged: (newValue) => value.value = newValue,
     );
   }
