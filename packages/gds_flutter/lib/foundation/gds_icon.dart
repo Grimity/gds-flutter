@@ -106,6 +106,8 @@ enum GdsIcon {
   link.semantic('normal/link.svg'),
   magnifier.semantic('normal/magnifier.svg'),
   magnifierFill.semantic('normal/magnifier_fill.svg'),
+  magnifierPlus.semantic('normal/magnifier_plus.svg'),
+  magnifierMinus.semantic('normal/magnifier_minus.svg'),
   minus.semantic('normal/minus.svg'),
   minusCircle.semantic('normal/minus_circle.svg'),
   minusCircleFill.semantic('normal/minus_circle_fill.svg'),
