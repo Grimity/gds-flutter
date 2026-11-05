@@ -169,6 +169,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.4"
+  custom_image_crop:
+    dependency: transitive
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "6446e3317396a262071c2b01a0849187e0729323"
+      url: "https://github.com/MTtankkeo/flutter-custom-image-crop"
+    source: git
+    version: "0.1.1"
   dart_quill_delta:
     dependency: transitive
     description:
@@ -462,6 +471,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  gesture_x_detector:
+    dependency: transitive
+    description:
+      name: gesture_x_detector
+      sha256: "777855ee4e1fa4d677c40d6a44b9106696ef6745879027c8871e334cee8cde1e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   glob:
     dependency: transitive
     description:
@@ -987,6 +1004,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.12"
+  transition_switcher:
+    dependency: transitive
+    description:
+      name: transition_switcher
+      sha256: f5e88610131baf9d26dd97fbe61396999f25e14a17f82dec2f1c01e60e78c03d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   transparent_image:
     dependency: transitive
     description:
