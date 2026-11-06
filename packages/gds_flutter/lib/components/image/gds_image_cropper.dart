@@ -29,6 +29,7 @@ class GdsImageCropper extends StatelessWidget {
       canMove: true,
       canScale: true,
       canRotate: false,
+      cropPercentage: 1.0,
       ratio: .new(width: aspectRatio, height: 1),
       shape: shape == .circle ? .Circle : .Ratio,
       image: provider,
