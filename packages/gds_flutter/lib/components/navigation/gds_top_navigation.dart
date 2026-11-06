@@ -2,9 +2,11 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:gds_flutter/src/future_or_callback.dart';
+import 'package:pervice/pervice.dart';
 
 /// 화면 상단에 위치한 내비게이션으로, 작은 화면을 디자인할 때 사용됩니다.
 abstract class GdsTopNavigation {
@@ -220,61 +222,65 @@ abstract class GdsTopNavigation {
   static Widget editor({
     Key? key,
     required VoidCallback onBack,
-    required VoidCallback? onTitle,
+    required AsyncCallback? onMenu,
     required GdsTextButtonAction action,
     required String title,
-    bool open = false,
   }) {
-    final GdsIcon icon = open ? .chevronUpThick : .chevronDownThick;
+    return Builder(
+      builder: (context) {
+        final open = context.stateOf(() => false);
+        final icon = open.value ? GdsIcon.chevronUpThick : GdsIcon.chevronDownThick;
 
-    return GdsContainer(
-      key: key,
-      height: GdsControlSize.ml.value,
-      padding: .symmetric(horizontal: 16),
-      child: Row(
-        spacing: 16,
-        children: [
-          Expanded(
-            child: Row(
-              spacing: 8,
-              children: [
-                // 좌측에 뒤로가기 버튼 표시
-                GdsButton.icon(type: .normal, icon: .chevronLeftThick, onTap: onBack),
+        return GdsContainer(
+          key: key,
+          height: GdsControlSize.ml.value,
+          padding: .symmetric(horizontal: 16),
+          child: Row(
+            spacing: 16,
+            children: [
+              Expanded(
+                child: Row(
+                  spacing: 8,
+                  children: [
+                    // 좌측에 뒤로가기 버튼 표시
+                    GdsButton.icon(type: .normal, icon: .chevronLeftThick, onTap: onBack),
 
-                // 좌측에 상호작용 제목 표시
-                GdsGesture(
-                  onTap: onTitle,
-                  child: Row(
-                    mainAxisSize: .min,
-                    spacing: 4,
-                    children: [
-                      GdsText(title, color: .textGrayBold, style: .subtitle2),
+                    // 좌측에 상호작용 제목 표시
+                    GdsGesture(
+                      onTap: onMenu != null ? () => open.run(onMenu) : null,
+                      child: Row(
+                        mainAxisSize: .min,
+                        spacing: 4,
+                        children: [
+                          GdsText(title, color: .textGrayBold, style: .subtitle2),
 
-                      // 열림 여부에 따라 화살표 아이콘 전환
-                      if (onTitle != null) ...[
-                        GdsTransition.fadeThrough(
-                          value: open,
-                          child: icon.build(size: 20, color: .iconGrayBold),
-                        ),
-                      ],
-                    ],
-                  ),
+                          // 열림 여부에 따라 화살표 아이콘 전환
+                          if (onMenu != null) ...[
+                            GdsTransition.fadeThrough(
+                              value: open,
+                              child: icon.build(size: 20, color: .iconGrayBold),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
 
-          // 우측에 액션 버튼 표시
-          GdsButton.text(
-            type: .borderless,
-            variant: .primary,
-            size: .lg,
-            label: action.label,
-            onTap: action.onTap,
-            enabled: action.enabled,
+              // 우측에 액션 버튼 표시
+              GdsButton.text(
+                type: .borderless,
+                variant: .primary,
+                size: .lg,
+                label: action.label,
+                onTap: action.onTap,
+                enabled: action.enabled,
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

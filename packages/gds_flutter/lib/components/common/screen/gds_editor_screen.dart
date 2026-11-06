@@ -40,7 +40,7 @@ abstract class GdsEditorScreen {
           label: action.label,
           onTap: action.onTap,
         ),
-        onTitle: null,
+        onMenu: null,
       ),
       body: SingleChildScrollView(
         padding: padding ?? .all(16),
