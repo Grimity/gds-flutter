@@ -219,17 +219,21 @@ abstract class GdsTopNavigation {
   }
 
   /// 뒤로가기 버튼과 제목, 액션 버튼을 표시하는 에디터용 상단 내비게이션 위젯.
+  ///
+  /// [open]을 생략하면 [onMenu] 실행 중에 메뉴가 열린 상태로 표시합니다.
   static Widget editor({
     Key? key,
     required VoidCallback onBack,
     required AsyncCallback? onMenu,
     required GdsTextButtonAction action,
     required String title,
+    bool? open,
   }) {
     return Builder(
       builder: (context) {
-        final open = context.stateOf(() => false);
-        final icon = open.value ? GdsIcon.chevronUpThick : GdsIcon.chevronDownThick;
+        final menuOpen = context.stateOf(() => false);
+        final isOpen = open ?? menuOpen.value;
+        final icon = isOpen ? GdsIcon.chevronUpThick : GdsIcon.chevronDownThick;
 
         return GdsContainer(
           key: key,
@@ -247,7 +251,7 @@ abstract class GdsTopNavigation {
 
                     // 좌측에 상호작용 제목 표시
                     GdsGesture(
-                      onTap: onMenu != null ? () => open.run(onMenu) : null,
+                      onTap: onMenu == null ? null : () => menuOpen.run(onMenu),
                       child: Row(
                         mainAxisSize: .min,
                         spacing: 4,
@@ -257,7 +261,7 @@ abstract class GdsTopNavigation {
                           // 열림 여부에 따라 화살표 아이콘 전환
                           if (onMenu != null) ...[
                             GdsTransition.fadeThrough(
-                              value: open,
+                              value: isOpen,
                               child: icon.build(size: 20, color: .iconGrayBold),
                             ),
                           ],
