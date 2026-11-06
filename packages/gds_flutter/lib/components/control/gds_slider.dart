@@ -94,7 +94,7 @@ class GdsSlider extends StatelessWidget {
                 .initial => .none,
                 .tap => .fast,
                 .drag => .none,
-                .external => .fast,
+                .external => .none,
               },
             ),
           ),
