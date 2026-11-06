@@ -17,7 +17,7 @@ class GdsImageCropper extends StatelessWidget {
   final GdsRadius radius;
   final BoxShape shape;
   final ImageProvider provider;
-  final CustomImageCropController controller;
+  final ImageCropController controller;
 
   @override
   Widget build(BuildContext context) {

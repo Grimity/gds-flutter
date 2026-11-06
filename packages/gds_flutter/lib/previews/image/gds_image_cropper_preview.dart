@@ -34,7 +34,7 @@ class GdsImageCropperPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.useCustomImageCropController();
+    final controller = context.useImageCropController();
 
     final shape = shapeControl.of(context);
     final imageUrl = imageUrlControl.of(context);

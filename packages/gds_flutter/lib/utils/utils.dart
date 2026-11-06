@@ -2,6 +2,7 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
+export 'image_crop_controller.dart';
 export 'immediate_image.dart';
 export 'keep_alive_wrapper.dart';
 export 'load_more_service.dart';
