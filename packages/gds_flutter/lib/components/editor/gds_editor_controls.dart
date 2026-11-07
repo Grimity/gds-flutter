@@ -60,8 +60,7 @@ class GdsEditorControls extends StatelessWidget {
             visible: status != .none,
             axis: .vertical,
             builder: (_) {
-              return GdsTransition.sharedAxis(
-                transitionType: .vertical,
+              return GdsTransition.slide(
                 value: status,
                 child: panel,
               );

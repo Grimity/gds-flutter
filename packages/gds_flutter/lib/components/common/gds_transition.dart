@@ -2,7 +2,6 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
-import 'package:animations/animations.dart' hide FadeThroughTransition;
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/foundation/foundation.dart';
 import 'package:transition_switcher/transition_switcher.dart';
@@ -27,10 +26,10 @@ abstract class GdsTransition {
     );
   }
 
-  /// 축 기반 전환 애니메이션을 구현하는 위젯.
-  static Widget sharedAxis<T>({
+  /// 슬라이드 축 기반 전환 애니메이션을 구현하는 위젯.
+  static Widget slide<T>({
     Key? key,
-    required SharedAxisTransitionType transitionType,
+    AxisDirection direction = .up,
     required T value,
     required Widget child,
     Alignment alignment = .center,
@@ -42,18 +41,18 @@ abstract class GdsTransition {
       '여러 값을 전환 기준으로 사용하려면 record를 사용하세요.',
     );
 
-    return PageTransitionSwitcher(
+    return TransitionSwitcher(
       key: key,
-      duration: animation.duration,
+      switchInDuration: animation.duration,
+      switchInCurve: animation.curve,
       layoutBuilder: (entries) {
         return _layoutBuilder(alignment, entries);
       },
       transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
-        return SharedAxisTransition(
-          animation: primaryAnimation,
+        return SlideFadeTransition.directional(
+          direction: direction,
+          primaryAnimation: primaryAnimation,
           secondaryAnimation: secondaryAnimation,
-          fillColor: GdsAtomicColor.transparent,
-          transitionType: transitionType,
           child: child,
         );
       },

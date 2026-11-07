@@ -68,8 +68,7 @@ abstract class GdsInput {
           builder: (context) {
             return Padding(
               padding: .only(top: 8),
-              child: GdsTransition.sharedAxis(
-                transitionType: .vertical,
+              child: GdsTransition.slide(
                 value: '$helperText, $helperStatus',
                 child: GdsHelperText(text: helperText!, status: helperStatus),
               ),

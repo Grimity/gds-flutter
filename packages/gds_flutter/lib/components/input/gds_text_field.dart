@@ -75,8 +75,7 @@ abstract class GdsTextField {
 
         // 멘션 텍스트 표시
         if (mentionText != null) {
-          return GdsTransition.sharedAxis(
-            transitionType: .vertical,
+          return GdsTransition.slide(
             alignment: .centerLeft,
             value: mentionText,
             child: GdsText(
