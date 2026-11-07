@@ -17,6 +17,12 @@ class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
     this.resolver = defaultImageResolver,
   });
 
+  /// 요청한 크기와 관계없이 원본 이미지를 사용합니다.
+  const new original(
+    this.url, {
+    this.cacheKey,
+  }) : resolver = originalImageResolver;
+
   final String url;
   final String? cacheKey;
   final ImageResolver resolver;
@@ -84,6 +90,9 @@ class ResponsiveImage extends ImageProvider<CachedNetworkImageProvider> {
 
     return uri.replace(queryParameters: query).toString();
   }
+
+  /// 요청한 크기와 관계없이 원본 이미지 URL을 그대로 반환합니다.
+  static String originalImageResolver(String url, Size size) => url;
 
   @override
   bool operator ==(Object other) {

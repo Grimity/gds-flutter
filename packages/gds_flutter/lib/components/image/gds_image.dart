@@ -17,6 +17,7 @@ class GdsImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit = .cover,
+    this.resize = true,
   });
 
   final ImageProvider? provider;
@@ -24,6 +25,7 @@ class GdsImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
+  final bool resize;
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +82,14 @@ class GdsImage extends StatelessWidget {
 
         // 리사이즈된 플레이스 홀더 이미지.
         final placeholderImage = ResizeImage.resizeIfNeeded(
-          cacheWidth,
+          resize ? cacheWidth : null,
           null,
           placeholderProvider,
         );
 
         // 표시 크기에 맞춰 디코딩할 이미지.
         final resizedImage = ResizeImage.resizeIfNeeded(
-          cacheWidth,
+          resize ? cacheWidth : null,
           null,
           resolvedImage,
         );

@@ -22,8 +22,8 @@ extension GdsListExtension<T> on List<T> {
 /// 디자인 시스템에서 제공하는 [String] 목록에 대한 유틸리티 확장.
 extension GdsStringListExtension on List<String> {
   /// 이미지 URL 목록을 [ImageProvider] 목록으로 변환합니다.
-  List<ImageProvider> toImages() {
-    return builder((e) => e.toImage());
+  List<ImageProvider> toImages({bool responsive = true}) {
+    return builder((e) => e.toImage(responsive: responsive));
   }
 }
 

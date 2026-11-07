@@ -14,7 +14,9 @@ extension GdsStringExtension on String {
   }
 
   /// 이미지 URL을 [ImageProvider]로 변환하며, 빈 문자열은 투명 이미지로 처리합니다.
-  ImageProvider toImage() {
-    return isEmpty ? MemoryImage(kTransparentImage) : ResponsiveImage(this);
+  ImageProvider toImage({bool responsive = true}) {
+    return responsive
+        ? (isEmpty ? MemoryImage(kTransparentImage) : ResponsiveImage(this))
+        : (isEmpty ? MemoryImage(kTransparentImage) : ResponsiveImage.original(this));
   }
 }
