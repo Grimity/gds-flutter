@@ -114,8 +114,12 @@ abstract class GdsTransition {
   }
 
   /// 현재 위젯을 기준으로 크기를 결정하고, 이전 위젯을 겹쳐 표시하는 빌더.
-  static Widget _layoutBuilder(Alignment alignment, List<Widget> entries, {Key? key}) {
-    return Stack(
+  static Widget _layoutBuilder(
+    Alignment alignment,
+    List<Widget> entries, {
+    Key? key,
+  }) {
+    return TransitionStack(
       key: key,
       alignment: alignment,
       children: entries,

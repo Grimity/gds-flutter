@@ -21,13 +21,10 @@ class GdsSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     final effect = createEffect(context);
 
-    return GdsTransition.crossFade(
-      value: enabled,
-      child: Skeletonizer(
-        enabled: enabled,
-        effect: effect,
-        child: child,
-      ),
+    return Skeletonizer(
+      enabled: enabled,
+      effect: effect,
+      child: child,
     );
   }
 
@@ -56,13 +53,10 @@ class GdsSliverSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     final effect = GdsSkeleton.createEffect(context);
 
-    return GdsSliverTransition.crossFade(
-      value: enabled,
-      child: Skeletonizer.sliver(
-        enabled: enabled,
-        effect: effect,
-        child: child,
-      ),
+    return Skeletonizer.sliver(
+      enabled: enabled,
+      effect: effect,
+      child: child,
     );
   }
 }
