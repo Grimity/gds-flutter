@@ -12,7 +12,7 @@ class GdsPageTransition<T> extends StatelessWidget {
   const new({
     super.key,
     this.direction = .up,
-    this.animation = .slow,
+    this.animation = .normal,
     required this.child,
   });
 
