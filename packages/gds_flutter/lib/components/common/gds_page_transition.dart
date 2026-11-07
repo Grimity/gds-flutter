@@ -41,6 +41,7 @@ class GdsPageTransition<T> extends StatelessWidget {
   ) {
     return SlideFadeTransition.directional(
       direction: direction,
+      factor: 0.05,
       primaryAnimation: primaryAnimation,
       secondaryAnimation: secondaryAnimation,
       child: child,
