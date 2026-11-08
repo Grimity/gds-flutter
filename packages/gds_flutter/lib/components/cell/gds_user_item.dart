@@ -264,23 +264,32 @@ abstract class GdsUserItem {
                 .semantic => .iconGraySubtle,
               },
             ),
-            Column(
-              crossAxisAlignment: .start,
-              mainAxisSize: .min,
-              spacing: 2,
-              children: [
-                // 링크 이름 표시
-                GdsText(
-                  name,
-                  color: .textGrayBold,
-                  style: hasLink ? .label3 : .label5,
-                ),
+            Flexible(
+              fit: hasLink ? .tight : .loose,
+              child: Column(
+                crossAxisAlignment: .start,
+                mainAxisSize: .min,
+                spacing: 2,
+                children: [
+                  // 링크 이름 표시
+                  GdsText(
+                    name,
+                    color: .textGrayBold,
+                    style: hasLink ? .label3 : .label5,
+                  ),
 
-                // 링크 주소 표시
-                if (hasLink) ...[
-                  GdsText(link, color: .textGraySubtle, style: .label6),
+                  // 링크 주소 표시
+                  if (hasLink) ...[
+                    GdsText(
+                      link,
+                      color: .textGraySubtle,
+                      style: .label6,
+                      maxLines: 1,
+                      overflow: .ellipsis,
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ],
         ),

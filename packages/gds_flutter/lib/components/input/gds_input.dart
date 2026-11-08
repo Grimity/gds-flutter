@@ -53,8 +53,9 @@ abstract class GdsInput {
                 type: .solid,
                 size: .lg,
                 onTap: button.onTap,
-                layerLink: button.layerLink,
                 label: button.label,
+                enabled: button.enabled,
+                layerLink: button.layerLink,
               ),
             ],
           ],
@@ -70,7 +71,10 @@ abstract class GdsInput {
               padding: .only(top: 8),
               child: GdsTransition.slide(
                 value: '$helperText, $helperStatus',
-                child: GdsHelperText(text: helperText!, status: helperStatus),
+                child: GdsHelperText(
+                  text: helperText!,
+                  status: helperStatus,
+                ),
               ),
             );
           },
