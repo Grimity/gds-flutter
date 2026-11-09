@@ -26,7 +26,9 @@ class GdsGroup extends StatelessWidget {
     super.key,
     this.status = .enabled,
     this.onTap,
+    this.onHandleTap,
     this.dragHandleBuilder = defaultDragHandleBuilder,
+    this.text,
     this.initialText,
     this.placeholder,
     this.onSubmitted,
@@ -36,9 +38,11 @@ class GdsGroup extends StatelessWidget {
 
   final GdsGroupStatus status;
   final VoidCallback? onTap;
+  final VoidCallback? onHandleTap;
   final GdsGroupDragHandleBuilder dragHandleBuilder;
 
   // GdsInputFrame
+  final String? text;
   final String? initialText;
   final String? placeholder;
   final ValueChanged<String>? onSubmitted;
@@ -68,22 +72,29 @@ class GdsGroup extends StatelessWidget {
       children: [
         // 상태에 따른 입력 필드 표시.
         Expanded(
-          child: GdsTextField.normal(
-            size: .md,
-            initialText: initialText,
-            placeholder: placeholder,
-            leadingIcon: showLeadingIcon ? .penFill : null,
-            status: .from(enabled: status != .disabled),
-            shadow: status == .selected ? .level1 : null,
-            onSubmitted: onSubmitted,
-            onComplete: onComplete,
-            onChanged: onChanged,
+          child: GdsGesture(
+            onTap: onTap,
+            child: IgnorePointer(
+              ignoring: onTap != null,
+              child: GdsTextField.normal(
+                size: .md,
+                text: text,
+                initialText: initialText,
+                placeholder: placeholder,
+                leadingIcon: showLeadingIcon ? .penFill : null,
+                status: .from(enabled: status != .disabled),
+                shadow: status == .selected ? .level1 : null,
+                onSubmitted: onSubmitted,
+                onComplete: onComplete,
+                onChanged: onChanged,
+              ),
+            ),
           ),
         ),
 
         // 우측에 삭제 또는 순서 변경 아이콘 표시.
         GdsGesture(
-          onTap: onTap,
+          onTap: onHandleTap,
           child: dragHandleBuilder(
             context,
             GdsTransition.crossFade(
