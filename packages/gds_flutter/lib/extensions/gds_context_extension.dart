@@ -46,6 +46,11 @@ extension GdsContextExtension on BuildContext {
     Navigator.of(this).pop<T>(result);
   }
 
+  /// 현재 라우트를 닫을 수 있을때만 닫고 이전 화면으로 돌아갑니다.
+  Future<bool> maybePop<T>([T? result]) {
+    return Navigator.of(this).maybePop(result);
+  }
+
   /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
   Future<T?> push<T>(Widget child) {
     return Navigator.of(this).push<T>(
