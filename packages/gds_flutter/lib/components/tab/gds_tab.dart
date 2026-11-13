@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gds_flutter/gds_flutter.dart';
+import 'package:inline_tab_view/inline_tab_view.dart';
 
 /// 탭 목록과 선택한 탭의 콘텐츠를 함께 표시하는 위젯.
 @GdsSupportedSizes([.lg, .md, .sm])
@@ -59,6 +60,8 @@ class _State extends State<GdsTab> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: .min,
+      spacing: 12,
       children: [
         // 탭바 표시
         GdsTabBar(
@@ -70,8 +73,8 @@ class _State extends State<GdsTab> with TickerProviderStateMixin {
 
         // 탭뷰 표시
         if (widget.pages.isNotEmpty) ...[
-          Expanded(
-            child: TabBarView(
+          Flexible(
+            child: InlineTabView(
               controller: controller,
               children: widget.pages,
             ),
