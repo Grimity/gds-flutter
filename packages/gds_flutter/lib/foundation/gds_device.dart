@@ -21,7 +21,7 @@ enum GdsDevice {
     };
   }
 
-  /// 화면 가로 너비를 기준으로 기기 유형을 반환합니다.
+  /// 앱 화면의 가로 너비를 기준으로 기기 유형을 반환합니다.
   static GdsDevice get current {
     final view = WidgetsBinding.instance.platformDispatcher.views.first;
     final size = view.physicalSize / view.devicePixelRatio;
