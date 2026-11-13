@@ -248,16 +248,11 @@ class _State extends State<GdsInputFrame> {
               border: borderColor != null ? decoration.border?.copyWith(color: borderColor) : null,
               shadow: widget.shadow,
               padding: decoration.padding,
-              child: switch (widget.axis) {
-                .horizontal => Row(
-                  crossAxisAlignment: decoration.alignment,
-                  children: children,
-                ),
-                .vertical => Column(
-                  crossAxisAlignment: decoration.alignment,
-                  children: children,
-                ),
-              },
+              child: Flex(
+                direction: widget.axis,
+                crossAxisAlignment: decoration.alignment,
+                children: children,
+              ),
             ),
           );
         },
