@@ -210,9 +210,15 @@ class _State extends State<GdsInputFrame> {
                       _focusNode.unfocus();
                       widget.onComplete?.call();
                     },
-                    onSubmitted: widget.onSubmitted,
-                    onChanged: widget.onChanged,
-                    inputFormatters: [LengthLimitingTextInputFormatter(widget.maxLength)],
+                    onSubmitted: (newValue) {
+                      widget.onSubmitted?.call(newValue.trim());
+                    },
+                    onChanged: (newValue) {
+                      widget.onChanged?.call(newValue.trim());
+                    },
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(widget.maxLength),
+                    ],
                   ),
                 ],
               ),
