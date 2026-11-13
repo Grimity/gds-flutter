@@ -17,7 +17,7 @@ class GdsEditorViewerPreview extends PreviewWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return GdsScrollable(
       child: GdsEditorViewer(
         html:
             '''

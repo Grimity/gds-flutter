@@ -58,7 +58,7 @@ class GdsEditorToolbar extends StatelessWidget {
       border: .new(top: 1, color: .borderGraySubtler),
       padding: .symmetric(horizontal: 16),
       child: GdsMasking(
-        child: SingleChildScrollView(
+        child: GdsScrollable(
           scrollDirection: .horizontal,
           clipBehavior: .none,
           child: Row(

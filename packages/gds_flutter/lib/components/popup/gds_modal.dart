@@ -16,6 +16,7 @@ class GdsModal extends StatelessWidget {
     this.primaryButton,
     this.secondaryButton,
     this.padding = defaultPadding,
+    this.scroll = true,
     required this.child,
   });
 
@@ -25,6 +26,7 @@ class GdsModal extends StatelessWidget {
   final GdsTextButtonAction? primaryButton;
   final GdsTextButtonAction? secondaryButton;
   final EdgeInsets? padding;
+  final bool scroll;
   final Widget child;
 
   /// 모달에 기본으로 적용할 여백.
@@ -54,7 +56,8 @@ class GdsModal extends StatelessWidget {
 
           // 헤더 내용 표시
           Flexible(
-            child: SingleChildScrollView(
+            child: GdsScrollable(
+              enabled: scroll,
               padding: padding,
               child: child,
             ),

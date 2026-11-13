@@ -37,7 +37,7 @@ class GdsCategory extends StatelessWidget {
         // 좌측에 카테고리 스크롤 목록 표시
         Expanded(
           child: GdsMasking(
-            child: SingleChildScrollView(
+            child: GdsScrollable(
               scrollDirection: .horizontal,
               clipBehavior: .none,
               child: Row(

@@ -70,9 +70,8 @@ class GdsReorderable extends StatelessWidget {
       ],
     );
 
-    if (!scroll) return child;
-
-    return SingleChildScrollView(
+    return GdsScrollable(
+      enabled: scroll,
       scrollDirection: axis,
       clipBehavior: .none,
       child: child,
