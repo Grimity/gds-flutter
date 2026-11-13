@@ -76,6 +76,7 @@ export 'common/adaptive/gds_adaptive_widget.dart';
 
 // Screen
 export 'common/screen/gds_action_screen.dart';
+export 'common/screen/gds_basic_screen.dart';
 export 'common/screen/gds_editor_screen.dart';
 export 'common/screen/gds_screen.dart';
 

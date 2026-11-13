@@ -25,7 +25,7 @@ class GdsModal extends StatelessWidget {
   final GdsIconButtonAction? iconAction;
   final GdsTextButtonAction? primaryButton;
   final GdsTextButtonAction? secondaryButton;
-  final EdgeInsets? padding;
+  final EdgeInsets padding;
   final bool scroll;
   final Widget child;
 

@@ -9,6 +9,15 @@ import 'package:gds_flutter/gds_flutter.dart';
 abstract class GdsScreen<R> {
   const new();
 
+  /// 페이지의 앱바 또는 모달의 헤더에 표시할 제목.
+  String get title;
+
+  /// 본문에 스크롤을 적용할지 여부.
+  bool get scroll => true;
+
+  /// 스크롤 영역의 본문에 적용할 안쪽 여백.
+  EdgeInsets? get padding => null;
+
   /// 화면에 표시할 본문과 액션 버튼을 구성합니다.
   R build(BuildContext context);
 
