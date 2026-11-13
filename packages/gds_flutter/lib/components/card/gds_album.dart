@@ -70,34 +70,26 @@ class GdsAlbum extends StatelessWidget {
               ),
 
               // 체크 박스 표시
-              Positioned(
-                top: 8,
-                right: 8,
-                child: GdsFadable.builder(
-                  type: .scaleFade,
-                  visible: hasChecked,
-                  builder: (context) {
-                    return GdsCheckBox(size: .md, value: checked!);
-                  },
+              if (hasChecked) ...[
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: GdsCheckBox(size: .md, value: checked!),
                 ),
-              ),
+              ],
 
               // 좋아요 버튼 표시
-              Positioned(
-                bottom: 8,
-                right: 8,
-                child: GdsFadable.builder(
-                  type: .scaleFade,
-                  visible: hasLike,
-                  builder: (context) {
-                    return GdsHeart(
-                      value: like!,
-                      black: false,
-                      onChanged: onLike,
-                    );
-                  },
+              if (hasLike) ...[
+                Positioned(
+                  bottom: 8,
+                  right: 8,
+                  child: GdsHeart(
+                    value: like!,
+                    black: false,
+                    onChanged: onLike,
+                  ),
                 ),
-              ),
+              ],
 
               // 랭크 배지 표시
               if (rankIcon != null) ...[
