@@ -53,6 +53,11 @@ extension GdsContextExtension on BuildContext {
     return Navigator.of(this).maybePop(result);
   }
 
+  /// 첫 번째 라우트만 남기고 나머지를 닫아 해당 화면으로 돌아갑니다.
+  void popUntilFirst() {
+    return Navigator.of(this).popUntil((route) => route.isFirst);
+  }
+
   /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
   Future<T?> push<T>(Widget child) {
     return Navigator.of(this).push<T>(
