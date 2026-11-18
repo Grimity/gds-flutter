@@ -23,7 +23,7 @@ abstract class GdsBasicScreen extends GdsScreen<GdsBasicContent> {
       appBar: content.appBar,
       body: GdsScrollable(
         enabled: scroll,
-        padding: padding ?? .all(16),
+        padding: scrollPaddingOf(context),
         child: content.child,
       ),
     );
@@ -37,7 +37,7 @@ abstract class GdsBasicScreen extends GdsScreen<GdsBasicContent> {
       title: title,
       onBack: context.pop,
       scroll: scroll,
-      padding: padding ?? GdsModal.defaultPadding,
+      padding: scrollPaddingOf(context),
       child: content.child,
     );
   }

@@ -5,6 +5,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
+/// [GdsAdaptiveSelect]를 반환하는 빌더.
+typedef GdsAdaptiveSelectBuilder = GdsAdaptiveSelect Function(BuildContext context);
+
 /// 각각의 선택 메뉴 항목의 라벨과 콜백을 정의하는 레코드.
 typedef GdsSelectItem = ({
   String label,
@@ -44,10 +47,10 @@ class GdsAdaptiveSelect extends StatelessWidget {
     BuildContext context, {
     required LayerLink layerLink,
     required GdsMenuPosition position,
-    required GdsAdaptiveSelect Function(BuildContext context) builder,
+    required GdsAdaptiveSelectBuilder builder,
   }) {
+    // 모바일에서는 선택 목록을 바텀 시트로 표시.
     if (context.isMobile) {
-      // 모바일에서는 선택 목록을 바텀 시트로 표시.
       return GdsBottomSheet.show<T>(
         context,
         builder: (context) {

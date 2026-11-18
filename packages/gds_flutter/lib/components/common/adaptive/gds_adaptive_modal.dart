@@ -5,6 +5,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
+/// [GdsAdaptiveModal]를 반환하는 빌더.
+typedef GdsAdaptiveModalBuilder = GdsAdaptiveModal Function(BuildContext context);
+
 /// 모바일에서는 바텀 시트, 태블릿에서는 모달 팝업으로 콘텐츠를 표시하는 위젯.
 class GdsAdaptiveModal extends StatelessWidget {
   const new({
@@ -34,18 +37,18 @@ class GdsAdaptiveModal extends StatelessWidget {
   /// 모바일에서는 바텀 시트, 태블릿에서는 모달 팝업으로 엽니다.
   static Future<T?> show<T>(
     BuildContext context, {
-    required GdsAdaptiveModal Function(BuildContext context) builder,
+    required GdsAdaptiveModalBuilder builder,
   }) {
+    // 모바일에서는 바텀 시트로 표시.
     if (context.isMobile) {
-      // 모바일에서는 바텀 시트로 표시.
       return GdsBottomSheet.show<T>(
         context,
         builder: (context) {
           final modal = builder(context);
 
           return GdsBottomSheet(
-            onBack: context.pop,
             title: modal.title,
+            onBack: context.pop,
             primaryButton: modal.primaryButton,
             secondaryButton: modal.secondaryButton,
             child: modal,
@@ -61,8 +64,8 @@ class GdsAdaptiveModal extends StatelessWidget {
         final modal = builder(context);
 
         return GdsModal(
-          onBack: context.pop,
           title: modal.title,
+          onBack: context.pop,
           primaryButton: modal.primaryButton,
           secondaryButton: modal.secondaryButton,
           child: modal,

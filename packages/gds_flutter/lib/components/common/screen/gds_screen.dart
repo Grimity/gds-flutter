@@ -16,7 +16,12 @@ abstract class GdsScreen<R> {
   bool get scroll => true;
 
   /// 스크롤 영역의 본문에 적용할 안쪽 여백.
-  EdgeInsets? get padding => null;
+  EdgeInsets scrollPaddingOf(BuildContext context) {
+    return context.whenDevice(
+      mobile: 16.all,
+      tablet: GdsModal.defaultPadding,
+    );
+  }
 
   /// 화면에 표시할 본문과 액션 버튼을 구성합니다.
   R build(BuildContext context);
@@ -41,8 +46,7 @@ abstract class GdsScreen<R> {
     if (context.isMobile) {
       return context.pushReplacement(Builder(builder: buildPage));
     } else {
-      context.pop();
-      return GdsModal.show(context, builder: buildModal);
+      return GdsModal.showReplacement(context, builder: buildModal);
     }
   }
 }

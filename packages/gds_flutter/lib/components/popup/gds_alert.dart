@@ -117,16 +117,27 @@ class GdsAlert extends StatelessWidget {
     );
   }
 
+  /// 알림 팝업을 표시할 라우트를 생성합니다.
+  static GdsPopupRoute<T> createRoute<T>(WidgetBuilder builder) {
+    return .new(
+      barrierDismissible: false,
+      child: Builder(builder: builder),
+    );
+  }
+
   /// 알림 팝업을 오버레이에 표시합니다.
   static Future<T?> show<T>(
     BuildContext context, {
     required WidgetBuilder builder,
   }) {
-    final route = GdsPopupRoute<T>(
-      barrierDismissible: false,
-      child: Builder(builder: builder),
-    );
+    return Navigator.of(context).push(createRoute<T>(builder));
+  }
 
-    return Navigator.of(context).push(route);
+  /// 현재 라우트를 알림 팝업으로 교체합니다.
+  static Future<T?> showReplacement<T>(
+    BuildContext context, {
+    required WidgetBuilder builder,
+  }) {
+    return Navigator.of(context).pushReplacement(createRoute<T>(builder));
   }
 }

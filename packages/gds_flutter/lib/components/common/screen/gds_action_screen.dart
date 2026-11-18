@@ -31,7 +31,7 @@ abstract class GdsActionScreen extends GdsScreen<GdsActionContent> {
           Expanded(
             child: GdsScrollable(
               enabled: scroll,
-              padding: padding ?? .all(16),
+              padding: scrollPaddingOf(context),
               child: content.child,
             ),
           ),
@@ -87,7 +87,7 @@ abstract class GdsActionScreen extends GdsScreen<GdsActionContent> {
       scroll: scroll,
       primaryButton: content.primaryButton,
       secondaryButton: content.secondaryButton,
-      padding: padding ?? GdsModal.defaultPadding,
+      padding: scrollPaddingOf(context),
       child: content.child,
     );
   }

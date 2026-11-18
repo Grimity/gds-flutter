@@ -5,6 +5,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
+/// [GdsAdaptiveMenu]를 반환하는 빌더.
+typedef GdsAdaptiveMenuBuilder = GdsAdaptiveMenu Function(BuildContext context);
+
 /// 탭하면 모바일에서는 바텀 시트, 태블릿에서는 팝오버로 액션 목록을 표시하는 위젯.
 class GdsAdaptiveMenu {
   const new({
@@ -18,10 +21,10 @@ class GdsAdaptiveMenu {
     BuildContext context, {
     required LayerLink layerLink,
     required GdsMenuPosition position,
-    required GdsAdaptiveMenu Function(BuildContext context) builder,
+    required GdsAdaptiveMenuBuilder builder,
   }) {
+    // 모바일에서는 액션 목록을 바텀 시트로 표시.
     if (context.isMobile) {
-      // 모바일에서는 액션 목록을 바텀 시트로 표시.
       return GdsBottomSheet.show<T>(
         context,
         builder: (context) {
@@ -49,7 +52,11 @@ class GdsAdaptiveMenu {
       context,
       layerLink: layerLink,
       position: position,
-      builder: (context) => GdsMenu(items: builder(context).items),
+      builder: (context) {
+        return GdsMenu(
+          items: builder(context).items,
+        );
+      },
     );
   }
 }

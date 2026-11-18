@@ -35,7 +35,7 @@ abstract class GdsEditorScreen extends GdsScreen<GdsEditorContent> {
       ),
       body: GdsScrollable(
         enabled: scroll,
-        padding: padding ?? .all(16),
+        padding: scrollPaddingOf(context),
         child: content.child,
       ),
     );
@@ -50,7 +50,7 @@ abstract class GdsEditorScreen extends GdsScreen<GdsEditorContent> {
       onBack: context.pop,
       scroll: scroll,
       primaryButton: content.submitButton,
-      padding: padding ?? GdsModal.defaultPadding,
+      padding: scrollPaddingOf(context),
       child: content.child,
     );
   }
