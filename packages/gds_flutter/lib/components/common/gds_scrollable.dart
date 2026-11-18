@@ -28,9 +28,6 @@ class GdsScrollable extends StatelessWidget {
       );
     }
 
-    return Padding(
-      padding: padding ?? .zero,
-      child: child,
-    );
+    return child;
   }
 }
