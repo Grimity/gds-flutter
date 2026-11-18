@@ -308,7 +308,7 @@ packages:
     description:
       path: "packages/flutter_design_preview"
       ref: HEAD
-      resolved-ref: f248842b0080863d949c3b25ec4b87c3a9c09f62
+      resolved-ref: "0ef9c4b06cf343fefd772ba5d458344d579faad5"
       url: "https://github.com/MTtankkeo/vscode-flutter-design-preview.git"
     source: git
     version: "1.0.0"
