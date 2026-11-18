@@ -2,7 +2,7 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 탭 목록과 선택한 탭의 콘텐츠를 함께 표시하는 위젯.

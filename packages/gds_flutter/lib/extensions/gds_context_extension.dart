@@ -4,7 +4,7 @@
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템에서 제공하는 [BuildContext]에 대한 유틸리티 확장.

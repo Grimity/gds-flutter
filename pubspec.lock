@@ -308,7 +308,7 @@ packages:
     description:
       path: "packages/flutter_design_preview"
       ref: HEAD
-      resolved-ref: "05b67fbf97282121293f09bc177d806a05867edd"
+      resolved-ref: f248842b0080863d949c3b25ec4b87c3a9c09f62
       url: "https://github.com/MTtankkeo/vscode-flutter-design-preview.git"
     source: git
     version: "1.0.0"
@@ -591,6 +591,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  listen:
+    dependency: transitive
+    description:
+      name: listen
+      sha256: "47501a08016a43fcad79252439d723f50f14f88fa7bfd8a177e0a417e5c9e1f2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   logging:
     dependency: transitive
     description:
@@ -627,10 +635,10 @@ packages:
     dependency: transitive
     description:
       name: material_ui
-      sha256: e4031746f96c8316864d9b92bce375f1320a36ed56e166307e1e1bda9d90b4ab
+      sha256: a6b19012df437a356cbc01f8ea22a105e07194c47c9a6009da0032a0ce35c4ab
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.0"
+    version: "1.11.1"
   meta:
     dependency: transitive
     description:
@@ -739,10 +747,10 @@ packages:
     dependency: transitive
     description:
       name: pervice
-      sha256: "342ffa89613e5bd2b87314d051f4ff737c6dc0d342fceeeb90b78be9b1a5c7b0"
+      sha256: d77cd0e752cff9962efd3cf102c7ae2aaa1c4657aa27d83841da7910d55b4dc2
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.0"
+    version: "1.8.0"
   petitparser:
     dependency: transitive
     description:
@@ -992,10 +1000,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "2a122cbe059f8b610d3a5415f42e255b6c17b1f21eee1d960f31080237fb4f11"
+      sha256: "0a10344e901e5b2e63819567951cb6a06673ed6b84f40462188ff5a0c41f371f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.12"
+    version: "0.7.14"
   transition_switcher:
     dependency: transitive
     description:
@@ -1197,5 +1205,5 @@ packages:
     source: hosted
     version: "2.2.4"
 sdks:
-  dart: ">=3.13.5 <4.0.0"
+  dart: ">=3.14.0 <4.0.0"
   flutter: ">=3.47.0"

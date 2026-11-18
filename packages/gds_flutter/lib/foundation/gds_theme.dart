@@ -2,8 +2,8 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 export 'theme/gds_dark_theme.dart';

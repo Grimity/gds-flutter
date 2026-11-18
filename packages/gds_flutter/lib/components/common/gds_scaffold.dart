@@ -4,7 +4,7 @@
 
 // ignore_for_file: gds_lints/prefer_gds_scaffold
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템 전반에서 공통으로 사용하는 [Scaffold] 래퍼 위젯.

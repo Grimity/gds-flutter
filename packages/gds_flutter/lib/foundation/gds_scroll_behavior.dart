@@ -3,7 +3,7 @@
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 디자인 시스템에서 사용하며 Android에서는 커스텀 스크롤 물리를 적용하는 설정.

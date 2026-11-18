@@ -2,7 +2,7 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 탭에 표시할 라벨과 숫자 정보를 정의하는 인터페이스.

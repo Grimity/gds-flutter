@@ -2,7 +2,7 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 위젯 옆에 또 다른 위젯을 오버레이 형태로 표시하기 위한 모달 라우트입니다.

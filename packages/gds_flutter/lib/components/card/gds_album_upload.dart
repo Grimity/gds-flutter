@@ -2,7 +2,7 @@
 // Licensed under the Grimity Source-Available License v1.0.
 // AI/ML training and dataset use are prohibited. See LICENSE.
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 앨범 이미지 업로드에 사용하는 여러 앨범 위젯을 제공합니다.

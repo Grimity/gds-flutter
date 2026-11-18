@@ -4,7 +4,7 @@
 
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 
 /// 상단에 [GdsToast]를 오버레이로 표시할 때, 관련 애니메이션을 처리하는 위젯.
