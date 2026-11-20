@@ -6,6 +6,10 @@
 export 'artwork_collage/gds_artwork_collage_scroll.dart';
 export 'artwork_collage/gds_artwork_collage.dart';
 
+// List Detail
+export 'list_detail/gds_list_detail_page.dart';
+export 'list_detail/gds_list_detail.dart';
+
 // Menu
 export 'menu/gds_menu_position.dart';
 export 'menu/gds_menu_route.dart';
