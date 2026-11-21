@@ -149,10 +149,10 @@ class GdsSidebar extends StatelessWidget {
                       ]),
                     ),
 
-                    // 사용자 정보 버튼 표시
+                    // 사업자 정보 버튼 표시
                     GdsGesture(
                       onTap: onBusinessInfo,
-                      child: GdsText('사용자 정보', color: .textGraySubtle, style: .label6),
+                      child: GdsText('사업자 정보', color: .textGraySubtle, style: .label6),
                     ),
 
                     // 그리미티 저작권 표시
