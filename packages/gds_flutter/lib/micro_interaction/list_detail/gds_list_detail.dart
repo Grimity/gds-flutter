@@ -61,6 +61,23 @@ class GdsListDetailState extends State<GdsListDetail> {
 
   @override
   Widget build(BuildContext context) {
+    // 상세 페이지 선택 목록 위젯.
+    final list = ListView.builder(
+      itemCount: widget.pages.length,
+      itemBuilder: (context, index) {
+        final page = widget.pages[index];
+
+        return GdsListItem.icon(
+          icon: page.icon,
+          label: page.title,
+          onTap: () => select(index),
+
+          // 태블릿에서만 현재 항목을 선택 상태로 표시
+          status: .from(selected: context.isTablet && this.index == index),
+        );
+      },
+    );
+
     return GdsScaffold(
       appBar: GdsTopNavigation.iconButton(
         onBack: context.pop,
@@ -70,21 +87,11 @@ class GdsListDetailState extends State<GdsListDetail> {
       body: Row(
         children: [
           // 상세 페이지를 선택하는 목록 표시
-          SizedBox(
-            width: 240,
-            child: Column(
-              children: widget.pages.indexedBuilder((index, page) {
-                return GdsListItem.icon(
-                  icon: page.icon,
-                  label: page.title,
-                  onTap: () => select(index),
-
-                  // 태블릿에서만 현재 항목을 선택 상태로 표시
-                  status: .from(selected: context.isTablet && this.index == index),
-                );
-              }),
-            ),
-          ),
+          if (context.isTablet) ...[
+            SizedBox(width: 240, child: list),
+          ] else ...[
+            Expanded(child: list),
+          ],
 
           // 태블릿에서만 상세 페이지 표시
           if (context.isTablet) ...[
