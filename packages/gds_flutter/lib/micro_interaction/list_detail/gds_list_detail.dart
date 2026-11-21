@@ -39,9 +39,15 @@ class GdsListDetailState extends State<GdsListDetail> {
   void select(int newIndex) {
     assert(newIndex >= 0);
     assert(newIndex < widget.pages.length);
+    final page = widget.pages[newIndex];
+
+    // 기기 유형과 관계없이 페이지 자체를 바로 라우트로 열기.
+    if (page.pushDirectly) {
+      context.push(page);
+      return;
+    }
 
     if (context.isMobile) {
-      final page = widget.pages[newIndex];
       final view = page.buildView(context);
 
       context.push(view);
