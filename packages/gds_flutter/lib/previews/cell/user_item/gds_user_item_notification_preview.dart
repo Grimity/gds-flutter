@@ -46,6 +46,7 @@ class GdsUserItemNotificationPreview extends PreviewWidget {
       type: type.value,
       content: content.value,
       createdAt: DateTime.now().subtract(Duration(hours: hoursAgo.value)),
+      onTap: () => debugPrint('onTap() called'),
       onClose: () => debugPrint('onClose() called'),
       read: read.value,
     );

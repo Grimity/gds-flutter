@@ -188,51 +188,54 @@ abstract class GdsUserItem {
     required String content,
     required DateTime createdAt,
     required bool read,
+    required VoidCallback onTap,
     required VoidCallback onClose,
   }) {
-    return Padding(
+    return GdsGesture(
       key: key,
-      padding: 12.vertical,
-      child: Row(
-        mainAxisAlignment: .spaceBetween,
-        spacing: 12,
-        children: [
-          Column(
-            crossAxisAlignment: .start,
-            mainAxisSize: .min,
-            children: [
-              // 유형 표시
-              GdsText(
-                type,
-                style: .label5,
-                color: read ? .textGrayNormal : .textPrimaryNormal,
-              ),
-              const Gap(2),
+      child: Padding(
+        padding: 12.vertical,
+        child: Row(
+          mainAxisAlignment: .spaceBetween,
+          spacing: 12,
+          children: [
+            Column(
+              crossAxisAlignment: .start,
+              mainAxisSize: .min,
+              children: [
+                // 유형 표시
+                GdsText(
+                  type,
+                  style: .label5,
+                  color: read ? .textGrayNormal : .textPrimaryNormal,
+                ),
+                const Gap(2),
 
-              // 본문 표시
-              GdsText(
-                content,
-                style: .label4,
-                color: read ? .textGraySubtle : .textGrayBold,
-              ),
-              const Gap(8),
+                // 본문 표시
+                GdsText(
+                  content,
+                  style: .label4,
+                  color: read ? .textGraySubtle : .textGrayBold,
+                ),
+                const Gap(8),
 
-              // 지난 시각 표시
-              GdsText(
-                createdAt.timeAgo,
-                style: .label6,
-                color: .textGraySubtle,
-              ),
-            ],
-          ),
+                // 지난 시각 표시
+                GdsText(
+                  createdAt.timeAgo,
+                  style: .label6,
+                  color: .textGraySubtle,
+                ),
+              ],
+            ),
 
-          // 우측에 닫기 버튼 표시
-          GdsButton.icon(
-            icon: .x,
-            type: .normal,
-            onTap: onClose,
-          ),
-        ],
+            // 우측에 닫기 버튼 표시
+            GdsButton.icon(
+              icon: .x,
+              type: .normal,
+              onTap: onClose,
+            ),
+          ],
+        ),
       ),
     );
   }
