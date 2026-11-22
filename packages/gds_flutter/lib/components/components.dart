@@ -97,7 +97,7 @@ export 'dm/gds_chat_input.dart';
 export 'dm/gds_chat_input_reply.dart';
 export 'dm/gds_chat_reply.dart';
 export 'dm/gds_chat.dart';
-export 'dm/gds_dm_list_item.dart';
+export 'dm/gds_dm_list.dart';
 
 // Editor
 export 'editor/gds_editor_controls.dart';

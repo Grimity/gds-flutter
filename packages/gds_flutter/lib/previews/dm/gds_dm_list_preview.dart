@@ -14,16 +14,6 @@ class GdsDmListPreview extends PreviewWidget {
     displayName: 'Active',
   );
 
-  final checkedControl = PreviewControl.boolean(
-    defaultValue: false,
-    displayName: 'Checked',
-  );
-
-  final checkableControl = PreviewControl.boolean(
-    defaultValue: false,
-    displayName: 'Checkable',
-  );
-
   final profileUrlControl = PreviewControl.string(
     initialValue: previewProfileUrl,
     displayName: 'Profile URL',
@@ -60,8 +50,6 @@ class GdsDmListPreview extends PreviewWidget {
   @override
   Widget build(BuildContext context) {
     final active = activeControl.of(context);
-    final checked = checkedControl.of(context);
-    final checkable = checkableControl.of(context);
     final profileUrl = profileUrlControl.of(context);
     final nickname = nicknameControl.of(context);
     final message = messageControl.of(context);
@@ -70,15 +58,12 @@ class GdsDmListPreview extends PreviewWidget {
 
     return GdsDmList(
       active: active.value,
-      checked: checked.value,
-      checkable: checkable.value,
       profile: profileUrl.mayBeValue?.networkImage,
       nickname: nickname.value,
       message: message.value,
-      createdAt: DateTime.now().subtract(Duration(hours: hoursAgo.value)),
+      createdAt: .now().subtract(.new(hours: hoursAgo.value)),
       unreadCount: unreadCount.value,
       onTap: () => debugPrint('onTap() called'),
-      onChanged: (value) => checked.value = value,
     );
   }
 }

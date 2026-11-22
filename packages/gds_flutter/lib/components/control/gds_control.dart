@@ -19,19 +19,33 @@ abstract class GdsControl {
     Key? key,
     required bool visible,
     required GdsSpacing spacing,
+    required VoidCallback onTap,
     required Widget control,
+    required Widget child,
   }) {
-    return GdsFoldable.builder(
-      key: key,
-      alignment: .centerLeft,
-      visible: visible,
-      axis: .horizontal,
-      builder: (context) {
-        return Padding(
-          padding: .only(right: spacing),
-          child: control,
-        );
-      },
+    return GdsGesture(
+      onTap: onTap,
+      child: IgnorePointer(
+        ignoring: visible,
+        child: Row(
+          children: [
+            GdsFoldable.builder(
+              key: key,
+              alignment: .centerLeft,
+              visible: visible,
+              axis: .horizontal,
+              builder: (context) {
+                return Padding(
+                  padding: spacing.right,
+                  child: control,
+                );
+              },
+            ),
+
+            child,
+          ],
+        ),
+      ),
     );
   }
 }
