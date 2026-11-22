@@ -179,7 +179,10 @@ abstract class GdsTextField {
       backgroundColor: .surfaceGraySubtlest,
       borderColor: .borderGraySubtle,
       leadingBuilder: (context, controller) {
-        return GdsIcon.magnifier.build(size: 20, color: .iconGrayNormal);
+        return GdsIcon.magnifier.build(
+          size: 20,
+          color: .iconGrayNormal,
+        );
       },
       trailingBuilder: (context, controller) {
         if (controller.text.isNotEmpty) {
@@ -204,11 +207,19 @@ abstract class GdsTextField {
       enabledStyle: style.copyWith(textColor: .textGraySubtle),
       filledStyle: style.copyWith(textColor: .textGrayBold),
       focusedStyle: style.copyWith(textColor: .textGrayBold),
-      errorStyle: .new(),
-      successStyle: .new(),
-      disabledStyle: .new(),
+      errorStyle: style,
+      successStyle: style,
+      disabledStyle: style.copyWith(
+        textColor: .textGraySubtler,
+        borderColor: .borderGraySubtler,
+      ),
       decoration: size.when(
-        md: _mdDecoration.copyWith(size: .ml, padding: .symmetric(horizontal: 16, vertical: 12.8)), // 고정 높이 48px 기준
+        md: _mdDecoration.copyWith(
+          size: .ml,
+
+          // 고정 높이 48px 기준
+          padding: 16.horizontal + 12.8.vertical,
+        ),
         sm: _smDecoration.copyWith(size: .md),
       ),
       status: status,
