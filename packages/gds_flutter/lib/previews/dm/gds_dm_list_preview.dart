@@ -7,8 +7,8 @@ import 'package:flutter_design_preview/flutter_design_preview.dart';
 import 'package:gds_flutter/gds_flutter.dart';
 import 'package:gds_flutter/previews/preview.dart';
 
-/// [GdsDmListItem]에 대한 프리뷰 위젯.
-class GdsDmListItemPreview extends PreviewWidget {
+/// [GdsDmList]에 대한 프리뷰 위젯.
+class GdsDmListPreview extends PreviewWidget {
   final activeControl = PreviewControl.boolean(
     defaultValue: false,
     displayName: 'Active',
@@ -68,7 +68,7 @@ class GdsDmListItemPreview extends PreviewWidget {
     final hoursAgo = hoursAgoControl.of(context);
     final unreadCount = unreadCountControl.of(context);
 
-    return GdsDmListItem(
+    return GdsDmList(
       active: active.value,
       checked: checked.value,
       checkable: checkable.value,
