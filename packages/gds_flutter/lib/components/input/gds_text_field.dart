@@ -163,6 +163,7 @@ abstract class GdsTextField {
   static Widget search({
     Key? key,
     required GdsSize size,
+    GdsInputStatus status = .enabled,
     GdsShadow? shadow,
     String? placeholder,
     String? text,
@@ -210,7 +211,7 @@ abstract class GdsTextField {
         md: _mdDecoration.copyWith(size: .ml, padding: .symmetric(horizontal: 16, vertical: 12.8)), // 고정 높이 48px 기준
         sm: _smDecoration.copyWith(size: .md),
       ),
-      status: .enabled,
+      status: status,
       shadow: shadow,
       placeholder: placeholder,
       text: text,

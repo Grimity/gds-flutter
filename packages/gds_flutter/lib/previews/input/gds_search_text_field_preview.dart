@@ -14,6 +14,12 @@ class GdsSearchTextFieldPreview extends PreviewWidget {
     values: const [.md, .sm],
   );
 
+  final statusControl = PreviewControl.select<GdsInputStatus>(
+    defaultValue: .enabled,
+    displayName: 'Status',
+    values: GdsInputStatus.values,
+  );
+
   final placeholderControl = PreviewControl.string(
     initialValue: 'Search',
     displayName: 'Placeholder',
@@ -28,10 +34,12 @@ class GdsSearchTextFieldPreview extends PreviewWidget {
   @override
   Widget build(BuildContext context) {
     final size = sizeControl.of(context);
+    final status = statusControl.of(context);
     final placeholder = placeholderControl.of(context);
 
     return GdsTextField.search(
       size: size.value,
+      status: status.value,
       placeholder: placeholder.mayBeValue,
     );
   }
