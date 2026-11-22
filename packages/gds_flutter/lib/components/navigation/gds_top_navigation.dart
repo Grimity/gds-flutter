@@ -350,14 +350,22 @@ class _MainIcons extends StatelessWidget {
       spacing: 16,
       children: [
         // 돋보기 아이콘 표시
-        GdsButton.icon(type: .normal, onTap: onSearch, icon: .magnifier),
+        GdsButton.icon(
+          type: .normal,
+          icon: .magnifier,
+          onTap: onSearch,
+        ),
 
         // 알림 아이콘 표시
         GdsPushBadge.dot(
           visible: hasNotification,
           position: .topRight,
           size: .sm,
-          child: GdsButton.icon(type: .normal, onTap: onSearch, icon: .bell),
+          child: GdsButton.icon(
+            type: .normal,
+            icon: .bell,
+            onTap: onNotification,
+          ),
         ),
 
         // 프로필 이미지 표시
