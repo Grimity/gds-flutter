@@ -68,7 +68,7 @@ abstract class GdsControl {
               },
             ),
 
-            child,
+            Expanded(child: child),
           ],
         ),
       ),
