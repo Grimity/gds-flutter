@@ -6,4 +6,5 @@ export 'image_crop_controller.dart';
 export 'immediate_image.dart';
 export 'keep_alive_wrapper.dart';
 export 'load_more_service.dart';
+export 'notifier.dart';
 export 'responsive_image.dart';
