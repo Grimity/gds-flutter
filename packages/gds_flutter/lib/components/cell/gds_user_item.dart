@@ -15,7 +15,7 @@ abstract class GdsUserItem {
     String? handle,
     required ImageProvider? profile,
     required VoidCallback? onUser,
-    List<GdsTextButtonAction>? actions,
+    List<GdsTextButtonAction> actions = const [],
   }) {
     return Padding(
       key: key,
@@ -31,7 +31,7 @@ abstract class GdsUserItem {
           ),
 
           // 우측 버튼 영역
-          if (actions != null && actions.isNotEmpty) ...[
+          if (actions.isNotEmpty) ...[
             Expanded(
               child: Row(
                 mainAxisAlignment: .end,
@@ -61,7 +61,7 @@ abstract class GdsUserItem {
     String? handle,
     required ImageProvider? profile,
     required VoidCallback? onUser,
-    List<GdsIconButtonAction>? actions,
+    List<GdsIconButtonAction> actions = const [],
   }) {
     return Padding(
       key: key,
@@ -77,7 +77,7 @@ abstract class GdsUserItem {
           ),
 
           // 우측 버튼 영역
-          if (actions != null && actions.isNotEmpty) ...[
+          if (actions.isNotEmpty) ...[
             Expanded(
               child: Row(
                 mainAxisAlignment: .end,
