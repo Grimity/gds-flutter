@@ -23,30 +23,31 @@ abstract class GdsUserItem {
       child: Row(
         spacing: 12,
         children: [
-          info(
-            nickname: nickname,
-            profile: profile,
-            handle: handle,
-            onTap: onUser,
+          Expanded(
+            child: info(
+              nickname: nickname,
+              profile: profile,
+              handle: handle,
+              onTap: onUser,
+            ),
           ),
 
           // 우측 버튼 영역
           if (actions.isNotEmpty) ...[
-            Expanded(
-              child: Row(
-                mainAxisAlignment: .end,
-                spacing: 8,
-                children: actions.builder((action) {
-                  return GdsButton.text(
-                    type: action.type,
-                    variant: action.variant,
-                    size: .sm,
-                    onTap: action.onTap,
-                    layerLink: action.layerLink,
-                    label: action.label,
-                  );
-                }),
-              ),
+            Row(
+              mainAxisAlignment: .end,
+              mainAxisSize: .min,
+              spacing: 8,
+              children: actions.builder((action) {
+                return GdsButton.text(
+                  type: action.type,
+                  variant: action.variant,
+                  size: .sm,
+                  onTap: action.onTap,
+                  layerLink: action.layerLink,
+                  label: action.label,
+                );
+              }),
             ),
           ],
         ],
@@ -69,28 +70,29 @@ abstract class GdsUserItem {
       child: Row(
         spacing: 12,
         children: [
-          info(
-            nickname: nickname,
-            profile: profile,
-            handle: handle,
-            onTap: onUser,
+          Expanded(
+            child: info(
+              nickname: nickname,
+              profile: profile,
+              handle: handle,
+              onTap: onUser,
+            ),
           ),
 
           // 우측 버튼 영역
           if (actions.isNotEmpty) ...[
-            Expanded(
-              child: Row(
-                mainAxisAlignment: .end,
-                spacing: 8,
-                children: actions.builder((action) {
-                  return GdsButton.icon(
-                    type: .normal,
-                    icon: action.icon,
-                    onTap: action.onTap,
-                    layerLink: action.layerLink,
-                  );
-                }),
-              ),
+            Row(
+              mainAxisAlignment: .end,
+              mainAxisSize: .min,
+              spacing: 8,
+              children: actions.builder((action) {
+                return GdsButton.icon(
+                  type: .normal,
+                  icon: action.icon,
+                  onTap: action.onTap,
+                  layerLink: action.layerLink,
+                );
+              }),
             ),
           ],
         ],
@@ -147,33 +149,34 @@ abstract class GdsUserItem {
       child: Row(
         spacing: 12,
         children: [
-          _ProfileNickName(
-            nickname: nickname,
-            profile: profile,
-            onTap: onUser,
-            child: GdsUserInfo.follow(
-              followerCount: followerCount,
-              followingCount: followingCount,
+          Expanded(
+            child: _ProfileNickName(
+              nickname: nickname,
+              profile: profile,
+              onTap: onUser,
+              child: GdsUserInfo.follow(
+                followerCount: followerCount,
+                followingCount: followingCount,
+              ),
             ),
           ),
 
           // 우측 버튼 영역
           if (actions.isNotEmpty) ...[
-            Expanded(
-              child: Row(
-                mainAxisAlignment: .end,
-                spacing: 8,
-                children: actions.builder((action) {
-                  return GdsButton.text(
-                    type: action.type,
-                    variant: action.variant,
-                    size: .sm,
-                    onTap: action.onTap,
-                    label: action.label,
-                    layerLink: action.layerLink,
-                  );
-                }),
-              ),
+            Row(
+              mainAxisAlignment: .end,
+              mainAxisSize: .min,
+              spacing: 8,
+              children: actions.builder((action) {
+                return GdsButton.text(
+                  type: action.type,
+                  variant: action.variant,
+                  size: .sm,
+                  onTap: action.onTap,
+                  label: action.label,
+                  layerLink: action.layerLink,
+                );
+              }),
             ),
           ],
         ],
