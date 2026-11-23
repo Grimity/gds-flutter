@@ -14,6 +14,32 @@ abstract class GdsControl {
         : (enabled ? .iconGraySubtler : .iconGraySubtlest);
   }
 
+  /// 컨트롤 위젯 우측에 라벨을 표시하는 위젯.
+  static Widget label({
+    Key? key,
+    required VoidCallback onTap,
+    required String label,
+    required Widget control,
+  }) {
+    return GdsGesture(
+      onTap: onTap,
+      child: Row(
+        key: key,
+        mainAxisSize: .min,
+        spacing: 6,
+        children: [
+          control,
+
+          GdsText(
+            label,
+            color: .textGrayNormal,
+            style: .label3,
+          ),
+        ],
+      ),
+    );
+  }
+
   /// 표시 여부에 따라 컨트롤 위젯을 가로 방향으로 접고 펼치는 위젯.
   static Widget foldable({
     Key? key,
