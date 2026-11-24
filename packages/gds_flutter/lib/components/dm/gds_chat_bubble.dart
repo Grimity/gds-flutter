@@ -129,7 +129,7 @@ class GdsChatBubble extends StatelessWidget {
 
           // 답글 버튼 표시
           if (hasReply) ...[
-            GdsButton.icon(type: .outlined, onTap: onLike!, icon: .forward2),
+            GdsButton.icon(type: .outlined, onTap: onReply!, icon: .forward2),
           ],
         ],
       ),

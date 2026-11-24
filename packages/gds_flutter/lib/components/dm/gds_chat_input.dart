@@ -11,12 +11,14 @@ class GdsChatInput extends StatelessWidget {
   const new({
     super.key,
     this.enabled = true,
+    this.text,
     this.reply,
     required this.onCameraTap,
     required this.onSubmit,
   });
 
   final bool enabled;
+  final String? text;
   final GdsChatInputReply? reply;
   final VoidCallback onCameraTap;
   final FutureOrCallback onSubmit;
@@ -64,6 +66,7 @@ class GdsChatInput extends StatelessWidget {
               Expanded(
                 child: GdsTextField.normal(
                   size: .sm,
+                  text: text,
                   placeholder: '메세지 입력',
                   status: .from(enabled: enabled),
                   maxLines: 4,
