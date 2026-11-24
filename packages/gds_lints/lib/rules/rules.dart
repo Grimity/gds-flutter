@@ -25,6 +25,7 @@ export 'prefer/prefer_widget_factory_key_rule.dart';
 // Valid
 export 'valid/valid_gds_button_variant_rule.dart';
 export 'valid/valid_gds_icon_color_rule.dart';
+export 'valid/valid_license_header_rule.dart';
 export 'valid/valid_public_member_docs_rule.dart';
 export 'valid/valid_gds_size_rule.dart';
 export 'valid/valid_gds_spacing_rule.dart';

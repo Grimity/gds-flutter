@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:flutter/widgets.dart';
 
 /// 스크롤이 활성화했을 때만 자식을 스크롤 영역으로 감싸는 위젯.

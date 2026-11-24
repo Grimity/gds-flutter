@@ -1,3 +1,7 @@
+// Copyright © 2026 Grimity. All rights reserved.
+// Licensed under the Grimity Source-Available License v1.0.
+// AI/ML training and dataset use are prohibited. See LICENSE.
+
 import 'package:flutter/widgets.dart';
 
 /// 값을 직접 정의하지 않고 변경 신호를 명시적으로 전달하는 [ChangeNotifier].

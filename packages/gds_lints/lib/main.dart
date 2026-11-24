@@ -4,6 +4,7 @@
 
 import 'package:analysis_server_plugin/plugin.dart';
 import 'package:analysis_server_plugin/registry.dart';
+import 'package:gds_lints/fixes/fixes.dart';
 import 'package:gds_lints/rules/rules.dart';
 
 /// GDS analyzer 플러그인 인스턴스.
@@ -41,5 +42,12 @@ class GdsLintsPlugin extends Plugin {
     registry.registerWarningRule(ValidPublicMemberDocsRule());
     registry.registerWarningRule(ValidGdsSizeRule());
     registry.registerWarningRule(ValidGdsSpacingRule());
+
+    // License Header
+    {
+      final rule = ValidLicenseHeaderRule();
+      registry.registerWarningRule(rule);
+      registry.registerFixForRule(rule.diagnosticCode, AddLicenseHeader.new);
+    }
   }
 }
