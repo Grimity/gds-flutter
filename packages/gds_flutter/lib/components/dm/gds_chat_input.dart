@@ -11,6 +11,7 @@ class GdsChatInput extends StatelessWidget {
   const new({
     super.key,
     this.enabled = true,
+    this.canSubmit = true,
     this.text,
     this.reply,
     required this.onCameraTap,
@@ -19,6 +20,7 @@ class GdsChatInput extends StatelessWidget {
   });
 
   final bool enabled;
+  final bool canSubmit;
   final String? text;
   final GdsChatInputReply? reply;
   final VoidCallback onCameraTap;
@@ -69,7 +71,7 @@ class GdsChatInput extends StatelessWidget {
                 child: GdsTextField.normal(
                   size: .sm,
                   text: text,
-                  placeholder: '메세지 입력',
+                  placeholder: enabled ? '메세지 입력' : '더 이상 채팅이 불가능해요',
                   onChanged: onChanged,
                   status: .from(enabled: enabled),
                   maxLines: 4,
@@ -82,7 +84,7 @@ class GdsChatInput extends StatelessWidget {
                 size: .md,
                 onTap: onSubmit,
                 label: '전송',
-                enabled: enabled,
+                enabled: enabled && canSubmit,
               ),
             ],
           ),
