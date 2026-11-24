@@ -13,7 +13,10 @@ class GdsScrollBehavior extends MaterialScrollBehavior {
   @override
   ScrollPhysics getScrollPhysics(BuildContext context) {
     if (getPlatform(context) == .android) {
-      return const GdsScrollPhysics();
+      return const GdsScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+    }
+    if (getPlatform(context) == .iOS) {
+      return const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
     }
 
     return super.getScrollPhysics(context);
