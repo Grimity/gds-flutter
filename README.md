@@ -1,4 +1,4 @@
-<img src="https://github.com/Grimity/gds-flutter/raw/refs/heads/main/.github/assets/banner.svg">
+<img width="1024" height="300" alt="banner" src="https://github.com/user-attachments/assets/3d68364b-e05a-4e54-afd5-571a14267426" />
 
 ## 소개
 
