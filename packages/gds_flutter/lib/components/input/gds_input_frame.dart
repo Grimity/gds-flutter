@@ -168,12 +168,8 @@ class GdsInputFrame extends StatelessWidget {
                       focusNode.unfocus();
                       onComplete?.call();
                     },
-                    onSubmitted: (newValue) {
-                      onSubmitted?.call(newValue.trim());
-                    },
-                    onChanged: (newValue) {
-                      onChanged?.call(newValue.trim());
-                    },
+                    onSubmitted: onSubmitted,
+                    onChanged: onChanged,
                     inputFormatters: [
                       LengthLimitingTextInputFormatter(maxLength),
                     ],
