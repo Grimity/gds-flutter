@@ -14,6 +14,7 @@ class GdsChatInput extends StatelessWidget {
     this.text,
     this.reply,
     required this.onCameraTap,
+    required this.onChanged,
     required this.onSubmit,
   });
 
@@ -21,6 +22,7 @@ class GdsChatInput extends StatelessWidget {
   final String? text;
   final GdsChatInputReply? reply;
   final VoidCallback onCameraTap;
+  final ValueChanged<String> onChanged;
   final FutureOrCallback onSubmit;
 
   @override
@@ -68,6 +70,7 @@ class GdsChatInput extends StatelessWidget {
                   size: .sm,
                   text: text,
                   placeholder: '메세지 입력',
+                  onChanged: onChanged,
                   status: .from(enabled: enabled),
                   maxLines: 4,
                 ),

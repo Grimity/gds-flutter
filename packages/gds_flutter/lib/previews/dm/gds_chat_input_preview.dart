@@ -57,6 +57,7 @@ class GdsChatInputPreview extends PreviewWidget {
       enabled: enabled.value,
       reply: showReply.value ? reply : null,
       onCameraTap: () => debugPrint('onCameraTap() called'),
+      onChanged: (value) => debugPrint('onChanged($value) called'),
       onSubmit: () => debugPrint('onSubmit() called'),
     );
   }
