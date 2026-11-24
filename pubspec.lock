@@ -299,10 +299,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_appbar
-      sha256: "9b7cde31021acc42686eb7f4f9412bc047c342fb566cfc0a881f01743480219e"
+      sha256: adc5970249a6c940878d4f2919ab610fc3fd3d2e6f49a5c8f1a91775e02c5fb1
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.11.0"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -401,10 +401,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_nested_scroll
-      sha256: "74db7cff5f805d5775eb11f8769bae1004972ffafce12b52a91ecd80654bd348"
+      sha256: "2e628fa254b4f419e2e4a565c3f68a1ed41e7127ed6220a4074a774778875f89"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   flutter_quill:
     dependency: transitive
     description:
@@ -425,10 +425,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_refresh_indicator
-      sha256: f69b4b3b6a075abc45206e79887f07c5023fddc879ea542725e0a7252deacf90
+      sha256: "129f8fffaca8970f6b237367ac4929eba23453aae3836fe5474e176ccac2b95c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   flutter_scroll_bottom_sheet:
     dependency: transitive
     description:

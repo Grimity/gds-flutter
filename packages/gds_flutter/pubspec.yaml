@@ -14,10 +14,10 @@ dependencies:
   flutter_touch_scale: ^1.6.2
   flutter_staggered_grid_view: ^0.7.0
   flutter_cached_transition: ^1.1.0
-  flutter_nested_scroll: ^1.1.0
-  flutter_appbar: ^1.10.0
+  flutter_nested_scroll: ^1.2.0
+  flutter_appbar: ^1.11.0
   flutter_scroll_bottom_sheet: ^1.3.1
-  flutter_refresh_indicator: ^1.4.0
+  flutter_refresh_indicator: ^1.5.0
   flutter_infinite_scroll_pagination: ^1.3.1
   skeletonizer: ^3.0.0
   pervice: ^1.8.0
