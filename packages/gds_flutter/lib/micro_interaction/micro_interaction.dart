@@ -14,6 +14,9 @@ export 'list_detail/gds_list_detail.dart';
 export 'menu/gds_menu_position.dart';
 export 'menu/gds_menu_route.dart';
 
+// Page
+export 'page/gds_page_route.dart';
+
 // Popover
 export 'popover/gds_popover_anchor.dart';
 export 'popover/gds_popover_route.dart';

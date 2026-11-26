@@ -60,21 +60,13 @@ extension GdsContextExtension on BuildContext {
 
   /// 지정한 위젯을 현재 내비게이터 스택에 푸시합니다.
   Future<T?> push<T>(Widget child) {
-    return Navigator.of(this).push<T>(
-      MaterialPageRoute(
-        allowSnapshotting: false,
-        builder: (_) => child,
-      ),
-    );
+    return Navigator.of(this).push<T>(GdsPageRoute<T>(child: child));
   }
 
   /// 현재 화면을 주어진 위젯으로 교체합니다.
   Future<T?> pushReplacement<T, TO>(Widget child, [TO? result]) {
     return Navigator.of(this).pushReplacement<T, TO>(
-      MaterialPageRoute<T>(
-        allowSnapshotting: false,
-        builder: (_) => child,
-      ),
+      GdsPageRoute<T>(child: child),
       result: result,
     );
   }
