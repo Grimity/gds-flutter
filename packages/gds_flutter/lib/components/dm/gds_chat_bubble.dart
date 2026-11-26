@@ -22,6 +22,9 @@ class GdsChatBubble extends StatelessWidget {
   final VoidCallback? onLike;
   final VoidCallback? onReply;
 
+  /// 좋아요 배지의 표시와 레이아웃 전환에 사용하는 애니메이션.
+  static const animation = GdsAnimation.normal;
+
   @override
   Widget build(BuildContext context) {
     final isMine = context.findAncestorWidgetOfExactType<GdsChat>()?.isMine;
@@ -42,7 +45,9 @@ class GdsChatBubble extends StatelessWidget {
             builder: (context, layerLink) {
               return GdsGesture(
                 onTap: () => openPopover(context, layerLink, isMine),
-                child: Stack(
+                child: Column(
+                  crossAxisAlignment: isMine ? .end : .start,
+                  mainAxisSize: .min,
                   children: [
                     // 메시지 본문 표시
                     GdsContainer(
@@ -54,24 +59,29 @@ class GdsChatBubble extends StatelessWidget {
                         bottomRight: isMine ? .xs : .xl,
                         bottomLeft: isMine ? .xl : .xs,
                       ),
-                      child: GdsText(message, color: .textGrayBold, style: .label2),
+                      child: GdsText(
+                        message,
+                        color: isMine ? .textWhite : .textGrayBold,
+                        style: .label2,
+                      ),
                     ),
 
                     // 좋아요 아이콘 배지 표시
-                    Positioned.fill(
-                      left: 12,
-                      right: 12,
-                      child: Align(
-                        alignment: isMine ? .bottomRight : .bottomLeft,
-                        child: FractionalTranslation(
-                          translation: .new(0, 0.5),
-                          child: GdsFadable.builder(
-                            type: .scaleFade,
-                            visible: like,
-                            builder: (context) {
-                              return iconBadge(icon: .heartFill, color: .statusNotification);
-                            },
-                          ),
+                    Padding(
+                      padding: 12.horizontal,
+                      child: AnimatedAlign(
+                        duration: animation.duration,
+                        curve: animation.curve,
+                        alignment: .bottomCenter,
+                        widthFactor: 1,
+                        heightFactor: like ? 0.5 : 0,
+                        child: GdsFadable.builder(
+                          animation: animation,
+                          type: .scaleFade,
+                          visible: like,
+                          builder: (context) {
+                            return iconBadge(icon: .heartFill, color: .statusNotification);
+                          },
                         ),
                       ),
                     ),
@@ -129,7 +139,11 @@ class GdsChatBubble extends StatelessWidget {
 
           // 답글 버튼 표시
           if (hasReply) ...[
-            GdsButton.icon(type: .outlined, onTap: onReply!, icon: .forward2),
+            GdsButton.icon(
+              type: .outlined,
+              icon: .forward2,
+              onTap: onReply!,
+            ),
           ],
         ],
       ),

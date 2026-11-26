@@ -48,12 +48,12 @@ class GdsChatReply extends StatelessWidget {
             GdsIcon.forward2.build(size: 18, color: .iconGraySubtle),
             Flexible(
               child: GdsContainer(
-                padding: .symmetric(vertical: 4, horizontal: 10),
+                padding: 4.vertical + 10.horizontal,
                 radius: .full,
                 color: isReplyToMe ? .surfacePrimaryNormal : .surfaceGraySubtler,
                 child: GdsText(
                   message,
-                  color: .textGrayBold,
+                  color: isReplyToMe ? .textWhite : .textGrayBold,
                   style: .label4,
                   maxLines: 1,
                   overflow: .ellipsis,
