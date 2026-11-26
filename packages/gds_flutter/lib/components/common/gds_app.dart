@@ -13,10 +13,12 @@ class GdsApp extends StatelessWidget {
     super.key,
     required this.themeMode,
     required this.initialPage,
+    this.navigatorObservers = const [],
   });
 
   final ThemeMode themeMode;
   final Widget initialPage;
+  final List<NavigatorObserver> navigatorObservers;
 
   /// 앱의 내비게이터 상태에 전역으로 접근하기 위한 키.
   static final navigationKey = GlobalKey<NavigatorState>();
@@ -29,6 +31,7 @@ class GdsApp extends StatelessWidget {
       darkTheme: .dark(),
       themeMode: themeMode,
       navigatorKey: navigationKey,
+      navigatorObservers: navigatorObservers,
       scrollBehavior: const GdsScrollBehavior(),
       localizationsDelegates: const [FlutterQuillLocalizations.delegate],
       builder: (context, child) {
