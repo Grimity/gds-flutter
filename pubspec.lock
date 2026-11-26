@@ -188,12 +188,11 @@ packages:
   custom_image_crop:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "6446e3317396a262071c2b01a0849187e0729323"
-      url: "https://github.com/MTtankkeo/flutter-custom-image-crop"
-    source: git
-    version: "0.1.1"
+      name: custom_image_crop
+      sha256: efa69247eecf3897de72da8e6e95f0562f4a934e831a2bb9babd6690f7d8eb25
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   dart_quill_delta:
     dependency: transitive
     description:
